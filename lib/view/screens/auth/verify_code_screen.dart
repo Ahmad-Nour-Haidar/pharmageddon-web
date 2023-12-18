@@ -9,7 +9,7 @@ import 'package:pharmageddon_web/controllers/verify_code_cubit/verify_code_cubit
 import 'package:pharmageddon_web/controllers/verify_code_cubit/verify_code_state.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';
-import '../../../core/constant/app_strings.dart';
+import '../../../core/constant/app_text.dart';
 import '../../../core/constant/app_svg.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/functions/navigator.dart';
@@ -76,7 +76,7 @@ class VerifyCodeScreen extends StatelessWidget {
                               child: ListView(
                                 children: [
                                   Text(
-                                    AppStrings.verifyCode.tr,
+                                    AppText.verifyCode.tr,
                                     style: AppTextTheme.f26w600black,
                                   ),
                                   const Gap(25),
@@ -111,7 +111,7 @@ class VerifyCodeScreen extends StatelessWidget {
                                   if (state is! VerifyCodeLoadingState)
                                     CustomButton(
                                       onTap: cubit.verifyCode,
-                                      text: AppStrings.verify.tr,
+                                      text: AppText.verify.tr,
                                     ),
                                   const Gap(15),
                                   Align(
@@ -123,7 +123,7 @@ class VerifyCodeScreen extends StatelessWidget {
                                         cubit.getVerifyCode();
                                       },
                                       child: Text(
-                                        AppStrings.resendVerifyCode.tr,
+                                        AppText.resendVerifyCode.tr,
                                         style: AppTextTheme.f18w400TextColor,
                                       ),
                                     ),

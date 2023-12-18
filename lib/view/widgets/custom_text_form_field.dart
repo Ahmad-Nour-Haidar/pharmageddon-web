@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';

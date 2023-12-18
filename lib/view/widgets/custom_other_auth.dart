@@ -3,10 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_image.dart';
-import '../../core/constant/app_size.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/constant/app_svg.dart';
 import '../../core/resources/app_text_theme.dart';
 
@@ -18,7 +15,7 @@ class CustomOtherAuth extends StatelessWidget {
     return Column(
       children: [
         const Gap(25),
-        Text('-  ${AppStrings.or.tr}  -', style: AppTextTheme.f18w500black),
+        Text('-  ${AppText.or.tr}  -', style: AppTextTheme.f18w500black),
         const Gap(10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

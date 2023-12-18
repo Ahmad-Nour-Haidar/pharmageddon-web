@@ -8,7 +8,7 @@ import 'package:pharmageddon_web/controllers/register_cubit/register_cubit.dart'
 import 'package:pharmageddon_web/controllers/register_cubit/register_state.dart';
 import 'package:pharmageddon_web/core/constant/app_color.dart';
 import 'package:pharmageddon_web/core/constant/app_size.dart';
-import 'package:pharmageddon_web/core/constant/app_strings.dart';
+import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/functions/navigator.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
@@ -81,7 +81,7 @@ class RegisterScreen extends StatelessWidget {
                                 child: ListView(
                                   children: [
                                     Text(
-                                      AppStrings.createAccount.tr,
+                                      AppText.createAccount.tr,
                                       style: AppTextTheme.f26w600black,
                                     ),
                                     const Gap(25),
@@ -99,7 +99,7 @@ class RegisterScreen extends StatelessWidget {
                                             fillColor: AppColor.transparent,
                                             colorPrefixIcon: AppColor.gray,
                                             prefixIcon: AppSvg.email,
-                                            hintText: AppStrings.email.tr,
+                                            hintText: AppText.email.tr,
                                           ),
                                         ),
                                         const Gap(10),
@@ -114,7 +114,7 @@ class RegisterScreen extends StatelessWidget {
                                             fillColor: AppColor.transparent,
                                             colorPrefixIcon: AppColor.gray,
                                             prefixIcon: AppSvg.phone,
-                                            hintText: AppStrings.phoneNumber.tr,
+                                            hintText: AppText.phoneNumber.tr,
                                           ),
                                         ),
                                       ],
@@ -134,7 +134,7 @@ class RegisterScreen extends StatelessWidget {
                                             fillColor: AppColor.transparent,
                                             colorPrefixIcon: AppColor.gray,
                                             prefixIcon: AppSvg.user,
-                                            hintText: AppStrings.userName.tr,
+                                            hintText: AppText.userName.tr,
                                           ),
                                         ),
                                         const Gap(10),
@@ -149,7 +149,7 @@ class RegisterScreen extends StatelessWidget {
                                             fillColor: AppColor.transparent,
                                             colorPrefixIcon: AppColor.gray,
                                             prefixIcon: AppSvg.marker,
-                                            hintText: AppStrings.address.tr,
+                                            hintText: AppText.address.tr,
                                           ),
                                         ),
                                       ],
@@ -165,7 +165,7 @@ class RegisterScreen extends StatelessWidget {
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.eye,
-                                      hintText: AppStrings.password.tr,
+                                      hintText: AppText.password.tr,
                                       suffixIcon: cubit.obscureText
                                           ? AppSvg.eye
                                           : AppSvg.eyeClose,
@@ -180,13 +180,13 @@ class RegisterScreen extends StatelessWidget {
                                     if (state is! RegisterLoadingState)
                                       CustomButton(
                                         onTap: cubit.register,
-                                        text: AppStrings.createAccount.tr,
+                                        text: AppText.createAccount.tr,
                                       ),
                                     const Gap(15),
                                     Row(
                                       children: [
                                         Text(
-                                          AppStrings.haveAnAccount.tr,
+                                          AppText.haveAnAccount.tr,
                                           style: AppTextTheme.f18w400gray,
                                         ),
                                         TextButton(
@@ -195,7 +195,7 @@ class RegisterScreen extends StatelessWidget {
                                                 AppRoute.login, context);
                                           },
                                           child: Text(
-                                            AppStrings.loginNow.tr,
+                                            AppText.loginNow.tr,
                                             style:
                                                 AppTextTheme.f18w400TextColor,
                                           ),

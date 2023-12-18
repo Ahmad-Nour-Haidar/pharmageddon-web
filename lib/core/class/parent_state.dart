@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-
-import '../constant/app_strings.dart';
+import '../constant/app_text.dart';
 
 abstract class ParentState {
   final String message;
@@ -10,25 +9,28 @@ abstract class ParentState {
 
 class OfflineState extends ParentState {
   OfflineState({String? message})
-      : super(message: message ?? AppStrings.youAreOffline.tr);
+      : super(message: message ?? AppText.youAreOffline.tr);
 }
 
 class ServerFailureState extends ParentState {
   ServerFailureState({String? message})
-      : super(message: message ?? AppStrings.somethingWentWrong.tr);
+      : super(message: message ?? AppText.somethingWentWrong.tr);
 }
 
 class FailureState extends ParentState {
   FailureState({String? message})
-      : super(message: message ?? AppStrings.somethingWentWrong.tr);
+      : super(message: message ?? AppText.somethingWentWrong.tr);
 }
 
 class NoneState extends ParentState {
   NoneState({String? message})
-      : super(message: message ?? AppStrings.youAreOffline.tr);
+      : super(message: message ?? AppText.youAreOffline.tr);
 }
 
 class SuccessState extends ParentState {
-  SuccessState({String? message})
-      : super(message: message ?? AppStrings.done.tr);
+  SuccessState({String? message}) : super(message: message ?? AppText.done.tr);
+}
+
+class WarningState extends ParentState {
+  WarningState({String? message}) : super(message: message ?? AppText.done.tr);
 }

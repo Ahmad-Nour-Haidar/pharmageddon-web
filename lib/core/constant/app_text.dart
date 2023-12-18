@@ -1,5 +1,5 @@
-class AppStrings {
-  AppStrings._();
+class AppText {
+  AppText._();
 
   static const language = 'language';
   static const english = 'english';

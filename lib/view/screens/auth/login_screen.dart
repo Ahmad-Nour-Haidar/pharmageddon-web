@@ -12,7 +12,7 @@ import 'package:pharmageddon_web/routes.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';
-import '../../../core/constant/app_strings.dart';
+import '../../../core/constant/app_text.dart';
 import '../../../core/constant/app_svg.dart';
 import '../../../core/functions/navigator.dart';
 import '../../../core/resources/app_text_theme.dart';
@@ -84,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                                   children: [
                                     const Gap(25),
                                     Text(
-                                      AppStrings.welcomeBack.tr,
+                                      AppText.welcomeBack.tr,
                                       style: AppTextTheme.f26w600black,
                                     ),
                                     const Gap(25),
@@ -97,14 +97,14 @@ class LoginScreen extends StatelessWidget {
                                         final p = ValidateInput.isPhone(value);
                                         final b = e != null && p != null;
                                         return b
-                                            ? AppStrings.emailOrPhoneNotValid.tr
+                                            ? AppText.emailOrPhoneNotValid.tr
                                             : null;
                                       },
                                       textInputAction: TextInputAction.next,
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.email,
-                                      hintText: AppStrings.emailOrPhone.tr,
+                                      hintText: AppText.emailOrPhone.tr,
                                     ),
                                     const Gap(10),
                                     // password
@@ -117,7 +117,7 @@ class LoginScreen extends StatelessWidget {
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.eye,
-                                      hintText: AppStrings.password.tr,
+                                      hintText: AppText.password.tr,
                                       suffixIcon: cubit.obscureText
                                           ? AppSvg.eye
                                           : AppSvg.eyeClose,
@@ -134,7 +134,7 @@ class LoginScreen extends StatelessWidget {
                                               AppRoute.checkEmail, context);
                                         },
                                         child: Text(
-                                          AppStrings.forgetPassword.tr,
+                                          AppText.forgetPassword.tr,
                                           style: AppTextTheme.f18w400TextColor,
                                         ),
                                       ),
@@ -147,13 +147,13 @@ class LoginScreen extends StatelessWidget {
                                     if (state is! LoginLoadingState)
                                       CustomButton(
                                         onTap: cubit.login,
-                                        text: AppStrings.login.tr,
+                                        text: AppText.login.tr,
                                       ),
                                     const Gap(15),
                                     Row(
                                       children: [
                                         Text(
-                                          AppStrings.doNotHaveAnAccount.tr,
+                                          AppText.doNotHaveAnAccount.tr,
                                           style: AppTextTheme.f18w400gray,
                                         ),
                                         TextButton(
@@ -162,7 +162,7 @@ class LoginScreen extends StatelessWidget {
                                                 AppRoute.register, context);
                                           },
                                           child: Text(
-                                            AppStrings.createAccount.tr,
+                                            AppText.createAccount.tr,
                                             style:
                                                 AppTextTheme.f18w400TextColor,
                                           ),

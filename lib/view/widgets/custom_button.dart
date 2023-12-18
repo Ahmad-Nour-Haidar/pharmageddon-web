@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_web/core/constant/app_size.dart';
-import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 
 import '../../core/constant/app_color.dart';
 

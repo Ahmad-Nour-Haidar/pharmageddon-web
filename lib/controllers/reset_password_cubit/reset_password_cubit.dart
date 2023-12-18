@@ -5,12 +5,12 @@ import '../../core/class/parent_state.dart';
 import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_local_data.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/functions/functions.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../data/remote/auth_data.dart';
 import 'reset_password_state.dart';
-import 'package:pharmageddon_web/print.dart';
+
 class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   ResetPasswordCubit() : super(ResetPasswordInitialState());
 
@@ -42,7 +42,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
   }
 
   String get message =>
-      '${AppStrings.enterTheVerificationCodeYouReceivedOnGmail.tr}\n$email';
+      '${AppText.enterTheVerificationCodeYouReceivedOnGmail.tr}\n$email';
 
   void onSubmit(String verificationCode) {
     code = verificationCode;
@@ -61,10 +61,10 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       emit(ResetPasswordFailureGetState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
-        final message = AppStrings.verifyCodeNotSentTryAgain.tr;
+        final message = AppText.verifyCodeNotSentTryAgain.tr;
         emit(ResetPasswordFailureGetState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 405) {
-        final message = AppStrings.verifyCodeNotSentTryAgain.tr;
+        final message = AppText.verifyCodeNotSentTryAgain.tr;
         emit(ResetPasswordFailureGetState(FailureState(message: message)));
       } else {
         email = AppLocalData.user!.email;
@@ -78,13 +78,13 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       return;
     }
     if (code.length < 6) {
-      emit(ResetPasswordFailureState(FailureState(
-          message: AppStrings.enterTheCompleteVerificationCode.tr)));
+      emit(ResetPasswordFailureState(
+          FailureState(message: AppText.enterTheCompleteVerificationCode.tr)));
       return;
     }
     if (passwordController.text != confirmController.text) {
       emit(ResetPasswordFailureState(
-          FailureState(message: AppStrings.passwordsNoMatch.tr)));
+          FailureState(message: AppText.passwordsNoMatch.tr)));
       return;
     }
     emit(ResetPasswordLoadingState());
@@ -100,13 +100,13 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       emit(ResetPasswordFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
-        final message = AppStrings.somethingWentWrong.tr;
+        final message = AppText.somethingWentWrong.tr;
         emit(ResetPasswordFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 403) {
-        final message = AppStrings.verifyCodeNotCorrect.tr;
+        final message = AppText.verifyCodeNotCorrect.tr;
         emit(ResetPasswordFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 405) {
-        final message = AppStrings.goToTheOtherPlatform.tr;
+        final message = AppText.goToTheOtherPlatform.tr;
         emit(ResetPasswordFailureState(FailureState(message: message)));
       } else {
         await storeUser(response);

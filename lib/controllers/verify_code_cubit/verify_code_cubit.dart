@@ -6,11 +6,11 @@ import '../../core/class/parent_state.dart';
 import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_local_data.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/functions/functions.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../data/remote/auth_data.dart';
-import 'package:pharmageddon_web/print.dart';
+
 class VerifyCodeCubit extends Cubit<VerifyCodeState> {
   VerifyCodeCubit() : super(VerifyCodeInitialState());
 
@@ -29,7 +29,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
   }
 
   String get message =>
-      '${AppStrings.enterTheVerificationCodeYouReceivedOnGmail.tr}\n$email';
+      '${AppText.enterTheVerificationCodeYouReceivedOnGmail.tr}\n$email';
 
   void getVerifyCode() async {
     email = null;
@@ -38,16 +38,16 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
       AppRKeys.em_ph: AppLocalData.user!.email,
       AppRKeys.role: AppConstant.warehouseowner,
     };
-    final response = await authRemoteData.getVerificationCode(data:data);
+    final response = await authRemoteData.getVerificationCode(data: data);
     if (isClosed) return;
     response.fold((l) {
       emit(VerifyCodeFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
-        final message = AppStrings.verifyCodeNotSentTryAgain.tr;
+        final message = AppText.verifyCodeNotSentTryAgain.tr;
         emit(VerifyCodeFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 405) {
-        final message = AppStrings.verifyCodeNotSentTryAgain.tr;
+        final message = AppText.verifyCodeNotSentTryAgain.tr;
         emit(VerifyCodeFailureGetState(FailureState(message: message)));
       } else {
         email = AppLocalData.user!.email;
@@ -58,8 +58,8 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
 
   void verifyCode() async {
     if (code.length < 6) {
-      emit(VerifyCodeFailureState(FailureState(
-          message: AppStrings.enterTheCompleteVerificationCode.tr)));
+      emit(VerifyCodeFailureState(
+          FailureState(message: AppText.enterTheCompleteVerificationCode.tr)));
       return;
     }
     emit(VerifyCodeLoadingState());
@@ -75,7 +75,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
     }, (response) async {
       if (response[AppRKeys.status] == 403 ||
           response[AppRKeys.status] == 402) {
-        final message = AppStrings.verifyCodeNotCorrect.tr;
+        final message = AppText.verifyCodeNotCorrect.tr;
         emit(VerifyCodeFailureState(FailureState(message: message)));
       } else {
         await storeUser(response);

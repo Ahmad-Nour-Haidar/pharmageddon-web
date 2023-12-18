@@ -11,7 +11,7 @@ import 'package:pharmageddon_web/controllers/reset_password_cubit/reset_password
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';
-import '../../../core/constant/app_strings.dart';
+import '../../../core/constant/app_text.dart';
 import '../../../core/constant/app_svg.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/functions/navigator.dart';
@@ -86,7 +86,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 child: ListView(
                                   children: [
                                     Text(
-                                      AppStrings.resetPassword.tr,
+                                      AppText.resetPassword.tr,
                                       style: AppTextTheme.f26w600black,
                                     ),
                                     const Gap(25),
@@ -127,7 +127,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.eye,
-                                      hintText: AppStrings.password.tr,
+                                      hintText: AppText.password.tr,
                                       suffixIcon: cubit.obscureText
                                           ? AppSvg.eye
                                           : AppSvg.eyeClose,
@@ -145,7 +145,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.eye,
-                                      hintText: AppStrings.password.tr,
+                                      hintText: AppText.password.tr,
                                       suffixIcon: cubit.obscureText
                                           ? AppSvg.eye
                                           : AppSvg.eyeClose,
@@ -160,7 +160,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                     if (state is! ResetPasswordLoadingState)
                                       CustomButton(
                                         onTap: cubit.reset,
-                                        text: AppStrings.reset.tr,
+                                        text: AppText.reset.tr,
                                       ),
                                     const Gap(15),
                                     Align(
@@ -168,9 +168,9 @@ class ResetPasswordScreen extends StatelessWidget {
                                           ? Alignment.centerRight
                                           : Alignment.centerLeft,
                                       child: TextButton(
-                                        onPressed:cubit.getVerifyCode,
+                                        onPressed: cubit.getVerifyCode,
                                         child: Text(
-                                          AppStrings.resendVerifyCode.tr,
+                                          AppText.resendVerifyCode.tr,
                                           style: AppTextTheme.f18w400TextColor,
                                         ),
                                       ),

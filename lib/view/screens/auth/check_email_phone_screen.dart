@@ -11,7 +11,7 @@ import '../../../controllers/check_email_cubit/check_email_cubit.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';
-import '../../../core/constant/app_strings.dart';
+import '../../../core/constant/app_text.dart';
 import '../../../core/constant/app_svg.dart';
 import '../../../core/resources/app_text_theme.dart';
 import '../../../core/services/dependency_injection.dart';
@@ -77,7 +77,7 @@ class CheckEmailScreen extends StatelessWidget {
                                 child: ListView(
                                   children: [
                                     Text(
-                                      AppStrings.checkEmail.tr,
+                                      AppText.checkEmail.tr,
                                       style: AppTextTheme.f26w600black,
                                     ),
                                     const Gap(25),
@@ -89,14 +89,13 @@ class CheckEmailScreen extends StatelessWidget {
                                         final e = ValidateInput.isEmail(v);
                                         final p = ValidateInput.isPhone(v);
                                         if (e == null || p == null) return null;
-                                        return AppStrings
-                                            .emailOrPhoneNotValid.tr;
+                                        return AppText.emailOrPhoneNotValid.tr;
                                       },
                                       textInputAction: TextInputAction.next,
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.email,
-                                      hintText: AppStrings.emailOrPhone.tr,
+                                      hintText: AppText.emailOrPhone.tr,
                                     ),
                                     const Gap(15),
                                     if (state is CheckEmailLoadingState)
@@ -106,7 +105,7 @@ class CheckEmailScreen extends StatelessWidget {
                                     if (state is! CheckEmailLoadingState)
                                       CustomButton(
                                         onTap: cubit.check,
-                                        text: AppStrings.check.tr,
+                                        text: AppText.check.tr,
                                       ),
                                   ],
                                 ),

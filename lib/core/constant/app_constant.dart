@@ -11,5 +11,4 @@ class AppConstant {
   static const localEn = Locale(en);
   static const localAr = Locale(ar);
   static late Locale currentLocal;
-
 }

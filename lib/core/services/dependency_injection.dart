@@ -24,7 +24,6 @@ class AppInjection {
     getIt.registerLazySingleton(() => sharedPreferences);
     getIt.registerLazySingleton(() => SessionManager());
 
-
     // start
     getIt.registerLazySingleton(() => LocaleController());
     getIt.registerLazySingleton(() => MyBlocObserver());

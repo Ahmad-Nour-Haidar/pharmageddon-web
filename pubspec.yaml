@@ -52,8 +52,9 @@ dependencies:
   flutter_svg: ^2.0.9
   animate_do: ^3.1.2
   flutter_session_manager: ^1.0.3
-#  shared_preferences cached_network_image image_picker dartz
-#  shimmer get_it flutter_spinkit flutter_otp_text_field jiffy gap dio
+  awesome_dialog: ^3.1.0
+  fluttertoast: ^8.2.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

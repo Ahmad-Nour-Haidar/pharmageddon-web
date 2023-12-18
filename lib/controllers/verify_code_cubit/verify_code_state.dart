@@ -21,4 +21,5 @@ class VerifyCodeFailureGetState extends VerifyCodeState {
 }
 
 class VerifyCodeSuccessGetState extends VerifyCodeState {}
+
 class VerifyCodeLoadingGetState extends VerifyCodeState {}

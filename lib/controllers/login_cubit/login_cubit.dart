@@ -5,7 +5,7 @@ import '../../core/class/parent_state.dart';
 import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_local_data.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/functions/functions.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../data/remote/auth_data.dart';
@@ -57,15 +57,15 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 402) {
-        final s = AppStrings.somethingWentWrong.tr;
+        final s = AppText.somethingWentWrong.tr;
         emit(LoginFailureState(FailureState(message: s)));
       } else if (response[AppRKeys.status] == 403) {
-        final s = AppStrings.emailOrPasswordIsWrong.tr;
+        final s = AppText.emailOrPasswordIsWrong.tr;
         emit(LoginFailureState(FailureState(message: s)));
       } else if (response[AppRKeys.status] == 404) {
         emit(LoginNotVerifyState());
       } else if (response[AppRKeys.status] == 405) {
-        final state = FailureState(message: AppStrings.goToTheOtherPlatform.tr);
+        final state = FailureState(message: AppText.goToTheOtherPlatform.tr);
         emit(LoginFailureState(state));
       } else {
         await storeUser(response);

@@ -6,12 +6,11 @@ import '../../core/class/parent_state.dart';
 import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_local_data.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/functions/check_errors.dart';
 import '../../core/functions/functions.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../data/remote/auth_data.dart';
-import 'package:pharmageddon_web/print.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitialState());
@@ -65,12 +64,12 @@ class RegisterCubit extends Cubit<RegisterState> {
             response[AppRKeys.message][AppRKeys.validation_errors];
         const s = 'There is already an account for the warehouse owner.';
         if (list.contains(s)) {
-          final m = AppStrings.thereIsAlreadyAnAccountForTheWarehouseOwner.tr;
+          final m = AppText.thereIsAlreadyAnAccountForTheWarehouseOwner.tr;
           emit(RegisterFailureState(FailureState(message: m)));
         } else {
           var s = checkErrorMessages(
               response[AppRKeys.message][AppRKeys.validation_errors]);
-          s = '${AppStrings.field.tr} $s ${AppStrings.alreadyBeenTaken.tr}';
+          s = '${AppText.field.tr} $s ${AppText.alreadyBeenTaken.tr}';
           emit(RegisterFailureState(FailureState(message: s)));
         }
       } else {

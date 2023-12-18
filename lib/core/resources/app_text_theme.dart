@@ -38,9 +38,9 @@ abstract class AppTextTheme {
         fontWeight: FontWeight.w400,
       );
 
-  static TextStyle get f16w600TextColor2 => const TextStyle(
+  static TextStyle get f16w600TextColor => const TextStyle(
         fontSize: 16,
-        color: AppColor.textColor2,
+        color: AppColor.textColor,
         fontWeight: FontWeight.w600,
       );
 

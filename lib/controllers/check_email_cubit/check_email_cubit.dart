@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_keys_request.dart';
-import '../../core/constant/app_strings.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/functions/functions.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../data/remote/auth_data.dart';
@@ -41,10 +41,10 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
       emit(CheckEmailFailureState(l));
     }, (response) async {
       if (response[AppRKeys.status] == 405) {
-        final message = AppStrings.goToTheOtherPlatform.tr;
+        final message = AppText.goToTheOtherPlatform.tr;
         emit(CheckEmailFailureState(FailureState(message: message)));
       } else if (response[AppRKeys.status] == 403) {
-        final message = AppStrings.userNotFound.tr;
+        final message = AppText.userNotFound.tr;
         emit(CheckEmailFailureState(FailureState(message: message)));
       } else {
         await storeUser(response);

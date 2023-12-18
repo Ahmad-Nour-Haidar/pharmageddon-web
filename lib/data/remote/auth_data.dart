@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:pharmageddon_web/print.dart';
 import '../../core/class/crud.dart';
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_keys_request.dart';

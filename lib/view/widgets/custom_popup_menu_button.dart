@@ -1,14 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import '../../controllers/local_controller.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
-import '../../core/constant/app_strings.dart';
-import '../../core/constant/app_svg.dart';
-import '../../core/functions/functions.dart';
-import '../../core/services/dependency_injection.dart';
 
 class PopupMenuItemModel {
   final String text;

@@ -1,6 +1,4 @@
-class AppLink {
-  AppLink._();
-
+abstract class AppLink {
   // http://127.0.0.1/api/auth/register
 
   // static const _host = '10.0.2.2:8000';
@@ -10,6 +8,7 @@ class AppLink {
   // static const _host = '192.168.43.76:8000';
 
   static const _host = 'pharmageddon-myproject.000webhostapp.com';
+
   //
   // static const _host = '192.168.229.48:8000';
 
