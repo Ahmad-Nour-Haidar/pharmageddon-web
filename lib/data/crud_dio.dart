@@ -68,7 +68,7 @@ class Crud {
     await randomLoading();
     try {
       final response =
-      await _dio.get(linkUrl, queryParameters: queryParameters);
+          await _dio.get(linkUrl, queryParameters: queryParameters);
       printme.cyan(response.statusCode);
       // printme.printFullText(response.data);
       if (!(response.statusCode == 200 || response.statusCode == 201)) {
