@@ -46,8 +46,6 @@ class LoginScreen extends StatelessWidget {
           final cubit = LoginCubit.get(context);
           return CustomLayoutBuilder(
             widget: (maxWidth, maxHeight) {
-              // printme.cyan(maxWidth);
-              // printme.cyan(maxHeight);
               return Scaffold(
                 body: Stack(
                   children: [

@@ -49,8 +49,6 @@ class ResetPasswordScreen extends StatelessWidget {
           final cubit = ResetPasswordCubit.get(context);
           return CustomLayoutBuilder(
             widget: (maxWidth, maxHeight) {
-              // printme.cyan(maxWidth);
-              // printme.cyan(maxHeight);
               return Scaffold(
                 body: Stack(
                   children: [

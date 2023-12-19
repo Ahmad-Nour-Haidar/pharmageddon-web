@@ -44,8 +44,6 @@ class RegisterScreen extends StatelessWidget {
           final cubit = RegisterCubit.get(context);
           return CustomLayoutBuilder(
             widget: (maxWidth, maxHeight) {
-              // printme.cyan(maxWidth);
-              // printme.cyan(maxHeight);
               return Scaffold(
                 body: Stack(
                   children: [
@@ -210,7 +208,6 @@ class RegisterScreen extends StatelessWidget {
                           ),
                           Expanded(
                             child: ListView(
-                              // crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Center(
                                   child: SvgPicture.asset(

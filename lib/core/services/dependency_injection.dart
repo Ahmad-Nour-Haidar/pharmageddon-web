@@ -7,9 +7,9 @@ import '../../controllers/login_cubit/login_cubit.dart';
 import '../../controllers/register_cubit/register_cubit.dart';
 import '../../controllers/reset_password_cubit/reset_password_cubit.dart';
 import '../../controllers/verify_code_cubit/verify_code_cubit.dart';
+import '../../data/crud_dio.dart';
 import '../../data/remote/auth_data.dart';
 import '../../my_bloc_observer.dart';
-import '../class/crud.dart';
 
 class AppInjection {
   AppInjection._();

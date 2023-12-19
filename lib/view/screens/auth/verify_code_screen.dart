@@ -43,8 +43,6 @@ class VerifyCodeScreen extends StatelessWidget {
           final cubit = VerifyCodeCubit.get(context);
           return CustomLayoutBuilder(
             widget: (maxWidth, maxHeight) {
-              // printme.cyan(maxWidth);
-              // printme.cyan(maxHeight);
               return Scaffold(
                 body: Stack(
                   children: [
