@@ -1,6 +1,4 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
@@ -10,6 +8,7 @@ import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_svg.dart';
+import 'drawer/Custom_drawer_item.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -19,14 +18,21 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  var isOpen = false;
+  var isOpen = true;
   var _currentScreen = DrawerEnum.all;
   static const _iconSize = 20.0;
 
   void changeScreen(DrawerEnum value) {
     setState(() {
       _currentScreen = value;
+      printme.cyan(value);
     });
+  }
+
+  bool get isOrderSelected {
+    return _currentScreen == DrawerEnum.preparing ||
+        _currentScreen == DrawerEnum.hasBeenSent ||
+        _currentScreen == DrawerEnum.received;
   }
 
   void openCloseDrawer() {
@@ -70,37 +76,131 @@ class _CustomDrawerState extends State<CustomDrawer> {
             onTap: () => changeScreen(DrawerEnum.manufacturer),
             isSelected: _currentScreen == DrawerEnum.manufacturer,
           ),
+          CustomDrawerItem(
+            isOpen: isOpen,
+            title: AppText.effectCategories.tr,
+            iconPath: AppSvg.chemistry,
+            onTap: () => changeScreen(DrawerEnum.chemistry),
+            isSelected: _currentScreen == DrawerEnum.chemistry,
+          ),
+          CustomDrawerItem(
+            isOpen: isOpen,
+            title: AppText.discounts.tr,
+            iconPath: AppSvg.percentage,
+            onTap: () => changeScreen(DrawerEnum.percentage),
+            isSelected: _currentScreen == DrawerEnum.percentage,
+          ),
+          CustomDrawerItem(
+            isOpen: isOpen,
+            title: AppText.quantityExpired.tr,
+            iconPath: AppSvg.quantity,
+            onTap: () => changeScreen(DrawerEnum.quantity),
+            isSelected: _currentScreen == DrawerEnum.quantity,
+          ),
+          CustomDrawerItem(
+            isOpen: isOpen,
+            title: AppText.dateExpired.tr,
+            iconPath: AppSvg.timeDelete,
+            onTap: () => changeScreen(DrawerEnum.dateExpired),
+            isSelected: _currentScreen == DrawerEnum.dateExpired,
+          ),
+          CustomDrawerItem(
+            isOpen: isOpen,
+            title: AppText.reports.tr,
+            iconPath: AppSvg.report,
+            onTap: () => changeScreen(DrawerEnum.reports),
+            isSelected: _currentScreen == DrawerEnum.reports,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: isOrderSelected ? AppColor.white.withOpacity(.2) : null,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Gap(5),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isOpen = true;
+                      _currentScreen = DrawerEnum.preparing;
+                    });
+                  },
+                  icon: const SvgImage(
+                    path: AppSvg.order,
+                    color: AppColor.white,
+                    size: 25,
+                  ),
+                ),
+                if (isOpen)
+                  Expanded(
+                    child: ExpansionTile(
+                      initiallyExpanded: true,
+                      childrenPadding: const EdgeInsets.only(left: 15),
+                      shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: AppColor.transparent),
+                      ),
+                      textColor: AppColor.white,
+                      collapsedTextColor: AppColor.white,
+                      collapsedIconColor: AppColor.white,
+                      iconColor: AppColor.white,
+                      title: Text(
+                        AppText.orders.tr,
+                        style: AppTextTheme.f16w500white,
+                      ),
+                      expandedAlignment: Alignment.centerLeft,
+                      expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomTextButtonDrawer(
+                          text: AppText.preparing.tr,
+                          onTap: () => changeScreen(DrawerEnum.preparing),
+                          isSelected: _currentScreen == DrawerEnum.preparing,
+                        ),
+                        CustomTextButtonDrawer(
+                          text: AppText.hasBeenSent.tr,
+                          onTap: () => changeScreen(DrawerEnum.hasBeenSent),
+                          isSelected: _currentScreen == DrawerEnum.hasBeenSent,
+                        ),
+                        CustomTextButtonDrawer(
+                          text: AppText.received.tr,
+                          onTap: () => changeScreen(DrawerEnum.received),
+                          isSelected: _currentScreen == DrawerEnum.received,
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+          )
         ],
       ),
     );
   }
 }
 
-class CustomDrawerItem extends StatelessWidget {
-  const CustomDrawerItem({
+class CustomTextButtonDrawer extends StatelessWidget {
+  const CustomTextButtonDrawer({
     super.key,
-    required this.title,
-    required this.iconPath,
     required this.onTap,
+    required this.text,
     required this.isSelected,
-    required this.isOpen,
   });
 
-  final String iconPath;
-  final String title;
-  final bool isSelected;
-  final bool isOpen;
   final void Function() onTap;
+  final String text;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onTap,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      contentPadding: const EdgeInsets.only(left: 15),
-      tileColor: isSelected ? AppColor.white.withOpacity(0.2) : null,
-      title: isOpen ?SelectableText(title, style: AppTextTheme.f16w500white) : null,
-      leading: SvgImage(path: iconPath, color: AppColor.white, size: 20),
+    return FittedBox(
+      child: TextButton(
+        onPressed: onTap,
+        style: TextButton.styleFrom(
+          backgroundColor: isSelected ? AppColor.white.withOpacity(.2) : null,
+        ),
+        child: Text(text, style: AppTextTheme.f16w500white),
+      ),
     );
   }
 }

@@ -15,7 +15,8 @@ class CustomOtherAuth extends StatelessWidget {
     return Column(
       children: [
         const Gap(25),
-       SelectableText('-  ${AppText.or.tr}  -', style: AppTextTheme.f18w500black),
+        SelectableText('-  ${AppText.or.tr}  -',
+            style: AppTextTheme.f18w500black),
         const Gap(10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -57,7 +57,7 @@ void showPopupMenu({
         child: Center(
           child: FittedBox(
             fit: BoxFit.scaleDown,
-            child:SelectableText(
+            child: SelectableText(
               list[index].text.tr,
               style: const TextStyle(
                 fontSize: 18,
@@ -114,7 +114,7 @@ class CustomPopupMenuButton extends StatelessWidget {
         padding: const EdgeInsets.all(5),
         child: FittedBox(
           fit: BoxFit.scaleDown,
-          child:SelectableText(
+          child: SelectableText(
             valueShow.tr,
             style: const TextStyle(
               fontWeight: FontWeight.w600,

@@ -19,7 +19,7 @@ class CustomLayoutBuilder extends StatelessWidget {
         if (maxWidth < 1000 || maxHeight < 600) {
           return Scaffold(
             body: Center(
-              child:SelectableText(AppText.openInFullScreen.tr),
+              child: SelectableText(AppText.openInFullScreen.tr),
             ),
           );
         }

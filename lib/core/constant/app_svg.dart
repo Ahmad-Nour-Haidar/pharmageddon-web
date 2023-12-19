@@ -39,4 +39,8 @@ class AppSvg {
   static const trash = '$root/trash.svg';
   static const user = '$root/user.svg';
   static const userPen = '$root/user-pen.svg';
+  static const order = '$root/order.svg';
+  static const quantity = '$root/quantity.svg';
+  static const timeDelete = '$root/time-delete.svg';
+  static const report = '$root/report.svg';
 }

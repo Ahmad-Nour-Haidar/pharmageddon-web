@@ -73,7 +73,7 @@ class VerifyCodeScreen extends StatelessWidget {
                               ),
                               child: ListView(
                                 children: [
-                                 SelectableText(
+                                  SelectableText(
                                     AppText.verifyCode.tr,
                                     style: AppTextTheme.f26w600black,
                                   ),
@@ -82,7 +82,7 @@ class VerifyCodeScreen extends StatelessWidget {
                                     const SpinKitFoldingCube(
                                         color: AppColor.primaryColor),
                                   if (cubit.email != null)
-                                   SelectableText(
+                                    SelectableText(
                                       cubit.message,
                                       style: AppTextTheme.f18w500black,
                                     ),
@@ -120,7 +120,7 @@ class VerifyCodeScreen extends StatelessWidget {
                                       onPressed: () {
                                         cubit.getVerifyCode();
                                       },
-                                      child:SelectableText(
+                                      child: SelectableText(
                                         AppText.resendVerifyCode.tr,
                                         style: AppTextTheme.f18w400TextColor,
                                       ),
@@ -142,7 +142,7 @@ class VerifyCodeScreen extends StatelessWidget {
                                 ),
                                 const Gap(20),
                                 Center(
-                                  child:SelectableText(
+                                  child: SelectableText(
                                     'Pharmageddon',
                                     style: AppTextTheme.f24w600SecondColor,
                                   ),

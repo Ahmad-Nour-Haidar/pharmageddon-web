@@ -21,6 +21,11 @@ class AppText {
   static const haveAnAccount = 'haveAnAccount';
   static const loginNow = 'loginNow';
   static const or = 'or';
+  static const reports = 'reports';
+  static const orders = 'orders';
+  static const preparing = 'preparing';
+  static const hasBeenSent = 'hasBeenSent';
+  static const received = 'received';
   static const thisFieldCantBeEmpty = 'thisFieldCantBeEmpty';
   static const lengthMustBeBetween = 'lengthMustBeBetween';
   static const notValid = 'notValid';
@@ -77,10 +82,9 @@ class AppText {
   // drawer
   static const home = 'home';
   static const manufacturer = 'manufacturer';
-  static const category = 'category';
+  static const effectCategories = 'category';
   static const profile = 'profile';
   static const favorite = 'favorite';
-  static const myOrders = 'orders';
   static const logOut = 'logOut';
   static const doYouWantToLogOut = 'doYouWantToLogOut';
   static const yes = 'yes';
@@ -96,4 +100,7 @@ class AppText {
   static const pressBackAgainToExit = 'pressBackAgainToExit';
   static const openInFullScreen = 'openInFullScreen';
   static const all = 'all';
+  static const discounts = 'discounts';
+  static const quantityExpired = 'quantityExpired';
+  static const dateExpired = 'dateExpired';
 }

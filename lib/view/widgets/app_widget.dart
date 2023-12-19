@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../core/constant/app_color.dart';
 import '../../core/constant/app_lottie.dart';
 import '../../core/constant/app_size.dart';
-import '../../core/constant/app_svg.dart';
-import '../../core/functions/functions.dart';
 
 class AppWidget {
   final noData = Center(

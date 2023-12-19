@@ -8,7 +8,6 @@ import '../constant/app_keys_request.dart';
 import '../constant/app_keys_storage.dart';
 import '../constant/app_local_data.dart';
 import '../services/dependency_injection.dart';
-import 'package:pharmageddon_web/print.dart';
 
 bool isEnglish() => AppConstant.currentLocal == AppConstant.localEn;
 
@@ -47,7 +46,7 @@ Future<void> storeUser(Map<String, dynamic> response) async {
   await sh.setString(AppKeysStorage.user, jsonString);
   AppLocalData.user = user;
 
-  printme.yellowAccent(AppLocalData.user?.authorization);
+  // printme.yellowAccent(AppLocalData.user?.authorization);
 }
 
 void initialUser() async {
@@ -57,7 +56,6 @@ void initialUser() async {
   final Map<String, dynamic> m = jsonDecode(jsonString);
   final user = User.fromJson(m);
   AppLocalData.user = user;
-  printme.green(user.authorization);
 
   return;
 }
