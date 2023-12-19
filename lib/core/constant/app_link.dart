@@ -54,11 +54,6 @@ class AppLink {
   static const effectCategoriesGetAllMedicines =
       '$_serverApi/class/effect_category';
 
-  // favorite
-  static const favoriteGetAll = '$_serverApi/favourite_medicine/get_all';
-  static const favorite = '$_serverApi/favourite_medicine/create';
-  static const unFavorite = '$_serverApi/favourite_medicine/delete';
-
   // search
   static const search = '$_serverApi/search';
 
