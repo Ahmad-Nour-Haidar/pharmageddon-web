@@ -82,7 +82,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   void logout() async {
     emit(RegisterLoadingState());
     final token = AppLocalData.user!.authorization ?? '';
-    final response = await authRemoteData.logout(token: token);
+    final response = await authRemoteData.logout();
     if (isClosed) return;
     response.fold((l) {
       emit(RegisterFailureState(l));

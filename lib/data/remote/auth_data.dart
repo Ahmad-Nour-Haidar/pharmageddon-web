@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_link.dart';
+import '../../core/constant/app_local_data.dart';
 import '../../core/services/dependency_injection.dart';
 import '../crud_dio.dart';
 
@@ -69,30 +70,22 @@ class AuthRemoteData {
     return response;
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>> edit({
+  Future<Either<ParentState, Map<String, dynamic>>> update({
     required Map<String, dynamic> data,
-    required String token,
     File? file,
   }) async {
-    if (file == null) {
-      return await _crud.postData(
-        data: data,
-        token: token,
-        linkUrl: AppLink.edit,
-      );
-    }
+    final token = AppLocalData.user!.authorization!;
     return await _crud.postRequestWithFile(
       data: data,
       token: token,
-      linkUrl: AppLink.edit,
+      linkUrl: AppLink.update,
       file: file,
       nameKey: AppRKeys.image,
     );
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>> logout({
-    required String token,
-  }) async {
+  Future<Either<ParentState, Map<String, dynamic>>> logout() async {
+    final token = AppLocalData.user!.authorization!;
     var response = await _crud.deleteData(
       data: {},
       token: token,
