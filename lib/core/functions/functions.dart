@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/user_model.dart';
@@ -47,17 +46,11 @@ Future<void> storeUser(Map<String, dynamic> response) async {
   final jsonString = jsonEncode(user.toJson());
   await sh.setString(AppKeysStorage.user, jsonString);
   AppLocalData.user = user;
-  final session = AppInjection.getIt<SessionManager>();
-  session.set(AppKeysStorage.user, user);
 
-  // printme.yellowAccent(AppLocalData.user);
+  printme.yellowAccent(AppLocalData.user?.authorization);
 }
 
 void initialUser() async {
-  final session = AppInjection.getIt<SessionManager>();
-  final user2 = await session.get(AppKeysStorage.user);
-  printme.magenta(user2);
-
   final sh = AppInjection.getIt<SharedPreferences>();
   var jsonString = sh.getString(AppKeysStorage.user);
   if (jsonString == null) return;

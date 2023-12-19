@@ -51,7 +51,6 @@ dependencies:
   image_cropper: ^5.0.0
   flutter_svg: ^2.0.9
   animate_do: ^3.1.2
-  flutter_session_manager: ^1.0.3
   awesome_dialog: ^3.1.0
   fluttertoast: ^8.2.4
   lottie: ^2.7.0

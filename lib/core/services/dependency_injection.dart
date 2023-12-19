@@ -1,4 +1,3 @@
-import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pharmageddon_web/data/remote/effect_medicines_data.dart';
 import 'package:pharmageddon_web/data/remote/home_data.dart';
@@ -27,7 +26,6 @@ class AppInjection {
     /// storage
     final sharedPreferences = await SharedPreferences.getInstance();
     getIt.registerLazySingleton(() => sharedPreferences);
-    getIt.registerLazySingleton(() => SessionManager());
 
     /// start
     getIt.registerLazySingleton(() => LocaleController());

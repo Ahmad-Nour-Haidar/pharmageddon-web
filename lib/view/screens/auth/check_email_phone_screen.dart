@@ -76,7 +76,7 @@ class CheckEmailScreen extends StatelessWidget {
                                 key: cubit.formKey,
                                 child: ListView(
                                   children: [
-                                    Text(
+                                   SelectableText(
                                       AppText.checkEmail.tr,
                                       style: AppTextTheme.f26w600black,
                                     ),
@@ -125,7 +125,7 @@ class CheckEmailScreen extends StatelessWidget {
                                 ),
                                 const Gap(20),
                                 Center(
-                                  child: Text(
+                                  child:SelectableText(
                                     'Pharmageddon',
                                     style: AppTextTheme.f24w600SecondColor,
                                   ),

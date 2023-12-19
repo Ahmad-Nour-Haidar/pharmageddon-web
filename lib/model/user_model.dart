@@ -53,3 +53,22 @@ class User {
         'emailVerifiedAt: $emailVerifiedAt, authorization: $authorization}';
   }
 }
+
+final user = {
+  "status": 200,
+  "data": {
+    "user": {
+      "id": 15,
+      "username": "ahmad nour haidar",
+      "email": "ahmadnourhaidar@gmail.com",
+      "phone": "0954609337",
+      "role": "warehouseowner",
+      "address": "address123",
+      "image_name": null,
+      "email_verified_at": "2023-12-19T00: 57: 17+03: 00",
+      "Authorization":
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcGhhcm1hZ2VkZG9uLW15cHJvamVjdC4wMDB3ZWJob3N0YXBwLmNvbS9hcGkvYXV0aC9jaGVja192ZXJpZmljYXRpb25fY29kZSIsImlhdCI6MTcwMjkzNjYzNywiZXhwIjoxNzM0NDk2NjM3LCJuYmYiOjE3MDI5MzY2MzcsImp0aSI6ImpielhjZFpHQlNnbVVNODAiLCJzdWIiOiIxNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJyb2xlIjoid2FyZWhvdXNlb3duZXIifQ.FRvkIsTrJnOkSpn-L1LkIq6OtsaZARmVhfCTaf71oh0"
+    }
+  },
+  "message": {"custom_message": "Email has been verified."}
+};

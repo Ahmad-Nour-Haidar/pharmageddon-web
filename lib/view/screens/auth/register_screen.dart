@@ -78,7 +78,7 @@ class RegisterScreen extends StatelessWidget {
                                 key: cubit.formKey,
                                 child: ListView(
                                   children: [
-                                    Text(
+                                   SelectableText(
                                       AppText.createAccount.tr,
                                       style: AppTextTheme.f26w600black,
                                     ),
@@ -183,7 +183,7 @@ class RegisterScreen extends StatelessWidget {
                                     const Gap(15),
                                     Row(
                                       children: [
-                                        Text(
+                                       SelectableText(
                                           AppText.haveAnAccount.tr,
                                           style: AppTextTheme.f18w400gray,
                                         ),
@@ -192,7 +192,7 @@ class RegisterScreen extends StatelessWidget {
                                             pushNamedAndRemoveUntil(
                                                 AppRoute.login, context);
                                           },
-                                          child: Text(
+                                          child:SelectableText(
                                             AppText.loginNow.tr,
                                             style:
                                                 AppTextTheme.f18w400TextColor,
@@ -218,7 +218,7 @@ class RegisterScreen extends StatelessWidget {
                                 ),
                                 const Gap(30),
                                 Center(
-                                  child: Text(
+                                  child:SelectableText(
                                     'Pharmageddon',
                                     style: AppTextTheme.f24w600SecondColor,
                                   ),

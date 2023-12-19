@@ -83,7 +83,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 key: cubit.formKey,
                                 child: ListView(
                                   children: [
-                                    Text(
+                                   SelectableText(
                                       AppText.resetPassword.tr,
                                       style: AppTextTheme.f26w600black,
                                     ),
@@ -92,7 +92,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                       const SpinKitFoldingCube(
                                           color: AppColor.primaryColor),
                                     if (cubit.email != null)
-                                      Text(
+                                     SelectableText(
                                         cubit.message,
                                         style: AppTextTheme.f18w500black,
                                       ),
@@ -167,7 +167,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                           : Alignment.centerLeft,
                                       child: TextButton(
                                         onPressed: cubit.getVerifyCode,
-                                        child: Text(
+                                        child:SelectableText(
                                           AppText.resendVerifyCode.tr,
                                           style: AppTextTheme.f18w400TextColor,
                                         ),
@@ -190,7 +190,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 ),
                                 const Gap(20),
                                 Center(
-                                  child: Text(
+                                  child:SelectableText(
                                     'Pharmageddon',
                                     style: AppTextTheme.f24w600SecondColor,
                                   ),

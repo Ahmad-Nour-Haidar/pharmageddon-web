@@ -53,11 +53,11 @@ void showPopupMenu({
           onChange(list[index].value);
         },
         value: list[index].value,
-        // child: Text(AppLocalData.monthNames[index]),
+        // child:SelectableText(AppLocalData.monthNames[index]),
         child: Center(
           child: FittedBox(
             fit: BoxFit.scaleDown,
-            child: Text(
+            child:SelectableText(
               list[index].text.tr,
               style: const TextStyle(
                 fontSize: 18,
@@ -114,7 +114,7 @@ class CustomPopupMenuButton extends StatelessWidget {
         padding: const EdgeInsets.all(5),
         child: FittedBox(
           fit: BoxFit.scaleDown,
-          child: Text(
+          child:SelectableText(
             valueShow.tr,
             style: const TextStyle(
               fontWeight: FontWeight.w600,
@@ -171,7 +171,7 @@ class CustomPopupMenuButton extends StatelessWidget {
 //         children: [
 //           FittedBox(
 //             fit: BoxFit.scaleDown,
-//             child: Text(
+//             child:SelectableText(
 //               valueShow,
 //               style: const TextStyle(
 //                 fontWeight: FontWeight.w600,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:pharmageddon_web/model/user_model.dart';
 import 'package:pharmageddon_web/routes.dart';
 import 'controllers/local_controller.dart';
 import 'core/constant/app_local_data.dart';
@@ -16,9 +17,8 @@ void main() async {
 
   await AppInjection.initial();
   initialUser();
+  storeUser(user);
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
-  // final sh = AppDependency.getIt<SharedPreferences>();
-  // sh.setString(AppKeysStorage.langKey, AppConstant.ar);
   runApp(const MyApp());
 }
 
