@@ -8,36 +8,26 @@ import '../crud_dio.dart';
 class OrderRemoteData {
   final _crud = AppInjection.getIt<Crud>();
 
-  Future<Either<ParentState, Map<String, dynamic>>> createOrder({
-    required Map<String, dynamic> data,
-  }) async {
-    final token = AppLocalData.user!.authorization!;
-    final response = await _crud.postData(
-      linkUrl: AppLink.order,
-      token: token,
-      data: data,
-    );
-    return response;
-  }
-
-  Future<Either<ParentState, Map<String, dynamic>>> updateOrder({
-    required Map<String, dynamic> data,
-  }) async {
-    final token = AppLocalData.user!.authorization!;
-    final response = await _crud.postData(
-      linkUrl: AppLink.orderUpdate,
-      token: token,
-      data: data,
-    );
-    return response;
-  }
-
+  /// has_been_sent, preparing, received
   Future<Either<ParentState, Map<String, dynamic>>> updateOrderStatus({
     required Map<String, dynamic> data,
   }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.postData(
       linkUrl: AppLink.orderUpdateStatus,
+      token: token,
+      data: data,
+    );
+    return response;
+  }
+
+  /// paid, un paid
+  Future<Either<ParentState, Map<String, dynamic>>> updateOrderPaymentStatus({
+    required Map<String, dynamic> data,
+  }) async {
+    final token = AppLocalData.user!.authorization!;
+    final response = await _crud.postData(
+      linkUrl: AppLink.orderUpdatePaymentStatus,
       token: token,
       data: data,
     );
@@ -55,36 +45,12 @@ class OrderRemoteData {
     return response;
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>> getOrderDetails({
-    required Map<String, dynamic> queryParameters,
-  }) async {
-    final token = AppLocalData.user!.authorization!;
-    final response = await _crud.getData(
-      linkUrl: AppLink.orderGetOrderDetails,
-      token: token,
-      queryParameters: queryParameters,
-    );
-    return response;
-  }
-
   Future<Either<ParentState, Map<String, dynamic>>> cancelOrder({
     required Map<String, dynamic> queryParameters,
   }) async {
     final token = AppLocalData.user!.authorization!;
     final response = await _crud.getData(
       linkUrl: AppLink.orderDelete,
-      token: token,
-      queryParameters: queryParameters,
-    );
-    return response;
-  }
-
-  Future<Either<ParentState, Map<String, dynamic>>> deleteMedicineInOrder({
-    required Map<String, dynamic> queryParameters,
-  }) async {
-    final token = AppLocalData.user!.authorization!;
-    final response = await _crud.getData(
-      linkUrl: AppLink.orderDeleteMedicine,
       token: token,
       queryParameters: queryParameters,
     );

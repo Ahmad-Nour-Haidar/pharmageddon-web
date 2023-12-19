@@ -36,7 +36,7 @@ class AppLink {
   static const resetPassword = '$_serverApi/auth/reset_password';
   static const profile = '$_serverApi/auth/get_user_profile';
   static const logout = '$_serverApi/auth/logout';
-  static const update = '$_serverApi/user/update_user_profile';
+  static const updateUser = '$_serverApi/user/update_user_profile';
   static const userImage = '$_serverImage/users';
 
   // medicine
@@ -70,6 +70,7 @@ class AppLink {
   static const orderGetOrderDetails = '$_serverApi/order/get';
   static const orderDelete = '$_serverApi/order/delete';
   static const orderDeleteMedicine = '$_serverApi/order/delete_medicine';
+  static const orderUpdatePaymentStatus = '$_serverApi/order/has_been_paid';
 
   // report
   static const report = '$_serverApi/report';

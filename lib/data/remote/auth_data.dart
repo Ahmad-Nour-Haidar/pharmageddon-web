@@ -78,7 +78,7 @@ class AuthRemoteData {
     return await _crud.postRequestWithFile(
       data: data,
       token: token,
-      linkUrl: AppLink.update,
+      linkUrl: AppLink.updateUser,
       file: file,
       nameKey: AppRKeys.image,
     );
