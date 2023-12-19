@@ -68,6 +68,11 @@ abstract class AppTextTheme {
         fontWeight: FontWeight.w600,
         letterSpacing: 1.0,
       );
+  static TextStyle get f16w500white => const TextStyle(
+    fontSize: 16,
+    color: AppColor.white,
+    fontWeight: FontWeight.w500,
+  );
 
   static TextStyle get f26w600black => const TextStyle(
         fontSize: 26,

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AppSize.initial(context);
     final controller = AppInjection.getIt<LocaleController>();
-    var initialRoute = AppRoute.register;
+    var initialRoute = AppRoute.home;
     if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
       // initialRoute = AppRoute.home;
     }

@@ -8,6 +8,5 @@ ThemeData themeData() => ThemeData(
       ),
       fontFamily: 'Inter',
       useMaterial3: true,
-      // colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
       primaryColor: AppColor.primaryColor,
     );

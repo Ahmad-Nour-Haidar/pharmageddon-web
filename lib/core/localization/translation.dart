@@ -66,6 +66,8 @@ class MyTranslation extends Translations {
           AppText.totalPrice: 'Total Price',
           AppText.addToCart: 'Add to cart',
           AppText.done: 'Done',
+          AppText.manufacturer: 'Manufacturer',
+          AppText.category: 'Category',
           AppText.home: 'Home',
           AppText.profile: 'Profile',
           AppText.favorite: 'Favorite',
@@ -78,8 +80,13 @@ class MyTranslation extends Translations {
           AppText.youHaveNoFoodsFavoriteYet: 'You have no foods favorite yet',
           AppText.resultsSearchFor: 'Results search for',
           AppText.openInFullScreen: 'Open in full screen',
+          AppText.all: 'All',
+
         },
         'ar': {
+          AppText.manufacturer: 'شركات مصنعة',
+          AppText.category: 'فئات',
+          AppText.all: 'الكل',
           AppText.language: 'اللغة',
           AppText.arabic: 'عربي',
           AppText.english: 'English',

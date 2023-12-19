@@ -76,6 +76,8 @@ class AppText {
 
   // drawer
   static const home = 'home';
+  static const manufacturer = 'manufacturer';
+  static const category = 'category';
   static const profile = 'profile';
   static const favorite = 'favorite';
   static const myOrders = 'orders';
@@ -93,4 +95,5 @@ class AppText {
   // other
   static const pressBackAgainToExit = 'pressBackAgainToExit';
   static const openInFullScreen = 'openInFullScreen';
+  static const all = 'all';
 }

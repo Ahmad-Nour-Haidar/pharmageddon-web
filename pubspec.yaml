@@ -54,6 +54,8 @@ dependencies:
   flutter_session_manager: ^1.0.3
   awesome_dialog: ^3.1.0
   fluttertoast: ^8.2.4
+  lottie: ^2.7.0
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
