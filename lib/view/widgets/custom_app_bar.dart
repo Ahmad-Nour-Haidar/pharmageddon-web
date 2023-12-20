@@ -17,7 +17,12 @@ import '../../core/services/dependency_injection.dart';
 import 'custom_cached_network_image.dart';
 
 class CustomAppBar extends StatefulWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({
+    super.key,
+    required this.onFieldSubmitted,
+  });
+
+  final void Function(String) onFieldSubmitted;
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -92,6 +97,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               cursorColor: AppColor.secondColor,
               textDirection: getTextDirection(_controller.text),
               onChanged: (_) => setState(() {}),
+              onFieldSubmitted: widget.onFieldSubmitted,
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(10),
                   border: _border,

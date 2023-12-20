@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +15,7 @@ bool isEnglish() => AppConstant.currentLocal == AppConstant.localEn;
 
 String getCodeLang() =>
     AppConstant.currentLocal == AppConstant.localEn ? 'en' : 'ar';
-
+int getRandom() => Random().nextInt(5) + 3;
 String formatDateJiffy(DateTime date) {
   return Jiffy.parseFromDateTime(date)
       .format(pattern: 'EEEE, MMMM, d - MM - yyyy');

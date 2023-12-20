@@ -28,4 +28,20 @@ class AppRKeys {
   static const time = 'time';
   static const address = 'address';
   static const validation_errors = 'validation_errors';
+  static const id = 'id';
+  static const q = 'q';
+  static const medicines = 'medicines';
+  static const manufacturers = 'manufacturers';
+  static const effect_categories = 'effect_categories';
+  static const favourite_medicines = 'favourite_medicines';
+  static const favourite_medicine = 'favourite_medicine';
+  static const medicine_id = 'medicine_id';
+  static const quantity = 'quantity';
+  static const order = 'order';
+  static const orders = 'orders';
+  static const order_details = 'order_details';
+  static const start_date = 'start_date';
+  static const end_date = 'end_date';
+  static const order_id = 'order_id';
+  static const order_status = 'order_status';
 }

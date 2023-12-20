@@ -7,12 +7,20 @@ class AppSize {
     final size = MediaQuery.sizeOf(context);
     width = size.width;
     height = size.height;
+    widthManufacturer = 200.0;
+    widthEffect = 200.0;
+    widthMedicine = 200.0;
+
     // radius = (AppSize.width / 2) - 50;
     // radiusImage = radius - 5;
     // widthHeight = radiusImage * 2;
   }
 
-  // image
+  static late double widthManufacturer;
+  static late double widthEffect;
+
+  static late double widthMedicine;
+
   static late double radius;
   static late double radiusImage;
   static late double widthHeight;

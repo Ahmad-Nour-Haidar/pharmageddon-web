@@ -12,4 +12,5 @@ enum ScreenView {
   unPaid,
   quantityExpired,
   dateExpired,
+  search,
 }
