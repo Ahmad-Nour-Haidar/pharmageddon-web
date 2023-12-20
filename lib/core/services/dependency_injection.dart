@@ -13,6 +13,7 @@ import '../../controllers/auth/reset_password_cubit/reset_password_cubit.dart';
 import '../../controllers/auth/verify_code_cubit/verify_code_cubit.dart';
 import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
+import '../../controllers/medication_cubit/medication_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
 import '../../data/remote/auth_data.dart';
@@ -48,6 +49,7 @@ class AppInjection {
     // home
     getIt.registerLazySingleton(() => HomeCubit());
     getIt.registerLazySingleton(() => SearchCubit());
+    getIt.registerLazySingleton(() => MedicationCubit());
 
     /// data
     getIt.registerFactory(() => HomeRemoteData());

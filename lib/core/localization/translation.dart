@@ -91,8 +91,10 @@ class MyTranslation extends Translations {
           AppText.paid: 'Paid',
           AppText.unPaid: 'Un paid',
           AppText.newW: 'new',
+          AppText.searchResultsFor: 'Search results for',
         },
         'ar': {
+          AppText.searchResultsFor: 'Search results for',
           AppText.newW: 'جديد',
           AppText.paid: 'مدفوع',
           AppText.unPaid: 'غير مدفوع',

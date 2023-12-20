@@ -48,7 +48,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: isOpen ? 230 : 100,
+      width: isOpen ? 230 : 70,
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         children: [

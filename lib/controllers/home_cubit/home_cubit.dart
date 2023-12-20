@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_web/model/medication_model.dart';
+import 'package:pharmageddon_web/view/screens/medication_screen.dart';
 import 'package:pharmageddon_web/view/screens/search_screen.dart';
 import '../../core/enums/drawer_enum.dart';
 import 'home_state.dart';
@@ -50,7 +51,7 @@ class HomeCubit extends Cubit<HomeState> {
   Widget get screen {
     switch (currentScreen) {
       case ScreenView.all:
-        return const SizedBox();
+        return const MedicationScreen();
       case ScreenView.manufacturer:
         return const SizedBox();
       case ScreenView.effectCategories:
