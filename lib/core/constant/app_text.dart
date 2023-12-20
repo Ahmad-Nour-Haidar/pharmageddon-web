@@ -121,4 +121,7 @@ class AppText {
   static const pharmacist = 'pharmacist';
   static const selectStartDateAndEndDateOfReport =
       'selectStartDateAndEndDateOfReport';
+  static const thisFieldMustBeArabic = 'thisFieldMustBeArabic';
+  static const thisFieldMustBeEnglish = 'thisFieldMustBeEnglish';
+
 }

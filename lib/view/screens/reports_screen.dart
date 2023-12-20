@@ -11,7 +11,7 @@ import '../../core/services/dependency_injection.dart';
 import '../widgets/app_widget.dart';
 import '../widgets/custom_pick_date_widget.dart';
 import '../widgets/handle_state.dart';
-import '../widgets/loading/reports_loading.dart';
+import '../widgets/loading/order_loading.dart';
 import '../widgets/report_widget.dart';
 import '../widgets/row_text_span.dart';
 
@@ -32,10 +32,7 @@ class ReportsScreen extends StatelessWidget {
           final cubit = ReportsCubit.get(context);
           Widget body = AppInjection.getIt<AppWidget>().reports;
           if (state is ReportsSuccessState || cubit.data.isNotEmpty) {
-            body = ReportListWidget(
-              data: cubit.data,
-              canPushNamed: false,
-            );
+            body = ReportListWidget(data: cubit.data);
           }
           if (state is ReportsLoadingState) {
             body = const OrdersLoading();

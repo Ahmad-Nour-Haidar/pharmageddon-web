@@ -106,8 +106,13 @@ class MyTranslation extends Translations {
           AppText.pharmacist: 'Pharmacist',
           AppText.selectStartDateAndEndDateOfReport:
               'Select start date - end date of report',
+          AppText.thisFieldMustBeArabic: 'This field must be Arabic',
+          AppText.thisFieldMustBeEnglish: 'This field must be English',
         },
         'ar': {
+
+          AppText.thisFieldMustBeArabic: 'يجب أن يكون هذا الحقل باللغة العربية',
+          AppText.thisFieldMustBeEnglish: 'يجب أن يكون هذا الحقل باللغة الإنجليزية',
           AppText.selectStartDateAndEndDateOfReport:
               'حدد تاريخ البدء - تاريخ انتهاء التقرير',
           AppText.pharmacist: 'الصيدلاني',

@@ -13,6 +13,8 @@ class ValidateInput {
   static const _regExpUsername = r'^[a-zA-Z0-9][a-zA-Z0-9_. ]+[a-zA-Z0-9]$';
   static const _regExpPassword =
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
+  static const _regExpEnglish = r"^[A-Za-z\d\s]+$";
+  static const _regExpArabic = r'^[\p{Arabic}\p{N} ]+$';
 
   static String _getMessageLength(int mn, int mx) =>
       '${AppText.lengthMustBeBetween.tr} $mn - $mx';
@@ -84,6 +86,32 @@ class ValidateInput {
     }
     if (value.length < 10 || value.length > 200) {
       return _getMessageLength(10, 200);
+    }
+    return null;
+  }
+
+  static String? isArabicText(String? value, {int min = 4, int max = 60}) {
+    if (value == null || value.isEmpty) {
+      return AppText.thisFieldCantBeEmpty.tr;
+    }
+    if (value.length < min || value.length > max) {
+      return _getMessageLength(min, max);
+    }
+    if (!RegExp(_regExpArabic, unicode: true).hasMatch(value)) {
+      return AppText.thisFieldMustBeArabic.tr;
+    }
+    return null;
+  }
+
+  static String? isEnglishText(String? value, {int min = 4, int max = 60}) {
+    if (value == null || value.isEmpty) {
+      return AppText.thisFieldCantBeEmpty.tr;
+    }
+    if (value.length < min || value.length > max) {
+      return _getMessageLength(min, max);
+    }
+    if (!RegExp(_regExpEmail).hasMatch(value)) {
+      return AppText.thisFieldMustBeEnglish.tr;
     }
     return null;
   }

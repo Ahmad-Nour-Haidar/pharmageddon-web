@@ -81,11 +81,9 @@ class ReportListWidget extends StatelessWidget {
   const ReportListWidget({
     super.key,
     required this.data,
-    required this.canPushNamed,
   });
 
   final List<OrderModel> data;
-  final bool canPushNamed;
 
   @override
   Widget build(BuildContext context) {
