@@ -43,7 +43,7 @@ class OrdersLoading extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       width: width.toInt().toDouble(),
-                      height: 10,
+                      height: 12,
                       child: const Text(''),
                     ),
                   ),
