@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:pharmageddon_web/core/constant/app_color.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
-import '../../core/enums/drawer_enum.dart';
+import '../../controllers/home_cubit/home_cubit.dart';
+import '../../controllers/home_cubit/home_state.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/drawer.dart';
 
@@ -26,79 +29,38 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  var _currentScreen = ScreenView.all;
-
-  void changeScreen(ScreenView value) {
-    if (_currentScreen == value) return;
-    setState(() {
-      _currentScreen = value;
-    });
-  }
-
-  var _valueForSearch = '';
-
-  void onFieldSubmitted(String value) {
-    if (value.isEmpty) return;
-    setState(() {
-      _valueForSearch = value;
-      _currentScreen = ScreenView.search;
-    });
-  }
-
-  Widget get _screen {
-    switch (_currentScreen) {
-      case ScreenView.all:
-        return const SizedBox();
-      case ScreenView.manufacturer:
-        return const SizedBox();
-      case ScreenView.effectCategories:
-        return const SizedBox();
-      case ScreenView.discounts:
-        return const SizedBox();
-      case ScreenView.add:
-        return const SizedBox();
-      case ScreenView.reports:
-        return const SizedBox();
-      case ScreenView.preparing:
-        return const SizedBox();
-      case ScreenView.hasBeenSent:
-        return const SizedBox();
-      case ScreenView.received:
-        return const SizedBox();
-      case ScreenView.paid:
-        return const SizedBox();
-      case ScreenView.unPaid:
-        return const SizedBox();
-      case ScreenView.quantityExpired:
-        return const SizedBox();
-      case ScreenView.dateExpired:
-        return const SizedBox();
-      case ScreenView.search:
-        return const SizedBox();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.contentColorBlue,
-      body: Row(
-        children: [
-          CustomDrawer(onTap: changeScreen),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: AppColor.white,
-                borderRadius: borderRadius,
+      body: BlocConsumer<HomeCubit, HomeState>(
+        listener: (context, state) {
+        },
+        builder: (context, state) {
+          final cubit = HomeCubit.get(context);
+          return Row(
+            children: [
+              CustomDrawer(
+                onTap: cubit.changeScreen,
+                currentScreen: cubit.currentScreen,
               ),
-              child: Column(children: [
-                CustomAppBar(onFieldSubmitted: onFieldSubmitted),
-                Expanded(child: _screen)
-              ]),
-            ),
-          ),
-        ],
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: AppColor.white,
+                    borderRadius: borderRadius,
+                  ),
+                  child: Column(children: [
+                    CustomAppBar(onFieldSubmitted: cubit.onFieldSubmitted),
+                    const Gap(10),
+                    Expanded(child: cubit.screen)
+                  ]),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

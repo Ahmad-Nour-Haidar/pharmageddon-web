@@ -78,7 +78,7 @@ class CheckEmailScreen extends StatelessWidget {
                                   children: [
                                     SelectableText(
                                       AppText.checkEmail.tr,
-                                      style: AppTextTheme.f26w600black,
+                                      style: AppTextStyle.f26w600black,
                                     ),
                                     const Gap(25),
                                     // email
@@ -127,7 +127,7 @@ class CheckEmailScreen extends StatelessWidget {
                                 Center(
                                   child: SelectableText(
                                     'Pharmageddon',
-                                    style: AppTextTheme.f24w600SecondColor,
+                                    style: AppTextStyle.f24w600SecondColor,
                                   ),
                                 ),
                               ],

@@ -19,8 +19,8 @@ class CustomShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       direction: isEnglish() ? ShimmerDirection.ltr : ShimmerDirection.rtl,
-      baseColor: baseColor ?? AppColor.white,
-      highlightColor: generateMaterialColor(color: AppColor.cardColor),
+      baseColor: baseColor ?? AppColor.cardColor,
+      highlightColor: generateMaterialColor(color: AppColor.white.withOpacity(.8)),
       child: child,
     );
   }

@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import '../constant/app_color.dart';
 
-abstract class AppTextTheme {
+abstract class AppTextStyle {
   static TextStyle get f18w500black => const TextStyle(
         fontSize: 18,
         color: AppColor.black,
         fontWeight: FontWeight.w500,
+      );
+
+  static TextStyle get f20w600white => const TextStyle(
+        fontSize: 20,
+        color: AppColor.white,
+        fontWeight: FontWeight.w600,
+      );
+
+  static TextStyle get f15w400black => const TextStyle(
+        fontSize: 15,
+        color: AppColor.black,
+        fontWeight: FontWeight.w400,
       );
 
   static TextStyle get hintStyle => const TextStyle(
@@ -68,6 +80,7 @@ abstract class AppTextTheme {
         fontWeight: FontWeight.w600,
         letterSpacing: 1.0,
       );
+
   static TextStyle get f16w500white => const TextStyle(
         fontSize: 16,
         color: AppColor.white,

@@ -106,4 +106,5 @@ class AppText {
   static const discounts = 'discounts';
   static const quantityExpired = 'quantityExpired';
   static const dateExpired = 'dateExpired';
+  static const newW = 'newW';
 }

@@ -80,7 +80,7 @@ class RegisterScreen extends StatelessWidget {
                                   children: [
                                     SelectableText(
                                       AppText.createAccount.tr,
-                                      style: AppTextTheme.f26w600black,
+                                      style: AppTextStyle.f26w600black,
                                     ),
                                     const Gap(25),
                                     // email
@@ -185,7 +185,7 @@ class RegisterScreen extends StatelessWidget {
                                       children: [
                                         SelectableText(
                                           AppText.haveAnAccount.tr,
-                                          style: AppTextTheme.f18w400gray,
+                                          style: AppTextStyle.f18w400gray,
                                         ),
                                         TextButton(
                                           onPressed: () {
@@ -195,7 +195,7 @@ class RegisterScreen extends StatelessWidget {
                                           child: SelectableText(
                                             AppText.loginNow.tr,
                                             style:
-                                                AppTextTheme.f18w400TextColor,
+                                                AppTextStyle.f18w400TextColor,
                                           ),
                                         ),
                                       ],
@@ -220,7 +220,7 @@ class RegisterScreen extends StatelessWidget {
                                 Center(
                                   child: SelectableText(
                                     'Pharmageddon',
-                                    style: AppTextTheme.f24w600SecondColor,
+                                    style: AppTextStyle.f24w600SecondColor,
                                   ),
                                 ),
                               ],

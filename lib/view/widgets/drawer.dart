@@ -5,7 +5,6 @@ import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/core/enums/drawer_enum.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
-import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_svg.dart';
@@ -15,9 +14,11 @@ class CustomDrawer extends StatefulWidget {
   const CustomDrawer({
     super.key,
     required this.onTap,
+    required this.currentScreen,
   });
 
   final void Function(ScreenView value) onTap;
+  final ScreenView currentScreen;
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
@@ -26,24 +27,16 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer> {
   var isOpen = true;
 
-  var _currentScreen = ScreenView.all;
   static const _iconSize = 20.0;
 
-  void changeScreen(ScreenView value) {
-    if (_currentScreen == value) return;
-    setState(() {
-      _currentScreen = value;
-      printme.cyan(value);
-    });
-    widget.onTap(_currentScreen);
-  }
+  void changeScreen(ScreenView value) => widget.onTap(value);
 
   bool get isOrderSelected {
-    return _currentScreen == ScreenView.preparing ||
-        _currentScreen == ScreenView.hasBeenSent ||
-        _currentScreen == ScreenView.paid ||
-        _currentScreen == ScreenView.unPaid ||
-        _currentScreen == ScreenView.received;
+    return widget.currentScreen == ScreenView.preparing ||
+        widget.currentScreen == ScreenView.hasBeenSent ||
+        widget.currentScreen == ScreenView.paid ||
+        widget.currentScreen == ScreenView.unPaid ||
+        widget.currentScreen == ScreenView.received;
   }
 
   void openCloseDrawer() {
@@ -79,45 +72,46 @@ class _CustomDrawerState extends State<CustomDrawer> {
             title: AppText.all.tr,
             iconPath: AppSvg.all,
             onTap: () => changeScreen(ScreenView.all),
-            isSelected: _currentScreen == ScreenView.all,
+            isSelected: widget.currentScreen == ScreenView.all,
           ),
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.manufacturer.tr,
             iconPath: AppSvg.text,
             onTap: () => changeScreen(ScreenView.manufacturer),
-            isSelected: _currentScreen == ScreenView.manufacturer,
+            isSelected: widget.currentScreen == ScreenView.manufacturer,
           ),
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.effectCategories.tr,
             iconPath: AppSvg.chemistry,
             onTap: () => changeScreen(ScreenView.effectCategories),
-            isSelected: _currentScreen == ScreenView.effectCategories,
+            isSelected: widget.currentScreen == ScreenView.effectCategories,
           ),
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.discounts.tr,
             iconPath: AppSvg.percentage,
             onTap: () => changeScreen(ScreenView.discounts),
-            isSelected: _currentScreen == ScreenView.discounts,
+            isSelected: widget.currentScreen == ScreenView.discounts,
           ),
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.reports.tr,
             iconPath: AppSvg.report,
             onTap: () => changeScreen(ScreenView.reports),
-            isSelected: _currentScreen == ScreenView.reports,
+            isSelected: widget.currentScreen == ScreenView.reports,
           ),
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.add.tr,
             iconPath: AppSvg.add,
             onTap: () => changeScreen(ScreenView.add),
-            isSelected: _currentScreen == ScreenView.add,
+            isSelected: widget.currentScreen == ScreenView.add,
           ),
           if (!isOpen)
             ListTile(
+              contentPadding: const EdgeInsets.all(0),
               tileColor:
                   isOrderSelected ? AppColor.white.withOpacity(0.2) : null,
               leading: const SvgImage(
@@ -158,7 +152,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
               title: Text(
                 isOpen ? AppText.orders.tr : '',
-                style: AppTextTheme.f16w500white,
+                style: AppTextStyle.f16w500white,
               ),
               expandedAlignment: Alignment.centerLeft,
               expandedCrossAxisAlignment: CrossAxisAlignment.start,
@@ -166,22 +160,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 CustomTextButtonDrawer(
                   text: AppText.preparing.tr,
                   onTap: () => changeScreen(ScreenView.preparing),
-                  isSelected: _currentScreen == ScreenView.preparing,
+                  isSelected: widget.currentScreen == ScreenView.preparing,
                 ),
                 CustomTextButtonDrawer(
                   text: AppText.hasBeenSent.tr,
                   onTap: () => changeScreen(ScreenView.hasBeenSent),
-                  isSelected: _currentScreen == ScreenView.hasBeenSent,
+                  isSelected: widget.currentScreen == ScreenView.hasBeenSent,
                 ),
                 CustomTextButtonDrawer(
                   text: AppText.paid.tr,
                   onTap: () => changeScreen(ScreenView.paid),
-                  isSelected: _currentScreen == ScreenView.paid,
+                  isSelected: widget.currentScreen == ScreenView.paid,
                 ),
                 CustomTextButtonDrawer(
                   text: AppText.unPaid.tr,
                   onTap: () => changeScreen(ScreenView.unPaid),
-                  isSelected: _currentScreen == ScreenView.unPaid,
+                  isSelected: widget.currentScreen == ScreenView.unPaid,
                 ),
               ],
             ),
@@ -190,14 +184,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
             title: AppText.quantityExpired.tr,
             iconPath: AppSvg.quantity,
             onTap: () => changeScreen(ScreenView.quantityExpired),
-            isSelected: _currentScreen == ScreenView.quantityExpired,
+            isSelected: widget.currentScreen == ScreenView.quantityExpired,
           ),
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.dateExpired.tr,
             iconPath: AppSvg.timeDelete,
             onTap: () => changeScreen(ScreenView.dateExpired),
-            isSelected: _currentScreen == ScreenView.dateExpired,
+            isSelected: widget.currentScreen == ScreenView.dateExpired,
           ),
         ],
       ),
@@ -225,7 +219,7 @@ class CustomTextButtonDrawer extends StatelessWidget {
         style: TextButton.styleFrom(
           backgroundColor: isSelected ? AppColor.white.withOpacity(.2) : null,
         ),
-        child: Text(text, style: AppTextTheme.f16w500white),
+        child: Text(text, style: AppTextStyle.f16w500white),
       ),
     );
   }

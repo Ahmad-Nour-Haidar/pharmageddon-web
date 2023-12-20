@@ -85,7 +85,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                   children: [
                                     SelectableText(
                                       AppText.resetPassword.tr,
-                                      style: AppTextTheme.f26w600black,
+                                      style: AppTextStyle.f26w600black,
                                     ),
                                     const Gap(25),
                                     if (state is ResetPasswordLoadingGetState)
@@ -94,7 +94,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                     if (cubit.email != null)
                                       SelectableText(
                                         cubit.message,
-                                        style: AppTextTheme.f18w500black,
+                                        style: AppTextStyle.f18w500black,
                                       ),
                                     const Gap(30),
                                     Directionality(
@@ -169,7 +169,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                         onPressed: cubit.getVerifyCode,
                                         child: SelectableText(
                                           AppText.resendVerifyCode.tr,
-                                          style: AppTextTheme.f18w400TextColor,
+                                          style: AppTextStyle.f18w400TextColor,
                                         ),
                                       ),
                                     ),
@@ -192,7 +192,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 Center(
                                   child: SelectableText(
                                     'Pharmageddon',
-                                    style: AppTextTheme.f24w600SecondColor,
+                                    style: AppTextStyle.f24w600SecondColor,
                                   ),
                                 ),
                               ],

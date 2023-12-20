@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:pharmageddon_web/core/constant/app_size.dart';
 import '../../core/class/parent_state.dart';
@@ -8,7 +7,6 @@ void handleState({
   required ParentState state,
   required BuildContext context,
 }) {
-  Fluttertoast.cancel();
   switch (state.runtimeType) {
     case OfflineState:
       {
@@ -65,7 +63,7 @@ void showAwesomeHandleState({
 }) {
   AwesomeDialog(
     context: context,
-    width: AppSize.width * .30,
+    width: AppSize.width * .4,
     title: title,
     dialogType: dialogType,
   ).show();

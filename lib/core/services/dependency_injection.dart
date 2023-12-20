@@ -11,7 +11,9 @@ import '../../controllers/auth/login_cubit/login_cubit.dart';
 import '../../controllers/auth/register_cubit/register_cubit.dart';
 import '../../controllers/auth/reset_password_cubit/reset_password_cubit.dart';
 import '../../controllers/auth/verify_code_cubit/verify_code_cubit.dart';
+import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
+import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
 import '../../data/remote/auth_data.dart';
 import '../../data/remote/manufacturer_medicines_data.dart';
@@ -44,6 +46,10 @@ class AppInjection {
     getIt.registerFactory(() => VerifyCodeCubit());
 
     // home
+    getIt.registerLazySingleton(() => HomeCubit());
+    getIt.registerLazySingleton(() => SearchCubit());
+
+    /// data
     getIt.registerFactory(() => HomeRemoteData());
     getIt.registerFactory(() => ManufacturerMedicinesRemoteData());
     getIt.registerFactory(() => EffectMedicinesRemoteData());

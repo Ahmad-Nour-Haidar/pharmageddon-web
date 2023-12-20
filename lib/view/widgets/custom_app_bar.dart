@@ -66,7 +66,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           const Gap(10),
           Text(
             AppLocalData.user?.username ?? '',
-            style: AppTextTheme.f14w600black,
+            style: AppTextStyle.f14w600black,
           ),
           const Gap(30),
           DropdownButtonHideUnderline(

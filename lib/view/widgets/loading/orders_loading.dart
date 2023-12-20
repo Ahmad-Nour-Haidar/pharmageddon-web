@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/functions/functions.dart';

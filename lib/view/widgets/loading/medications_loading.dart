@@ -15,30 +15,28 @@ class MedicationsLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: RefreshIndicator(
-        onRefresh: onRefresh,
-        child: ListView(
-          children: [
-            Wrap(
-              spacing: 20,
-              runSpacing: 10,
-              children: List.generate(
-                getRandom(),
-                (index) => CustomShimmer(
-                  child: Container(
-                    height: AppSize.widthMedicine + 30,
-                    width: AppSize.widthMedicine,
-                    decoration: BoxDecoration(
-                      color: AppColor.white,
-                      borderRadius: BorderRadius.circular(AppSize.radius10),
-                    ),
+    return RefreshIndicator(
+      onRefresh: onRefresh,
+      child: ListView(
+        children: [
+          Wrap(
+            spacing: 20,
+            runSpacing: 10,
+            children: List.generate(
+              getRandom(),
+              (index) => CustomShimmer(
+                child: Container(
+                  height: AppSize.widthMedicine + 30,
+                  width: AppSize.widthMedicine,
+                  decoration: BoxDecoration(
+                    color: AppColor.cardColor,
+                    borderRadius: BorderRadius.circular(AppSize.radius10),
                   ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

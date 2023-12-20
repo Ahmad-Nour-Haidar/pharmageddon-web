@@ -90,8 +90,10 @@ class MyTranslation extends Translations {
           AppText.preparing: 'Preparing',
           AppText.paid: 'Paid',
           AppText.unPaid: 'Un paid',
+          AppText.newW: 'new',
         },
         'ar': {
+          AppText.newW: 'جديد',
           AppText.paid: 'مدفوع',
           AppText.unPaid: 'غير مدفوع',
           AppText.add: 'اضافة',

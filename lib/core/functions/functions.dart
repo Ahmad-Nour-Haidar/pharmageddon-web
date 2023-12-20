@@ -3,6 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../model/effect_category_model.dart';
+import '../../model/manufacturer_model.dart';
+import '../../model/medication_model.dart';
 import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
 import '../constant/app_keys_request.dart';
@@ -15,7 +18,9 @@ bool isEnglish() => AppConstant.currentLocal == AppConstant.localEn;
 
 String getCodeLang() =>
     AppConstant.currentLocal == AppConstant.localEn ? 'en' : 'ar';
-int getRandom() => Random().nextInt(5) + 3;
+
+int getRandom() => Random().nextInt(15) + 5;
+
 String formatDateJiffy(DateTime date) {
   return Jiffy.parseFromDateTime(date)
       .format(pattern: 'EEEE, MMMM, d - MM - yyyy');
@@ -62,3 +67,72 @@ void initialUser() async {
 
 String getImageUserUrl() =>
     '${AppLink.userImage}/${AppLocalData.user!.imageName}';
+
+String getUrlImageMedication(MedicationModel? model) {
+  final s = '${AppLink.medicineImage}/${model?.imageName}';
+  return s;
+}
+
+String getManufacturerName(ManufacturerModel? model, {bool split = true}) {
+  var s = '';
+  if (model == null) return s;
+  if (split) {
+    if (isEnglish()) {
+      s = model.englishName.toString().split(' ').take(2).join(' ');
+    } else {
+      s = model.arabicName.toString().split(' ').take(2).join(' ');
+    }
+    return s;
+  }
+  if (isEnglish()) {
+    s = model.englishName.toString();
+  } else {
+    s = model.arabicName.toString();
+  }
+  return s;
+}
+
+String getEffectCategoryModelName(EffectCategoryModel? model,
+    {bool split = true}) {
+  var s = '';
+  if (model == null) return s;
+  if (split) {
+    if (isEnglish()) {
+      s = model.englishName.toString().split(' ').take(2).join(' ');
+    } else {
+      s = model.arabicName.toString().split(' ').take(2).join(' ');
+    }
+    return s;
+  }
+  if (isEnglish()) {
+    s = model.englishName.toString();
+  } else {
+    s = model.arabicName.toString();
+  }
+  return s;
+}
+
+bool isNew(MedicationModel model) {
+  final dateNow = DateTime.now();
+  final dateMedication = DateTime.tryParse(model.createdAt ?? '') ?? dateNow;
+  return dateNow.difference(dateMedication).inDays <= 7;
+}
+
+String getMCommercialName(MedicationModel? model, {bool split = true}) {
+  var s = '';
+  if (model == null) return s;
+  if (split) {
+    if (isEnglish()) {
+      s = model.englishCommercialName.toString().split(' ').take(2).join(' ');
+    } else {
+      s = model.arabicCommercialName.toString().split(' ').take(2).join(' ');
+    }
+    return s;
+  }
+  if (isEnglish()) {
+    s = model.englishCommercialName.toString();
+  } else {
+    s = model.arabicCommercialName.toString();
+  }
+  return s;
+}

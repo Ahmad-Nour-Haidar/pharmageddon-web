@@ -27,7 +27,7 @@ class CustomDrawerItem extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       contentPadding: const EdgeInsets.all(0),
       tileColor: isSelected ? AppColor.white.withOpacity(0.2) : null,
-      title: isOpen ? Text(title, style: AppTextTheme.f16w500white) : null,
+      title: isOpen ? Text(title, style: AppTextStyle.f16w500white) : null,
       leading: SvgImage(path: iconPath, color: AppColor.white, size: 20),
     );
   }

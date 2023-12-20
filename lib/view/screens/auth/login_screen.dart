@@ -83,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                                     const Gap(25),
                                     SelectableText(
                                       AppText.welcomeBack.tr,
-                                      style: AppTextTheme.f26w600black,
+                                      style: AppTextStyle.f26w600black,
                                     ),
                                     const Gap(25),
                                     // email
@@ -133,7 +133,7 @@ class LoginScreen extends StatelessWidget {
                                         },
                                         child: SelectableText(
                                           AppText.forgetPassword.tr,
-                                          style: AppTextTheme.f18w400TextColor,
+                                          style: AppTextStyle.f18w400TextColor,
                                         ),
                                       ),
                                     ),
@@ -152,7 +152,7 @@ class LoginScreen extends StatelessWidget {
                                       children: [
                                         SelectableText(
                                           AppText.doNotHaveAnAccount.tr,
-                                          style: AppTextTheme.f18w400gray,
+                                          style: AppTextStyle.f18w400gray,
                                         ),
                                         TextButton(
                                           onPressed: () {
@@ -162,7 +162,7 @@ class LoginScreen extends StatelessWidget {
                                           child: SelectableText(
                                             AppText.createAccount.tr,
                                             style:
-                                                AppTextTheme.f18w400TextColor,
+                                                AppTextStyle.f18w400TextColor,
                                           ),
                                         )
                                       ],
@@ -188,7 +188,7 @@ class LoginScreen extends StatelessWidget {
                                 Center(
                                   child: SelectableText(
                                     'Pharmageddon',
-                                    style: AppTextTheme.f24w600SecondColor,
+                                    style: AppTextStyle.f24w600SecondColor,
                                   ),
                                 ),
                               ],
