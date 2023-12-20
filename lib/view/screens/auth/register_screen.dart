@@ -4,8 +4,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_web/controllers/register_cubit/register_cubit.dart';
-import 'package:pharmageddon_web/controllers/register_cubit/register_state.dart';
 import 'package:pharmageddon_web/core/constant/app_color.dart';
 import 'package:pharmageddon_web/core/constant/app_size.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
@@ -17,6 +15,8 @@ import 'package:pharmageddon_web/routes.dart';
 import 'package:pharmageddon_web/view/widgets/custom_button.dart';
 import 'package:pharmageddon_web/view/widgets/custom_text_form_field.dart';
 
+import '../../../controllers/auth/register_cubit/register_cubit.dart';
+import '../../../controllers/auth/register_cubit/register_state.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_svg.dart';
 import '../../widgets/custom_layout_builder.dart';

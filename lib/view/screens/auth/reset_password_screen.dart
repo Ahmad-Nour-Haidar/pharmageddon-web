@@ -5,9 +5,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_web/controllers/reset_password_cubit/reset_password_cubit.dart';
-import 'package:pharmageddon_web/controllers/reset_password_cubit/reset_password_state.dart';
 
+import '../../../controllers/auth/reset_password_cubit/reset_password_cubit.dart';
+import '../../../controllers/auth/reset_password_cubit/reset_password_state.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';

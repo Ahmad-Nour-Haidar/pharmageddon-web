@@ -4,11 +4,11 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_web/controllers/login_cubit/login_cubit.dart';
-import 'package:pharmageddon_web/controllers/login_cubit/login_state.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/routes.dart';
 
+import '../../../controllers/auth/login_cubit/login_cubit.dart';
+import '../../../controllers/auth/login_cubit/login_state.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_size.dart';

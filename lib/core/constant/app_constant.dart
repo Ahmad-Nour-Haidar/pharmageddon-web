@@ -11,7 +11,6 @@ class AppConstant {
   static const hasBeenSent = 'has_been_sent';
   static const preparing = 'preparing';
 
-
   static const localEn = Locale(en);
   static const localAr = Locale(ar);
   static late Locale currentLocal;

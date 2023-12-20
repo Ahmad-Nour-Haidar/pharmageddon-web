@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_web/controllers/register_cubit/register_state.dart';
-import '../../core/class/parent_state.dart';
-import '../../core/constant/app_constant.dart';
-import '../../core/constant/app_keys_request.dart';
-import '../../core/constant/app_local_data.dart';
-import '../../core/constant/app_text.dart';
-import '../../core/functions/check_errors.dart';
-import '../../core/functions/functions.dart';
-import '../../core/services/dependency_injection.dart';
-import '../../data/remote/auth_data.dart';
+import 'package:pharmageddon_web/controllers/auth/register_cubit/register_state.dart';
+import '../../../core/class/parent_state.dart';
+import '../../../core/constant/app_constant.dart';
+import '../../../core/constant/app_keys_request.dart';
+import '../../../core/constant/app_local_data.dart';
+import '../../../core/constant/app_text.dart';
+import '../../../core/functions/check_errors.dart';
+import '../../../core/functions/functions.dart';
+import '../../../core/services/dependency_injection.dart';
+import '../../../data/remote/auth_data.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitialState());
