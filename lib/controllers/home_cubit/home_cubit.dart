@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_web/model/medication_model.dart';
+import 'package:pharmageddon_web/view/screens/discounts_screen.dart';
 import 'package:pharmageddon_web/view/screens/medication_screen.dart';
 import 'package:pharmageddon_web/view/screens/search_screen.dart';
 import '../../core/enums/drawer_enum.dart';
@@ -57,7 +58,7 @@ class HomeCubit extends Cubit<HomeState> {
       case ScreenView.effectCategories:
         return const SizedBox();
       case ScreenView.discounts:
-        return const SizedBox();
+        return const DiscountsScreen();
       case ScreenView.add:
         return const SizedBox();
       case ScreenView.reports:

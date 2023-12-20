@@ -4,16 +4,16 @@ import 'package:pharmageddon_web/data/remote/home_data.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../model/medication_model.dart';
-import 'medication_state.dart';
+import 'discounts_state.dart';
 
-class MedicationCubit extends Cubit<MedicationState> {
-  MedicationCubit() : super(MedicationInitialState());
+class DiscountsCubit extends Cubit<DiscountsState> {
+  DiscountsCubit() : super(DiscountsInitialState());
 
-  static MedicationCubit get(BuildContext context) => BlocProvider.of(context);
+  static DiscountsCubit get(BuildContext context) => BlocProvider.of(context);
   final _homeRemoteData = AppInjection.getIt<HomeRemoteData>();
   final List<MedicationModel> medications = [];
 
-  void _update(MedicationState state) {
+  void _update(DiscountsState state) {
     if (isClosed) return;
     emit(state);
   }
@@ -23,15 +23,15 @@ class MedicationCubit extends Cubit<MedicationState> {
   }
 
   Future<void> getData() async {
-    _update(MedicationLoadingState());
-    final response = await _homeRemoteData.getMedications();
+    _update(DiscountsLoadingState());
+    final response = await _homeRemoteData.getDiscount();
     response.fold((l) {
-      _update(MedicationFailureState(l));
+      _update(DiscountsFailureState(l));
     }, (r) {
       final List temp = r[AppRKeys.data][AppRKeys.medicines];
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
-      _update(MedicationSuccessState());
+      _update(DiscountsSuccessState());
     });
   }
 }

@@ -5,6 +5,7 @@ import 'package:pharmageddon_web/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_web/controllers/search_cubit/search_cubit.dart';
 import 'package:pharmageddon_web/model/user_model.dart';
 import 'package:pharmageddon_web/routes.dart';
+import 'controllers/discounts_cubit/discounts_cubit.dart';
 import 'controllers/local_controller.dart';
 import 'controllers/medication_cubit/medication_cubit.dart';
 import 'core/constant/app_local_data.dart';
@@ -47,6 +48,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<MedicationCubit>(
           create: (context) => AppInjection.getIt<MedicationCubit>(),
         ),
+        // BlocProvider<DiscountsCubit>(
+        //   create: (context) => AppInjection.getIt<DiscountsCubit>(),
+        // ),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
