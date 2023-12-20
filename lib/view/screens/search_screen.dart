@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -6,7 +5,6 @@ import 'package:pharmageddon_web/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_web/controllers/search_cubit/search_cubit.dart';
 import 'package:pharmageddon_web/controllers/search_cubit/search_state.dart';
 import 'package:pharmageddon_web/core/services/dependency_injection.dart';
-import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
 import 'package:pharmageddon_web/view/widgets/home/medication_widget.dart';
 import 'package:pharmageddon_web/view/widgets/loading/medications_loading.dart';
@@ -54,8 +52,9 @@ class SearchScreen extends StatelessWidget {
         if (state is SearchSuccessState) s += state.value;
         if (state is SearchNoDataState) s += state.value;
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AutoSizeText(
+            Text(
               s,
               style: AppTextStyle.f18w500black,
               maxLines: 1,

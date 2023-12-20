@@ -48,9 +48,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: isOpen ? 230 : 70,
+      width: isOpen ? 230 : 120,
       child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
         children: [
           Align(
             alignment: isEnglish() ? Alignment.topRight : Alignment.topLeft,
@@ -111,9 +110,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           if (!isOpen)
             ListTile(
-              contentPadding: const EdgeInsets.all(0),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 15),
               tileColor:
                   isOrderSelected ? AppColor.white.withOpacity(0.2) : null,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
+              ),
               leading: const SvgImage(
                 path: AppSvg.ballot,
                 color: AppColor.white,
@@ -136,7 +138,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               childrenPadding: EdgeInsets.only(
                 left: isEnglish() ? 30 : 60,
               ),
-              tilePadding: const EdgeInsets.all(0),
+              tilePadding: const EdgeInsets.symmetric(horizontal: 15),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),
                 side: const BorderSide(color: AppColor.transparent),
@@ -166,6 +168,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   text: AppText.hasBeenSent.tr,
                   onTap: () => changeScreen(ScreenView.hasBeenSent),
                   isSelected: widget.currentScreen == ScreenView.hasBeenSent,
+                ),
+                CustomTextButtonDrawer(
+                  text: AppText.received.tr,
+                  onTap: () => changeScreen(ScreenView.received),
+                  isSelected: widget.currentScreen == ScreenView.received,
                 ),
                 CustomTextButtonDrawer(
                   text: AppText.paid.tr,

@@ -20,8 +20,8 @@ class MedicationsLoading extends StatelessWidget {
       child: ListView(
         children: [
           Wrap(
-            spacing: 20,
-            runSpacing: 10,
+            spacing: 30,
+            runSpacing: 20,
             children: List.generate(
               getRandom(),
               (index) => CustomShimmer(

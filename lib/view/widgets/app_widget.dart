@@ -7,12 +7,12 @@ import '../../core/constant/app_size.dart';
 class AppWidget {
   final noData = Center(
     child: Lottie.asset(AppLottie.noData,
-        width: 180, height: 210, fit: BoxFit.fill),
+        width: 220, height: 220, fit: BoxFit.fill),
   );
 
   final noDataAfterSearch = Center(
     child: Lottie.asset(AppLottie.noDataAfterSearch,
-        width: 180, height: 210, fit: BoxFit.fill),
+        width: 220, height: 220, fit: BoxFit.fill),
   );
 
   final reports = Center(

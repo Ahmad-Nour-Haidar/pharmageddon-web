@@ -34,8 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColor.contentColorBlue,
       body: BlocConsumer<HomeCubit, HomeState>(
-        listener: (context, state) {
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           final cubit = HomeCubit.get(context);
           return Row(

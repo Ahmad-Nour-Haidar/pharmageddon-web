@@ -157,15 +157,12 @@ class MedicationsListWidget extends StatelessWidget {
             ])
           : ListView(
               children: [
-                Padding(
-                  padding: AppPadding.symmetric(horizontal: 20, vertical: 5),
-                  child: Text(
-                    '${AppText.all.tr} : ( ${data.length} )'.trn,
-                    style: AppTextStyle.f18w500black,
-                  ),
+                Text(
+                  '${AppText.all.tr} : ( ${data.length} )'.trn,
+                  style: AppTextStyle.f18w500black,
                 ),
                 Wrap(
-                  spacing: 20,
+                  spacing: 30,
                   runSpacing: 20,
                   children: List.generate(
                     data.length,

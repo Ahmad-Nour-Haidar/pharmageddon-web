@@ -94,7 +94,7 @@ class MyTranslation extends Translations {
           AppText.searchResultsFor: 'Search results for',
         },
         'ar': {
-          AppText.searchResultsFor: 'Search results for',
+          AppText.searchResultsFor: 'نتائج البحث عن',
           AppText.newW: 'جديد',
           AppText.paid: 'مدفوع',
           AppText.unPaid: 'غير مدفوع',
