@@ -20,6 +20,7 @@ class AppSize {
   // size
   static late double width;
   static late double height;
+  static const appBarHeight = 40.0;
   static const size10 = 10.0;
   static const size15 = 15.0;
   static const size20 = 20.0;

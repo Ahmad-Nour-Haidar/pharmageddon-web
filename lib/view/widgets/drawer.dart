@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/core/enums/drawer_enum.dart';
+import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
@@ -54,11 +55,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: isOpen ? 200 : 75,
+      width: isOpen ? 230 : 100,
       child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         children: [
           Align(
-            alignment: Alignment.topRight,
+            alignment: isEnglish() ? Alignment.topRight : Alignment.topLeft,
             child: IconButton(
               onPressed: openCloseDrawer,
               icon: Transform.flip(
@@ -137,8 +139,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
               backgroundColor:
                   isOrderSelected ? AppColor.white.withOpacity(0.2) : null,
               initiallyExpanded: isOrderSelected,
-              childrenPadding: const EdgeInsets.only(left: 45),
-              tilePadding: const EdgeInsets.only(left: 15, right: 10),
+              childrenPadding: EdgeInsets.only(
+                left: isEnglish() ? 30 : 60,
+              ),
+              tilePadding: const EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),
                 side: const BorderSide(color: AppColor.transparent),

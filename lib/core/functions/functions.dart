@@ -6,6 +6,7 @@ import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
 import '../constant/app_keys_request.dart';
 import '../constant/app_keys_storage.dart';
+import '../constant/app_link.dart';
 import '../constant/app_local_data.dart';
 import '../services/dependency_injection.dart';
 
@@ -56,6 +57,7 @@ void initialUser() async {
   final Map<String, dynamic> m = jsonDecode(jsonString);
   final user = User.fromJson(m);
   AppLocalData.user = user;
-
-  return;
 }
+
+String getImageUserUrl() =>
+    '${AppLink.userImage}/${AppLocalData.user!.imageName}';

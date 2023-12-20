@@ -25,7 +25,7 @@ class CustomDrawerItem extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-      contentPadding: const EdgeInsets.only(left: 15),
+      contentPadding: const EdgeInsets.all(0),
       tileColor: isSelected ? AppColor.white.withOpacity(0.2) : null,
       title: isOpen ? Text(title, style: AppTextTheme.f16w500white) : null,
       leading: SvgImage(path: iconPath, color: AppColor.white, size: 20),

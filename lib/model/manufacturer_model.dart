@@ -1,0 +1,24 @@
+class ManufacturerModel {
+  int? id;
+  String? arabicName;
+  String? englishName;
+  bool? active;
+
+  ManufacturerModel({this.id, this.arabicName, this.englishName, this.active});
+
+  ManufacturerModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    arabicName = json['arabic_name'];
+    englishName = json['english_name'];
+    active = json['active'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['arabic_name'] = arabicName;
+    data['english_name'] = englishName;
+    data['active'] = active;
+    return data;
+  }
+}
