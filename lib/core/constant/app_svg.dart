@@ -3,6 +3,7 @@ class AppSvg {
 
   static const root = 'assets/svgs';
   static const all = '$root/all.svg';
+  static const add = '$root/apps-add.svg';
   static const arrowFillRight = '$root/arrow-fill-right.svg';
   static const arrowFillLeft = '$root/arrow-fill-left.svg';
   static const arrowLeft = '$root/arrow_left.svg';
@@ -43,4 +44,6 @@ class AppSvg {
   static const quantity = '$root/quantity.svg';
   static const timeDelete = '$root/time-delete.svg';
   static const report = '$root/report.svg';
+  static const sort = '$root/sort.svg';
+  static const ballot = '$root/ballot.svg';
 }

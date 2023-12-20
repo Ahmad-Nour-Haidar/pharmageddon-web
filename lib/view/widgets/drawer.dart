@@ -11,7 +11,12 @@ import '../../core/constant/app_svg.dart';
 import 'drawer/Custom_drawer_item.dart';
 
 class CustomDrawer extends StatefulWidget {
-  const CustomDrawer({super.key});
+  const CustomDrawer({
+    super.key,
+    required this.onTap,
+  });
+
+  final void Function(ScreenView value) onTap;
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
@@ -19,20 +24,25 @@ class CustomDrawer extends StatefulWidget {
 
 class _CustomDrawerState extends State<CustomDrawer> {
   var isOpen = true;
-  var _currentScreen = DrawerEnum.all;
+
+  var _currentScreen = ScreenView.all;
   static const _iconSize = 20.0;
 
-  void changeScreen(DrawerEnum value) {
+  void changeScreen(ScreenView value) {
+    if (_currentScreen == value) return;
     setState(() {
       _currentScreen = value;
       printme.cyan(value);
     });
+    widget.onTap(_currentScreen);
   }
 
   bool get isOrderSelected {
-    return _currentScreen == DrawerEnum.preparing ||
-        _currentScreen == DrawerEnum.hasBeenSent ||
-        _currentScreen == DrawerEnum.received;
+    return _currentScreen == ScreenView.preparing ||
+        _currentScreen == ScreenView.hasBeenSent ||
+        _currentScreen == ScreenView.paid ||
+        _currentScreen == ScreenView.unPaid ||
+        _currentScreen == ScreenView.received;
   }
 
   void openCloseDrawer() {
@@ -45,7 +55,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: isOpen ? 200 : 75,
-      child: Column(
+      child: ListView(
         children: [
           Align(
             alignment: Alignment.topRight,
@@ -66,113 +76,125 @@ class _CustomDrawerState extends State<CustomDrawer> {
             isOpen: isOpen,
             title: AppText.all.tr,
             iconPath: AppSvg.all,
-            onTap: () => changeScreen(DrawerEnum.all),
-            isSelected: _currentScreen == DrawerEnum.all,
+            onTap: () => changeScreen(ScreenView.all),
+            isSelected: _currentScreen == ScreenView.all,
           ),
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.manufacturer.tr,
             iconPath: AppSvg.text,
-            onTap: () => changeScreen(DrawerEnum.manufacturer),
-            isSelected: _currentScreen == DrawerEnum.manufacturer,
+            onTap: () => changeScreen(ScreenView.manufacturer),
+            isSelected: _currentScreen == ScreenView.manufacturer,
           ),
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.effectCategories.tr,
             iconPath: AppSvg.chemistry,
-            onTap: () => changeScreen(DrawerEnum.chemistry),
-            isSelected: _currentScreen == DrawerEnum.chemistry,
+            onTap: () => changeScreen(ScreenView.effectCategories),
+            isSelected: _currentScreen == ScreenView.effectCategories,
           ),
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.discounts.tr,
             iconPath: AppSvg.percentage,
-            onTap: () => changeScreen(DrawerEnum.percentage),
-            isSelected: _currentScreen == DrawerEnum.percentage,
-          ),
-          CustomDrawerItem(
-            isOpen: isOpen,
-            title: AppText.quantityExpired.tr,
-            iconPath: AppSvg.quantity,
-            onTap: () => changeScreen(DrawerEnum.quantity),
-            isSelected: _currentScreen == DrawerEnum.quantity,
-          ),
-          CustomDrawerItem(
-            isOpen: isOpen,
-            title: AppText.dateExpired.tr,
-            iconPath: AppSvg.timeDelete,
-            onTap: () => changeScreen(DrawerEnum.dateExpired),
-            isSelected: _currentScreen == DrawerEnum.dateExpired,
+            onTap: () => changeScreen(ScreenView.discounts),
+            isSelected: _currentScreen == ScreenView.discounts,
           ),
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.reports.tr,
             iconPath: AppSvg.report,
-            onTap: () => changeScreen(DrawerEnum.reports),
-            isSelected: _currentScreen == DrawerEnum.reports,
+            onTap: () => changeScreen(ScreenView.reports),
+            isSelected: _currentScreen == ScreenView.reports,
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: isOrderSelected ? AppColor.white.withOpacity(.2) : null,
-              borderRadius: BorderRadius.circular(5),
+          CustomDrawerItem(
+            isOpen: isOpen,
+            title: AppText.add.tr,
+            iconPath: AppSvg.add,
+            onTap: () => changeScreen(ScreenView.add),
+            isSelected: _currentScreen == ScreenView.add,
+          ),
+          if (!isOpen)
+            ListTile(
+              tileColor:
+                  isOrderSelected ? AppColor.white.withOpacity(0.2) : null,
+              leading: const SvgImage(
+                path: AppSvg.ballot,
+                color: AppColor.white,
+                size: 25,
+              ),
+              onTap: () {
+                setState(() {
+                  isOpen = true;
+                });
+                changeScreen(ScreenView.preparing);
+              },
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          if (isOpen)
+            ExpansionTile(
+              collapsedBackgroundColor:
+                  isOrderSelected ? AppColor.white.withOpacity(0.2) : null,
+              backgroundColor:
+                  isOrderSelected ? AppColor.white.withOpacity(0.2) : null,
+              initiallyExpanded: isOrderSelected,
+              childrenPadding: const EdgeInsets.only(left: 45),
+              tilePadding: const EdgeInsets.only(left: 15, right: 10),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
+                side: const BorderSide(color: AppColor.transparent),
+              ),
+              textColor: AppColor.white,
+              collapsedTextColor: AppColor.white,
+              collapsedIconColor: AppColor.white,
+              iconColor: AppColor.white,
+              leading: const SvgImage(
+                path: AppSvg.ballot,
+                color: AppColor.white,
+                size: 25,
+              ),
+              title: Text(
+                isOpen ? AppText.orders.tr : '',
+                style: AppTextTheme.f16w500white,
+              ),
+              expandedAlignment: Alignment.centerLeft,
+              expandedCrossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Gap(5),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isOpen = true;
-                      _currentScreen = DrawerEnum.preparing;
-                    });
-                  },
-                  icon: const SvgImage(
-                    path: AppSvg.order,
-                    color: AppColor.white,
-                    size: 25,
-                  ),
+                CustomTextButtonDrawer(
+                  text: AppText.preparing.tr,
+                  onTap: () => changeScreen(ScreenView.preparing),
+                  isSelected: _currentScreen == ScreenView.preparing,
                 ),
-                if (isOpen)
-                  Expanded(
-                    child: ExpansionTile(
-                      initiallyExpanded: true,
-                      childrenPadding: const EdgeInsets.only(left: 15),
-                      shape: const RoundedRectangleBorder(
-                        side: BorderSide(color: AppColor.transparent),
-                      ),
-                      textColor: AppColor.white,
-                      collapsedTextColor: AppColor.white,
-                      collapsedIconColor: AppColor.white,
-                      iconColor: AppColor.white,
-                      title: Text(
-                        AppText.orders.tr,
-                        style: AppTextTheme.f16w500white,
-                      ),
-                      expandedAlignment: Alignment.centerLeft,
-                      expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CustomTextButtonDrawer(
-                          text: AppText.preparing.tr,
-                          onTap: () => changeScreen(DrawerEnum.preparing),
-                          isSelected: _currentScreen == DrawerEnum.preparing,
-                        ),
-                        CustomTextButtonDrawer(
-                          text: AppText.hasBeenSent.tr,
-                          onTap: () => changeScreen(DrawerEnum.hasBeenSent),
-                          isSelected: _currentScreen == DrawerEnum.hasBeenSent,
-                        ),
-                        CustomTextButtonDrawer(
-                          text: AppText.received.tr,
-                          onTap: () => changeScreen(DrawerEnum.received),
-                          isSelected: _currentScreen == DrawerEnum.received,
-                        ),
-                      ],
-                    ),
-                  ),
+                CustomTextButtonDrawer(
+                  text: AppText.hasBeenSent.tr,
+                  onTap: () => changeScreen(ScreenView.hasBeenSent),
+                  isSelected: _currentScreen == ScreenView.hasBeenSent,
+                ),
+                CustomTextButtonDrawer(
+                  text: AppText.paid.tr,
+                  onTap: () => changeScreen(ScreenView.paid),
+                  isSelected: _currentScreen == ScreenView.paid,
+                ),
+                CustomTextButtonDrawer(
+                  text: AppText.unPaid.tr,
+                  onTap: () => changeScreen(ScreenView.unPaid),
+                  isSelected: _currentScreen == ScreenView.unPaid,
+                ),
               ],
             ),
-          )
+          CustomDrawerItem(
+            isOpen: isOpen,
+            title: AppText.quantityExpired.tr,
+            iconPath: AppSvg.quantity,
+            onTap: () => changeScreen(ScreenView.quantityExpired),
+            isSelected: _currentScreen == ScreenView.quantityExpired,
+          ),
+          CustomDrawerItem(
+            isOpen: isOpen,
+            title: AppText.dateExpired.tr,
+            iconPath: AppSvg.timeDelete,
+            onTap: () => changeScreen(ScreenView.dateExpired),
+            isSelected: _currentScreen == ScreenView.dateExpired,
+          ),
         ],
       ),
     );

@@ -1,13 +1,15 @@
-enum DrawerEnum {
+enum ScreenView {
   all,
   manufacturer,
-  chemistry,
-  percentage,
-  quantity,
-  category,
-  dateExpired,
+  effectCategories,
+  discounts,
+  add,
   reports,
   preparing,
   hasBeenSent,
   received,
+  paid,
+  unPaid,
+  quantityExpired,
+  dateExpired,
 }

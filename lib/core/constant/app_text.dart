@@ -22,10 +22,13 @@ class AppText {
   static const loginNow = 'loginNow';
   static const or = 'or';
   static const reports = 'reports';
+  static const add = 'add';
   static const orders = 'orders';
   static const preparing = 'preparing';
   static const hasBeenSent = 'hasBeenSent';
   static const received = 'received';
+  static const paid = 'paid';
+  static const unPaid = 'unPaid';
   static const thisFieldCantBeEmpty = 'thisFieldCantBeEmpty';
   static const lengthMustBeBetween = 'lengthMustBeBetween';
   static const notValid = 'notValid';
