@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_web/core/constant/app_padding.dart';
 import 'package:pharmageddon_web/core/constant/app_size.dart';
 
 import '../../core/constant/app_color.dart';
@@ -33,6 +34,7 @@ class CustomButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        padding: AppPadding.padding7,
         height: height,
         width: width,
         decoration: BoxDecoration(
@@ -41,8 +43,9 @@ class CustomButton extends StatelessWidget {
             radius,
           ),
         ),
-        child: Center(
-          child: SelectableText(text, style: textStyle),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(text, style: textStyle),
         ),
       ),
     );

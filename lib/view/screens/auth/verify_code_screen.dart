@@ -141,7 +141,7 @@ class VerifyCodeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const Gap(20),
-                                Center(
+                                const Center(
                                   child: SelectableText(
                                     'Pharmageddon',
                                     style: AppTextStyle.f24w600SecondColor,

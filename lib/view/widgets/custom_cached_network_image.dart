@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
-
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_svg.dart';
 
@@ -54,6 +53,25 @@ class CustomCachedNetworkImage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
       ),
+      // child: Image.network(
+      //   imageUrl,
+      //   fit: BoxFit.cover,
+      //   width: width,
+      //   errorBuilder: (context, url, error) {
+      //     return errorWidgetImp;
+      //   },
+      //   loadingBuilder: (context, url, error) {
+      //     return Center(
+      //       child: SizedBox(
+      //         width: width / 2,
+      //         height: width / 2,
+      //         child: const CircularProgressIndicator(
+      //           strokeWidth: 3,
+      //         ),
+      //       ),
+      //     );
+      //   },
+      // ),
       child: CachedNetworkImage(
         httpHeaders: const {
           "Connection": "Keep-Alive",

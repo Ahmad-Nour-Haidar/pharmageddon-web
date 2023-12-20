@@ -5,6 +5,7 @@ import 'package:pharmageddon_web/view/screens/discounts_screen.dart';
 import 'package:pharmageddon_web/view/screens/medication_screen.dart';
 import 'package:pharmageddon_web/view/screens/search_screen.dart';
 import '../../core/enums/drawer_enum.dart';
+import '../../view/screens/reports_screen.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -17,7 +18,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state);
   }
 
-  var currentScreen = ScreenView.all;
+  var currentScreen = ScreenView.reports;
 
   void changeScreen(ScreenView value) {
     if (currentScreen == value) return;
@@ -62,7 +63,7 @@ class HomeCubit extends Cubit<HomeState> {
       case ScreenView.add:
         return const SizedBox();
       case ScreenView.reports:
-        return const SizedBox();
+        return const ReportsScreen();
       case ScreenView.preparing:
         return const SizedBox();
       case ScreenView.hasBeenSent:

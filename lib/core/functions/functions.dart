@@ -1,17 +1,20 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/effect_category_model.dart';
 import '../../model/manufacturer_model.dart';
 import '../../model/medication_model.dart';
+import '../../model/order_model.dart';
 import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
 import '../constant/app_keys_request.dart';
 import '../constant/app_keys_storage.dart';
 import '../constant/app_link.dart';
 import '../constant/app_local_data.dart';
+import '../constant/app_text.dart';
 import '../services/dependency_injection.dart';
 
 bool isEnglish() => AppConstant.currentLocal == AppConstant.localEn;
@@ -135,4 +138,15 @@ String getMCommercialName(MedicationModel? model, {bool split = true}) {
     s = model.arabicCommercialName.toString();
   }
   return s;
+}
+
+String formatYYYYMd(String? s) {
+  final date = DateTime.tryParse(s ?? '');
+  if (date == null) return ' --- ';
+  final pattern = isEnglish() ? 'yyyy - M - d' : 'd - M - yyyy';
+  return Jiffy.parseFromDateTime(date).format(pattern: pattern);
+}
+
+String getPaymentStatus(OrderModel model) {
+  return model.paymentStatus == 0 ? AppText.unPaid.tr : AppText.paid.tr;
 }

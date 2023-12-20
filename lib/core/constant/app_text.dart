@@ -79,7 +79,6 @@ class AppText {
   static const name = 'name';
   static const price = 'price';
   static const totalPrice = 'totalPrice';
-  static const addToCart = 'addToCart';
   static const done = 'done';
 
   // drawer
@@ -108,4 +107,18 @@ class AppText {
   static const dateExpired = 'dateExpired';
   static const newW = 'newW';
   static const searchResultsFor = 'searchResultsFor';
+  static const pleaseSelectStartAndEndOfDate = 'pleaseSelectStartAndEndOfDate';
+  static const totalQuantity = 'totalQuantity';
+  static const totalMedications = 'totalMedications';
+  static const totalOrders = 'totalOrders';
+  static const sp = 'sp';
+  static const send = 'send';
+  static const start = 'start';
+  static const end = 'end';
+  static const paymentState = 'paymentState';
+  static const date = 'date';
+  static const id = 'id';
+  static const pharmacist = 'pharmacist';
+  static const selectStartDateAndEndDateOfReport =
+      'selectStartDateAndEndDateOfReport';
 }

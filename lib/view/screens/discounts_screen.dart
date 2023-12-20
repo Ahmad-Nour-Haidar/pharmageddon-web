@@ -8,8 +8,6 @@ import 'package:pharmageddon_web/view/widgets/loading/medications_loading.dart';
 
 import '../../controllers/discounts_cubit/discounts_cubit.dart';
 import '../../controllers/discounts_cubit/discounts_state.dart';
-import '../../controllers/medication_cubit/medication_cubit.dart';
-import '../../controllers/medication_cubit/medication_state.dart';
 
 class DiscountsScreen extends StatelessWidget {
   const DiscountsScreen({

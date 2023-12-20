@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_web/core/functions/functions.dart';
 
 import '../../../core/constant/app_color.dart';
 import '../../../core/resources/app_text_theme.dart';
@@ -27,7 +28,14 @@ class CustomDrawerItem extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       contentPadding: const EdgeInsets.symmetric(horizontal: 15),
       tileColor: isSelected ? AppColor.white.withOpacity(0.2) : null,
-      title: isOpen ? Text(title, style: AppTextStyle.f16w500white) : null,
+      title: isOpen
+          ? FittedBox(
+              alignment:
+                  isEnglish() ? Alignment.centerLeft : Alignment.centerRight,
+              fit: BoxFit.scaleDown,
+              child: Text(title, style: AppTextStyle.f16w500white),
+            )
+          : null,
       leading: SvgImage(path: iconPath, color: AppColor.white, size: 20),
     );
   }

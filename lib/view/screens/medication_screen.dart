@@ -16,25 +16,27 @@ class MedicationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = MedicationCubit.get(context);
-    cubit.getData();
-    return BlocConsumer<MedicationCubit, MedicationState>(
-      listener: (context, state) {
-        if (state is MedicationFailureState) {
-          handleState(state: state.state, context: context);
-        }
-      },
-      builder: (context, state) {
-        Widget body = MedicationsListWidget(
-          data: cubit.medications,
-          onRefresh: () async => cubit.getData(),
-          onTapCard: AppInjection.getIt<HomeCubit>().onTapCard,
-        );
-        if (state is MedicationLoadingState) {
-          body = MedicationsLoading(onRefresh: () async => cubit.getData());
-        }
-        return body;
-      },
+    return BlocProvider<MedicationCubit>(
+      create: (context) => AppInjection.getIt<MedicationCubit>()..initial(),
+      child: BlocConsumer<MedicationCubit, MedicationState>(
+        listener: (context, state) {
+          if (state is MedicationFailureState) {
+            handleState(state: state.state, context: context);
+          }
+        },
+        builder: (context, state) {
+          final cubit = MedicationCubit.get(context);
+          Widget body = MedicationsListWidget(
+            data: cubit.medications,
+            onRefresh: () async => cubit.getData(),
+            onTapCard: AppInjection.getIt<HomeCubit>().onTapCard,
+          );
+          if (state is MedicationLoadingState) {
+            body = MedicationsLoading(onRefresh: () async => cubit.getData());
+          }
+          return body;
+        },
+      ),
     );
   }
 }

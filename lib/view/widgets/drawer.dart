@@ -48,7 +48,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: isOpen ? 230 : 120,
+      width: isOpen ? 200 : 65,
       child: ListView(
         children: [
           Align(
@@ -136,7 +136,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   isOrderSelected ? AppColor.white.withOpacity(0.2) : null,
               initiallyExpanded: isOrderSelected,
               childrenPadding: EdgeInsets.only(
-                left: isEnglish() ? 30 : 60,
+                left: isEnglish() ? 60 : 40,
               ),
               tilePadding: const EdgeInsets.symmetric(horizontal: 15),
               shape: RoundedRectangleBorder(

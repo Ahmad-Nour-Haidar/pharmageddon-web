@@ -15,6 +15,7 @@ import '../../controllers/discounts_cubit/discounts_cubit.dart';
 import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
 import '../../controllers/medication_cubit/medication_cubit.dart';
+import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
 import '../../data/remote/auth_data.dart';
@@ -50,8 +51,9 @@ class AppInjection {
     // home
     getIt.registerLazySingleton(() => HomeCubit());
     getIt.registerLazySingleton(() => SearchCubit());
-    getIt.registerLazySingleton(() => MedicationCubit());
+    getIt.registerFactory(() => MedicationCubit());
     getIt.registerFactory(() => DiscountsCubit());
+    getIt.registerFactory(() => ReportsCubit());
 
     /// data
     getIt.registerFactory(() => HomeRemoteData());
