@@ -18,11 +18,12 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state);
   }
 
-  var currentScreen = ScreenView.reports;
+  var currentScreen = ScreenView.all;
 
   void changeScreen(ScreenView value) {
     if (currentScreen == value) return;
     currentScreen = value;
+    showMedicationModelDetails = false;
     _update(HomeChangeState());
   }
 
@@ -35,12 +36,17 @@ class HomeCubit extends Cubit<HomeState> {
     _update(HomeChangeState());
   }
 
+  // todo
+  bool showMedicationModelDetails = true;
   late MedicationModel medicationModel;
+  late UniqueKey tag = UniqueKey();
 
-  bool showMedicationModelDetails = false;
-
-  void onTapCard(MedicationModel model) {
+  void onTapCard({
+    required MedicationModel model,
+    required UniqueKey uniqueKey,
+  }) {
     medicationModel = model;
+    tag = uniqueKey;
     showMedicationModelDetails = true;
     _update(HomeChangeState());
   }

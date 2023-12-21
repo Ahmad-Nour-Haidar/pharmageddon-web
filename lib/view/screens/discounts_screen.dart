@@ -29,7 +29,12 @@ class DiscountsScreen extends StatelessWidget {
           Widget body = MedicationsListWidget(
             data: cubit.medications,
             onRefresh: () async => cubit.getData(),
-            onTapCard: AppInjection.getIt<HomeCubit>().onTapCard,
+            onTapCard: (model, tag) {
+              AppInjection.getIt<HomeCubit>().onTapCard(
+                model: model,
+                uniqueKey: tag,
+              );
+            },
           );
           if (state is DiscountsLoadingState) {
             body = MedicationsLoading(onRefresh: () async => cubit.getData());

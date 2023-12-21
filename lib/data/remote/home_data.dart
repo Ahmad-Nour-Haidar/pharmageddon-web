@@ -5,7 +5,7 @@ import '../../core/constant/app_local_data.dart';
 import '../../core/services/dependency_injection.dart';
 import '../crud_dio.dart';
 
-class HomeRemoteData {
+class MedicationsRemoteData {
   final _crud = AppInjection.getIt<Crud>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getMedications() async {

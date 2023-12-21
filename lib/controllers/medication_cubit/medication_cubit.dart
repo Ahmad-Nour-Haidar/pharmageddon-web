@@ -10,7 +10,7 @@ class MedicationCubit extends Cubit<MedicationState> {
   MedicationCubit() : super(MedicationInitialState());
 
   static MedicationCubit get(BuildContext context) => BlocProvider.of(context);
-  final _homeRemoteData = AppInjection.getIt<HomeRemoteData>();
+  final _medicationsRemoteData = AppInjection.getIt<MedicationsRemoteData>();
   final List<MedicationModel> medications = [];
 
   void _update(MedicationState state) {
@@ -24,7 +24,7 @@ class MedicationCubit extends Cubit<MedicationState> {
 
   Future<void> getData() async {
     _update(MedicationLoadingState());
-    final response = await _homeRemoteData.getMedications();
+    final response = await _medicationsRemoteData.getMedications();
     response.fold((l) {
       _update(MedicationFailureState(l));
     }, (r) {

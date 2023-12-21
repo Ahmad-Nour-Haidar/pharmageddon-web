@@ -30,6 +30,10 @@ class AppText {
   static const paid = 'paid';
   static const unPaid = 'unPaid';
   static const thisFieldCantBeEmpty = 'thisFieldCantBeEmpty';
+  static const invalidNumberOrContainsDecimals =
+      'invalidNumberOrContainsDecimals';
+  static const atLeast = 'atLeast';
+  static const invalidNumber = 'invalidNumber';
   static const lengthMustBeBetween = 'lengthMustBeBetween';
   static const notValid = 'notValid';
   static const emailMustBeEndWith = 'emailMustBeEndWith';
@@ -123,5 +127,4 @@ class AppText {
       'selectStartDateAndEndDateOfReport';
   static const thisFieldMustBeArabic = 'thisFieldMustBeArabic';
   static const thisFieldMustBeEnglish = 'thisFieldMustBeEnglish';
-
 }

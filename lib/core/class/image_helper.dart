@@ -1,12 +1,11 @@
-import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
-abstract class ImageHelper {
-  static final ImagePicker _imagePicker = ImagePicker();
-  static final ImageCropper _imageCropper = ImageCropper();
+class ImageHelper {
+  final ImagePicker _imagePicker = ImagePicker();
+  final ImageCropper _imageCropper = ImageCropper();
 
-  static Future<XFile?> pickImage({
+  Future<XFile?> pickImage({
     ImageSource source = ImageSource.gallery,
     int imageQuality = 100,
   }) async {
@@ -16,7 +15,7 @@ abstract class ImageHelper {
     );
   }
 
-  static Future<CroppedFile?> cropImage({
+  Future<CroppedFile?> cropImage({
     required XFile file,
     CropStyle style = CropStyle.circle,
   }) async {
@@ -24,9 +23,11 @@ abstract class ImageHelper {
       sourcePath: file.path,
       compressQuality: 100,
       cropStyle: style,
-      uiSettings: [
-        WebUiSettings(context: Get.context!),
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square,
       ],
+      compressFormat: ImageCompressFormat.png,
+      // uiSettings: [],
     );
   }
 }

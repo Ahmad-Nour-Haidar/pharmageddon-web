@@ -16,6 +16,7 @@ class CustomLayoutBuilder extends StatelessWidget {
         // printme.yellow(MediaQuery.sizeOf(context));
         final maxWidth = constraints.maxWidth;
         final maxHeight = constraints.maxHeight;
+        return widget(maxWidth, maxHeight);
         if (maxWidth < 1000 || maxHeight < 600) {
           return Scaffold(
             body: Center(

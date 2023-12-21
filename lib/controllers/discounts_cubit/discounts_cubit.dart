@@ -10,7 +10,7 @@ class DiscountsCubit extends Cubit<DiscountsState> {
   DiscountsCubit() : super(DiscountsInitialState());
 
   static DiscountsCubit get(BuildContext context) => BlocProvider.of(context);
-  final _homeRemoteData = AppInjection.getIt<HomeRemoteData>();
+  final _homeRemoteData = AppInjection.getIt<MedicationsRemoteData>();
   final List<MedicationModel> medications = [];
 
   void _update(DiscountsState state) {

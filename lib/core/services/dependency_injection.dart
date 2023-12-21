@@ -15,12 +15,14 @@ import '../../controllers/discounts_cubit/discounts_cubit.dart';
 import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
 import '../../controllers/medication_cubit/medication_cubit.dart';
+import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
 import '../../data/remote/auth_data.dart';
 import '../../data/remote/manufacturer_medicines_data.dart';
 import '../../my_bloc_observer.dart';
+import '../class/image_helper.dart';
 
 class AppInjection {
   AppInjection._();
@@ -31,6 +33,7 @@ class AppInjection {
     /// storage
     final sharedPreferences = await SharedPreferences.getInstance();
     getIt.registerLazySingleton(() => sharedPreferences);
+    getIt.registerLazySingleton(() => ImageHelper());
 
     /// start
     getIt.registerLazySingleton(() => LocaleController());
@@ -51,12 +54,13 @@ class AppInjection {
     // home
     getIt.registerLazySingleton(() => HomeCubit());
     getIt.registerLazySingleton(() => SearchCubit());
+    getIt.registerLazySingleton(() => MedicationDetailsCubit());
     getIt.registerFactory(() => MedicationCubit());
     getIt.registerFactory(() => DiscountsCubit());
     getIt.registerFactory(() => ReportsCubit());
 
     /// data
-    getIt.registerFactory(() => HomeRemoteData());
+    getIt.registerFactory(() => MedicationsRemoteData());
     getIt.registerFactory(() => ManufacturerMedicinesRemoteData());
     getIt.registerFactory(() => EffectMedicinesRemoteData());
     getIt.registerFactory(() => OrderRemoteData());

@@ -108,11 +108,19 @@ class MyTranslation extends Translations {
               'Select start date - end date of report',
           AppText.thisFieldMustBeArabic: 'This field must be Arabic',
           AppText.thisFieldMustBeEnglish: 'This field must be English',
+          AppText.invalidNumberOrContainsDecimals:
+              'Invalid number or contains decimals',
+          AppText.invalidNumber: 'Invalid number',
+          AppText.atLeast: 'At least',
         },
         'ar': {
-
+          AppText.atLeast: 'على الأقل',
+          AppText.invalidNumberOrContainsDecimals:
+              'رقم غير صالح أو يحتوي على أرقام عشرية',
+          AppText.invalidNumber: 'رقم غير صالح',
           AppText.thisFieldMustBeArabic: 'يجب أن يكون هذا الحقل باللغة العربية',
-          AppText.thisFieldMustBeEnglish: 'يجب أن يكون هذا الحقل باللغة الإنجليزية',
+          AppText.thisFieldMustBeEnglish:
+              'يجب أن يكون هذا الحقل باللغة الإنجليزية',
           AppText.selectStartDateAndEndDateOfReport:
               'حدد تاريخ البدء - تاريخ انتهاء التقرير',
           AppText.pharmacist: 'الصيدلاني',

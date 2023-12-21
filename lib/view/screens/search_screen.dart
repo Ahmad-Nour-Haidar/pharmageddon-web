@@ -41,7 +41,12 @@ class SearchScreen extends StatelessWidget {
             body = MedicationsListWidget(
               data: cubit.medications,
               onRefresh: () async => cubit.search(value),
-              onTapCard: AppInjection.getIt<HomeCubit>().onTapCard,
+              onTapCard: (model, tag) {
+                AppInjection.getIt<HomeCubit>().onTapCard(
+                  model: model,
+                  uniqueKey: tag,
+                );
+              },
             );
             break;
           case SearchNoDataState:

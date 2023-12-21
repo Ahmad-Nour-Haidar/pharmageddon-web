@@ -23,13 +23,16 @@ class MedicationWidget extends StatelessWidget {
   });
 
   final MedicationModel model;
-  final void Function(MedicationModel model) onTapCard;
+  final void Function(
+    MedicationModel model,
+    UniqueKey uniqueKey,
+  ) onTapCard;
 
   @override
   Widget build(BuildContext context) {
     final tag = UniqueKey();
     return InkWell(
-      onTap: () => onTapCard(model),
+      onTap: () => onTapCard(model, tag),
       child: Material(
         elevation: 4,
         borderRadius: BorderRadius.circular(AppSize.radius10),
@@ -144,7 +147,10 @@ class MedicationsListWidget extends StatelessWidget {
 
   final List<MedicationModel> data;
   final Future<void> Function() onRefresh;
-  final void Function(MedicationModel model) onTapCard;
+  final void Function(
+    MedicationModel model,
+    UniqueKey uniqueKey,
+  ) onTapCard;
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../constant/app_text.dart';
 import '../functions/functions.dart';
 
@@ -110,8 +109,36 @@ class ValidateInput {
     if (value.length < min || value.length > max) {
       return _getMessageLength(min, max);
     }
-    if (!RegExp(_regExpEmail).hasMatch(value)) {
+    if (!RegExp(_regExpEnglish).hasMatch(value)) {
       return AppText.thisFieldMustBeEnglish.tr;
+    }
+    return null;
+  }
+
+  static String? isNumericWithoutDecimal(String? value, {int min = 1}) {
+    if (value == null || value.isEmpty) {
+      return AppText.thisFieldCantBeEmpty.tr;
+    }
+    final x = int.tryParse(value);
+    if (value.contains('.') || x == null) {
+      return AppText.invalidNumberOrContainsDecimals.tr;
+    }
+    if (x < 1) {
+      return "${AppText.atLeast.tr} $min";
+    }
+    return null;
+  }
+
+  static String? isPrice(String? value, {double min = 1.0}) {
+    if (value == null || value.isEmpty) {
+      return AppText.thisFieldCantBeEmpty.tr;
+    }
+    final x = double.tryParse(value);
+    if (x == null) {
+      return AppText.invalidNumber.tr;
+    }
+    if (x < 1.0) {
+      return "${AppText.atLeast.tr} $min";
     }
     return null;
   }
