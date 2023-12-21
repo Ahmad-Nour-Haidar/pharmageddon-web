@@ -23,11 +23,6 @@ class MedicationDetailsScreen extends StatelessWidget {
 
   final MedicationModel medicationModel;
   final UniqueKey tag;
-  static final _border = OutlineInputBorder(
-    gapPadding: 5,
-    borderRadius: BorderRadius.circular(15),
-    borderSide: const BorderSide(color: AppColor.contentColorBlue, width: 2),
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -45,16 +40,6 @@ class MedicationDetailsScreen extends StatelessWidget {
             buildRowTop(),
             image(cubit),
             const Gap(15),
-            TextFormField(
-              inputFormatters: const [],
-              decoration: InputDecoration(
-                labelText: 'Ahmad',
-                contentPadding: const EdgeInsets.all(10),
-                border: _border,
-                focusedBorder: _border,
-                enabledBorder: _border,
-              ),
-            ),
           ],
         );
       },
@@ -66,7 +51,7 @@ class MedicationDetailsScreen extends StatelessWidget {
       children: [
         const Expanded(child: SizedBox()),
         Expanded(
-          flex: 3,
+          flex: 2,
           child: Hero(
             tag: tag,
             child: Container(

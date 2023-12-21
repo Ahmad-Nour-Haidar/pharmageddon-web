@@ -127,4 +127,12 @@ class AppText {
       'selectStartDateAndEndDateOfReport';
   static const thisFieldMustBeArabic = 'thisFieldMustBeArabic';
   static const thisFieldMustBeEnglish = 'thisFieldMustBeEnglish';
+  static const scientificNameEn = 'scientificNameEn';
+  static const scientificNameAr = 'scientificNameAr';
+  static const commercialNameEn = 'commercialNameEn';
+  static const commercialNameAr = 'commercialNameAr';
+  static const descAr = 'descAr';
+  static const descEn = 'descEN';
+  static const availableQuantity = 'availableQuantity';
+  static const expirationDate = 'expirationDate';
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
@@ -46,6 +48,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = min(width / 2, height / 2);
     return Container(
       height: height,
       width: width,
@@ -79,8 +82,8 @@ class CustomCachedNetworkImage extends StatelessWidget {
         },
         placeholder: (context, url) => Center(
           child: SizedBox(
-            width: width / 2,
-            height: width / 2,
+            width: s,
+            height: s,
             child: const CircularProgressIndicator(
               strokeWidth: 3,
             ),

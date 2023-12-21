@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../generate_material_color.dart';
 import '../constant/app_color.dart';
 
 ThemeData themeData() => ThemeData(
@@ -9,4 +10,8 @@ ThemeData themeData() => ThemeData(
       fontFamily: 'Inter',
       useMaterial3: true,
       primaryColor: AppColor.primaryColor,
+      colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: generateMaterialColor(color: AppColor.primaryColor),
+        backgroundColor: AppColor.white,
+      ),
     );

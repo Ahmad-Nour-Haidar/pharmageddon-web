@@ -37,7 +37,7 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   // todo
-  bool showMedicationModelDetails = true;
+  bool showMedicationModelDetails = false;
   late MedicationModel medicationModel;
   late UniqueKey tag = UniqueKey();
 

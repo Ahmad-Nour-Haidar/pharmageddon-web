@@ -41,6 +41,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   void initial(MedicationModel m) {
     model = m;
     printme.cyan(model.imageName);
+    printme.cyan(model.arabicCommercialName);
     scientificNameArCon.text = model.arabicScientificName.toString();
     scientificNameEnCon.text = model.englishScientificName.toString();
     commercialNameArCon.text = model.arabicCommercialName.toString();

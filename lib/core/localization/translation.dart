@@ -112,8 +112,26 @@ class MyTranslation extends Translations {
               'Invalid number or contains decimals',
           AppText.invalidNumber: 'Invalid number',
           AppText.atLeast: 'At least',
+          //   static const availableQuantity = 'availableQuantity';
+          //   static const expirationDate = 'availableQuantity';
+          AppText.scientificNameEn: 'Scientific name english',
+          AppText.scientificNameAr: 'Scientific name arabic',
+          AppText.commercialNameEn: 'Commercial name english',
+          AppText.commercialNameAr: 'Commercial name arabic',
+          AppText.descAr: 'Description arabic',
+          AppText.descEn: 'Description english',
+          AppText.availableQuantity: 'Available quantity',
+          AppText.expirationDate: 'Expiration date',
         },
         'ar': {
+          AppText.scientificNameEn: 'الاسم العلمي انجليزي',
+          AppText.scientificNameAr: 'الاسم العلمي عربي',
+          AppText.commercialNameEn: 'الاسم التجاري انجليزي',
+          AppText.commercialNameAr: 'الاسم التجاري عربي',
+          AppText.descAr: 'الوصف عربي',
+          AppText.descEn: 'الوصف انجليزي',
+          AppText.availableQuantity: 'الكمية المتوفرة',
+          AppText.expirationDate: 'تاريخ انتهاء الصلاحية',
           AppText.atLeast: 'على الأقل',
           AppText.invalidNumberOrContainsDecimals:
               'رقم غير صالح أو يحتوي على أرقام عشرية',
