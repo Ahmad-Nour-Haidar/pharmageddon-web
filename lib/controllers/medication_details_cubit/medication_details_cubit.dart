@@ -30,7 +30,6 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   File? image;
   Uint8List? imageShow;
   late MedicationModel model;
-  var enableEdit = true;
 
   void _update(MedicationDetailsState state) {
     if (isClosed) return;
@@ -66,6 +65,12 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     } catch (e) {
       printme.red(e);
     }
+    _update(MedicationDetailsChangeState());
+  }
+
+  var enableEdit = true;
+  void onTapEdit(){
+    enableEdit = !enableEdit;
     _update(MedicationDetailsChangeState());
   }
 }

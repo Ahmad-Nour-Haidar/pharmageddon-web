@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_web/model/medication_model.dart';
+import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/screens/discounts_screen.dart';
 import 'package:pharmageddon_web/view/screens/medication_screen.dart';
 import 'package:pharmageddon_web/view/screens/search_screen.dart';
@@ -47,6 +48,7 @@ class HomeCubit extends Cubit<HomeState> {
   }) {
     medicationModel = model;
     tag = uniqueKey;
+    printme.red(tag);
     showMedicationModelDetails = true;
     _update(HomeChangeState());
   }

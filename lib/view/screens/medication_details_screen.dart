@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:pharmageddon_web/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_web/controllers/medication_details_cubit/medication_details_cubit.dart';
+import 'package:pharmageddon_web/core/class/validation.dart';
 import 'package:pharmageddon_web/core/constant/app_color.dart';
 import 'package:pharmageddon_web/core/constant/app_svg.dart';
+import 'package:pharmageddon_web/core/constant/app_text.dart';
+import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/services/dependency_injection.dart';
 import 'package:pharmageddon_web/model/medication_model.dart';
 import 'package:pharmageddon_web/view/widgets/custom_cached_network_image.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
+import 'package:pharmageddon_web/view/widgets/text_input.dart';
 
 import '../../controllers/medication_details_cubit/medication_details_state.dart';
+import '../widgets/row_text_span.dart';
 
 class MedicationDetailsScreen extends StatelessWidget {
   const MedicationDetailsScreen({
@@ -37,9 +43,69 @@ class MedicationDetailsScreen extends StatelessWidget {
         final cubit = MedicationDetailsCubit.get(context);
         return ListView(
           children: <Widget>[
-            buildRowTop(),
+            buildRowTop(cubit),
             image(cubit),
             const Gap(15),
+            // TextInputField(
+            //   validator: ValidateInput.isEmail,
+            //   controller: cubit.scientificNameArCon,
+            //   label: AppText.scientificNameAr.tr,
+            //   enabled: cubit.enableEdit,
+            // ),
+            RowTextSpan(
+              s1: '${AppText.id.tr} : # ',
+              s2: cubit.model.id.toString(),
+            ),
+            RowTextSpan(
+              s1: '${AppText.scientificName.tr} : ',
+              s2: getMedicationScientificName(cubit.model),
+            ),
+            const Gap(5),
+            RowTextSpan(
+              s1: '${AppText.commercialName.tr} : ',
+              s2: getMCommercialName(cubit.model),
+            ),
+            const Gap(5),
+            RowTextSpan(
+              s1: '${AppText.manufacturer.tr} : ',
+              s2: getManufacturerName(cubit.model.manufacturer),
+            ),
+            const Gap(5),
+            RowTextSpan(
+              s1: '${AppText.effect.tr} : ',
+              s2: getEffectCategoryModelName(
+                  cubit.model.effectCategory),
+            ),
+            const Gap(5),
+            RowTextSpan(
+              s1: '${AppText.description.tr} : ',
+              s2: getMedicationModelDescription(cubit.model).trn,
+            ),
+            const Gap(5),
+            RowTextSpan(
+              s1: '${AppText.availableQuantity.tr} : ',
+              s2: cubit.model.availableQuantity.toString().trn,
+            ),
+            const Gap(5),
+            RowTextSpan(
+              s1: '${AppText.price.tr} : ',
+              s2: '${cubit.model.price} ${AppText.sp.tr}'.trn,
+            ),
+            if (cubit.model.discount! > 0)
+              RowTextSpan(
+                s1: '${AppText.discount.tr} : ',
+                s2: '${cubit.model.discount} %'.trn,
+              ),
+            if (cubit.model.discount! > 0)
+              RowTextSpan(
+                s1: '${AppText.priceAfterDiscount.tr} : ',
+                s2: '${cubit.model.priceAfterDiscount} ${AppText.sp.tr}'
+                    .trn,
+              ),
+            RowTextSpan(
+              s1: '${AppText.expirationDate.tr} : ',
+              s2: formatYYYYMd(cubit.model.expirationDate),
+            ),
           ],
         );
       },
@@ -80,7 +146,7 @@ class MedicationDetailsScreen extends StatelessWidget {
     );
   }
 
-  Row buildRowTop() {
+  Row buildRowTop(MedicationDetailsCubit cubit) {
     return Row(
       children: [
         IconButton(
@@ -94,7 +160,7 @@ class MedicationDetailsScreen extends StatelessWidget {
             )),
         const Spacer(),
         IconButton(
-            onPressed: () {},
+            onPressed: cubit.onTapEdit,
             icon: const SvgImage(
               path: AppSvg.edit,
               color: AppColor.contentColorBlue,

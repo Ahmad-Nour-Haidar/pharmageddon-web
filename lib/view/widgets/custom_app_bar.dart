@@ -15,6 +15,7 @@ import '../../core/functions/functions.dart';
 import '../../core/resources/app_text_theme.dart';
 import '../../core/services/dependency_injection.dart';
 import 'custom_cached_network_image.dart';
+import 'custom_layout_builder.dart';
 
 class CustomAppBar extends StatefulWidget {
   const CustomAppBar({
@@ -51,83 +52,88 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ClipOval(
-          child: CustomCachedNetworkImage(
-            width: AppSize.appBarHeight,
-            height: AppSize.appBarHeight,
-            imageUrl: getImageUserUrl(),
-            errorWidget: ErrorWidgetShow.user,
-          ),
-        ),
-        const Gap(10),
-        SizedBox(
-          width: min(140, AppSize.width * .22),
-          child: FittedBox(
-            child: Text(
-              AppLocalData.user?.username ?? '',
-              style: AppTextStyle.f14w600black,
+    return CustomLayoutBuilder(widget: (maxWidth, maxHeight) {
+      return SizedBox(
+        height: 45,
+        child: Row(
+          children: [
+            ClipOval(
+              child: CustomCachedNetworkImage(
+                width: AppSize.appBarHeight,
+                height: AppSize.appBarHeight,
+                imageUrl: getImageUserUrl(),
+                errorWidget: ErrorWidgetShow.user,
+              ),
             ),
-          ),
-        ),
-        const Gap(15),
-        if (AppSize.width > 550)
-          DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
-              borderRadius: BorderRadius.circular(5),
-              value: _dropValue,
-              onChanged: (value) {
-                if (value == null) return;
-                changeLanguage(value);
-              },
-              items: [
-                DropdownMenuItem<String>(
-                  value: AppConstant.en,
-                  child: Text(AppText.english.tr),
+            const Gap(10),
+            SizedBox(
+              width: min(140, AppSize.width * .22),
+              child: FittedBox(
+                child: Text(
+                  AppLocalData.user?.username ?? '',
+                  style: AppTextStyle.f14w600black,
                 ),
-                DropdownMenuItem<String>(
-                  value: AppConstant.ar,
-                  child: Text(AppText.arabic.tr),
-                ),
-              ],
+              ),
             ),
-          ),
-        const Expanded(child: SizedBox()),
-        Expanded(
-          flex: 2,
-          child: TextFormField(
-            controller: _controller,
-            cursorColor: AppColor.secondColor,
-            textDirection: getTextDirection(_controller.text),
-            onChanged: (_) => setState(() {}),
-            onFieldSubmitted: widget.onFieldSubmitted,
-            decoration: InputDecoration(
-                contentPadding: const EdgeInsets.all(10),
-                border: _border,
-                focusedBorder: _border,
-                enabledBorder: _border,
-                constraints: const BoxConstraints(
-                  maxHeight: AppSize.appBarHeight,
+            const Gap(15),
+            if (AppSize.width > 550)
+              DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                  borderRadius: BorderRadius.circular(5),
+                  value: _dropValue,
+                  onChanged: (value) {
+                    if (value == null) return;
+                    changeLanguage(value);
+                  },
+                  items: [
+                    DropdownMenuItem<String>(
+                      value: AppConstant.en,
+                      child: Text(AppText.english.tr),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: AppConstant.ar,
+                      child: Text(AppText.arabic.tr),
+                    ),
+                  ],
                 ),
-                prefixIcon: const IconButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: null,
-                  icon: SvgImage(
-                    path: AppSvg.search,
-                    color: AppColor.contentColorBlue,
-                    size: 20,
-                  ),
-                )),
-          ),
+              ),
+            const Expanded(child: SizedBox()),
+            Expanded(
+              flex: 2,
+              child: TextFormField(
+                controller: _controller,
+                cursorColor: AppColor.secondColor,
+                textDirection: getTextDirection(_controller.text),
+                onChanged: (_) => setState(() {}),
+                onFieldSubmitted: widget.onFieldSubmitted,
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(10),
+                    border: _border,
+                    focusedBorder: _border,
+                    enabledBorder: _border,
+                    constraints: const BoxConstraints(
+                      maxHeight: AppSize.appBarHeight,
+                    ),
+                    prefixIcon: const IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: null,
+                      icon: SvgImage(
+                        path: AppSvg.search,
+                        color: AppColor.contentColorBlue,
+                        size: 20,
+                      ),
+                    )),
+              ),
+            ),
+            const Expanded(child: SizedBox()),
+            SvgPicture.asset(
+              AppSvg.logo,
+              width: AppSize.appBarHeight,
+              height: AppSize.appBarHeight,
+            )
+          ],
         ),
-        const Expanded(child: SizedBox()),
-        SvgPicture.asset(
-          AppSvg.logo,
-          width: AppSize.appBarHeight,
-          height: AppSize.appBarHeight,
-        )
-      ],
-    );
+      );
+    });
   }
 }

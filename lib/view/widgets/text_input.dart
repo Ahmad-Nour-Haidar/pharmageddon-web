@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
+import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 
 import '../../core/constant/app_color.dart';
 
-class TextInput extends StatelessWidget {
-  const TextInput({
+class TextInputField extends StatelessWidget {
+  const TextInputField({
     super.key,
     required this.validator,
-    this.textDirection,
     required this.controller,
-    required this.label,
-    required this.enabled,
+    this.enabled = true,
+    this.textDirection = TextDirection.ltr,
+    this.label = '',
+    this.minLines = 1,
+    this.maxLines = 3,
+    this.maxLength = 60,
   });
 
   static final _border = OutlineInputBorder(
@@ -29,13 +33,19 @@ class TextInput extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final bool enabled;
+  final int? maxLength, minLines, maxLines;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: AppTextStyle.f16w500black,
+      enabled: enabled,
       controller: controller,
       validator: validator,
-      textDirection: getTextDirection(controller.text),
+      maxLength: maxLength,
+      minLines: minLines,
+      maxLines: maxLines,
+      textDirection: textDirection ?? getTextDirection(controller.text),
       decoration: InputDecoration(
         labelText: label,
         contentPadding: const EdgeInsets.all(10),

@@ -25,7 +25,7 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  var isOpen = true;
+  var isOpen = false;
 
   static const _iconSize = 20.0;
 
@@ -48,7 +48,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: isOpen ? 200 : 65,
+      width: isOpen ? 200 : 60,
       child: ListView(
         children: [
           Align(
@@ -56,7 +56,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             child: IconButton(
               onPressed: openCloseDrawer,
               icon: Transform.flip(
-                flipX: isOpen,
+                flipX: isEnglish() ? isOpen : !isOpen,
                 child: const SvgImage(
                   path: AppSvg.arrowRight,
                   color: AppColor.white,

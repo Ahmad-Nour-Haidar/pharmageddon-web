@@ -120,6 +120,25 @@ bool isNew(MedicationModel model) {
   final dateMedication = DateTime.tryParse(model.createdAt ?? '') ?? dateNow;
   return dateNow.difference(dateMedication).inDays <= 7;
 }
+String getMedicationScientificName(MedicationModel? model,
+    {bool split = true}) {
+  var s = '';
+  if (model == null) return s;
+  if (split) {
+    if (isEnglish()) {
+      s = model.englishScientificName.toString().split(' ').take(2).join(' ');
+    } else {
+      s = model.arabicScientificName.toString().split(' ').take(2).join(' ');
+    }
+    return s;
+  }
+  if (isEnglish()) {
+    s = model.englishScientificName.toString();
+  } else {
+    s = model.arabicScientificName.toString();
+  }
+  return s;
+}
 
 String getMCommercialName(MedicationModel? model, {bool split = true}) {
   var s = '';
@@ -136,6 +155,17 @@ String getMCommercialName(MedicationModel? model, {bool split = true}) {
     s = model.englishCommercialName.toString();
   } else {
     s = model.arabicCommercialName.toString();
+  }
+  return s;
+}
+
+String getMedicationModelDescription(MedicationModel? model) {
+  var s = '';
+  if (model == null) return s;
+  if (isEnglish()) {
+    s = model.englishDescription.toString();
+  } else {
+    s = model.arabicDescription.toString();
   }
   return s;
 }

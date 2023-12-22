@@ -135,4 +135,11 @@ class AppText {
   static const descEn = 'descEN';
   static const availableQuantity = 'availableQuantity';
   static const expirationDate = 'expirationDate';
+  //
+  static const scientificName = 'scientificName';
+  static const commercialName = 'commercialName';
+  static const description = 'description';
+  static const discount = 'discount';
+  static const effect = 'effect';
+  static const priceAfterDiscount = 'priceAfterDiscount';
 }

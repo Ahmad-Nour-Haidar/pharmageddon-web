@@ -25,8 +25,8 @@ class AppWidget {
   final reports = Center(
     child: Lottie.asset(
       AppLottie.reports,
-      width: AppSize.width * .5,
-      height: AppSize.width * .5,
+      width: AppSize.width * .4,
+      height: AppSize.width * .4,
       fit: BoxFit.fill,
     ),
   );
