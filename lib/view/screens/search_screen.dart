@@ -40,7 +40,6 @@ class SearchScreen extends StatelessWidget {
           case SearchSuccessState:
             body = MedicationsListWidget(
               data: cubit.medications,
-              onRefresh: () async => cubit.search(value),
               onTapCard: (model, tag) {
                 AppInjection.getIt<HomeCubit>().onTapCard(
                   model: model,

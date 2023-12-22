@@ -141,12 +141,10 @@ class MedicationsListWidget extends StatelessWidget {
   const MedicationsListWidget({
     super.key,
     required this.data,
-    required this.onRefresh,
     required this.onTapCard,
   });
 
   final List<MedicationModel> data;
-  final Future<void> Function() onRefresh;
   final void Function(
     MedicationModel model,
     UniqueKey uniqueKey,
@@ -154,33 +152,27 @@ class MedicationsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: onRefresh,
-      child: data.isEmpty
-          ? ListView(children: [
-              const Gap(100),
-              AppInjection.getIt<AppWidget>().noData
-            ])
-          : ListView(
-              children: [
-                Text(
-                  '${AppText.all.tr} : ( ${data.length} )'.trn,
-                  style: AppTextStyle.f18w500black,
-                ),
-                Wrap(
-                  spacing: 30,
-                  runSpacing: 20,
-                  children: List.generate(
-                    data.length,
-                    (index) => MedicationWidget(
-                      model: data[index],
-                      onTapCard: onTapCard,
-                    ),
+    return ListView(
+      children: data.isEmpty
+          ? [const Gap(100), AppInjection.getIt<AppWidget>().noData]
+          : [
+              Text(
+                '${AppText.all.tr} : ( ${data.length} )'.trn,
+                style: AppTextStyle.f18w500black,
+              ),
+              Wrap(
+                spacing: 30,
+                runSpacing: 20,
+                children: List.generate(
+                  data.length,
+                  (index) => MedicationWidget(
+                    model: data[index],
+                    onTapCard: onTapCard,
                   ),
                 ),
-                const Gap(30),
-              ],
-            ),
+              ),
+              const Gap(30),
+            ],
     );
   }
 }

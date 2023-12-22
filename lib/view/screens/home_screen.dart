@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:pharmageddon_web/core/constant/app_color.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
-import 'package:pharmageddon_web/model/medication_model.dart';
 import 'package:pharmageddon_web/view/screens/medication_details_screen.dart';
 import 'package:pharmageddon_web/view/widgets/custom_layout_builder.dart';
 import '../../controllers/home_cubit/home_cubit.dart';

@@ -28,7 +28,6 @@ class MedicationScreen extends StatelessWidget {
           final cubit = MedicationCubit.get(context);
           Widget body = MedicationsListWidget(
             data: cubit.medications,
-            onRefresh: () async => cubit.getData(),
             onTapCard: (model, tag) {
               AppInjection.getIt<HomeCubit>().onTapCard(
                 model: model,
