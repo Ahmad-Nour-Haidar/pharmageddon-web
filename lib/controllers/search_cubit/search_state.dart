@@ -6,17 +6,11 @@ class SearchInitialState extends SearchState {}
 
 class SearchLoadingState extends SearchState {}
 
-class SearchSuccessState extends SearchState {
-  final String value;
+class SearchChangeState extends SearchState {}
 
-  SearchSuccessState(this.value);
-}
+class SearchSuccessState extends SearchState {}
 
-class SearchNoDataState extends SearchState {
-  final String value;
-
-  SearchNoDataState(this.value);
-}
+class SearchNoDataState extends SearchState {}
 
 class SearchFailureState extends SearchState {
   final ParentState state;

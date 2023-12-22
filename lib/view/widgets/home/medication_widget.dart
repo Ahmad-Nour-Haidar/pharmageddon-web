@@ -23,16 +23,12 @@ class MedicationWidget extends StatelessWidget {
   });
 
   final MedicationModel model;
-  final void Function(
-    MedicationModel model,
-    UniqueKey uniqueKey,
-  ) onTapCard;
+  final void Function(MedicationModel model) onTapCard;
 
   @override
   Widget build(BuildContext context) {
-    final tag = UniqueKey();
     return InkWell(
-      onTap: () => onTapCard(model, tag),
+      onTap: () => onTapCard(model),
       child: Material(
         elevation: 4,
         borderRadius: BorderRadius.circular(AppSize.radius10),
@@ -49,22 +45,19 @@ class MedicationWidget extends StatelessWidget {
               Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  Hero(
-                    tag: tag,
-                    child: ClipRRect(
-                      clipBehavior: Clip.hardEdge,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(2),
-                        bottomRight: Radius.circular(2),
-                      ),
-                      child: CustomCachedNetworkImage(
-                        width: AppSize.widthMedicine,
-                        height: AppSize.widthMedicine,
-                        imageUrl: getUrlImageMedication(model),
-                        errorWidget: ErrorWidgetShow.picture,
-                      ),
+                  ClipRRect(
+                    clipBehavior: Clip.hardEdge,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(2),
+                      bottomRight: Radius.circular(2),
+                    ),
+                    child: CustomCachedNetworkImage(
+                      width: AppSize.widthMedicine,
+                      height: AppSize.widthMedicine,
+                      imageUrl: getUrlImageMedication(model),
+                      errorWidget: ErrorWidgetShow.picture,
                     ),
                   ),
                   if (model.discount! > 0)
@@ -145,10 +138,7 @@ class MedicationsListWidget extends StatelessWidget {
   });
 
   final List<MedicationModel> data;
-  final void Function(
-    MedicationModel model,
-    UniqueKey uniqueKey,
-  ) onTapCard;
+  final void Function(MedicationModel model) onTapCard;
 
   @override
   Widget build(BuildContext context) {

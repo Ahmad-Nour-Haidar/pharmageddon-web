@@ -8,6 +8,8 @@ class MedicationLoadingState extends MedicationState {}
 
 class MedicationSuccessState extends MedicationState {}
 
+class MedicationChangeState extends MedicationState {}
+
 class MedicationFailureState extends MedicationState {
   final ParentState state;
 

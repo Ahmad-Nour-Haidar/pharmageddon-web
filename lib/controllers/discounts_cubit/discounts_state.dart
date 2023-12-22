@@ -8,6 +8,8 @@ class DiscountsLoadingState extends DiscountsState {}
 
 class DiscountsSuccessState extends DiscountsState {}
 
+class DiscountsChangeState extends DiscountsState {}
+
 class DiscountsFailureState extends DiscountsState {
   final ParentState state;
 

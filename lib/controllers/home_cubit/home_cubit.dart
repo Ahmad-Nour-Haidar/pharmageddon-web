@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmageddon_web/model/medication_model.dart';
-import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/screens/discounts_screen.dart';
 import 'package:pharmageddon_web/view/screens/medication_screen.dart';
 import 'package:pharmageddon_web/view/screens/search_screen.dart';
@@ -24,7 +22,6 @@ class HomeCubit extends Cubit<HomeState> {
   void changeScreen(ScreenView value) {
     if (currentScreen == value) return;
     currentScreen = value;
-    showMedicationModelDetails = false;
     _update(HomeChangeState());
   }
 
@@ -37,26 +34,22 @@ class HomeCubit extends Cubit<HomeState> {
     _update(HomeChangeState());
   }
 
-  // todo
-  bool showMedicationModelDetails = false;
-  late MedicationModel medicationModel;
-  late UniqueKey tag = UniqueKey();
-
-  void onTapCard({
-    required MedicationModel model,
-    required UniqueKey uniqueKey,
-  }) {
-    medicationModel = model;
-    tag = uniqueKey;
-    printme.red(tag);
-    showMedicationModelDetails = true;
-    _update(HomeChangeState());
-  }
-
-  void closeMedicationModelDetails() {
-    showMedicationModelDetails = false;
-    _update(HomeChangeState());
-  }
+  // // todo
+  // bool showMedicationModelDetails = false;
+  // late MedicationModel medicationModel;
+  //
+  // void onTapCard({
+  //   required MedicationModel model,
+  // }) {
+  //   medicationModel = model;
+  //   showMedicationModelDetails = true;
+  //   _update(HomeChangeState());
+  // }
+  //
+  // void closeMedicationModelDetails() {
+  //   showMedicationModelDetails = false;
+  //   _update(HomeChangeState());
+  // }
 
   Widget get screen {
     switch (currentScreen) {

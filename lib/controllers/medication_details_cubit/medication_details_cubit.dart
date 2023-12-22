@@ -69,7 +69,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   }
 
   var enableEdit = true;
-  void onTapEdit(){
+  void onTapEdit() {
     enableEdit = !enableEdit;
     _update(MedicationDetailsChangeState());
   }

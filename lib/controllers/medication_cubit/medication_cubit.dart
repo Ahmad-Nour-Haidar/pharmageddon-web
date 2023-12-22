@@ -34,4 +34,18 @@ class MedicationCubit extends Cubit<MedicationState> {
       _update(MedicationSuccessState());
     });
   }
+
+  bool showMedicationModelDetails = false;
+  late MedicationModel medicationModel;
+
+  void showDetailsModel(MedicationModel model) {
+    medicationModel = model;
+    showMedicationModelDetails = true;
+    _update(MedicationChangeState());
+  }
+
+  void closeDetailsModel() {
+    showMedicationModelDetails = false;
+    _update(MedicationChangeState());
+  }
 }

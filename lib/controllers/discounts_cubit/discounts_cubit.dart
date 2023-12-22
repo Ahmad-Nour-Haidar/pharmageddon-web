@@ -34,4 +34,18 @@ class DiscountsCubit extends Cubit<DiscountsState> {
       _update(DiscountsSuccessState());
     });
   }
+
+  bool showMedicationModelDetails = false;
+  late MedicationModel medicationModel;
+
+  void showDetailsModel(MedicationModel model) {
+    medicationModel = model;
+    showMedicationModelDetails = true;
+    _update(DiscountsChangeState());
+  }
+
+  void closeDetailsModel() {
+    showMedicationModelDetails = false;
+    _update(DiscountsChangeState());
+  }
 }

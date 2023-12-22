@@ -22,6 +22,7 @@ class SearchCubit extends Cubit<SearchState> {
     search(value);
   }
 
+  var valueSearch = '';
   Future<void> search(String value) async {
     _update(SearchLoadingState());
     final queryParameters = {AppRKeys.q: value};
@@ -31,18 +32,33 @@ class SearchCubit extends Cubit<SearchState> {
     response.fold((l) {
       _update(SearchFailureState(l));
     }, (r) {
+      valueSearch = value;
       if (r[AppRKeys.status] == 403) {
-        _update(SearchNoDataState(value));
+        _update(SearchNoDataState());
         return;
       }
       final List temp = r[AppRKeys.data][AppRKeys.medicines];
       medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       if (medications.isEmpty) {
-        _update(SearchNoDataState(value));
+        _update(SearchNoDataState());
       } else {
-        _update(SearchSuccessState(value));
+        _update(SearchSuccessState());
       }
     });
+  }
+
+  bool showMedicationModelDetails = false;
+  late MedicationModel medicationModel;
+
+  void showDetailsModel(MedicationModel model) {
+    medicationModel = model;
+    showMedicationModelDetails = true;
+    _update(SearchChangeState());
+  }
+
+  void closeDetailsModel() {
+    showMedicationModelDetails = false;
+    _update(SearchChangeState());
   }
 }

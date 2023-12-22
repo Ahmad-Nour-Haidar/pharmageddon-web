@@ -120,6 +120,7 @@ bool isNew(MedicationModel model) {
   final dateMedication = DateTime.tryParse(model.createdAt ?? '') ?? dateNow;
   return dateNow.difference(dateMedication).inDays <= 7;
 }
+
 String getMedicationScientificName(MedicationModel? model,
     {bool split = true}) {
   var s = '';
