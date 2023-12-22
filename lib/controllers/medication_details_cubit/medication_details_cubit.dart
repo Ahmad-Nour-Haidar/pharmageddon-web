@@ -26,7 +26,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   final descEnCon = TextEditingController();
   final priceCon = TextEditingController();
   final availableQuantityCon = TextEditingController();
-  late DateTime expirationDate;
+  DateTime? expirationDate;
   File? image;
   Uint8List? imageShow;
   late MedicationModel model;
@@ -39,8 +39,6 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
 
   void initial(MedicationModel m) {
     model = m;
-    printme.cyan(model.imageName);
-    printme.cyan(model.arabicCommercialName);
     scientificNameArCon.text = model.arabicScientificName.toString();
     scientificNameEnCon.text = model.englishScientificName.toString();
     commercialNameArCon.text = model.arabicCommercialName.toString();
@@ -49,8 +47,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     descEnCon.text = model.englishDescription.toString();
     priceCon.text = model.price.toString();
     availableQuantityCon.text = model.availableQuantity.toString();
-    expirationDate =
-        DateTime.tryParse(model.expirationDate.toString()) ?? DateTime.now();
+    expirationDate = DateTime.tryParse(model.expirationDate.toString());
     _update(MedicationDetailsChangeState());
   }
 
@@ -68,7 +65,8 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     _update(MedicationDetailsChangeState());
   }
 
-  var enableEdit = true;
+  var enableEdit = false;
+
   void onTapEdit() {
     enableEdit = !enableEdit;
     _update(MedicationDetailsChangeState());

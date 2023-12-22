@@ -12,8 +12,8 @@ class ValidateInput {
   static const _regExpUsername = r'^[a-zA-Z0-9][a-zA-Z0-9_. ]+[a-zA-Z0-9]$';
   static const _regExpPassword =
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
-  static const _regExpEnglish = r"^[A-Za-z\d\s]+$";
-  static const _regExpArabic = r'^[\p{Arabic}\p{N} ]+$';
+  static const _regExpEnglish = r'^[A-Za-z0-9!@#\$%^&*():\/\\.\-+,; ]+$';
+  static const _regExpArabic = r'^[\u0600-\u06FF0-9\s!@#$%^&*():/\\.,;+-]+$';
 
   static String _getMessageLength(int mn, int mx) =>
       '${AppText.lengthMustBeBetween.tr} $mn - $mx';
