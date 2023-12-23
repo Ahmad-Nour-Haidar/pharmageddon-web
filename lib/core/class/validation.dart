@@ -14,12 +14,104 @@ class ValidateInput {
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
   static const _regExpEnglish = r'^[A-Za-z0-9!@#\$%^&*():\/\\.\-+,; ]+$';
   static const _regExpArabic = r'^[\u0600-\u06FF0-9\s!@#$%^&*():/\\.,;+-]+$';
+  static const _isAlphanumeric = r'^[a-zA-Z0-9]+$';
+  static const _isArabicAlphanumeric = r'^[؀-ۿ0-9]+$';
+  static const _isAlphanumericAndSomeCharacters = r'^[a-zA-Z0-9/.,:+\-_()%]+$';
+  static const _isArabicAlphanumericAndSomeCharacters =
+      r'^[؀-ۿ0-9/.,:+\-_()%]+$';
+  static const _isAlphanumericAndAllCharacters =
+      r'^[a-zA-Z0-9:+=_,.!@#$%^&*();/\[\] ]+$';
+  static const _isArabicAlphanumericAndAllCharacters =
+      r'^[؀-ۿ0-9:+=_,.!@#$%^&*();/\[\] ]+$';
 
   static String _getMessageLength(int mn, int mx) =>
       '${AppText.lengthMustBeBetween.tr} $mn - $mx';
 
   static String _getMessageNotValid(String field) =>
       '$field ${AppText.notValid.tr}';
+
+  static String? isArabicAlphanumericAndAllCharacters(String? value,
+      {int min = 4, int max = 60}) {
+    if (value == null || value.isEmpty) {
+      return AppText.thisFieldCantBeEmpty.tr;
+    }
+    if (value.length < min || value.length > max) {
+      return _getMessageLength(min, max);
+    }
+    if (!RegExp(_isArabicAlphanumericAndAllCharacters).hasMatch(value)) {
+      return _getMessageNotValid('');
+    }
+    return null;
+  }
+
+  static String? isAlphanumericAndAllCharacters(String? value,
+      {int min = 4, int max = 60}) {
+    if (value == null || value.isEmpty) {
+      return AppText.thisFieldCantBeEmpty.tr;
+    }
+    if (value.length < min || value.length > max) {
+      return _getMessageLength(min, max);
+    }
+    if (!RegExp(_isAlphanumericAndAllCharacters).hasMatch(value)) {
+      return _getMessageNotValid('');
+    }
+    return null;
+  }
+
+  static String? isArabicAlphanumericAndSomeCharacters(String? value,
+      {int min = 4, int max = 60}) {
+    if (value == null || value.isEmpty) {
+      return AppText.thisFieldCantBeEmpty.tr;
+    }
+    if (value.length < min || value.length > max) {
+      return _getMessageLength(min, max);
+    }
+    if (!RegExp(_isArabicAlphanumericAndSomeCharacters).hasMatch(value)) {
+      return _getMessageNotValid('');
+    }
+    return null;
+  }
+
+  static String? isAlphanumericAndSomeCharacters(String? value,
+      {int min = 4, int max = 60}) {
+    if (value == null || value.isEmpty) {
+      return AppText.thisFieldCantBeEmpty.tr;
+    }
+    if (value.length < min || value.length > max) {
+      return _getMessageLength(min, max);
+    }
+    if (!RegExp(_isAlphanumericAndSomeCharacters).hasMatch(value)) {
+      return _getMessageNotValid('');
+    }
+    return null;
+  }
+
+  static String? isArabicAlphanumeric(String? value,
+      {int min = 4, int max = 60}) {
+    if (value == null || value.isEmpty) {
+      return AppText.thisFieldCantBeEmpty.tr;
+    }
+    if (value.length < min || value.length > max) {
+      return _getMessageLength(min, max);
+    }
+    if (!RegExp(_isArabicAlphanumeric).hasMatch(value)) {
+      return AppText.thisFieldMustContainArabicLettersAndNumbers.tr;
+    }
+    return null;
+  }
+
+  static String? isAlphanumeric(String? value, {int min = 4, int max = 60}) {
+    if (value == null || value.isEmpty) {
+      return AppText.thisFieldCantBeEmpty.tr;
+    }
+    if (value.length < min || value.length > max) {
+      return _getMessageLength(min, max);
+    }
+    if (!RegExp(_isAlphanumeric).hasMatch(value)) {
+      return AppText.thisFieldMustContainEnglishLettersAndNumbers.tr;
+    }
+    return null;
+  }
 
   static String? isEmail(String? value) {
     if (value == null || value.isEmpty) {

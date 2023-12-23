@@ -45,7 +45,7 @@ class MedicationModel {
     arabicScientificName = json['arabic_scientific_name'];
     englishCommercialName = json['english_commercial_name'];
     arabicCommercialName = json['arabic_commercial_name'];
-    availableQuantity = json['available_quantity'] ?? 0;
+    availableQuantity = int.tryParse(json['available_quantity'].toString()) ?? 0;
     price = double.tryParse(json['price'].toString()) ?? 0.0;
     discount = double.tryParse(json['discount'].toString()) ?? 0.0;
     priceAfterDiscount =

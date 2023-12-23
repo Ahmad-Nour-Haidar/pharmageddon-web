@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_web/controllers/medication_cubit/medication_state.dart';
 import 'package:pharmageddon_web/controllers/medication_details_cubit/medication_details_cubit.dart';
 import 'package:pharmageddon_web/core/constant/app_color.dart';
 import 'package:pharmageddon_web/core/constant/app_padding.dart';
@@ -24,10 +25,12 @@ class MedicationDetailsScreen extends StatelessWidget {
     super.key,
     required this.medicationModel,
     required this.onTapClose,
+    required this.onTapEdit,
   });
 
   final MedicationModel medicationModel;
   final void Function() onTapClose;
+  final void Function(MedicationModel model) onTapEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +50,12 @@ class MedicationDetailsScreen extends StatelessWidget {
               child: cubit.enableEdit
                   ? MedicationInputForm(
                       medicationModel: cubit.model,
-                      onTapButton: (data) {
-                        cubit.updateMedication(data);
+                      isLoading: state is MedicationLoadingState,
+                      onTapButton: (data) async {
+                        await cubit.updateMedication(data);
+                        if (state is MedicationDetailsSuccessState) {
+                          onTapEdit(cubit.model);
+                        }
                       },
                     )
                   : ListView(

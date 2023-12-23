@@ -127,6 +127,8 @@ class AppText {
       'selectStartDateAndEndDateOfReport';
   static const thisFieldMustBeArabic = 'thisFieldMustBeArabic';
   static const thisFieldMustBeEnglish = 'thisFieldMustBeEnglish';
+  static const thisFieldMustContainEnglishLettersAndNumbers = 'thisFieldMustContainEnglishLettersAndNumbers';
+  static const thisFieldMustContainArabicLettersAndNumbers = 'This field must contain Arabic letters and numbers';
   static const scientificNameEn = 'scientificNameEn';
   static const scientificNameAr = 'scientificNameAr';
   static const commercialNameEn = 'commercialNameEn';

@@ -134,8 +134,12 @@ class MyTranslation extends Translations {
           AppText.updatedSuccessfully: 'Updated successfully',
           AppText.medicineNotFoundOrHasBeenDeleted:
               'Medicine not found or has been deleted',
+          AppText.thisFieldMustContainEnglishLettersAndNumbers:'This field must contain English letters and numbers',
+          AppText.thisFieldMustContainArabicLettersAndNumbers:'This field must contain Arabic letters and numbers',
         },
         'ar': {
+          AppText.thisFieldMustContainEnglishLettersAndNumbers:'يجب أن يحتوي هذا الحقل على أحرف انجليزية وأرقام',
+          AppText.thisFieldMustContainArabicLettersAndNumbers:'يجب أن يحتوي هذا الحقل على أحرف عربية وأرقام',
           AppText.medicineNotFoundOrHasBeenDeleted:
               'لم يتم العثور على الدواء أو تم حذفه',
           AppText.updatedSuccessfully: 'تم التعديل بنجاح',

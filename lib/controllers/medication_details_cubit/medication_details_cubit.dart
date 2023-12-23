@@ -40,6 +40,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   }
 
   Future<void> updateMedication(Map<String, Object?> data) async {
+    _update(MedicationDetailsLoadingState());
     data[AppRKeys.id] = model.id;
     printme.blue(data);
     File? file;
@@ -53,6 +54,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     response.fold((l) {
       _update(MedicationDetailsFailureState(l));
     }, (r) {
+      printme.printFullText(r);
       final status = r[AppRKeys.status];
       if (status == 400) {
         var s =

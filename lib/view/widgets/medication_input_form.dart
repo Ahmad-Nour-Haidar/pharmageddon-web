@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -23,12 +24,17 @@ import 'build_row.dart';
 import 'custom_cached_network_image.dart';
 
 class MedicationInputForm extends StatefulWidget {
-  const MedicationInputForm(
-      {super.key, this.medicationModel, required this.onTapButton});
+  const MedicationInputForm({
+    super.key,
+    this.medicationModel,
+    required this.onTapButton,
+    required this.isLoading,
+  });
 
   final MedicationModel? medicationModel;
 
   final void Function(Map<String, Object?> data) onTapButton;
+  final bool isLoading;
 
   @override
   State<MedicationInputForm> createState() => _MedicationInputFormState();
@@ -97,6 +103,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
       AppRKeys.arabic_description: _descArCon.text,
       AppRKeys.image: _pickedImage,
     };
+    widget.onTapButton(data);
   }
 
   set expirationDate(DateTime value) {
@@ -248,11 +255,13 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                 const Expanded(child: SizedBox()),
                 Expanded(
                   flex: 2,
-                  child: CustomButton(
-                    onTap: onTapButton,
-                    text: _textButton,
-                    textStyle: AppTextStyle.f20w600white,
-                  ),
+                  child: widget.isLoading
+                      ? const SpinKitThreeBounce(color: AppColor.primaryColor)
+                      : CustomButton(
+                          onTap: onTapButton,
+                          text: _textButton,
+                          textStyle: AppTextStyle.f20w600white,
+                        ),
                 ),
                 const Expanded(child: SizedBox()),
               ],

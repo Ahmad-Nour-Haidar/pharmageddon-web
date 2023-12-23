@@ -24,6 +24,7 @@ class MedicationCubit extends Cubit<MedicationState> {
   }
 
   Future<void> getData() async {
+    // showMedicationModelDetails = false;
     _update(MedicationLoadingState());
     final response = await _medicationsRemoteData.getMedications();
     response.fold((l) {

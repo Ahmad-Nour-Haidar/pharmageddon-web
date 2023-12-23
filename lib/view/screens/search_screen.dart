@@ -63,6 +63,8 @@ class SearchScreen extends StatelessWidget {
                       child: MedicationDetailsScreen(
                         medicationModel: cubit.medicationModel,
                         onTapClose: cubit.closeDetailsModel,
+                        onTapEdit: (_){},
+
                       ),
                     ),
                 ],
