@@ -127,8 +127,10 @@ class AppText {
       'selectStartDateAndEndDateOfReport';
   static const thisFieldMustBeArabic = 'thisFieldMustBeArabic';
   static const thisFieldMustBeEnglish = 'thisFieldMustBeEnglish';
-  static const thisFieldMustContainEnglishLettersAndNumbers = 'thisFieldMustContainEnglishLettersAndNumbers';
-  static const thisFieldMustContainArabicLettersAndNumbers = 'This field must contain Arabic letters and numbers';
+  static const thisFieldMustContainEnglishLettersAndNumbers =
+      'thisFieldMustContainEnglishLettersAndNumbers';
+  static const thisFieldMustContainArabicLettersAndNumbers =
+      'This field must contain Arabic letters and numbers';
   static const scientificNameEn = 'scientificNameEn';
   static const scientificNameAr = 'scientificNameAr';
   static const commercialNameEn = 'commercialNameEn';
@@ -137,6 +139,11 @@ class AppText {
   static const descEn = 'descEN';
   static const availableQuantity = 'availableQuantity';
   static const expirationDate = 'expirationDate';
+  static const deleteThisMedicine = 'deleteThisMedicine';
+  static const activateThisMedicine = 'activateThisMedicine';
+  static const cancel = 'cancel';
+  static const ok = 'ok';
+  static const confirmDeletion = 'confirmDeletion';
 
   //
   static const scientificName = 'scientificName';

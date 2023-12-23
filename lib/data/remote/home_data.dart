@@ -48,6 +48,18 @@ class MedicationsRemoteData {
     return response;
   }
 
+  Future<Either<ParentState, Map<String, dynamic>>> createMedication(
+      {required Map<String, dynamic> data, required File? file}) async {
+    final token = AppLocalData.user?.authorization;
+    final response = await _crud.postRequestWithFile(
+      linkUrl: AppLink.medicineCreate,
+      token: token,
+      data: data,
+      file: file,
+    );
+    return response;
+  }
+
   Future<Either<ParentState, Map<String, dynamic>>> updateMedication(
       {required Map<String, dynamic> data, required File? file}) async {
     final token = AppLocalData.user?.authorization;
@@ -61,14 +73,14 @@ class MedicationsRemoteData {
     return response;
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>> createMedication(
-      {required Map<String, dynamic> data, required File? file}) async {
+  Future<Either<ParentState, Map<String, dynamic>>> deleteMedication({
+    required Map<String, dynamic> queryParameters,
+  }) async {
     final token = AppLocalData.user?.authorization;
-    final response = await _crud.postRequestWithFile(
-      linkUrl: AppLink.medicineCreate,
+    final response = await _crud.getData(
+      linkUrl: AppLink.medicineDelete,
       token: token,
-      data: data,
-      file: file,
+      queryParameters: queryParameters,
     );
     return response;
   }

@@ -14,11 +14,11 @@ class ValidateInput {
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
   static const _regExpEnglish = r'^[A-Za-z0-9!@#\$%^&*():\/\\.\-+,; ]+$';
   static const _regExpArabic = r'^[\u0600-\u06FF0-9\s!@#$%^&*():/\\.,;+-]+$';
-  static const _isAlphanumeric = r'^[a-zA-Z0-9]+$';
-  static const _isArabicAlphanumeric = r'^[؀-ۿ0-9]+$';
-  static const _isAlphanumericAndSomeCharacters = r'^[a-zA-Z0-9/.,:+\-_()%]+$';
+  static const _isAlphanumeric = r'^[a-zA-Z0-9 ]+$';
+  static const _isArabicAlphanumeric = r'^[؀-ۿ0-9 ]+$';
+  static const _isAlphanumericAndSomeCharacters = r'^[a-zA-Z0-9/.,:+\-_()% ]+$';
   static const _isArabicAlphanumericAndSomeCharacters =
-      r'^[؀-ۿ0-9/.,:+\-_()%]+$';
+      r'^[؀-ۿ0-9/.,:+\-_()% ]+$';
   static const _isAlphanumericAndAllCharacters =
       r'^[a-zA-Z0-9:+=_,.!@#$%^&*();/\[\] ]+$';
   static const _isArabicAlphanumericAndAllCharacters =

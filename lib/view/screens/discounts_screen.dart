@@ -44,7 +44,13 @@ class DiscountsScreen extends StatelessWidget {
                   child: MedicationDetailsScreen(
                     medicationModel: cubit.medicationModel,
                     onTapClose: cubit.closeDetailsModel,
-                    onTapEdit: (_){},
+                    onSuccess: () {
+                      cubit.getData();
+                    },
+                    onDelete: () {
+                      cubit.showMedicationModelDetails = false;
+                      cubit.getData();
+                    },
                   ),
                 ),
             ],

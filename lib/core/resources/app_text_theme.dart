@@ -121,6 +121,18 @@ abstract class AppTextStyle {
     color: AppColor.red,
     fontWeight: FontWeight.w600,
   );
+
+  static const f14w600red = TextStyle(
+    fontSize: 14,
+    color: AppColor.red,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const f14w600green2 = TextStyle(
+    fontSize: 14,
+    color: AppColor.green2,
+    fontWeight: FontWeight.w600,
+  );
   static const f16w400black = TextStyle(
     fontSize: 16,
     color: AppColor.black,
@@ -197,6 +209,11 @@ abstract class AppTextStyle {
     fontSize: 15,
     color: AppColor.black,
     fontWeight: FontWeight.w400,
+  );
+  static const f15w500white = TextStyle(
+    fontSize: 15,
+    color: AppColor.white,
+    fontWeight: FontWeight.w500,
   );
   static const f15w600black = TextStyle(
     fontSize: 15,

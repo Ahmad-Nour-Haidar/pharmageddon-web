@@ -8,6 +8,7 @@ class MedicationDetailsLoadingState extends MedicationDetailsState {}
 
 class MedicationDetailsSuccessState extends MedicationDetailsState {
   final ParentState state;
+
   MedicationDetailsSuccessState(this.state);
 }
 
@@ -18,3 +19,7 @@ class MedicationDetailsFailureState extends MedicationDetailsState {
 
   MedicationDetailsFailureState(this.state);
 }
+
+class MedicationDetailsDeleteSuccessState extends MedicationDetailsState {}
+
+class MedicationDetailsDeleteLoadingState extends MedicationDetailsState {}

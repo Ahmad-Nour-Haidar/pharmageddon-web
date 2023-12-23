@@ -43,6 +43,7 @@ class AppLink {
   static const medicineGetAll = '$_serverApi/medicine/get_all';
   static const medicineGetAllDiscount = '$_serverApi/medicine/get_all_discount';
   static const medicineUpdate = '$_serverApi/medicine/update';
+  static const medicineDelete = '$_serverApi/medicine/delete';
   static const medicineCreate = '$_serverApi/medicine/create';
   static const medicineImage = '$_serverImage/medicines';
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_web/controllers/medication_cubit/medication_state.dart';
 import 'package:pharmageddon_web/controllers/medication_details_cubit/medication_details_cubit.dart';
 import 'package:pharmageddon_web/core/constant/app_color.dart';
 import 'package:pharmageddon_web/core/constant/app_padding.dart';
@@ -25,12 +24,16 @@ class MedicationDetailsScreen extends StatelessWidget {
     super.key,
     required this.medicationModel,
     required this.onTapClose,
-    required this.onTapEdit,
+    required this.onSuccess,
+    required this.onDelete,
+    this.isShowDelete = true,
   });
 
   final MedicationModel medicationModel;
+  final bool isShowDelete;
   final void Function() onTapClose;
-  final void Function(MedicationModel model) onTapEdit;
+  final void Function() onSuccess;
+  final void Function() onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,13 @@ class MedicationDetailsScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is MedicationDetailsFailureState) {
           handleState(state: state.state, context: context);
+        }
+        if (state is MedicationDetailsSuccessState) {
+          onSuccess();
+          handleState(state: state.state, context: context);
+        }
+        if (state is MedicationDetailsDeleteSuccessState) {
+          onDelete();
         }
       },
       builder: (context, state) {
@@ -50,12 +60,15 @@ class MedicationDetailsScreen extends StatelessWidget {
               child: cubit.enableEdit
                   ? MedicationInputForm(
                       medicationModel: cubit.model,
-                      isLoading: state is MedicationLoadingState,
-                      onTapButton: (data) async {
-                        await cubit.updateMedication(data);
-                        if (state is MedicationDetailsSuccessState) {
-                          onTapEdit(cubit.model);
-                        }
+                      isShowDelete: isShowDelete,
+                      isLoading: state is MedicationDetailsLoadingState,
+                      isLoadingDelete:
+                          state is MedicationDetailsDeleteLoadingState,
+                      onTapButton: (data) {
+                        cubit.updateMedication(data);
+                      },
+                      onTapDelete: () {
+                        cubit.deleteMedication();
                       },
                     )
                   : ListView(
@@ -73,29 +86,32 @@ class MedicationDetailsScreen extends StatelessWidget {
                             children: [
                               RowTextSpan(
                                 s1: '${AppText.id.tr} : # ',
-                                s2: cubit.model.id.toString(),
+                                s2: cubit.model.id.toString().trn,
                               ),
                               const Gap(5),
                               RowTextSpan(
                                 s1: '${AppText.scientificName.tr} : ',
-                                s2: getMedicationScientificName(cubit.model),
+                                s2: getMedicationScientificName(cubit.model)
+                                    .trn,
                               ),
                               const Gap(5),
                               RowTextSpan(
                                 s1: '${AppText.commercialName.tr} : ',
-                                s2: getMCommercialName(cubit.model),
+                                s2: getMCommercialName(cubit.model).trn,
                               ),
                               const Gap(5),
                               RowTextSpan(
                                 s1: '${AppText.manufacturer.tr} : ',
                                 s2: getManufacturerName(
-                                    cubit.model.manufacturer),
+                                        cubit.model.manufacturer)
+                                    .trn,
                               ),
                               const Gap(5),
                               RowTextSpan(
                                 s1: '${AppText.effect.tr} : ',
                                 s2: getEffectCategoryModelName(
-                                    cubit.model.effectCategory),
+                                        cubit.model.effectCategory)
+                                    .trn,
                               ),
                               const Gap(5),
                               RowTextSpan(
@@ -150,6 +166,7 @@ class MedicationDetailsScreen extends StatelessWidget {
       children: [
         const Expanded(child: SizedBox()),
         Expanded(
+          flex: 2,
           child: Container(
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(

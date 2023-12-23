@@ -132,14 +132,28 @@ class MyTranslation extends Translations {
           AppText.priceAfterDiscount: 'Price after discount',
           AppText.discount: 'Discount',
           AppText.updatedSuccessfully: 'Updated successfully',
+          AppText.deleteThisMedicine: 'Delete this medicine',
+          AppText.activateThisMedicine: 'Activate this medicine',
           AppText.medicineNotFoundOrHasBeenDeleted:
               'Medicine not found or has been deleted',
-          AppText.thisFieldMustContainEnglishLettersAndNumbers:'This field must contain English letters and numbers',
-          AppText.thisFieldMustContainArabicLettersAndNumbers:'This field must contain Arabic letters and numbers',
+          AppText.thisFieldMustContainEnglishLettersAndNumbers:
+              'This field must contain English letters and numbers',
+          AppText.thisFieldMustContainArabicLettersAndNumbers:
+              'This field must contain Arabic letters and numbers',
+          AppText.ok: 'Ok',
+          AppText.confirmDeletion: 'Confirm deletion',
+          AppText.cancel: 'Cancel',
         },
         'ar': {
-          AppText.thisFieldMustContainEnglishLettersAndNumbers:'يجب أن يحتوي هذا الحقل على أحرف انجليزية وأرقام',
-          AppText.thisFieldMustContainArabicLettersAndNumbers:'يجب أن يحتوي هذا الحقل على أحرف عربية وأرقام',
+          AppText.cancel: 'الغاء',
+          AppText.confirmDeletion: 'تأكيد الحذف',
+          AppText.ok: 'موافق',
+          AppText.deleteThisMedicine: 'حذف هذا الدواء',
+          AppText.activateThisMedicine: 'تفعيل هذا الدواء',
+          AppText.thisFieldMustContainEnglishLettersAndNumbers:
+              'يجب أن يحتوي هذا الحقل على أحرف انجليزية وأرقام',
+          AppText.thisFieldMustContainArabicLettersAndNumbers:
+              'يجب أن يحتوي هذا الحقل على أحرف عربية وأرقام',
           AppText.medicineNotFoundOrHasBeenDeleted:
               'لم يتم العثور على الدواء أو تم حذفه',
           AppText.updatedSuccessfully: 'تم التعديل بنجاح',

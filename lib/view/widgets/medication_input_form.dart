@@ -7,8 +7,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:pharmageddon_web/core/constant/app_keys_request.dart';
+import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/custom_button.dart';
+import 'package:pharmageddon_web/view/widgets/show_awesome_delete.dart';
 import 'package:pharmageddon_web/view/widgets/text_input.dart';
 
 import '../../core/class/image_helper.dart';
@@ -28,13 +30,23 @@ class MedicationInputForm extends StatefulWidget {
     super.key,
     this.medicationModel,
     required this.onTapButton,
+    required this.onTapDelete,
     required this.isLoading,
+    required this.isShowDelete,
+    required this.isLoadingDelete,
+    this.isShowActivate = false,
+    this.isLoadingActivate = false,
   });
 
   final MedicationModel? medicationModel;
 
   final void Function(Map<String, Object?> data) onTapButton;
+  final void Function() onTapDelete;
   final bool isLoading;
+  final bool isShowDelete;
+  final bool isLoadingDelete;
+  final bool isShowActivate;
+  final bool isLoadingActivate;
 
   @override
   State<MedicationInputForm> createState() => _MedicationInputFormState();
@@ -65,9 +77,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
 
   @override
   void didUpdateWidget(covariant MedicationInputForm oldWidget) {
-    printme.magenta(widget.medicationModel?.id);
-    printme.magenta(_model?.id);
-    if (_model?.id != widget.medicationModel?.id) {
+    if (_model == null || _model?.id != widget.medicationModel?.id) {
       initial(widget.medicationModel);
     }
     super.didUpdateWidget(oldWidget);
@@ -115,6 +125,8 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
 
   String get _textButton => _model == null ? AppText.add.tr : AppText.edit.tr;
 
+  bool get _showDeleteButton => _model != null;
+
   Future<void> pickImage({WebUiSettings? webUiSettings}) async {
     try {
       final temp = await _imageHelper.pickImage();
@@ -149,14 +161,14 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
             BuildRow(
               widget1: TextInputField(
                 validator: (value) {
-                  return ValidateInput.isEnglishText(value);
+                  return ValidateInput.isAlphanumeric(value);
                 },
                 controller: _scientificNameEnCon,
                 label: AppText.scientificNameEn.tr,
               ),
               widget2: TextInputField(
                 validator: (value) {
-                  return ValidateInput.isArabicText(value);
+                  return ValidateInput.isArabicAlphanumeric(value);
                 },
                 controller: _scientificNameArCon,
                 label: AppText.scientificNameAr.tr,
@@ -167,14 +179,14 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
             BuildRow(
               widget1: TextInputField(
                 validator: (value) {
-                  return ValidateInput.isEnglishText(value);
+                  return ValidateInput.isAlphanumeric(value);
                 },
                 controller: _commercialNameEnCon,
                 label: AppText.commercialNameEn.tr,
               ),
               widget2: TextInputField(
                 validator: (value) {
-                  return ValidateInput.isArabicText(value);
+                  return ValidateInput.isArabicAlphanumeric(value);
                 },
                 controller: _commercialNameArCon,
                 label: AppText.commercialNameAr.tr,
@@ -185,7 +197,8 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
             BuildRow(
               widget1: TextInputField(
                 validator: (value) {
-                  return ValidateInput.isEnglishText(value, max: 500);
+                  return ValidateInput.isAlphanumericAndAllCharacters(value,
+                      max: 500);
                 },
                 controller: _descEnCon,
                 label: AppText.description.tr,
@@ -194,7 +207,9 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
               ),
               widget2: TextInputField(
                 validator: (value) {
-                  return ValidateInput.isArabicText(value, max: 500);
+                  return ValidateInput.isArabicAlphanumericAndAllCharacters(
+                      value,
+                      max: 500);
                 },
                 controller: _descArCon,
                 label: AppText.description.tr,
@@ -243,7 +258,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                       ? Alignment.centerLeft
                       : Alignment.centerRight,
                   child: Text(
-                    '${AppText.expirationDate.tr} : $_expirationDateText',
+                    '${AppText.expirationDate.tr} : $_expirationDateText'.trn,
                     style: AppTextStyle.f16w500black,
                   ),
                 ),
@@ -265,7 +280,81 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                 ),
                 const Expanded(child: SizedBox()),
               ],
-            )
+            ),
+            const Gap(30),
+            if (widget.isShowDelete)
+              Align(
+                alignment:
+                    isEnglish() ? Alignment.centerLeft : Alignment.centerRight,
+                child: SizedBox(
+                  width: 150,
+                  child: widget.isLoadingDelete
+                      ? const Center(
+                          child: SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: CircularProgressIndicator(
+                              color: AppColor.red,
+                            ),
+                          ),
+                        )
+                      : TextButton(
+                          onPressed: () {
+                            showAwesomeDelete(
+                              context: context,
+                              desc: getMCommercialName(widget.medicationModel),
+                              btnOkOnPress: widget.onTapDelete,
+                            );
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: AppColor.red,
+                          ),
+                          child: FittedBox(
+                            child: Text(
+                              AppText.deleteThisMedicine.tr,
+                              style: AppTextStyle.f14w600red,
+                            ),
+                          ),
+                        ),
+                ),
+              ),
+            if (widget.isShowActivate)
+              Align(
+                alignment:
+                    isEnglish() ? Alignment.centerLeft : Alignment.centerRight,
+                child: SizedBox(
+                  width: 150,
+                  child: widget.isLoadingActivate
+                      ? const Center(
+                          child: SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: CircularProgressIndicator(
+                              color: AppColor.green2,
+                            ),
+                          ),
+                        )
+                      : TextButton(
+                          onPressed: () {
+                            showAwesomeActivate(
+                              context: context,
+                              desc: getMCommercialName(widget.medicationModel),
+                              btnOkOnPress: widget.onTapDelete,
+                            );
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: AppColor.green2,
+                          ),
+                          child: FittedBox(
+                            child: Text(
+                              AppText.activateThisMedicine.tr,
+                              style: AppTextStyle.f14w600green2,
+                            ),
+                          ),
+                        ),
+                ),
+              ),
+            const Gap(30),
           ],
         ),
       ),
@@ -285,11 +374,10 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
     );
     if (date != null) {
       expirationDate = date;
-      printme.red(_expirationDate);
     }
   }
 
-  InkWell image(BuildContext context) {
+  Row image(BuildContext context) {
     final w = WebUiSettings(
       context: context,
       presentStyle: CropperPresentStyle.dialog,
@@ -318,12 +406,13 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
         );
       },
     );
-    return InkWell(
-      onTap: () => pickImage(webUiSettings: w),
-      child: Row(
-        children: [
-          const Expanded(child: SizedBox()),
-          Expanded(
+    return Row(
+      children: [
+        const Expanded(child: SizedBox()),
+        Expanded(
+          flex: 2,
+          child: InkWell(
+            onTap: () => pickImage(webUiSettings: w),
             child: Container(
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
@@ -344,9 +433,9 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                     ),
             ),
           ),
-          const Expanded(child: SizedBox()),
-        ],
-      ),
+        ),
+        const Expanded(child: SizedBox()),
+      ],
     );
   }
 }

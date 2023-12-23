@@ -20,7 +20,7 @@ void main() async {
 
   await AppInjection.initial();
   initialUser();
-  storeUser(user);
+  await storeUser(user2);
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
   runApp(const MyApp());
 }

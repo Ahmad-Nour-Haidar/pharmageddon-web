@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/class/parent_state.dart';
 import 'package:pharmageddon_web/core/constant/app_keys_request.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
-import 'package:pharmageddon_web/print.dart';
 import '../../core/functions/check_errors.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../data/remote/home_data.dart';
@@ -29,7 +28,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
 
   void initial(MedicationModel m) {
     model = m;
-    _update(MedicationDetailsChangeState());
+    // _update(MedicationDetailsChangeState());
   }
 
   var enableEdit = false;
@@ -42,7 +41,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   Future<void> updateMedication(Map<String, Object?> data) async {
     _update(MedicationDetailsLoadingState());
     data[AppRKeys.id] = model.id;
-    printme.blue(data);
+    // printme.blue(data);
     File? file;
     if (data[AppRKeys.image] != null) {
       file = data[AppRKeys.image] as File;
@@ -54,7 +53,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     response.fold((l) {
       _update(MedicationDetailsFailureState(l));
     }, (r) {
-      printme.printFullText(r);
+      // printme.printFullText(r);
       final status = r[AppRKeys.status];
       if (status == 400) {
         var s =
@@ -68,6 +67,26 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
         model = MedicationModel.fromJson(r[AppRKeys.data][AppRKeys.medicine]);
         _update(MedicationDetailsSuccessState(
             SuccessState(message: AppText.updatedSuccessfully.tr)));
+      }
+    });
+  }
+
+  Future<void> deleteMedication() async {
+    _update(MedicationDetailsDeleteLoadingState());
+    final queryParameters = {AppRKeys.id: model.id};
+    final response = await _medicationsRemoteData.deleteMedication(
+      queryParameters: queryParameters,
+    );
+    response.fold((l) {
+      _update(MedicationDetailsFailureState(l));
+    }, (r) {
+      // printme.printFullText(r);
+      final status = r[AppRKeys.status];
+      if (status == 403) {
+        _update(MedicationDetailsFailureState(FailureState(
+            message: AppText.medicineNotFoundOrHasBeenDeleted.tr)));
+      } else if (status == 200) {
+        _update(MedicationDetailsDeleteSuccessState());
       }
     });
   }

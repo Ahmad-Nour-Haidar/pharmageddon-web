@@ -63,7 +63,7 @@ void showAwesomeHandleState({
 }) {
   AwesomeDialog(
     context: context,
-    width: AppSize.width * .4,
+    width: AppSize.width * .5,
     title: title,
     dialogType: dialogType,
   ).show();
