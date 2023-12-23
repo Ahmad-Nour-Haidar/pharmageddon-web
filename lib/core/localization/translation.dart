@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pharmageddon_web/core/constant/app_keys_request.dart';
 
 import '../constant/app_text.dart';
 
@@ -113,9 +114,13 @@ class MyTranslation extends Translations {
           AppText.invalidNumber: 'Invalid number',
           AppText.atLeast: 'At least',
           AppText.scientificNameEn: 'Scientific name english',
+          AppRKeys.english_scientific_name: 'Scientific name english',
           AppText.scientificNameAr: 'Scientific name arabic',
+          AppRKeys.arabic_scientific_name: 'Scientific name arabic',
           AppText.commercialNameEn: 'Commercial name english',
+          AppRKeys.english_commercial_name: 'Commercial name english',
           AppText.commercialNameAr: 'Commercial name arabic',
+          AppRKeys.arabic_commercial_name: 'Commercial name arabic',
           AppText.descAr: 'Description arabic',
           AppText.descEn: 'Description english',
           AppText.availableQuantity: 'Available quantity',
@@ -126,8 +131,14 @@ class MyTranslation extends Translations {
           AppText.description: 'Description',
           AppText.priceAfterDiscount: 'Price after discount',
           AppText.discount: 'Discount',
+          AppText.updatedSuccessfully: 'Updated successfully',
+          AppText.medicineNotFoundOrHasBeenDeleted:
+              'Medicine not found or has been deleted',
         },
         'ar': {
+          AppText.medicineNotFoundOrHasBeenDeleted:
+              'لم يتم العثور على الدواء أو تم حذفه',
+          AppText.updatedSuccessfully: 'تم التعديل بنجاح',
           AppText.scientificName: 'الاسم العلمي',
           AppText.commercialName: 'الاسم التجاري',
           AppText.description: 'الوصف',
@@ -135,9 +146,13 @@ class MyTranslation extends Translations {
           AppText.priceAfterDiscount: 'السعر بعد الخصم',
           AppText.discount: 'خصم',
           AppText.scientificNameEn: 'الاسم العلمي انجليزي',
+          AppRKeys.english_scientific_name: 'الاسم العلمي انجليزي',
           AppText.scientificNameAr: 'الاسم العلمي عربي',
+          AppRKeys.arabic_scientific_name: 'الاسم العلمي عربي',
           AppText.commercialNameEn: 'الاسم التجاري انجليزي',
+          AppRKeys.english_commercial_name: 'الاسم التجاري انجليزي',
           AppText.commercialNameAr: 'الاسم التجاري عربي',
+          AppRKeys.arabic_commercial_name: 'الاسم التجاري عربي',
           AppText.descAr: 'الوصف عربي',
           AppText.descEn: 'الوصف انجليزي',
           AppText.availableQuantity: 'الكمية المتوفرة',

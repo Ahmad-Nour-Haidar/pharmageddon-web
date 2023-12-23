@@ -4,6 +4,7 @@ import 'package:pharmageddon_web/data/remote/home_data.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../model/medication_model.dart';
+import '../medication_details_cubit/medication_details_cubit.dart';
 import 'discounts_state.dart';
 
 class DiscountsCubit extends Cubit<DiscountsState> {
@@ -46,6 +47,7 @@ class DiscountsCubit extends Cubit<DiscountsState> {
 
   void closeDetailsModel() {
     showMedicationModelDetails = false;
+    AppInjection.getIt<MedicationDetailsCubit>().enableEdit = false;
     _update(DiscountsChangeState());
   }
 }

@@ -44,4 +44,16 @@ class AppRKeys {
   static const end_date = 'end_date';
   static const order_id = 'order_id';
   static const order_status = 'order_status';
+
+  // medicine
+  static const medicine = 'medicine';
+  static const english_scientific_name = 'english_scientific_name';
+  static const arabic_scientific_name = 'arabic_scientific_name';
+  static const english_commercial_name = 'english_commercial_name';
+  static const arabic_commercial_name = 'arabic_commercial_name';
+  static const available_quantity = 'available_quantity';
+  static const expiration_date = 'expiration_date';
+  static const price = 'price';
+  static const english_description = 'english_description';
+  static const arabic_description = 'arabic_description';
 }

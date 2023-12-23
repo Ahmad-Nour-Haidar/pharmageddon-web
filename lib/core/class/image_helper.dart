@@ -18,6 +18,7 @@ class ImageHelper {
   Future<CroppedFile?> cropImage({
     required XFile file,
     CropStyle style = CropStyle.circle,
+    List<PlatformUiSettings>? uiSettings,
   }) async {
     return await _imageCropper.cropImage(
       sourcePath: file.path,
@@ -27,7 +28,7 @@ class ImageHelper {
         CropAspectRatioPreset.square,
       ],
       compressFormat: ImageCompressFormat.png,
-      // uiSettings: [],
+      uiSettings: uiSettings,
     );
   }
 }

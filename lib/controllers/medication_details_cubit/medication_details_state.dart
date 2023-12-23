@@ -6,7 +6,10 @@ class MedicationDetailsInitialState extends MedicationDetailsState {}
 
 class MedicationDetailsLoadingState extends MedicationDetailsState {}
 
-class MedicationDetailsSuccessState extends MedicationDetailsState {}
+class MedicationDetailsSuccessState extends MedicationDetailsState {
+  final ParentState state;
+  MedicationDetailsSuccessState(this.state);
+}
 
 class MedicationDetailsChangeState extends MedicationDetailsState {}
 

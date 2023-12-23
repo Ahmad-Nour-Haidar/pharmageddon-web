@@ -12,6 +12,7 @@ ThemeData themeData() => ThemeData(
       primaryColor: AppColor.primaryColor,
       colorScheme: ColorScheme.fromSwatch(
         primarySwatch: generateMaterialColor(color: AppColor.primaryColor),
+        errorColor: AppColor.red,
         backgroundColor: AppColor.white,
       ),
     );

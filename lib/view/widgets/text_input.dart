@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
-import 'package:pharmageddon_web/print.dart';
 
 import '../../core/constant/app_color.dart';
 
@@ -34,6 +33,7 @@ class TextInputField extends StatelessWidget {
     borderRadius: BorderRadius.circular(15),
     borderSide: const BorderSide(color: AppColor.red, width: 2),
   );
+
   final String? Function(String?) validator;
   final TextDirection? textDirection;
   final TextEditingController controller;
@@ -43,11 +43,8 @@ class TextInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myFocusNode = FocusNode();
-    printme.blue(validator);
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      focusNode: myFocusNode,
       enabled: enabled,
       controller: controller,
       validator: validator,
@@ -57,6 +54,7 @@ class TextInputField extends StatelessWidget {
       textDirection: textDirection ?? getTextDirection(controller.text),
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: AppTextStyle.f14w500black,
         contentPadding: const EdgeInsets.all(10),
         border: _border,
         focusedBorder: _border,

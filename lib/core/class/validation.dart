@@ -119,6 +119,9 @@ class ValidateInput {
     if (value == null || value.isEmpty) {
       return AppText.thisFieldCantBeEmpty.tr;
     }
+    if (value[0] == '0') {
+      return AppText.invalidNumber.tr;
+    }
     final x = int.tryParse(value);
     if (value.contains('.') || x == null) {
       return AppText.invalidNumberOrContainsDecimals.tr;
@@ -132,6 +135,9 @@ class ValidateInput {
   static String? isPrice(String? value, {double min = 1.0}) {
     if (value == null || value.isEmpty) {
       return AppText.thisFieldCantBeEmpty.tr;
+    }
+    if (value[0] == '0') {
+      return AppText.invalidNumber.tr;
     }
     final x = double.tryParse(value);
     if (x == null) {

@@ -1,10 +1,13 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:pharmageddon_web/core/class/parent_state.dart';
+import 'package:pharmageddon_web/core/constant/app_keys_request.dart';
+import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/print.dart';
-import '../../core/class/image_helper.dart';
+import '../../core/functions/check_errors.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../data/remote/home_data.dart';
 import '../../model/medication_model.dart';
@@ -16,19 +19,6 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   static MedicationDetailsCubit get(BuildContext context) =>
       BlocProvider.of(context);
   final _medicationsRemoteData = AppInjection.getIt<MedicationsRemoteData>();
-  final _imageHelper = AppInjection.getIt<ImageHelper>();
-  final formKey = GlobalKey<FormState>();
-  final scientificNameArCon = TextEditingController();
-  final scientificNameEnCon = TextEditingController();
-  final commercialNameArCon = TextEditingController();
-  final commercialNameEnCon = TextEditingController();
-  final descArCon = TextEditingController();
-  final descEnCon = TextEditingController();
-  final priceCon = TextEditingController();
-  final availableQuantityCon = TextEditingController();
-  DateTime? expirationDate;
-  File? image;
-  Uint8List? imageShow;
   late MedicationModel model;
 
   void _update(MedicationDetailsState state) {
@@ -39,29 +29,6 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
 
   void initial(MedicationModel m) {
     model = m;
-    scientificNameArCon.text = model.arabicScientificName.toString();
-    scientificNameEnCon.text = model.englishScientificName.toString();
-    commercialNameArCon.text = model.arabicCommercialName.toString();
-    commercialNameEnCon.text = model.englishCommercialName.toString();
-    descArCon.text = model.arabicDescription.toString();
-    descEnCon.text = model.englishDescription.toString();
-    priceCon.text = model.price.toString();
-    availableQuantityCon.text = model.availableQuantity.toString();
-    expirationDate = DateTime.tryParse(model.expirationDate.toString());
-    _update(MedicationDetailsChangeState());
-  }
-
-  Future<void> pickImage() async {
-    try {
-      final temp = await _imageHelper.pickImage();
-      if (temp == null) return;
-      final tempCrop = await _imageHelper.cropImage(file: temp);
-      if (tempCrop == null) return;
-      image = File(tempCrop.path);
-      imageShow = image?.readAsBytesSync();
-    } catch (e) {
-      printme.red(e);
-    }
     _update(MedicationDetailsChangeState());
   }
 
@@ -70,5 +37,36 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   void onTapEdit() {
     enableEdit = !enableEdit;
     _update(MedicationDetailsChangeState());
+  }
+
+  Future<void> updateMedication(Map<String, Object?> data) async {
+    data[AppRKeys.id] = model.id;
+    printme.blue(data);
+    File? file;
+    if (data[AppRKeys.image] != null) {
+      file = data[AppRKeys.image] as File;
+    }
+    final response = await _medicationsRemoteData.updateMedication(
+      data: data,
+      file: file,
+    );
+    response.fold((l) {
+      _update(MedicationDetailsFailureState(l));
+    }, (r) {
+      final status = r[AppRKeys.status];
+      if (status == 400) {
+        var s =
+            checkErrorMessages(r[AppRKeys.message][AppRKeys.validation_errors]);
+        s = '${AppText.field.tr} $s ${AppText.alreadyBeenTaken.tr}';
+        _update(MedicationDetailsFailureState(WarningState(message: s)));
+      } else if (status == 403) {
+        _update(MedicationDetailsFailureState(FailureState(
+            message: AppText.medicineNotFoundOrHasBeenDeleted.tr)));
+      } else if (status == 200) {
+        model = MedicationModel.fromJson(r[AppRKeys.data][AppRKeys.medicine]);
+        _update(MedicationDetailsSuccessState(
+            SuccessState(message: AppText.updatedSuccessfully.tr)));
+      }
+    });
   }
 }

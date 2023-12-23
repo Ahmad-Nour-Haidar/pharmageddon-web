@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
+import 'package:pharmageddon_web/core/constant/app_keys_request.dart';
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_link.dart';
 import '../../core/constant/app_local_data.dart';
@@ -41,6 +44,31 @@ class MedicationsRemoteData {
     final response = await _crud.getData(
       linkUrl: AppLink.manufacturerGetAll,
       token: token,
+    );
+    return response;
+  }
+
+  Future<Either<ParentState, Map<String, dynamic>>> updateMedication(
+      {required Map<String, dynamic> data, required File? file}) async {
+    final token = AppLocalData.user?.authorization;
+    final response = await _crud.postRequestWithFile(
+      linkUrl: AppLink.medicineUpdate,
+      token: token,
+      data: data,
+      file: file,
+      nameKey: AppRKeys.image,
+    );
+    return response;
+  }
+
+  Future<Either<ParentState, Map<String, dynamic>>> createMedication(
+      {required Map<String, dynamic> data, required File? file}) async {
+    final token = AppLocalData.user?.authorization;
+    final response = await _crud.postRequestWithFile(
+      linkUrl: AppLink.medicineCreate,
+      token: token,
+      data: data,
+      file: file,
     );
     return response;
   }

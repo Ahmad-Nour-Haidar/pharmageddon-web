@@ -135,6 +135,7 @@ class AppText {
   static const descEn = 'descEN';
   static const availableQuantity = 'availableQuantity';
   static const expirationDate = 'expirationDate';
+
   //
   static const scientificName = 'scientificName';
   static const commercialName = 'commercialName';
@@ -142,4 +143,7 @@ class AppText {
   static const discount = 'discount';
   static const effect = 'effect';
   static const priceAfterDiscount = 'priceAfterDiscount';
+  static const updatedSuccessfully = 'updatedSuccessfully';
+  static const medicineNotFoundOrHasBeenDeleted =
+      'medicineNotFoundOrHasBeenDeleted';
 }
