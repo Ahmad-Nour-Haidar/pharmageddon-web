@@ -125,8 +125,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
 
   String get _textButton => _model == null ? AppText.add.tr : AppText.edit.tr;
 
-  bool get _showDeleteButton => _model != null;
-
   Future<void> pickImage({WebUiSettings? webUiSettings}) async {
     try {
       final temp = await _imageHelper.pickImage();
@@ -393,9 +391,10 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                     child: cropper,
                   ),
                   TextButton(
-                    onPressed: () async {
-                      final result = await crop();
-                      Navigator.pop(context, result);
+                    onPressed: () {
+                      crop().then((value) {
+                        Navigator.pop(context, value);
+                      }).catchError((e) {});
                     },
                     child: const Text('Crop'),
                   ),

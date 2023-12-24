@@ -34,23 +34,6 @@ class HomeCubit extends Cubit<HomeState> {
     _update(HomeChangeState());
   }
 
-  // // todo
-  // bool showMedicationModelDetails = false;
-  // late MedicationModel medicationModel;
-  //
-  // void onTapCard({
-  //   required MedicationModel model,
-  // }) {
-  //   medicationModel = model;
-  //   showMedicationModelDetails = true;
-  //   _update(HomeChangeState());
-  // }
-  //
-  // void closeMedicationModelDetails() {
-  //   showMedicationModelDetails = false;
-  //   _update(HomeChangeState());
-  // }
-
   Widget get screen {
     switch (currentScreen) {
       case ScreenView.all:

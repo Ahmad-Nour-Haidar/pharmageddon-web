@@ -22,6 +22,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
   final ErrorWidgetShow errorWidget;
 
   Widget get errorWidgetImp {
+    final s = min(width / 2, height / 2);
     late String path;
     if (errorWidget == ErrorWidgetShow.picture) {
       path = AppSvg.picture;
@@ -29,8 +30,8 @@ class CustomCachedNetworkImage extends StatelessWidget {
       path = AppSvg.user;
     }
     final widget = Container(
-      width: width,
-      height: width,
+      width: s,
+      height: s,
       decoration: BoxDecoration(
         color: AppColor.gray4,
         borderRadius: BorderRadius.circular(10),
@@ -39,7 +40,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
         child: SvgImage(
           path: path,
           color: AppColor.white,
-          size: width / 2,
+          size: s,
         ),
       ),
     );
@@ -56,25 +57,6 @@ class CustomCachedNetworkImage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
       ),
-      // child: Image.network(
-      //   imageUrl,
-      //   fit: BoxFit.cover,
-      //   width: width,
-      //   errorBuilder: (context, url, error) {
-      //     return errorWidgetImp;
-      //   },
-      //   loadingBuilder: (context, url, error) {
-      //     return Center(
-      //       child: SizedBox(
-      //         width: width / 2,
-      //         height: width / 2,
-      //         child: const CircularProgressIndicator(
-      //           strokeWidth: 3,
-      //         ),
-      //       ),
-      //     );
-      //   },
-      // ),
       child: CachedNetworkImage(
         httpHeaders: const {
           "Connection": "Keep-Alive",

@@ -155,4 +155,6 @@ class AppText {
   static const updatedSuccessfully = 'updatedSuccessfully';
   static const medicineNotFoundOrHasBeenDeleted =
       'medicineNotFoundOrHasBeenDeleted';
+  static const theExpirationDateFieldMustBeADateAfterToday =
+      'theExpirationDateFieldMustBeADateAfterToday';
 }

@@ -35,7 +35,6 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginChangeState());
   }
 
-  // todo
   void changeIsEmail() {
     onEmail = !onEmail;
     emit(LoginChangeState());

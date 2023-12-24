@@ -41,7 +41,6 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
   Future<void> updateMedication(Map<String, Object?> data) async {
     _update(MedicationDetailsLoadingState());
     data[AppRKeys.id] = model.id;
-    // printme.blue(data);
     File? file;
     if (data[AppRKeys.image] != null) {
       file = data[AppRKeys.image] as File;
@@ -56,9 +55,8 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
       // printme.printFullText(r);
       final status = r[AppRKeys.status];
       if (status == 400) {
-        var s =
+        final s =
             checkErrorMessages(r[AppRKeys.message][AppRKeys.validation_errors]);
-        s = '${AppText.field.tr} $s ${AppText.alreadyBeenTaken.tr}';
         _update(MedicationDetailsFailureState(WarningState(message: s)));
       } else if (status == 403) {
         _update(MedicationDetailsFailureState(FailureState(
@@ -80,7 +78,6 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     response.fold((l) {
       _update(MedicationDetailsFailureState(l));
     }, (r) {
-      // printme.printFullText(r);
       final status = r[AppRKeys.status];
       if (status == 403) {
         _update(MedicationDetailsFailureState(FailureState(

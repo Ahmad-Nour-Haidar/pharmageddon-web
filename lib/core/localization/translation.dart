@@ -143,8 +143,12 @@ class MyTranslation extends Translations {
           AppText.ok: 'Ok',
           AppText.confirmDeletion: 'Confirm deletion',
           AppText.cancel: 'Cancel',
+          AppText.theExpirationDateFieldMustBeADateAfterToday:
+              'The expiration date field must be a date after today',
         },
         'ar': {
+          AppText.theExpirationDateFieldMustBeADateAfterToday:
+              'يجب أن يكون حقل تاريخ انتهاء الصلاحية تاريخًا بعد اليوم',
           AppText.cancel: 'الغاء',
           AppText.confirmDeletion: 'تأكيد الحذف',
           AppText.ok: 'موافق',

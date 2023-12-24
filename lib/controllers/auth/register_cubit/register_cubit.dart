@@ -67,9 +67,8 @@ class RegisterCubit extends Cubit<RegisterState> {
           final m = AppText.thereIsAlreadyAnAccountForTheWarehouseOwner.tr;
           emit(RegisterFailureState(FailureState(message: m)));
         } else {
-          var s = checkErrorMessages(
+          final s = checkErrorMessages(
               response[AppRKeys.message][AppRKeys.validation_errors]);
-          s = '${AppText.field.tr} $s ${AppText.alreadyBeenTaken.tr}';
           emit(RegisterFailureState(FailureState(message: s)));
         }
       } else {
