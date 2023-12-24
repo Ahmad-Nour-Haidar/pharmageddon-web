@@ -207,7 +207,11 @@ class ValidateInput {
     return null;
   }
 
-  static String? isNumericWithoutDecimal(String? value, {int min = 1}) {
+  static String? isNumericWithoutDecimal(
+    String? value, {
+    int min = 1,
+    int max = 16,
+  }) {
     if (value == null || value.isEmpty) {
       return AppText.thisFieldCantBeEmpty.tr;
     }

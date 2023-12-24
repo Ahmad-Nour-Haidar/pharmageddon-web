@@ -217,12 +217,12 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
               ),
               widget2: TextInputField(
                 validator: (value) {
-                  return ValidateInput.isNumericWithoutDecimal(value);
+                  return ValidateInput.isNumericWithoutDecimal(value, max: 5);
                 },
                 controller: _availableQuantityCon,
                 label: AppText.availableQuantity.tr,
                 textDirection: TextDirection.ltr,
-                maxLength: 16,
+                maxLength: 5,
                 maxLines: 1,
               ),
             ),
