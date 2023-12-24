@@ -142,10 +142,10 @@ class MedicationsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: data.isEmpty
-          ? [const Gap(100), AppInjection.getIt<AppWidget>().noData]
-          : [
+    return data.isEmpty
+        ? Center(child: AppInjection.getIt<AppWidget>().noData)
+        : ListView(
+            children: [
               Text(
                 '${AppText.all.tr} : ( ${data.length} )'.trn,
                 style: AppTextStyle.f18w500black,
@@ -163,6 +163,6 @@ class MedicationsListWidget extends StatelessWidget {
               ),
               const Gap(30),
             ],
-    );
+          );
   }
 }

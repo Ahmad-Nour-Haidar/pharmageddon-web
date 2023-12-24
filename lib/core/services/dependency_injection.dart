@@ -16,6 +16,7 @@ import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
 import '../../controllers/medication_cubit/medication_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
+import '../../controllers/quantity_expired_cubit/quantity_expired_cubit.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
@@ -58,6 +59,7 @@ class AppInjection {
     getIt.registerFactory(() => MedicationCubit());
     getIt.registerFactory(() => DiscountsCubit());
     getIt.registerFactory(() => ReportsCubit());
+    getIt.registerFactory(() => QuantityExpiredCubit());
 
     /// data
     getIt.registerFactory(() => MedicationsRemoteData());

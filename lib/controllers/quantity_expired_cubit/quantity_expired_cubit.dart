@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pharmageddon_web/controllers/quantity_expired_cubit/quantity_expired_state.dart';
 import 'package:pharmageddon_web/data/remote/home_data.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../model/medication_model.dart';
 import '../medication_details_cubit/medication_details_cubit.dart';
-import 'discounts_state.dart';
 
-class DiscountsCubit extends Cubit<DiscountsState> {
-  DiscountsCubit() : super(DiscountsInitialState());
+class QuantityExpiredCubit extends Cubit<QuantityExpiredState> {
+  QuantityExpiredCubit() : super(QuantityExpiredInitialState());
 
-  static DiscountsCubit get(BuildContext context) => BlocProvider.of(context);
-  final _homeRemoteData = AppInjection.getIt<MedicationsRemoteData>();
+  static QuantityExpiredCubit get(BuildContext context) =>
+      BlocProvider.of(context);
+  final _medicationsRemoteData = AppInjection.getIt<MedicationsRemoteData>();
   final List<MedicationModel> medications = [];
 
-  void _update(DiscountsState state) {
+  void _update(QuantityExpiredState state) {
     if (isClosed) return;
     emit(state);
   }
@@ -24,10 +25,10 @@ class DiscountsCubit extends Cubit<DiscountsState> {
   }
 
   Future<void> getData() async {
-    _update(DiscountsLoadingState());
-    final response = await _homeRemoteData.getDiscount();
+    _update(QuantityExpiredLoadingState());
+    final response = await _medicationsRemoteData.getQuantityExpired();
     response.fold((l) {
-      _update(DiscountsFailureState(l));
+      _update(QuantityExpiredFailureState(l));
     }, (r) {
       final status = r[AppRKeys.status];
       medications.clear();
@@ -35,7 +36,7 @@ class DiscountsCubit extends Cubit<DiscountsState> {
         final List temp = r[AppRKeys.data][AppRKeys.medicines];
         medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       }
-      _update(DiscountsSuccessState());
+      _update(QuantityExpiredSuccessState());
     });
   }
 
@@ -45,12 +46,12 @@ class DiscountsCubit extends Cubit<DiscountsState> {
   void showDetailsModel(MedicationModel model) {
     medicationModel = model;
     showMedicationModelDetails = true;
-    _update(DiscountsChangeState());
+    _update(QuantityExpiredChangeState());
   }
 
   void closeDetailsModel() {
     showMedicationModelDetails = false;
     AppInjection.getIt<MedicationDetailsCubit>().enableEdit = false;
-    _update(DiscountsChangeState());
+    _update(QuantityExpiredChangeState());
   }
 }

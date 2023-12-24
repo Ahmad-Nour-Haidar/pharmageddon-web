@@ -84,4 +84,13 @@ class MedicationsRemoteData {
     );
     return response;
   }
+
+  Future<Either<ParentState, Map<String, dynamic>>> getQuantityExpired() async {
+    final token = AppLocalData.user?.authorization;
+    final response = await _crud.getData(
+      linkUrl: AppLink.medicineGetAllQuantityExpired,
+      token: token,
+    );
+    return response;
+  }
 }

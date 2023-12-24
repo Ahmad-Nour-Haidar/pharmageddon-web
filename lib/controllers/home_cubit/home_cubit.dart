@@ -4,6 +4,7 @@ import 'package:pharmageddon_web/view/screens/discounts_screen.dart';
 import 'package:pharmageddon_web/view/screens/medication_screen.dart';
 import 'package:pharmageddon_web/view/screens/search_screen.dart';
 import '../../core/enums/drawer_enum.dart';
+import '../../view/screens/quantity_expired_screen.dart';
 import '../../view/screens/reports_screen.dart';
 import 'home_state.dart';
 
@@ -59,7 +60,7 @@ class HomeCubit extends Cubit<HomeState> {
       case ScreenView.unPaid:
         return const SizedBox();
       case ScreenView.quantityExpired:
-        return const SizedBox();
+        return const QuantityExpiredScreen();
       case ScreenView.dateExpired:
         return const SizedBox();
       case ScreenView.search:
