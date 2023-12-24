@@ -10,7 +10,6 @@ import '../../controllers/auth/login_cubit/login_cubit.dart';
 import '../../controllers/auth/register_cubit/register_cubit.dart';
 import '../../controllers/auth/reset_password_cubit/reset_password_cubit.dart';
 import '../../controllers/auth/verify_code_cubit/verify_code_cubit.dart';
-import '../../controllers/date_expired_cubit/date_expired_cubit.dart';
 import '../../controllers/discounts_cubit/discounts_cubit.dart';
 import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
@@ -61,7 +60,6 @@ class AppInjection {
     getIt.registerFactory(() => DiscountsCubit());
     getIt.registerFactory(() => ReportsCubit());
     getIt.registerFactory(() => QuantityExpiredCubit());
-    getIt.registerFactory(() => DateExpiredCubit());
 
     /// data
     getIt.registerFactory(() => MedicationsRemoteData());
