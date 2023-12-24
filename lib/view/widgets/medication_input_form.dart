@@ -29,14 +29,12 @@ class MedicationInputForm extends StatefulWidget {
     super.key,
     this.medicationModel,
     required this.onTapButton,
-    required this.onTapDelete,
     required this.isLoading,
   });
 
   final MedicationModel? medicationModel;
 
   final void Function(Map<String, Object?> data) onTapButton;
-  final void Function() onTapDelete;
   final bool isLoading;
 
   @override
