@@ -25,7 +25,6 @@ class MedicationDetailsScreen extends StatelessWidget {
     required this.medicationModel,
     required this.onTapClose,
     required this.onSuccess,
-    required this.onDelete,
     this.isShowDelete = true,
   });
 
@@ -33,7 +32,6 @@ class MedicationDetailsScreen extends StatelessWidget {
   final bool isShowDelete;
   final void Function() onTapClose;
   final void Function() onSuccess;
-  final void Function() onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +44,6 @@ class MedicationDetailsScreen extends StatelessWidget {
         if (state is MedicationDetailsSuccessState) {
           onSuccess();
           handleState(state: state.state, context: context);
-        }
-        if (state is MedicationDetailsDeleteSuccessState) {
-          onDelete();
         }
       },
       builder: (context, state) {

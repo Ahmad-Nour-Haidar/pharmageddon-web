@@ -45,10 +45,6 @@ class MedicationScreen extends StatelessWidget {
                     medicationModel: cubit.medicationModel,
                     onTapClose: cubit.closeDetailsModel,
                     onSuccess: cubit.getData,
-                    onDelete: () {
-                      cubit.showMedicationModelDetails = false;
-                      cubit.getData();
-                    },
                   ),
                 ),
             ],

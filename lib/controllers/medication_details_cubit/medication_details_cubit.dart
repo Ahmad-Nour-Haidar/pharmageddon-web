@@ -69,23 +69,4 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
       }
     });
   }
-
-  Future<void> deleteMedication() async {
-    _update(MedicationDetailsDeleteLoadingState());
-    final queryParameters = {AppRKeys.id: model.id};
-    final response = await _medicationsRemoteData.deleteMedication(
-      queryParameters: queryParameters,
-    );
-    response.fold((l) {
-      _update(MedicationDetailsFailureState(l));
-    }, (r) {
-      final status = r[AppRKeys.status];
-      if (status == 403) {
-        _update(MedicationDetailsFailureState(FailureState(
-            message: AppText.medicineNotFoundOrHasBeenDeleted.tr)));
-      } else if (status == 200) {
-        _update(MedicationDetailsDeleteSuccessState());
-      }
-    });
-  }
 }
