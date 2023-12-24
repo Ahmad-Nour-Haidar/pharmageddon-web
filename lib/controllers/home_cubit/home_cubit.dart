@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmageddon_web/view/screens/discounts_screen.dart';
+import 'package:pharmageddon_web/core/constant/app_link.dart';
 import 'package:pharmageddon_web/view/screens/medication_screen.dart';
 import 'package:pharmageddon_web/view/screens/search_screen.dart';
 import '../../core/enums/drawer_enum.dart';
-import '../../view/screens/date_expired_screen.dart';
-import '../../view/screens/quantity_expired_screen.dart';
 import '../../view/screens/reports_screen.dart';
 import 'home_state.dart';
 
@@ -39,13 +37,13 @@ class HomeCubit extends Cubit<HomeState> {
   Widget get screen {
     switch (currentScreen) {
       case ScreenView.all:
-        return const MedicationScreen();
+        return const MedicationScreen(url: AppLink.medicineGetAll);
       case ScreenView.manufacturer:
         return const SizedBox();
       case ScreenView.effectCategories:
         return const SizedBox();
       case ScreenView.discounts:
-        return const DiscountsScreen();
+        return const MedicationScreen(url: AppLink.medicineGetAllDiscount);
       case ScreenView.add:
         return const SizedBox();
       case ScreenView.reports:
@@ -61,9 +59,11 @@ class HomeCubit extends Cubit<HomeState> {
       case ScreenView.unPaid:
         return const SizedBox();
       case ScreenView.quantityExpired:
-        return const QuantityExpiredScreen();
+        return const MedicationScreen(
+          url: AppLink.medicineGetAllQuantityExpired,
+        );
       case ScreenView.dateExpired:
-        return const DateExpiredScreen();
+        return const MedicationScreen(url: AppLink.medicineGetAllDateExpired);
       case ScreenView.search:
         return SearchScreen(value: _valueForSearch);
     }

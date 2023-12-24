@@ -43,7 +43,6 @@ class DateExpiredScreen extends StatelessWidget {
                     medicationModel: cubit.medicationModel,
                     onTapClose: cubit.closeDetailsModel,
                     onSuccess: cubit.getData,
-
                   ),
                 ),
             ],

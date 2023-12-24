@@ -11,9 +11,11 @@ import '../crud_dio.dart';
 class MedicationsRemoteData {
   final _crud = AppInjection.getIt<Crud>();
 
-  Future<Either<ParentState, Map<String, dynamic>>> getMedications() async {
+  Future<Either<ParentState, Map<String, dynamic>>> getMedications({
+    String url = AppLink.medicineGetAll,
+  }) async {
     final token = AppLocalData.user?.authorization;
-    return await _crud.getData(linkUrl: AppLink.medicineGetAll, token: token);
+    return await _crud.getData(linkUrl: url, token: token);
   }
 
   Future<Either<ParentState, Map<String, dynamic>>> getDiscount() async {

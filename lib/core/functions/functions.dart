@@ -181,3 +181,17 @@ String formatYYYYMd(String? s) {
 String getPaymentStatus(OrderModel model) {
   return model.paymentStatus == 0 ? AppText.unPaid.tr : AppText.paid.tr;
 }
+
+String buildUrl({
+  required String baseUrl,
+  required Map<String, dynamic> queryParameters,
+}) {
+  // Convert all values to strings
+  final stringQueryParameters = Map.from(queryParameters)
+      .map((key, value) => MapEntry<String, String>(key, value.toString()));
+
+  final uri = Uri.parse(baseUrl).replace(
+    queryParameters: stringQueryParameters,
+  );
+  return uri.toString();
+}

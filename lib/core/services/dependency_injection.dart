@@ -57,7 +57,7 @@ class AppInjection {
     getIt.registerLazySingleton(() => HomeCubit());
     getIt.registerLazySingleton(() => SearchCubit());
     getIt.registerLazySingleton(() => MedicationDetailsCubit());
-    getIt.registerFactory(() => MedicationCubit());
+    getIt.registerLazySingleton(() => MedicationCubit());
     getIt.registerFactory(() => DiscountsCubit());
     getIt.registerFactory(() => ReportsCubit());
     getIt.registerFactory(() => QuantityExpiredCubit());

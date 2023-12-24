@@ -46,6 +46,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     if (data[AppRKeys.image] != null) {
       file = data[AppRKeys.image] as File;
     }
+    data.remove(AppRKeys.image);
     final response = await _medicationsRemoteData.updateMedication(
       data: data,
       file: file,
