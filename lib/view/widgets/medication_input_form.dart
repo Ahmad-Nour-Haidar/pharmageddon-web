@@ -31,10 +31,6 @@ class MedicationInputForm extends StatefulWidget {
     required this.onTapButton,
     required this.onTapDelete,
     required this.isLoading,
-    // required this.isShowDelete,
-    // required this.isLoadingDelete,
-    // this.isShowActivate = false,
-    // this.isLoadingActivate = false,
   });
 
   final MedicationModel? medicationModel;
@@ -42,10 +38,6 @@ class MedicationInputForm extends StatefulWidget {
   final void Function(Map<String, Object?> data) onTapButton;
   final void Function() onTapDelete;
   final bool isLoading;
-  // final bool isShowDelete;
-  // final bool isLoadingDelete;
-  // final bool isShowActivate;
-  // final bool isLoadingActivate;
 
   @override
   State<MedicationInputForm> createState() => _MedicationInputFormState();
@@ -279,79 +271,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
               ],
             ),
             const Gap(30),
-            // if (widget.isShowDelete)
-              // Align(
-              //   alignment:
-              //       isEnglish() ? Alignment.centerLeft : Alignment.centerRight,
-              //   child: SizedBox(
-              //     width: 150,
-              //     child: widget.isLoadingDelete
-              //         ? const Center(
-              //             child: SizedBox(
-              //               height: 25,
-              //               width: 25,
-              //               child: CircularProgressIndicator(
-              //                 color: AppColor.red,
-              //               ),
-              //             ),
-              //           )
-              //         : TextButton(
-              //             onPressed: () {
-              //               showAwesomeDelete(
-              //                 context: context,
-              //                 desc: getMCommercialName(widget.medicationModel),
-              //                 btnOkOnPress: widget.onTapDelete,
-              //               );
-              //             },
-              //             style: TextButton.styleFrom(
-              //               foregroundColor: AppColor.red,
-              //             ),
-              //             child: FittedBox(
-              //               child: Text(
-              //                 AppText.deleteThisMedicine.tr,
-              //                 style: AppTextStyle.f14w600red,
-              //               ),
-              //             ),
-              //           ),
-              //   ),
-              // ),
-            // if (widget.isShowActivate)
-            //   Align(
-            //     alignment:
-            //         isEnglish() ? Alignment.centerLeft : Alignment.centerRight,
-            //     child: SizedBox(
-            //       width: 150,
-            //       child: widget.isLoadingActivate
-            //           ? const Center(
-            //               child: SizedBox(
-            //                 height: 25,
-            //                 width: 25,
-            //                 child: CircularProgressIndicator(
-            //                   color: AppColor.green2,
-            //                 ),
-            //               ),
-            //             )
-            //           : TextButton(
-            //               onPressed: () {
-            //                 showAwesomeActivate(
-            //                   context: context,
-            //                   desc: getMCommercialName(widget.medicationModel),
-            //                   btnOkOnPress: widget.onTapDelete,
-            //                 );
-            //               },
-            //               style: TextButton.styleFrom(
-            //                 foregroundColor: AppColor.green2,
-            //               ),
-            //               child: FittedBox(
-            //                 child: Text(
-            //                   AppText.activateThisMedicine.tr,
-            //                   style: AppTextStyle.f14w600green2,
-            //                 ),
-            //               ),
-            //             ),
-            //     ),
-            //   ),
-            // const Gap(30),
           ],
         ),
       ),

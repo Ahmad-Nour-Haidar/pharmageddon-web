@@ -67,9 +67,6 @@ class MedicationDetailsScreen extends StatelessWidget {
                       onTapDelete: () {
                         cubit.deleteMedication();
                       },
-                      // isShowDelete: isShowDelete,
-                      // isLoadingDelete:
-                      //     state is MedicationDetailsDeleteLoadingState,
                     )
                   : ListView(
                       children: [
