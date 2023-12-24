@@ -75,7 +75,7 @@ class AuthRemoteData {
     File? file,
   }) async {
     final token = AppLocalData.user!.authorization!;
-    return await _crud.requestWithFile(
+    return await _crud.requestWithFileUsingHttp(
       data: data,
       token: token,
       linkUrl: AppLink.updateUser,

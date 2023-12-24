@@ -28,9 +28,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.contentColorBlue,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {},
-      ),
       body: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {},
         builder: (context, state) {

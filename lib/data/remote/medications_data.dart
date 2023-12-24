@@ -46,7 +46,7 @@ class MedicationsRemoteData {
     required File? file,
   }) async {
     final token = AppLocalData.user?.authorization;
-    return await _crud.requestWithFile(
+    return await _crud.requestWithFileUsingHttp(
       linkUrl: AppLink.medicineCreate,
       token: token,
       data: data,
