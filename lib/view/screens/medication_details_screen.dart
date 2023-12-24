@@ -60,16 +60,16 @@ class MedicationDetailsScreen extends StatelessWidget {
               child: cubit.enableEdit
                   ? MedicationInputForm(
                       medicationModel: cubit.model,
-                      isShowDelete: isShowDelete,
                       isLoading: state is MedicationDetailsLoadingState,
-                      isLoadingDelete:
-                          state is MedicationDetailsDeleteLoadingState,
                       onTapButton: (data) {
                         cubit.updateMedication(data);
                       },
                       onTapDelete: () {
                         cubit.deleteMedication();
                       },
+                      // isShowDelete: isShowDelete,
+                      // isLoadingDelete:
+                      //     state is MedicationDetailsDeleteLoadingState,
                     )
                   : ListView(
                       children: [
