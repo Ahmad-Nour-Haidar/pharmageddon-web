@@ -1,6 +1,5 @@
 import '../../core/class/parent_state.dart';
 
-
 abstract class DateExpiredState {}
 
 class DateExpiredInitialState extends DateExpiredState {}

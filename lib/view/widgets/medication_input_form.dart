@@ -59,10 +59,10 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   final _scientificNameEnCon = TextEditingController();
   final _commercialNameArCon = TextEditingController();
   final _commercialNameEnCon = TextEditingController();
+  final _availableQuantityCon = TextEditingController();
   final _descArCon = TextEditingController();
   final _descEnCon = TextEditingController();
   final _priceCon = TextEditingController();
-  final _availableQuantityCon = TextEditingController();
   DateTime? _expirationDate;
   var _expirationDateText = '';
   File? _pickedImage;
@@ -411,12 +411,19 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
         Expanded(
           flex: 2,
           child: InkWell(
-            onTap: () => pickImage(webUiSettings: w),
+            onTap: () {
+              pickImage(webUiSettings: w);
+            },
             child: Container(
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: AppColor.contentColorBlue,
+                  width: 3,
+                ),
               ),
+              // _webImage
               child: _webImage != null
                   ? Image.memory(
                       _webImage!,
@@ -436,5 +443,18 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
         const Expanded(child: SizedBox()),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _scientificNameArCon.dispose();
+    _scientificNameEnCon.dispose();
+    _commercialNameArCon.dispose();
+    _commercialNameEnCon.dispose();
+    _descArCon.dispose();
+    _descEnCon.dispose();
+    _priceCon.dispose();
+    _availableQuantityCon.dispose();
+    super.dispose();
   }
 }

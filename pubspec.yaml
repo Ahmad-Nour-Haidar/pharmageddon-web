@@ -56,6 +56,7 @@ dependencies:
   lottie: ^2.7.0
   auto_size_text: ^3.0.0
   calendar_date_picker2: ^0.5.3
+  http: ^1.1.2
 
 dev_dependencies:
   flutter_test:

@@ -16,8 +16,8 @@ class RowTextSpan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      text: TextSpan(
+    return SelectableText.rich(
+      TextSpan(
         children: [
           TextSpan(text: s1, style: ts1.copyWith(height: 1.5)),
           TextSpan(text: s2, style: ts2.copyWith(height: 1.5)),

@@ -8,14 +8,9 @@ import '../../controllers/home_cubit/home_state.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/drawer.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   BorderRadius get _borderRadius {
     if (isEnglish()) {
       return const BorderRadius.only(
@@ -33,6 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.contentColorBlue,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {},
+      ),
       body: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {},
         builder: (context, state) {
