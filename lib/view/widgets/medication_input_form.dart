@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:pharmageddon_web/core/constant/app_keys_request.dart';
 import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/print.dart';
@@ -114,7 +113,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
 
   String get _textButton => _model == null ? AppText.add.tr : AppText.edit.tr;
 
-  Future<void> pickImage({WebUiSettings? webUiSettings}) async {
+  Future<void> pickImage() async {
     try {
       final temp = await _imageHelper.pickImage();
       if (temp == null) return;
@@ -190,7 +189,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                 controller: _descEnCon,
                 label: AppText.description.tr,
                 maxLength: 500,
-                maxLines: 5,
+                maxLines: 7,
               ),
               widget2: TextInputField(
                 validator: (value) {
@@ -202,7 +201,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                 label: AppText.description.tr,
                 textDirection: TextDirection.rtl,
                 maxLength: 500,
-                maxLines: 5,
+                maxLines: 7,
               ),
             ),
             const Gap(10),
@@ -292,44 +291,13 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   }
 
   Row image(BuildContext context) {
-    final w = WebUiSettings(
-      context: context,
-      presentStyle: CropperPresentStyle.dialog,
-      customDialogBuilder: (cropper, crop, rotate) {
-        return Dialog(
-          child: Builder(
-            builder: (context) {
-              return Column(
-                children: [
-                  SizedBox(
-                    width: 500,
-                    height: 500,
-                    child: cropper,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      crop().then((value) {
-                        Navigator.pop(context, value);
-                      }).catchError((e) {});
-                    },
-                    child: const Text('Crop'),
-                  ),
-                ],
-              );
-            },
-          ),
-        );
-      },
-    );
     return Row(
       children: [
         const Expanded(child: SizedBox()),
         Expanded(
           flex: 2,
           child: InkWell(
-            onTap: () {
-              pickImage(webUiSettings: w);
-            },
+            onTap: pickImage,
             child: Container(
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
