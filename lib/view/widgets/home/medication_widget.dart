@@ -50,8 +50,8 @@ class MedicationWidget extends StatelessWidget {
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
-                      bottomLeft: Radius.circular(2),
-                      bottomRight: Radius.circular(2),
+                      bottomLeft: Radius.circular(3),
+                      bottomRight: Radius.circular(3),
                     ),
                     child: CustomCachedNetworkImage(
                       width: AppSize.widthMedicine,

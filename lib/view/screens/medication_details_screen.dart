@@ -61,9 +61,7 @@ class MedicationDetailsScreen extends StatelessWidget {
                   ? MedicationInputForm(
                       medicationModel: cubit.model,
                       isLoading: state is MedicationDetailsLoadingState,
-                      onTapButton: (data) {
-                        cubit.updateMedication(data);
-                      },
+                      onTapButton: cubit.updateMedication,
                     )
                   : ListView(
                       children: [
@@ -161,17 +159,11 @@ class MedicationDetailsScreen extends StatelessWidget {
         const Expanded(child: SizedBox()),
         Expanded(
           flex: 2,
-          child: Container(
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: CustomCachedNetworkImage(
-              width: double.infinity,
-              height: 200,
-              imageUrl: imageUrl,
-              errorWidget: ErrorWidgetShow.picture,
-            ),
+          child: CustomCachedNetworkImage(
+            width: double.infinity,
+            height: 200,
+            imageUrl: imageUrl,
+            errorWidget: ErrorWidgetShow.picture,
           ),
         ),
         const Expanded(child: SizedBox()),

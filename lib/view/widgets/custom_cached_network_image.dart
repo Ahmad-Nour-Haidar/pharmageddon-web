@@ -51,12 +51,8 @@ class CustomCachedNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = min(width / 2, height / 2);
     return Container(
-      height: height,
-      width: width,
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: CachedNetworkImage(
         httpHeaders: const {
           "Connection": "Keep-Alive",
@@ -73,6 +69,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
         ),
         fit: BoxFit.cover,
         width: width,
+        height: height,
         imageUrl: imageUrl,
         errorWidget: (context, url, error) {
           return errorWidgetImp;

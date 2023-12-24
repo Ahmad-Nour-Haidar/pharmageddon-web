@@ -299,15 +299,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
           child: InkWell(
             onTap: pickImage,
             child: Container(
-              clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: AppColor.contentColorBlue,
-                  width: 3,
-                ),
-              ),
-              // _webImage
               child: _webImage != null
                   ? Image.memory(
                       _webImage!,
