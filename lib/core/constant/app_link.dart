@@ -42,6 +42,7 @@ class AppLink {
   // medicine
   static const medicineGetAll = '$_serverApi/medicine/get_all';
   static const medicineGetAllDiscount = '$_serverApi/medicine/get_all_discount';
+  static const medicineGetAllDateExpired = '$_serverApi/medicine/date_expired';
   static const medicineGetAllQuantityExpired =
       '$_serverApi/medicine/quantity_expired';
   static const medicineUpdate = '$_serverApi/medicine/update';

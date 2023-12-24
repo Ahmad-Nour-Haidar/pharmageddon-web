@@ -1,5 +1,6 @@
 import '../../core/class/parent_state.dart';
 
+
 abstract class QuantityExpiredState {}
 
 class QuantityExpiredInitialState extends QuantityExpiredState {}

@@ -5,16 +5,16 @@ import '../../core/constant/app_keys_request.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../model/medication_model.dart';
 import '../medication_details_cubit/medication_details_cubit.dart';
-import 'medication_state.dart';
+import 'date_expired_state.dart';
 
-class MedicationCubit extends Cubit<MedicationState> {
-  MedicationCubit() : super(MedicationInitialState());
+class DateExpiredCubit extends Cubit<DateExpiredState> {
+  DateExpiredCubit() : super(DateExpiredInitialState());
 
-  static MedicationCubit get(BuildContext context) => BlocProvider.of(context);
+  static DateExpiredCubit get(BuildContext context) => BlocProvider.of(context);
   final _medicationsRemoteData = AppInjection.getIt<MedicationsRemoteData>();
   final List<MedicationModel> medications = [];
 
-  void _update(MedicationState state) {
+  void _update(DateExpiredState state) {
     if (isClosed) return;
     emit(state);
   }
@@ -24,16 +24,18 @@ class MedicationCubit extends Cubit<MedicationState> {
   }
 
   Future<void> getData() async {
-    // showMedicationModelDetails = false;
-    _update(MedicationLoadingState());
-    final response = await _medicationsRemoteData.getMedications();
+    _update(DateExpiredLoadingState());
+    final response = await _medicationsRemoteData.getAllDateExpired();
     response.fold((l) {
-      _update(MedicationFailureState(l));
+      _update(DateExpiredFailureState(l));
     }, (r) {
-      final List temp = r[AppRKeys.data][AppRKeys.medicines];
+      final status = r[AppRKeys.status];
       medications.clear();
-      medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
-      _update(MedicationSuccessState());
+      if (status == 200) {
+        final List temp = r[AppRKeys.data][AppRKeys.medicines];
+        medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
+      }
+      _update(DateExpiredSuccessState());
     });
   }
 
@@ -43,12 +45,12 @@ class MedicationCubit extends Cubit<MedicationState> {
   void showDetailsModel(MedicationModel model) {
     medicationModel = model;
     showMedicationModelDetails = true;
-    _update(MedicationChangeState());
+    _update(DateExpiredChangeState());
   }
 
   void closeDetailsModel() {
     showMedicationModelDetails = false;
     AppInjection.getIt<MedicationDetailsCubit>().enableEdit = false;
-    _update(MedicationChangeState());
+    _update(DateExpiredChangeState());
   }
 }

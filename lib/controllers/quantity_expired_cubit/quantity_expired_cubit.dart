@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_web/controllers/quantity_expired_cubit/quantity_expired_state.dart';
-import 'package:pharmageddon_web/data/remote/home_data.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/services/dependency_injection.dart';
+import '../../data/remote/medications_data.dart';
 import '../../model/medication_model.dart';
 import '../medication_details_cubit/medication_details_cubit.dart';
 
@@ -26,7 +26,7 @@ class QuantityExpiredCubit extends Cubit<QuantityExpiredState> {
 
   Future<void> getData() async {
     _update(QuantityExpiredLoadingState());
-    final response = await _medicationsRemoteData.getQuantityExpired();
+    final response = await _medicationsRemoteData.getAllQuantityExpired();
     response.fold((l) {
       _update(QuantityExpiredFailureState(l));
     }, (r) {

@@ -8,7 +8,7 @@ import 'package:pharmageddon_web/core/constant/app_keys_request.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
 import '../../core/functions/check_errors.dart';
 import '../../core/services/dependency_injection.dart';
-import '../../data/remote/home_data.dart';
+import '../../data/remote/medications_data.dart';
 import '../../model/medication_model.dart';
 import 'medication_details_state.dart';
 

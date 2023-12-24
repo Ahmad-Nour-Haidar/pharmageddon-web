@@ -85,10 +85,19 @@ class MedicationsRemoteData {
     return response;
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>> getQuantityExpired() async {
+  Future<Either<ParentState, Map<String, dynamic>>> getAllQuantityExpired() async {
     final token = AppLocalData.user?.authorization;
     final response = await _crud.getData(
       linkUrl: AppLink.medicineGetAllQuantityExpired,
+      token: token,
+    );
+    return response;
+  }
+
+  Future<Either<ParentState, Map<String, dynamic>>> getAllDateExpired() async {
+    final token = AppLocalData.user?.authorization;
+    final response = await _crud.getData(
+      linkUrl: AppLink.medicineGetAllDateExpired,
       token: token,
     );
     return response;

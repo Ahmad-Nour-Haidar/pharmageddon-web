@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmageddon_web/data/remote/home_data.dart';
+import 'package:pharmageddon_web/data/remote/medications_data.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../model/medication_model.dart';
