@@ -143,7 +143,7 @@ class MedicationsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return data.isEmpty
-        ? Center(child: AppInjection.getIt<AppWidget>().noData)
+        ? AppInjection.getIt<AppWidget>().noData
         : ListView(
             children: [
               Text(

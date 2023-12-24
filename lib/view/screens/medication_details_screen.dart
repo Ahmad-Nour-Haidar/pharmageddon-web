@@ -11,6 +11,7 @@ import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/services/dependency_injection.dart';
 import 'package:pharmageddon_web/model/medication_model.dart';
+import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/custom_cached_network_image.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
 import 'package:pharmageddon_web/view/widgets/medication_input_form.dart';
@@ -42,8 +43,12 @@ class MedicationDetailsScreen extends StatelessWidget {
           handleState(state: state.state, context: context);
         }
         if (state is MedicationDetailsSuccessState) {
-          onSuccess();
-          handleState(state: state.state, context: context);
+          handleState(
+              state: state.state,
+              context: context,
+              onOk: () {
+                onSuccess();
+              });
         }
       },
       builder: (context, state) {
@@ -166,24 +171,27 @@ class MedicationDetailsScreen extends StatelessWidget {
     );
   }
 
-  Row buildRowTop(MedicationDetailsCubit cubit) {
+  Widget buildRowTop(MedicationDetailsCubit cubit) {
     return Row(
       children: [
-        IconButton(
-            onPressed: onTapClose,
-            icon: const SvgImage(
-              path: AppSvg.close,
-              color: AppColor.contentColorBlue,
-              size: 26,
-            )),
-        const Spacer(),
-        IconButton(
-            onPressed: cubit.onTapEdit,
-            icon: const SvgImage(
-              path: AppSvg.edit,
-              color: AppColor.contentColorBlue,
-              size: 26,
-            )),
+        Expanded(
+          child: IconButton(
+              onPressed: onTapClose,
+              icon: const SvgImage(
+                path: AppSvg.close,
+                color: AppColor.contentColorBlue,
+                size: 26,
+              )),
+        ),
+        Expanded(
+          child: IconButton(
+              onPressed: cubit.onTapEdit,
+              icon: const SvgImage(
+                path: AppSvg.edit,
+                color: AppColor.contentColorBlue,
+                size: 26,
+              )),
+        ),
       ],
     );
   }

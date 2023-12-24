@@ -60,6 +60,7 @@ class TextInputField extends StatelessWidget {
         focusedBorder: _border,
         enabledBorder: _border,
         disabledBorder: _borderDisabled,
+        errorBorder: _borderErrorBorder,
         focusedErrorBorder: _borderErrorBorder,
       ),
     );

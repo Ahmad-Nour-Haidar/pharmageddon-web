@@ -54,7 +54,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     response.fold((l) {
       _update(MedicationDetailsFailureState(l));
     }, (r) {
-      printme.printFullText(r);
+      // printme.printFullText(r);
       final status = r[AppRKeys.status];
       if (status == 400) {
         final s =

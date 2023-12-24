@@ -12,6 +12,7 @@ import '../../controllers/auth/reset_password_cubit/reset_password_cubit.dart';
 import '../../controllers/auth/verify_code_cubit/verify_code_cubit.dart';
 import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/local_controller.dart';
+import '../../controllers/manufacturer_cubit/manufacturer_cubit.dart';
 import '../../controllers/medication_cubit/medication_cubit.dart';
 import '../../controllers/medication_details_cubit/medication_details_cubit.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
@@ -55,6 +56,7 @@ class AppInjection {
     getIt.registerLazySingleton(() => SearchCubit());
     getIt.registerLazySingleton(() => MedicationDetailsCubit());
     getIt.registerLazySingleton(() => MedicationCubit());
+    getIt.registerLazySingleton(() => ManufacturerCubit());
     getIt.registerFactory(() => ReportsCubit());
 
     /// data

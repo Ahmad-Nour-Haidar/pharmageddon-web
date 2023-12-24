@@ -6,6 +6,7 @@ import 'package:pharmageddon_web/controllers/search_cubit/search_cubit.dart';
 import 'package:pharmageddon_web/model/user_model.dart';
 import 'package:pharmageddon_web/routes.dart';
 import 'controllers/local_controller.dart';
+import 'controllers/manufacturer_cubit/manufacturer_cubit.dart';
 import 'controllers/medication_cubit/medication_cubit.dart';
 import 'controllers/medication_details_cubit/medication_details_cubit.dart';
 import 'core/constant/app_local_data.dart';
@@ -50,7 +51,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<MedicationCubit>(
           create: (context) => AppInjection.getIt<MedicationCubit>(),
-        )
+        ),
+        BlocProvider<ManufacturerCubit>(
+          create: (context) => AppInjection.getIt<ManufacturerCubit>(),
+        ),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -60,7 +64,6 @@ class MyApp extends StatelessWidget {
         theme: themeData(),
         routes: routes,
         initialRoute: initialRoute,
-        // home: const RegisterScreen(),
       ),
     );
   }

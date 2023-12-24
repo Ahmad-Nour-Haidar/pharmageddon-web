@@ -65,9 +65,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
 
   @override
   void didUpdateWidget(covariant MedicationInputForm oldWidget) {
-    if (_model == null || _model?.id != widget.medicationModel?.id) {
-      initial(widget.medicationModel);
-    }
+    initial(widget.medicationModel);
     super.didUpdateWidget(oldWidget);
   }
 

@@ -6,6 +6,7 @@ import '../../core/class/parent_state.dart';
 void handleState({
   required ParentState state,
   required BuildContext context,
+  void Function()? onOk,
 }) {
   switch (state.runtimeType) {
     case OfflineState:
@@ -41,6 +42,7 @@ void handleState({
           context: context,
           title: state.message,
           dialogType: DialogType.success,
+          onOk: onOk,
         );
         return;
       }
@@ -60,11 +62,13 @@ void showAwesomeHandleState({
   required BuildContext context,
   required String title,
   required DialogType dialogType,
+  void Function()? onOk,
 }) {
   AwesomeDialog(
     context: context,
     width: AppSize.width * .5,
     title: title,
     dialogType: dialogType,
+    btnOkOnPress: onOk,
   ).show();
 }

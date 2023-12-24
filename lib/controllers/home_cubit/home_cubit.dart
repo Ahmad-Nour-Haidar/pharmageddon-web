@@ -4,6 +4,7 @@ import 'package:pharmageddon_web/core/constant/app_link.dart';
 import 'package:pharmageddon_web/view/screens/medication_screen.dart';
 import 'package:pharmageddon_web/view/screens/search_screen.dart';
 import '../../core/enums/drawer_enum.dart';
+import '../../view/screens/manufacturer_screen.dart';
 import '../../view/screens/reports_screen.dart';
 import 'home_state.dart';
 
@@ -39,7 +40,7 @@ class HomeCubit extends Cubit<HomeState> {
       case ScreenView.all:
         return const MedicationScreen(url: AppLink.medicineGetAll);
       case ScreenView.manufacturer:
-        return const SizedBox();
+        return const ManufacturerScreen();
       case ScreenView.effectCategories:
         return const SizedBox();
       case ScreenView.discounts:

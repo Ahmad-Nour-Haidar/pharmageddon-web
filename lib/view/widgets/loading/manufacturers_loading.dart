@@ -6,42 +6,30 @@ import '../../../core/functions/functions.dart';
 import 'custom_shimmer.dart';
 
 class ManufacturersLoading extends StatelessWidget {
-  const ManufacturersLoading({
-    super.key,
-    required this.onRefresh,
-  });
-
-  final Future<void> Function() onRefresh;
+  const ManufacturersLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: RefreshIndicator(
-        onRefresh: onRefresh,
-        child: ListView(
-          children: [
-            Center(
-              child: Wrap(
-                spacing: 30,
-                runSpacing: 20,
-                children: List.generate(
-                  getRandom(),
-                  (index) => CustomShimmer(
-                    child: Container(
-                      height: 100,
-                      width: AppSize.widthManufacturer.toInt().toDouble(),
-                      decoration: BoxDecoration(
-                        color: AppColor.white,
-                        borderRadius: BorderRadius.circular(AppSize.radius10),
-                      ),
-                    ),
-                  ),
+    return ListView(
+      children: [
+        Wrap(
+          spacing: 30,
+          runSpacing: 20,
+          children: List.generate(
+            getRandom(),
+            (index) => CustomShimmer(
+              child: Container(
+                height: AppSize.widthManufacturer,
+                width: AppSize.widthManufacturer,
+                decoration: BoxDecoration(
+                  color: AppColor.white,
+                  borderRadius: BorderRadius.circular(AppSize.radius10),
                 ),
               ),
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
