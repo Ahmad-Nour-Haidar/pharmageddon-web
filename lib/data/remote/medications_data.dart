@@ -12,18 +12,10 @@ class MedicationsRemoteData {
   final _crud = AppInjection.getIt<Crud>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getMedications({
-    String url = AppLink.medicineGetAll,
+    required String url,
   }) async {
     final token = AppLocalData.user?.authorization;
     return await _crud.getData(linkUrl: url, token: token);
-  }
-
-  Future<Either<ParentState, Map<String, dynamic>>> getDiscount() async {
-    final token = AppLocalData.user?.authorization;
-    return await _crud.getData(
-      linkUrl: AppLink.medicineGetAllDiscount,
-      token: token,
-    );
   }
 
   Future<Either<ParentState, Map<String, dynamic>>>
@@ -31,14 +23,6 @@ class MedicationsRemoteData {
     final token = AppLocalData.user?.authorization;
     return await _crud.getData(
       linkUrl: AppLink.effectCategoriesGetAll,
-      token: token,
-    );
-  }
-
-  Future<Either<ParentState, Map<String, dynamic>>> getManufacturers() async {
-    final token = AppLocalData.user?.authorization;
-    return await _crud.getData(
-      linkUrl: AppLink.manufacturerGetAll,
       token: token,
     );
   }
@@ -76,23 +60,6 @@ class MedicationsRemoteData {
       linkUrl: AppLink.medicineDelete,
       token: token,
       queryParameters: queryParameters,
-    );
-  }
-
-  Future<Either<ParentState, Map<String, dynamic>>>
-      getAllQuantityExpired() async {
-    final token = AppLocalData.user?.authorization;
-    return await _crud.getData(
-      linkUrl: AppLink.medicineGetAllQuantityExpired,
-      token: token,
-    );
-  }
-
-  Future<Either<ParentState, Map<String, dynamic>>> getAllDateExpired() async {
-    final token = AppLocalData.user?.authorization;
-    return await _crud.getData(
-      linkUrl: AppLink.medicineGetAllDateExpired,
-      token: token,
     );
   }
 }

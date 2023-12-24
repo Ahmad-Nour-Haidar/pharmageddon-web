@@ -51,14 +51,19 @@ class AppLink {
   static const medicineImage = '$_serverImage/medicines';
 
   // manufacturer
+  static const manufacturerCreate = '$_serverApi/manufacturer/create';
+  static const manufacturerUpdate = '$_serverApi/manufacturer/update';
   static const manufacturerGetAll = '$_serverApi/manufacturer/get_all_c';
+  static const manufacturerGetAllM = '$_serverApi/manufacturer/get_all_m';
   static const manufacturerGetAllMedicines = '$_serverApi/class/manufacturer';
 
   // effect categories
-  static const effectCategoriesImage = '$_serverImage/effect_categories';
   static const effectCategoriesGetAll = '$_serverApi/effect_category/get_all_c';
+  static const effectCategoriesGetAllM =
+      '$_serverApi/effect_category/get_all_m';
   static const effectCategoriesGetAllMedicines =
       '$_serverApi/class/effect_category';
+  static const effectCategoriesImage = '$_serverImage/effect_categories';
 
   // search
   static const search = '$_serverApi/search';

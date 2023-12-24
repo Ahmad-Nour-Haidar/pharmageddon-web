@@ -18,7 +18,7 @@ import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
 import '../../data/remote/auth_data.dart';
-import '../../data/remote/manufacturer_medicines_data.dart';
+import '../../data/remote/manufacturer_data.dart';
 import '../../data/remote/medications_data.dart';
 import '../../my_bloc_observer.dart';
 import '../class/image_helper.dart';
@@ -59,7 +59,7 @@ class AppInjection {
 
     /// data
     getIt.registerFactory(() => MedicationsRemoteData());
-    getIt.registerFactory(() => ManufacturerMedicinesRemoteData());
+    getIt.registerFactory(() => ManufacturerRemoteData());
     getIt.registerFactory(() => EffectMedicinesRemoteData());
     getIt.registerFactory(() => OrderRemoteData());
     getIt.registerFactory(() => ReportsRemoteData());
