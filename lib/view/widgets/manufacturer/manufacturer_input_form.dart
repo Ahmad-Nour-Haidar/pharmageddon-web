@@ -15,13 +15,14 @@ import '../../../core/resources/app_text_theme.dart';
 class ManufacturerInputForm extends StatefulWidget {
   const ManufacturerInputForm({
     super.key,
-    this.manufacturerModel,
     required this.onTapButton,
     required this.isLoading,
+    this.manufacturerModel,
+    this.physics,
   });
 
   final ManufacturerModel? manufacturerModel;
-
+  final ScrollPhysics? physics;
   final void Function(Map<String, String> data) onTapButton;
   final bool isLoading;
 
@@ -75,6 +76,8 @@ class _ManufacturerInputFormState extends State<ManufacturerInputForm> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: ListView(
+          physics: widget.physics ?? const AlwaysScrollableScrollPhysics(),
+          shrinkWrap: true,
           children: [
             const Gap(10),
             TextInputField(

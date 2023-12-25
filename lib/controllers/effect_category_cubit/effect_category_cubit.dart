@@ -92,7 +92,7 @@ class EffectCategoryCubit extends Cubit<EffectCategoryState> {
 
   // this to show medicines model
   bool showMedicinesEffectCategoryModel = false;
-  late EffectCategoryModel effectCategoryModel = EffectCategoryModel();
+  var effectCategoryModel = EffectCategoryModel();
 
   String get getUrlMedicinesModel {
     return buildUrl(

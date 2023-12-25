@@ -18,18 +18,19 @@ import '../../../core/constant/app_text.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/resources/app_text_theme.dart';
 import '../../../core/services/dependency_injection.dart';
-import '../custom_cached_network_image.dart';
+import '../get_image_from_url_and_memory.dart';
 
 class EffectCategoryInputForm extends StatefulWidget {
   const EffectCategoryInputForm({
     super.key,
-    this.effectCategoryModel,
     required this.onTapButton,
     required this.isLoading,
+    this.effectCategoryModel,
+    this.physics,
   });
 
   final EffectCategoryModel? effectCategoryModel;
-
+  final ScrollPhysics? physics;
   final void Function(Map<String, Object?> data, File? file) onTapButton;
   final bool isLoading;
 
@@ -108,8 +109,16 @@ class _EffectCategoryInputFormState extends State<EffectCategoryInputForm> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: ListView(
+          physics: widget.physics ?? const AlwaysScrollableScrollPhysics(),
+          shrinkWrap: true,
           children: [
-            image(),
+            GetImageFromUrlAndMemory(
+              url: getEffectCategoryImage(_model),
+              size: 100,
+              onTap: pickImage,
+              callUrl: _model != null,
+              webImage: _webImage,
+            ),
             const Gap(10),
             TextInputField(
               validator: (value) {
@@ -152,35 +161,6 @@ class _EffectCategoryInputFormState extends State<EffectCategoryInputForm> {
           ],
         ),
       ),
-    );
-  }
-
-  Row image() {
-    return Row(
-      children: [
-        const Expanded(child: SizedBox()),
-        InkWell(
-          onTap: pickImage,
-          child: SizedBox(
-            width: 100,
-            height: 100,
-            child: _webImage != null
-                ? Image.memory(
-                    _webImage!,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: 100,
-                  )
-                : CustomCachedNetworkImage(
-                    width: double.infinity,
-                    height: 100,
-                    imageUrl: getEffectCategoryImage(_model),
-                    errorWidget: ErrorWidgetShow.picture,
-                  ),
-          ),
-        ),
-        const Expanded(child: SizedBox()),
-      ],
     );
   }
 

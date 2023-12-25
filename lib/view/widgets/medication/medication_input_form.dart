@@ -21,18 +21,19 @@ import '../../../core/resources/app_text_theme.dart';
 import '../../../core/services/dependency_injection.dart';
 import '../../../model/medication_model.dart';
 import '../build_row_two_widgets.dart';
-import '../custom_cached_network_image.dart';
+import '../get_image_from_url_and_memory.dart';
 
 class MedicationInputForm extends StatefulWidget {
   const MedicationInputForm({
     super.key,
-    this.medicationModel,
     required this.onTapButton,
     required this.isLoading,
+    this.medicationModel,
+    this.physics,
   });
 
   final MedicationModel? medicationModel;
-
+  final ScrollPhysics? physics;
   final void Function(Map<String, Object?> data, File? file) onTapButton;
   final bool isLoading;
 
@@ -140,8 +141,16 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: ListView(
+          physics: widget.physics ?? const AlwaysScrollableScrollPhysics(),
+          shrinkWrap: true,
           children: [
-            image(),
+            GetImageFromUrlAndMemory(
+              url: getUrlImageMedication(_model),
+              size: 200,
+              onTap: pickImage,
+              callUrl: _model != null,
+              webImage: _webImage,
+            ),
             const Gap(15),
             BuildRow(
               widget1: TextInputField(
@@ -249,7 +258,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                 ),
               ),
             ),
-            const Gap(20),
+            const Gap(15),
             Row(
               children: [
                 const Expanded(child: SizedBox()),
@@ -266,7 +275,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                 const Expanded(child: SizedBox()),
               ],
             ),
-            const Gap(30),
+            const Gap(10),
           ],
         ),
       ),
@@ -287,36 +296,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
     if (date != null) {
       expirationDate = date;
     }
-  }
-
-  Row image() {
-    return Row(
-      children: [
-        const Expanded(child: SizedBox()),
-        Expanded(
-          flex: 2,
-          child: InkWell(
-            onTap: pickImage,
-            child: Container(
-              child: _webImage != null
-                  ? Image.memory(
-                      _webImage!,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: 200,
-                    )
-                  : CustomCachedNetworkImage(
-                      width: double.infinity,
-                      height: 200,
-                      imageUrl: getUrlImageMedication(_model),
-                      errorWidget: ErrorWidgetShow.picture,
-                    ),
-            ),
-          ),
-        ),
-        const Expanded(child: SizedBox()),
-      ],
-    );
   }
 
   @override

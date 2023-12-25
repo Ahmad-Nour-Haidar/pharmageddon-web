@@ -42,7 +42,7 @@ class MedicationCubit extends Cubit<MedicationState> {
   }
 
   bool showMedicationModelDetails = false;
-  late MedicationModel medicationModel;
+  var medicationModel = MedicationModel();
 
   void showDetailsModel(MedicationModel model) {
     medicationModel = model;
