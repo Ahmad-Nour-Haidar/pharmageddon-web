@@ -219,7 +219,7 @@ class MyTranslation extends Translations {
           AppText.unPaid: 'غير مدفوع',
           AppText.add: 'اضافة',
           AppText.reports: 'التقارير',
-          AppText.orders: 'طلبات',
+          AppText.orders: 'الطلبات',
           AppText.hasBeenSent: 'تم الارسال',
           AppText.received: 'تم الاستلام',
           AppText.preparing: 'قيد التحضير',

@@ -23,11 +23,7 @@ class MedicationCubit extends Cubit<MedicationState> {
     getData(url);
   }
 
-  var lastUrl = '';
-
   Future<void> getData(String url) async {
-    if (lastUrl == url) return;
-    lastUrl = url;
     showMedicationModelDetails = false;
     _update(MedicationLoadingState());
     _medicationsRemoteData.getMedications(url: url).then((response) {

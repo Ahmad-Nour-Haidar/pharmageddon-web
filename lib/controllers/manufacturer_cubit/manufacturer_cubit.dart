@@ -78,7 +78,7 @@ class ManufacturerCubit extends Cubit<ManufacturerState> {
 
   // this to show medicines model
   bool showMedicinesManufacturerModel = false;
-  late ManufacturerModel manufacturerModel;
+  var manufacturerModel = ManufacturerModel();
 
   String get getUrlMedicinesModel {
     return buildUrl(

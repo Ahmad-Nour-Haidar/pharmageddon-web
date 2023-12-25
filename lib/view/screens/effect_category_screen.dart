@@ -9,7 +9,6 @@ import 'package:pharmageddon_web/view/widgets/effect_category/effect_category_wi
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
 import 'package:pharmageddon_web/view/widgets/loading/effect_category_loading.dart';
 
-import '../../controllers/manufacturer_cubit/manufacturer_state.dart';
 import '../../core/constant/app_color.dart';
 import 'medication_screen.dart';
 
@@ -56,7 +55,7 @@ class EffectCategoryScreen extends StatelessWidget {
                                 effectCategoryModel: cubit.effectCategoryModel,
                                 onTapButton: cubit.updateEffectCategory,
                                 isLoading:
-                                    state is ManufacturerEditLoadingState,
+                                    state is EffectCategoryEditLoadingState,
                               ),
                             )
                           ],

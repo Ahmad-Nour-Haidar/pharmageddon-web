@@ -25,6 +25,8 @@ class EffectCategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isSelected =
+        AppInjection.getIt<EffectCategoryCubit>().effectCategoryModel == model;
     return InkWell(
       onTap: () {
         AppInjection.getIt<EffectCategoryCubit>().showMedicinesOfModel(model);
@@ -40,6 +42,10 @@ class EffectCategoryWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColor.white,
             borderRadius: BorderRadius.circular(AppSize.radius10),
+            border: Border.all(
+              color: isSelected ? AppColor.primaryColor : AppColor.white,
+              width: 3,
+            ),
           ),
           child: Column(
             children: [

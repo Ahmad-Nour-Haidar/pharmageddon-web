@@ -29,4 +29,23 @@ class EffectCategoryModel {
     data['active'] = active;
     return data;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EffectCategoryModel &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          arabicName == other.arabicName &&
+          englishName == other.englishName &&
+          imageName == other.imageName &&
+          active == other.active;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      arabicName.hashCode ^
+      englishName.hashCode ^
+      imageName.hashCode ^
+      active.hashCode;
 }

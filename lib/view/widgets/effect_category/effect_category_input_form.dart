@@ -30,7 +30,7 @@ class EffectCategoryInputForm extends StatefulWidget {
 
   final EffectCategoryModel? effectCategoryModel;
 
-  final void Function(Map<String, Object?> data) onTapButton;
+  final void Function(Map<String, Object?> data, File? file) onTapButton;
   final bool isLoading;
 
   @override
@@ -61,6 +61,7 @@ class _EffectCategoryInputFormState extends State<EffectCategoryInputForm> {
 
   void initial(EffectCategoryModel? effectCategoryModel) {
     if (effectCategoryModel == null) return;
+    if (_model == effectCategoryModel) return;
     _model = effectCategoryModel;
     _nameArCon.text = _model!.arabicName.toString();
     _nameEnCon.text = _model!.englishName.toString();
@@ -73,9 +74,8 @@ class _EffectCategoryInputFormState extends State<EffectCategoryInputForm> {
       AppRKeys.id: _model == null ? '' : _model!.id.toString(),
       AppRKeys.arabic_name: _nameArCon.text,
       AppRKeys.english_name: _nameEnCon.text,
-      AppRKeys.image: _pickedImage,
     };
-    widget.onTapButton(data);
+    widget.onTapButton(data, _pickedImage);
   }
 
   Future<void> pickImage() async {

@@ -49,6 +49,7 @@ class _ManufacturerInputFormState extends State<ManufacturerInputForm> {
 
   void initial(ManufacturerModel? manufacturerModel) {
     if (manufacturerModel == null) return;
+    if (_model == manufacturerModel) return;
     _model = manufacturerModel;
     _nameArCon.text = _model!.arabicName.toString();
     _nameEnCon.text = _model!.englishName.toString();

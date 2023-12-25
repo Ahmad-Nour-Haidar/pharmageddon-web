@@ -38,15 +38,8 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
     _update(MedicationDetailsChangeState());
   }
 
-  Future<void> updateMedication(Map<String, Object?> data) async {
+  Future<void> updateMedication(Map<String, Object?> data, File? file) async {
     _update(MedicationDetailsLoadingState());
-    // todo
-    data[AppRKeys.id] = model.id;
-    File? file;
-    if (data[AppRKeys.image] != null) {
-      file = data[AppRKeys.image] as File;
-    }
-    data.remove(AppRKeys.image);
     final response = await _medicationsRemoteData.updateMedication(
       data: data,
       file: file,

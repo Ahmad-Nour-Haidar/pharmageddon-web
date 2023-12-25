@@ -17,14 +17,14 @@ class ManufacturerWidget extends StatelessWidget {
   const ManufacturerWidget({
     super.key,
     required this.model,
-    required this.onTapCard,
   });
 
   final ManufacturerModel model;
-  final void Function(ManufacturerModel model) onTapCard;
 
   @override
   Widget build(BuildContext context) {
+    final isSelected =
+        AppInjection.getIt<ManufacturerCubit>().manufacturerModel == model;
     return InkWell(
       onTap: () {
         AppInjection.getIt<ManufacturerCubit>().showMedicinesOfModel(model);
@@ -36,6 +36,10 @@ class ManufacturerWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColor.cardColor,
           borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: isSelected ? AppColor.primaryColor : AppColor.white,
+            width: 3,
+          ),
         ),
         child: Column(
           children: [
@@ -70,11 +74,9 @@ class ManufacturersListWidget extends StatelessWidget {
   const ManufacturersListWidget({
     super.key,
     required this.data,
-    required this.onTapCard,
   });
 
   final List<ManufacturerModel> data;
-  final void Function(ManufacturerModel model) onTapCard;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +91,6 @@ class ManufacturersListWidget extends StatelessWidget {
                   data.length,
                   (index) => ManufacturerWidget(
                     model: data[index],
-                    onTapCard: onTapCard,
                   ),
                 ),
               ),

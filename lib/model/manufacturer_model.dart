@@ -21,4 +21,21 @@ class ManufacturerModel {
     data['active'] = active;
     return data;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ManufacturerModel &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          arabicName == other.arabicName &&
+          englishName == other.englishName &&
+          active == other.active;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      arabicName.hashCode ^
+      englishName.hashCode ^
+      active.hashCode;
 }

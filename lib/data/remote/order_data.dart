@@ -6,7 +6,7 @@ import '../../core/services/dependency_injection.dart';
 import '../crud_dio.dart';
 
 class OrderRemoteData {
-  final _crud = AppInjection.getIt<Crud>();
+  final _crud = AppInjection.getIt<CrudDio>();
 
   /// has_been_sent, preparing, received
   Future<Either<ParentState, Map<String, dynamic>>> updateOrderStatus({

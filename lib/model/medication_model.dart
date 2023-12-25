@@ -92,4 +92,47 @@ class MedicationModel {
     }
     return data;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MedicationModel &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          englishScientificName == other.englishScientificName &&
+          arabicScientificName == other.arabicScientificName &&
+          englishCommercialName == other.englishCommercialName &&
+          arabicCommercialName == other.arabicCommercialName &&
+          availableQuantity == other.availableQuantity &&
+          price == other.price &&
+          discount == other.discount &&
+          priceAfterDiscount == other.priceAfterDiscount &&
+          isFavourite == other.isFavourite &&
+          arabicDescription == other.arabicDescription &&
+          englishDescription == other.englishDescription &&
+          imageName == other.imageName &&
+          expirationDate == other.expirationDate &&
+          createdAt == other.createdAt &&
+          manufacturer == other.manufacturer &&
+          effectCategory == other.effectCategory;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      englishScientificName.hashCode ^
+      arabicScientificName.hashCode ^
+      englishCommercialName.hashCode ^
+      arabicCommercialName.hashCode ^
+      availableQuantity.hashCode ^
+      price.hashCode ^
+      discount.hashCode ^
+      priceAfterDiscount.hashCode ^
+      isFavourite.hashCode ^
+      arabicDescription.hashCode ^
+      englishDescription.hashCode ^
+      imageName.hashCode ^
+      expirationDate.hashCode ^
+      createdAt.hashCode ^
+      manufacturer.hashCode ^
+      effectCategory.hashCode;
 }

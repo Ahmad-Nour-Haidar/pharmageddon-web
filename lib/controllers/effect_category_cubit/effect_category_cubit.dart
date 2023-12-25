@@ -55,12 +55,10 @@ class EffectCategoryCubit extends Cubit<EffectCategoryState> {
     }).catchError((e) {});
   }
 
-  Future<void> updateEffectCategory(Map<String, Object?> data) async {
-    File? file;
-    if (data[AppRKeys.image] != null) {
-      file = data[AppRKeys.image] as File;
-    }
-    data.remove(AppRKeys.image);
+  Future<void> updateEffectCategory(
+    Map<String, Object?> data,
+    File? file,
+  ) async {
     _update(EffectCategoryEditLoadingState());
     _effectCategoryRemoteData
         .updateEffectCategory(
@@ -82,7 +80,7 @@ class EffectCategoryCubit extends Cubit<EffectCategoryState> {
           _update(EffectCategoryFailureState(WarningState(message: s)));
         } else if (status == 200) {
           showDetailsEffectCategoryModel = false;
-          final json = r[AppRKeys.data][AppRKeys.manufacturer];
+          final json = r[AppRKeys.data][AppRKeys.effect_category];
           effectCategoryModel = EffectCategoryModel.fromJson(json);
           _update(EffectCategoryEditSuccessState(
               SuccessState(message: AppText.updatedSuccessfully.tr)));
@@ -94,7 +92,7 @@ class EffectCategoryCubit extends Cubit<EffectCategoryState> {
 
   // this to show medicines model
   bool showMedicinesEffectCategoryModel = false;
-  late EffectCategoryModel effectCategoryModel;
+  late EffectCategoryModel effectCategoryModel = EffectCategoryModel();
 
   String get getUrlMedicinesModel {
     return buildUrl(

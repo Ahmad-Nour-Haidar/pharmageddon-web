@@ -33,7 +33,7 @@ class MedicationInputForm extends StatefulWidget {
 
   final MedicationModel? medicationModel;
 
-  final void Function(Map<String, Object?> data) onTapButton;
+  final void Function(Map<String, Object?> data, File? file) onTapButton;
   final bool isLoading;
 
   @override
@@ -70,8 +70,9 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   }
 
   void initial(MedicationModel? medicationModel) {
+    if (medicationModel == null) return;
+    if (_model == medicationModel) return;
     _model = medicationModel;
-    if (_model == null) return;
     _scientificNameArCon.text = _model!.arabicScientificName.toString();
     _scientificNameEnCon.text = _model!.englishScientificName.toString();
     _commercialNameArCon.text = _model!.arabicCommercialName.toString();
@@ -88,6 +89,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   void onTapButton() {
     if (!_formKey.currentState!.validate()) return;
     final data = {
+      AppRKeys.id: _model == null ? '' : _model!.id.toString(),
       AppRKeys.english_scientific_name: _scientificNameEnCon.text,
       AppRKeys.arabic_scientific_name: _scientificNameArCon.text,
       AppRKeys.english_commercial_name: _commercialNameEnCon.text,
@@ -97,9 +99,8 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
       AppRKeys.price: _priceCon.text,
       AppRKeys.english_description: _descEnCon.text,
       AppRKeys.arabic_description: _descArCon.text,
-      AppRKeys.image: _pickedImage,
     };
-    widget.onTapButton(data);
+    widget.onTapButton(data, _pickedImage);
   }
 
   set expirationDate(DateTime value) {

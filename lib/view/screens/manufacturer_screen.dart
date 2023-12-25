@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:pharmageddon_web/view/widgets/build_row_edit_close.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
 import 'package:pharmageddon_web/view/widgets/manufacturer/manufacturer_input_form.dart';
@@ -30,7 +29,6 @@ class ManufacturerScreen extends StatelessWidget {
       builder: (context, state) {
         Widget body = ManufacturersListWidget(
           data: cubit.manufacturers,
-          onTapCard: cubit.showMedicinesOfModel,
         );
         if (state is ManufacturerLoadingState) {
           body = const ManufacturersLoading();
@@ -64,7 +62,6 @@ class ManufacturerScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  const Gap(10),
                   Expanded(flex: 3, child: body),
                 ],
               ),

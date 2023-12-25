@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:pharmageddon_web/data/crud_http.dart';
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_link.dart';
@@ -8,12 +9,13 @@ import '../../core/services/dependency_injection.dart';
 import '../crud_dio.dart';
 
 class AuthRemoteData {
-  final _crud = AppInjection.getIt<Crud>();
+  final _crudDio = AppInjection.getIt<CrudDio>();
+  final _crudHttp = AppInjection.getIt<CrudHttp>();
 
   Future<Either<ParentState, Map<String, dynamic>>> login({
     required Map<String, dynamic> data,
   }) async {
-    final response = await _crud.postData(
+    final response = await _crudDio.postData(
       data: data,
       linkUrl: AppLink.login,
     );
@@ -23,7 +25,7 @@ class AuthRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> register({
     required Map<String, dynamic> data,
   }) async {
-    final response = await _crud.postData(
+    final response = await _crudDio.postData(
       data: data,
       linkUrl: AppLink.register,
     );
@@ -33,7 +35,7 @@ class AuthRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> verify({
     required Map<String, dynamic> data,
   }) async {
-    final response = await _crud.postData(
+    final response = await _crudDio.postData(
       data: data,
       linkUrl: AppLink.checkVerifyCode,
     );
@@ -43,7 +45,7 @@ class AuthRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getVerificationCode({
     required Map<String, dynamic> data,
   }) async {
-    final response = await _crud.postData(
+    final response = await _crudDio.postData(
       data: data,
       linkUrl: AppLink.sendVerificationCode,
     );
@@ -53,7 +55,7 @@ class AuthRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> checkEmail({
     required Map<String, dynamic> data,
   }) async {
-    final response = await _crud.postData(
+    final response = await _crudDio.postData(
       data: data,
       linkUrl: AppLink.checkEmail,
     );
@@ -63,7 +65,7 @@ class AuthRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> resetPassword({
     required Map<String, dynamic> data,
   }) async {
-    var response = await _crud.postData(
+    var response = await _crudDio.postData(
       data: data,
       linkUrl: AppLink.resetPassword,
     );
@@ -75,7 +77,7 @@ class AuthRemoteData {
     File? file,
   }) async {
     final token = AppLocalData.user!.authorization!;
-    return await _crud.requestWithFileUsingHttp(
+    return await _crudHttp.requestWithFile(
       data: data,
       token: token,
       linkUrl: AppLink.updateUser,
@@ -86,7 +88,7 @@ class AuthRemoteData {
 
   Future<Either<ParentState, Map<String, dynamic>>> logout() async {
     final token = AppLocalData.user!.authorization!;
-    var response = await _crud.deleteData(
+    var response = await _crudDio.deleteData(
       data: {},
       token: token,
       linkUrl: AppLink.logout,
