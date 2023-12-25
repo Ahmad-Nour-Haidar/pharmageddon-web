@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:pharmageddon_web/view/widgets/build_row_edit_close.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
-import 'package:pharmageddon_web/view/widgets/manufacturer_input_form.dart';
+import 'package:pharmageddon_web/view/widgets/manufacturer/manufacturer_input_form.dart';
 
 import '../../controllers/manufacturer_cubit/manufacturer_cubit.dart';
 import '../../controllers/manufacturer_cubit/manufacturer_state.dart';
 import '../../core/constant/app_color.dart';
 import '../widgets/loading/manufacturers_loading.dart';
-import '../widgets/manufacturers_widget.dart';
+import '../widgets/manufacturer/manufacturers_widget.dart';
 import 'medication_screen.dart';
 
 class ManufacturerScreen extends StatelessWidget {
@@ -41,15 +41,15 @@ class ManufacturerScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (cubit.showManufacturerModel)
+                  if (cubit.showDetailsManufacturerModel)
                     Expanded(
+                      flex: 2,
                       child: SizedBox(
                         width: 500,
                         child: Column(
                           children: [
                             BuildRowEditClose(
                               onTapClose: cubit.closeDetailsModel,
-                              onTapEdit: () {},
                               showEdit: false,
                             ),
                             Expanded(
@@ -65,7 +65,7 @@ class ManufacturerScreen extends StatelessWidget {
                       ),
                     ),
                   const Gap(10),
-                  Expanded(flex: 2, child: body),
+                  Expanded(flex: 3, child: body),
                 ],
               ),
             ),

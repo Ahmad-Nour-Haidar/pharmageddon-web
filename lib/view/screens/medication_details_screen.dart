@@ -12,7 +12,7 @@ import 'package:pharmageddon_web/core/services/dependency_injection.dart';
 import 'package:pharmageddon_web/model/medication_model.dart';
 import 'package:pharmageddon_web/view/widgets/custom_cached_network_image.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
-import 'package:pharmageddon_web/view/widgets/medication_input_form.dart';
+import 'package:pharmageddon_web/view/widgets/medication/medication_input_form.dart';
 
 import '../../controllers/medication_details_cubit/medication_details_state.dart';
 import '../widgets/build_row_edit_close.dart';

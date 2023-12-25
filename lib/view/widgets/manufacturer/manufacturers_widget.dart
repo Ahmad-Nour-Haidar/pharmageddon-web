@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:pharmageddon_web/controllers/manufacturer_cubit/manufacturer_cubit.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 
-import '../../../core/services/dependency_injection.dart';
-import '../../../model/manufacturer_model.dart';
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_size.dart';
-import '../../core/constant/app_svg.dart';
-import '../../core/functions/functions.dart';
-import '../../core/resources/app_text_theme.dart';
-import 'app_widget.dart';
+import '../../../../core/services/dependency_injection.dart';
+import '../../../../model/manufacturer_model.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_padding.dart';
+import '../../../core/constant/app_size.dart';
+import '../../../core/constant/app_svg.dart';
+import '../../../core/functions/functions.dart';
+import '../../../core/resources/app_text_theme.dart';
+import '../app_widget.dart';
 
 class ManufacturerWidget extends StatelessWidget {
   const ManufacturerWidget({

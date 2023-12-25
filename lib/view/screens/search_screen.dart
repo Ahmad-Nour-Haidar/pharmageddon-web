@@ -5,13 +5,13 @@ import 'package:pharmageddon_web/controllers/search_cubit/search_cubit.dart';
 import 'package:pharmageddon_web/controllers/search_cubit/search_state.dart';
 import 'package:pharmageddon_web/core/services/dependency_injection.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
-import 'package:pharmageddon_web/view/widgets/home/medication_widget.dart';
 import 'package:pharmageddon_web/view/widgets/loading/medications_loading.dart';
 
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_text.dart';
 import '../../core/resources/app_text_theme.dart';
 import '../widgets/app_widget.dart';
+import '../widgets/medication/medication_widget.dart';
 import 'medication_details_screen.dart';
 
 class SearchScreen extends StatelessWidget {

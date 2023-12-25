@@ -11,17 +11,17 @@ import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/custom_button.dart';
 import 'package:pharmageddon_web/view/widgets/text_input.dart';
 
-import '../../core/class/image_helper.dart';
-import '../../core/class/validation.dart';
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_text.dart';
-import '../../core/functions/functions.dart';
-import '../../core/resources/app_text_theme.dart';
-import '../../core/services/dependency_injection.dart';
-import '../../model/medication_model.dart';
-import 'build_row.dart';
-import 'custom_cached_network_image.dart';
+import '../../../core/class/image_helper.dart';
+import '../../../core/class/validation.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_padding.dart';
+import '../../../core/constant/app_text.dart';
+import '../../../core/functions/functions.dart';
+import '../../../core/resources/app_text_theme.dart';
+import '../../../core/services/dependency_injection.dart';
+import '../../../model/medication_model.dart';
+import '../build_row_two_widgets.dart';
+import '../custom_cached_network_image.dart';
 
 class MedicationInputForm extends StatefulWidget {
   const MedicationInputForm({

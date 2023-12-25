@@ -65,7 +65,7 @@ class ManufacturerCubit extends Cubit<ManufacturerState> {
           final s = checkErrorMessages(errors);
           _update(ManufacturerFailureState(WarningState(message: s)));
         } else if (status == 200) {
-          showManufacturerModel = false;
+          showDetailsManufacturerModel = false;
           final json = r[AppRKeys.data][AppRKeys.manufacturer];
           manufacturerModel = ManufacturerModel.fromJson(json);
           _update(ManufacturerEditSuccessState(
@@ -94,16 +94,16 @@ class ManufacturerCubit extends Cubit<ManufacturerState> {
   }
 
   // this to edit model
-  bool showManufacturerModel = false;
+  bool showDetailsManufacturerModel = false;
 
   void showDetailsModel(ManufacturerModel model) {
     manufacturerModel = model;
-    showManufacturerModel = true;
+    showDetailsManufacturerModel = true;
     _update(ManufacturerChangeState());
   }
 
   void closeDetailsModel() {
-    showManufacturerModel = false;
+    showDetailsManufacturerModel = false;
     _update(ManufacturerChangeState());
   }
 }

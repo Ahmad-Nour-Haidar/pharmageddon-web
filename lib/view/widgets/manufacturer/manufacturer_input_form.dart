@@ -7,10 +7,10 @@ import 'package:pharmageddon_web/model/manufacturer_model.dart';
 import 'package:pharmageddon_web/view/widgets/custom_button.dart';
 import 'package:pharmageddon_web/view/widgets/text_input.dart';
 
-import '../../core/class/validation.dart';
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_text.dart';
-import '../../core/resources/app_text_theme.dart';
+import '../../../core/class/validation.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_text.dart';
+import '../../../core/resources/app_text_theme.dart';
 
 class ManufacturerInputForm extends StatefulWidget {
   const ManufacturerInputForm({

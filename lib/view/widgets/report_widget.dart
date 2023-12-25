@@ -22,7 +22,6 @@ class ReportWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tag = UniqueKey();
     return Material(
       color: AppColor.white,
       borderRadius: BorderRadius.circular(10),
@@ -33,19 +32,16 @@ class ReportWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Hero(
-              tag: tag,
-              child: Row(
-                children: [
-                  RowTextSpan(
-                    s1: '${AppText.id.tr} : ',
-                    s2: model.id.toString().trn,
-                  ),
-                  const Spacer(),
-                  AppInjection.getIt<AppWidget>().getOrderIcon(model),
-                  const Gap(10),
-                ],
-              ),
+            Row(
+              children: [
+                RowTextSpan(
+                  s1: '${AppText.id.tr} : ',
+                  s2: model.id.toString().trn,
+                ),
+                const Spacer(),
+                AppInjection.getIt<AppWidget>().getOrderIcon(model),
+                const Gap(10),
+              ],
             ),
             const Gap(5),
             FittedBox(

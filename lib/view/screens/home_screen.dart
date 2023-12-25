@@ -6,7 +6,7 @@ import 'package:pharmageddon_web/core/functions/functions.dart';
 import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/home_cubit/home_state.dart';
 import '../widgets/custom_app_bar.dart';
-import '../widgets/drawer.dart';
+import '../widgets/custom_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

@@ -7,14 +7,14 @@ import '../../core/constant/app_svg.dart';
 class BuildRowEditClose extends StatelessWidget {
   const BuildRowEditClose({
     super.key,
-    required this.onTapClose,
-    required this.onTapEdit,
+    this.onTapClose,
+    this.onTapEdit,
     this.showClose = true,
     this.showEdit = true,
   });
 
-  final void Function() onTapClose;
-  final void Function() onTapEdit;
+  final void Function()? onTapClose;
+  final void Function()? onTapEdit;
   final bool showClose, showEdit;
 
   @override

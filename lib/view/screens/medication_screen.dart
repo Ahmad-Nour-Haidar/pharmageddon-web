@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
-import 'package:pharmageddon_web/view/widgets/home/medication_widget.dart';
 import 'package:pharmageddon_web/view/widgets/loading/medications_loading.dart';
 
 import '../../controllers/medication_cubit/medication_cubit.dart';
 import '../../controllers/medication_cubit/medication_state.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/services/dependency_injection.dart';
+import '../widgets/medication/medication_widget.dart';
 import 'medication_details_screen.dart';
 
 class MedicationScreen extends StatelessWidget {
