@@ -5,6 +5,7 @@ class AppConstant {
 
   static const ar = 'ar';
   static const en = 'en';
+
   // static const pharmacist = 'pharmacist';
   static const warehouseowner = 'warehouseowner';
   static const received = 'received';
@@ -13,5 +14,11 @@ class AppConstant {
 
   static const localEn = Locale(en);
   static const localAr = Locale(ar);
-  static late Locale currentLocal;
+  static bool _isEnglish = false;
+
+  static bool get isEnglish => _isEnglish;
+
+  static set isEnglish(bool value) {
+    _isEnglish = value;
+  }
 }

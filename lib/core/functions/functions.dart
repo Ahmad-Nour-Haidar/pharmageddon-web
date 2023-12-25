@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:pharmageddon_web/controllers/local_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/effect_category_model.dart';
 import '../../model/manufacturer_model.dart';
@@ -17,10 +18,10 @@ import '../constant/app_local_data.dart';
 import '../constant/app_text.dart';
 import '../services/dependency_injection.dart';
 
-bool isEnglish() => AppConstant.currentLocal == AppConstant.localEn;
+bool isEnglish() => AppConstant.isEnglish;
 
 String getCodeLang() =>
-    AppConstant.currentLocal == AppConstant.localEn ? 'en' : 'ar';
+    AppInjection.getIt<LocaleController>().locale.languageCode;
 
 int getRandom() => Random().nextInt(15) + 5;
 

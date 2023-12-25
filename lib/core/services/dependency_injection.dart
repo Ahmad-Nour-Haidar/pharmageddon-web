@@ -5,6 +5,7 @@ import 'package:pharmageddon_web/data/remote/reports_data.dart';
 import 'package:pharmageddon_web/data/remote/search_data.dart';
 import 'package:pharmageddon_web/view/widgets/app_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../controllers/add_cubit/add_cubit.dart';
 import '../../controllers/auth/check_email_cubit/check_email_cubit.dart';
 import '../../controllers/auth/login_cubit/login_cubit.dart';
 import '../../controllers/auth/register_cubit/register_cubit.dart';
@@ -62,6 +63,7 @@ class AppInjection {
     getIt.registerLazySingleton(() => EffectCategoryCubit());
     getIt.registerLazySingleton(() => MedicationCubit());
     getIt.registerFactory(() => ReportsCubit());
+    getIt.registerFactory(() => AddCubit());
 
     /// data
     getIt.registerLazySingleton(() => MedicationsRemoteData());

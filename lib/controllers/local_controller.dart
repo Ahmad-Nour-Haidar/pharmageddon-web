@@ -16,9 +16,10 @@ class LocaleController extends GetxController {
 
   Future<void> changeLang(String codeLang) async {
     final locale = Locale(codeLang);
-    sh.setString(AppKeysStorage.langKey, codeLang);
+    await sh.setString(AppKeysStorage.langKey, codeLang);
     await Jiffy.setLocale(codeLang);
-    AppConstant.currentLocal = locale;
+    this.locale = locale;
+    AppConstant.isEnglish = this.locale.languageCode == 'en';
     Get.updateLocale(locale);
   }
 
@@ -32,7 +33,7 @@ class LocaleController extends GetxController {
     } else {
       locale = Locale(Get.deviceLocale!.languageCode);
     }
-    AppConstant.currentLocal = locale;
+    AppConstant.isEnglish = locale.languageCode == 'en';
     await Jiffy.setLocale(locale.languageCode);
     super.onInit();
   }

@@ -8,6 +8,7 @@ void handleState({
   required BuildContext context,
   void Function()? onOk,
 }) {
+  if (!context.mounted) return;
   switch (state.runtimeType) {
     case OfflineState:
       {

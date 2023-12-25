@@ -67,6 +67,8 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   @override
   void didUpdateWidget(covariant MedicationInputForm oldWidget) {
     initial(widget.medicationModel);
+    _expirationDateText = formatYYYYMd(_expirationDate.toString());
+    setState(() {});
     super.didUpdateWidget(oldWidget);
   }
 
