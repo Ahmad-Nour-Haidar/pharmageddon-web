@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:pharmageddon_web/data/remote/effect_medicines_data.dart';
+import 'package:pharmageddon_web/data/remote/effect_categories_data.dart';
 import 'package:pharmageddon_web/data/remote/order_data.dart';
 import 'package:pharmageddon_web/data/remote/reports_data.dart';
 import 'package:pharmageddon_web/data/remote/search_data.dart';
@@ -57,18 +57,17 @@ class AppInjection {
     getIt.registerLazySingleton(() => MedicationDetailsCubit());
     getIt.registerLazySingleton(() => ManufacturerCubit());
     getIt.registerLazySingleton(() => MedicationCubit());
-    // getIt.registerFactory(() => MedicationCubit());
     getIt.registerFactory(() => ReportsCubit());
 
     /// data
     getIt.registerLazySingleton(() => MedicationsRemoteData());
     getIt.registerLazySingleton(() => ManufacturerRemoteData());
-    getIt.registerLazySingleton(() => EffectMedicinesRemoteData());
+    getIt.registerLazySingleton(() => EffectCategoryRemoteData());
     getIt.registerLazySingleton(() => OrderRemoteData());
     getIt.registerLazySingleton(() => ReportsRemoteData());
     getIt.registerLazySingleton(() => SearchRemoteData());
 
     // widget
-    getIt.registerFactory(() => AppWidget());
+    getIt.registerLazySingleton(() => AppWidget());
   }
 }

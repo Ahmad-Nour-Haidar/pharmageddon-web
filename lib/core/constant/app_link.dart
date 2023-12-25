@@ -58,6 +58,8 @@ class AppLink {
   static const manufacturerGetAllMedicines = '$_serverApi/class/manufacturer';
 
   // effect categories
+  static const effectCategoriesCreate = '$_serverApi/effect_category/create';
+  static const effectCategoriesUpdate = '$_serverApi/effect_category/update';
   static const effectCategoriesGetAll = '$_serverApi/effect_category/get_all_c';
   static const effectCategoriesGetAllM =
       '$_serverApi/effect_category/get_all_m';

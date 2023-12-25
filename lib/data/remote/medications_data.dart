@@ -18,15 +18,6 @@ class MedicationsRemoteData {
     return await _crud.getData(linkUrl: url, token: token);
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>>
-      getEffectsCategories() async {
-    final token = AppLocalData.user?.authorization;
-    return await _crud.getData(
-      linkUrl: AppLink.effectCategoriesGetAll,
-      token: token,
-    );
-  }
-
   Future<Either<ParentState, Map<String, dynamic>>> createMedication({
     required Map<String, dynamic> data,
     required File? file,
