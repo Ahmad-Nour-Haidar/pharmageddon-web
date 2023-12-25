@@ -10,7 +10,7 @@ import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/services/dependency_injection.dart';
 import 'package:pharmageddon_web/model/medication_model.dart';
-import 'package:pharmageddon_web/view/widgets/custom_cached_network_image.dart';
+import 'package:pharmageddon_web/view/widgets/get_image_from_url_and_memory.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
 import 'package:pharmageddon_web/view/widgets/medication/medication_input_form.dart';
 
@@ -66,7 +66,11 @@ class MedicationDetailsScreen extends StatelessWidget {
                     )
                   : ListView(
                       children: [
-                        image(getUrlImageMedication(cubit.model)),
+                        GetImageFromUrlAndMemory(
+                          url: getUrlImageMedication(cubit.model),
+                          size: 200,
+                          callUrl: true,
+                        ),
                         const Gap(15),
                         Container(
                           padding: AppPadding.padding5,
@@ -152,24 +156,6 @@ class MedicationDetailsScreen extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-
-  Row image(String imageUrl) {
-    return Row(
-      children: [
-        const Expanded(child: SizedBox()),
-        Expanded(
-          flex: 2,
-          child: CustomCachedNetworkImage(
-            width: double.infinity,
-            height: 200,
-            imageUrl: imageUrl,
-            errorWidget: ErrorWidgetShow.picture,
-          ),
-        ),
-        const Expanded(child: SizedBox()),
-      ],
     );
   }
 }

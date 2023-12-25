@@ -161,4 +161,7 @@ class AppText {
       'theExpirationDateFieldMustBeADateAfterToday';
   static const manufacturerNotFound = 'manufacturerNotFound';
   static const effectCategoryNotFound = 'effectCategoryNotFound';
+  static const addMedication = 'addMedication';
+  static const addManufacturer = 'addManufacturer';
+  static const addEffectCategory = 'addEffectCategory';
 }

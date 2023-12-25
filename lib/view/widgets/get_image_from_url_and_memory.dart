@@ -12,14 +12,14 @@ class GetImageFromUrlAndMemory extends StatelessWidget {
     super.key,
     required this.url,
     required this.size,
-    required this.onTap,
-    required this.webImage,
     required this.callUrl,
+    this.onTap,
+    this.webImage,
   });
 
   final String url;
   final double size;
-  final void Function() onTap;
+  final void Function()? onTap;
   final Uint8List? webImage;
   final bool callUrl;
 
