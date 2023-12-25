@@ -202,3 +202,8 @@ String buildUrl({
   );
   return uri.toString();
 }
+
+String getEffectCategoryImage(EffectCategoryModel? model) {
+  final s = '${AppLink.effectCategoriesImage}/${model?.imageName}';
+  return s;
+}

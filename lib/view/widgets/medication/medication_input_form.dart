@@ -140,7 +140,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
         textDirection: TextDirection.ltr,
         child: ListView(
           children: [
-            image(context),
+            image(),
             const Gap(15),
             BuildRow(
               widget1: TextInputField(
@@ -288,7 +288,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
     }
   }
 
-  Row image(BuildContext context) {
+  Row image() {
     return Row(
       children: [
         const Expanded(child: SizedBox()),
