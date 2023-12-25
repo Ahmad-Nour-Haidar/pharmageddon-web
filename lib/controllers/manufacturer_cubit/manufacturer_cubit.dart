@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:pharmageddon_web/core/class/parent_state.dart';
 import 'package:pharmageddon_web/core/constant/app_link.dart';
+import 'package:pharmageddon_web/core/functions/check_errors.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/model/manufacturer_model.dart';
 
 import '../../core/constant/app_keys_request.dart';
+import '../../core/constant/app_text.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../data/remote/manufacturer_data.dart';
-import '../medication_details_cubit/medication_details_cubit.dart';
 import 'manufacturer_state.dart';
 
 class ManufacturerCubit extends Cubit<ManufacturerState> {
@@ -46,25 +49,61 @@ class ManufacturerCubit extends Cubit<ManufacturerState> {
     });
   }
 
-  bool showManufacturerModelDetails = false;
+  Future<void> updateManufacturer(Map<String, String> data) async {
+    _update(ManufacturerEditLoadingState());
+    _manufacturerRemoteData.updateManufacturers(data: data).then((response) {
+      response.fold((l) {
+        _update(ManufacturerFailureState(l));
+      }, (r) {
+        // printme.printFullText(r);
+        final status = r[AppRKeys.status];
+        if (status == 403) {
+          _update(ManufacturerFailureState(
+              FailureState(message: AppText.manufacturerNotFound.tr)));
+        } else if (status == 400) {
+          final errors = r[AppRKeys.message][AppRKeys.validation_errors];
+          final s = checkErrorMessages(errors);
+          _update(ManufacturerFailureState(WarningState(message: s)));
+        } else if (status == 200) {
+          showManufacturerModel = false;
+          final json = r[AppRKeys.data][AppRKeys.manufacturer];
+          manufacturerModel = ManufacturerModel.fromJson(json);
+          _update(ManufacturerEditSuccessState(
+              SuccessState(message: AppText.updatedSuccessfully.tr)));
+          getData();
+        }
+      });
+    }).catchError((e) {});
+  }
+
+  // this to show medicines model
+  bool showMedicinesManufacturerModel = false;
   late ManufacturerModel manufacturerModel;
 
-  String get getUrl {
+  String get getUrlMedicinesModel {
     return buildUrl(
       baseUrl: AppLink.manufacturerGetAllMedicines,
       queryParameters: {AppRKeys.id: manufacturerModel.id},
     );
   }
 
+  void showMedicinesOfModel(ManufacturerModel model) {
+    manufacturerModel = model;
+    showMedicinesManufacturerModel = true;
+    _update(ManufacturerChangeState());
+  }
+
+  // this to edit model
+  bool showManufacturerModel = false;
+
   void showDetailsModel(ManufacturerModel model) {
     manufacturerModel = model;
-    showManufacturerModelDetails = true;
+    showManufacturerModel = true;
     _update(ManufacturerChangeState());
   }
 
   void closeDetailsModel() {
-    showManufacturerModelDetails = false;
-    AppInjection.getIt<MedicationDetailsCubit>().enableEdit = false;
+    showManufacturerModel = false;
     _update(ManufacturerChangeState());
   }
 }

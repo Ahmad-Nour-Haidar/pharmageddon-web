@@ -7,6 +7,7 @@ import 'package:pharmageddon_web/view/widgets/loading/medications_loading.dart';
 import '../../controllers/medication_cubit/medication_cubit.dart';
 import '../../controllers/medication_cubit/medication_state.dart';
 import '../../core/constant/app_color.dart';
+import '../../core/services/dependency_injection.dart';
 import 'medication_details_screen.dart';
 
 class MedicationScreen extends StatelessWidget {
@@ -16,8 +17,7 @@ class MedicationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = MedicationCubit.get(context);
-    cubit.initial(url);
+    AppInjection.getIt<MedicationCubit>().initial(url);
     return BlocConsumer<MedicationCubit, MedicationState>(
       listener: (context, state) {
         if (state is MedicationFailureState) {
@@ -25,6 +25,7 @@ class MedicationScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        final cubit = MedicationCubit.get(context);
         Widget body = MedicationsListWidget(
           data: cubit.medications,
           onTapCard: cubit.showDetailsModel,

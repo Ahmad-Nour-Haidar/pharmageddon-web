@@ -131,6 +131,8 @@ class AppText {
       'thisFieldMustContainEnglishLettersAndNumbers';
   static const thisFieldMustContainArabicLettersAndNumbers =
       'This field must contain Arabic letters and numbers';
+  static const nameEn = 'nameEn';
+  static const nameAr = 'nameAr';
   static const scientificNameEn = 'scientificNameEn';
   static const scientificNameAr = 'scientificNameAr';
   static const commercialNameEn = 'commercialNameEn';
@@ -157,4 +159,5 @@ class AppText {
       'medicineNotFoundOrHasBeenDeleted';
   static const theExpirationDateFieldMustBeADateAfterToday =
       'theExpirationDateFieldMustBeADateAfterToday';
+  static const manufacturerNotFound = 'manufacturerNotFound';
 }

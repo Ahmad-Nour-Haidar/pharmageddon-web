@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
+import 'package:pharmageddon_web/print.dart';
 import '../../../core/constant/app_color.dart';
 import '../../../core/constant/app_padding.dart';
 import '../../../core/constant/app_size.dart';
@@ -118,7 +119,7 @@ class MedicationWidget extends StatelessWidget {
               ),
               const Gap(3),
               AutoSizeText(
-                getManufacturerName(model.manufacturer),
+                getManufacturerName(model.manufacturer, split: false),
                 style: AppTextStyle.f15w400black,
                 maxLines: 1,
               ),
@@ -142,6 +143,7 @@ class MedicationsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    printme.black(data.length);
     return data.isEmpty
         ? AppInjection.getIt<AppWidget>().noData
         : ListView(

@@ -76,14 +76,18 @@ String getUrlImageMedication(MedicationModel? model) {
   return s;
 }
 
-String getManufacturerName(ManufacturerModel? model, {bool split = true}) {
+String getManufacturerName(
+  ManufacturerModel? model, {
+  bool split = true,
+  int max = 2,
+}) {
   var s = '';
   if (model == null) return s;
   if (split) {
     if (isEnglish()) {
-      s = model.englishName.toString().split(' ').take(2).join(' ');
+      s = model.englishName.toString().split(' ').take(max).join(' ');
     } else {
-      s = model.arabicName.toString().split(' ').take(2).join(' ');
+      s = model.arabicName.toString().split(' ').take(max).join(' ');
     }
     return s;
   }
@@ -95,15 +99,18 @@ String getManufacturerName(ManufacturerModel? model, {bool split = true}) {
   return s;
 }
 
-String getEffectCategoryModelName(EffectCategoryModel? model,
-    {bool split = true}) {
+String getEffectCategoryModelName(
+  EffectCategoryModel? model, {
+  bool split = true,
+  int max = 2,
+}) {
   var s = '';
   if (model == null) return s;
   if (split) {
     if (isEnglish()) {
-      s = model.englishName.toString().split(' ').take(2).join(' ');
+      s = model.englishName.toString().split(' ').take(max).join(' ');
     } else {
-      s = model.arabicName.toString().split(' ').take(2).join(' ');
+      s = model.arabicName.toString().split(' ').take(max).join(' ');
     }
     return s;
   }

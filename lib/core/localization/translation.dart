@@ -113,6 +113,10 @@ class MyTranslation extends Translations {
               'Invalid number or contains decimals',
           AppText.invalidNumber: 'Invalid number',
           AppText.atLeast: 'At least',
+          AppText.nameEn: 'Name english',
+          AppRKeys.english_name: 'Name english',
+          AppText.nameAr: 'Name arabic',
+          AppRKeys.arabic_name: 'Name arabic',
           AppText.scientificNameEn: 'Scientific name english',
           AppRKeys.english_scientific_name: 'Scientific name english',
           AppText.scientificNameAr: 'Scientific name arabic',
@@ -145,8 +149,10 @@ class MyTranslation extends Translations {
           AppText.cancel: 'Cancel',
           AppText.theExpirationDateFieldMustBeADateAfterToday:
               'The expiration date field must be a date after today',
+          AppText.manufacturerNotFound: 'Manufacturer not found',
         },
         'ar': {
+          AppText.manufacturerNotFound: 'لم يتم العثور على الشركة المصنعة',
           AppText.theExpirationDateFieldMustBeADateAfterToday:
               'يجب أن يكون حقل تاريخ انتهاء الصلاحية تاريخًا بعد اليوم',
           AppText.cancel: 'الغاء',
@@ -167,6 +173,10 @@ class MyTranslation extends Translations {
           AppText.effect: 'التأثير',
           AppText.priceAfterDiscount: 'السعر بعد الخصم',
           AppText.discount: 'خصم',
+          AppText.nameEn: 'الاسم انجليزي',
+          AppRKeys.english_name: 'الاسم انجليزي',
+          AppText.nameAr: 'الاسم عربي',
+          AppRKeys.arabic_name: 'الاسم عربي',
           AppText.scientificNameEn: 'الاسم العلمي انجليزي',
           AppRKeys.english_scientific_name: 'الاسم العلمي انجليزي',
           AppText.scientificNameAr: 'الاسم العلمي عربي',

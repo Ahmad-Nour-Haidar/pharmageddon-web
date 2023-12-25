@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_web/controllers/manufacturer_cubit/manufacturer_cubit.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 
 import '../../../core/services/dependency_injection.dart';
@@ -25,7 +26,9 @@ class ManufacturerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onTapCard(model),
+      onTap: () {
+        AppInjection.getIt<ManufacturerCubit>().showMedicinesOfModel(model);
+      },
       child: Container(
         padding: AppPadding.padding10,
         height: AppSize.widthManufacturer,
@@ -39,7 +42,7 @@ class ManufacturerWidget extends StatelessWidget {
             Expanded(
               child: Center(
                 child: AutoSizeText(
-                  getManufacturerName(model),
+                  getManufacturerName(model, split: false),
                   textAlign: TextAlign.center,
                   style: AppTextStyle.f18w500black,
                   maxLines: 3,
@@ -47,7 +50,9 @@ class ManufacturerWidget extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () => onTapCard(model),
+              onPressed: () {
+                AppInjection.getIt<ManufacturerCubit>().showDetailsModel(model);
+              },
               icon: const SvgImage(
                 path: AppSvg.edit,
                 color: AppColor.white,

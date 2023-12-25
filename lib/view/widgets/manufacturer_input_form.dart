@@ -22,7 +22,7 @@ class ManufacturerInputForm extends StatefulWidget {
 
   final ManufacturerModel? manufacturerModel;
 
-  final void Function(Map<String, Object?> data) onTapButton;
+  final void Function(Map<String, String> data) onTapButton;
   final bool isLoading;
 
   @override
@@ -48,8 +48,8 @@ class _ManufacturerInputFormState extends State<ManufacturerInputForm> {
   }
 
   void initial(ManufacturerModel? manufacturerModel) {
+    if (manufacturerModel == null) return;
     _model = manufacturerModel;
-    if (_model == null) return;
     _nameArCon.text = _model!.arabicName.toString();
     _nameEnCon.text = _model!.englishName.toString();
     setState(() {});
@@ -58,6 +58,7 @@ class _ManufacturerInputFormState extends State<ManufacturerInputForm> {
   void onTapButton() {
     if (!_formKey.currentState!.validate()) return;
     final data = {
+      AppRKeys.id: _model == null ? '' : _model!.id.toString(),
       AppRKeys.arabic_name: _nameArCon.text,
       AppRKeys.english_name: _nameEnCon.text,
     };
@@ -74,38 +75,48 @@ class _ManufacturerInputFormState extends State<ManufacturerInputForm> {
         textDirection: TextDirection.ltr,
         child: ListView(
           children: [
+            const Gap(10),
             TextInputField(
               validator: (value) {
                 return ValidateInput.isAlphanumeric(value);
               },
               controller: _nameEnCon,
-              label: AppText.scientificNameEn.tr,
+              label: AppText.nameEn.tr,
+              maxLines: 1,
             ),
-            TextInputField(
-              validator: (value) {
-                return ValidateInput.isArabicAlphanumeric(value);
-              },
-              controller: _nameEnCon,
-              label: AppText.scientificNameEn.tr,
+            const Gap(5),
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: TextInputField(
+                validator: (value) {
+                  return ValidateInput.isArabicAlphanumeric(value);
+                },
+                controller: _nameArCon,
+                label: AppText.nameAr.tr,
+                textDirection: TextDirection.rtl,
+              ),
             ),
-            const Gap(20),
-            Row(
-              children: [
-                const Expanded(child: SizedBox()),
-                Expanded(
-                  flex: 2,
-                  child: widget.isLoading
-                      ? const SpinKitThreeBounce(color: AppColor.primaryColor)
-                      : CustomButton(
-                          onTap: onTapButton,
-                          text: _textButton,
-                          textStyle: AppTextStyle.f20w600white,
-                        ),
-                ),
-                const Expanded(child: SizedBox()),
-              ],
+            SizedBox(
+              height: 40,
+              child: Row(
+                children: [
+                  const Expanded(child: SizedBox()),
+                  Expanded(
+                    flex: 2,
+                    child: widget.isLoading
+                        ? const SpinKitThreeBounce(color: AppColor.primaryColor)
+                        : CustomButton(
+                            height: 60,
+                            onTap: onTapButton,
+                            text: _textButton,
+                            textStyle: AppTextStyle.f20w600white,
+                          ),
+                  ),
+                  const Expanded(child: SizedBox()),
+                ],
+              ),
             ),
-            const Gap(30),
+            const Gap(10),
           ],
         ),
       ),

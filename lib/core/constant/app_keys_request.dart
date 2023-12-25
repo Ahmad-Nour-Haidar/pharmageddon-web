@@ -60,4 +60,5 @@ class AppRKeys {
   // manufacturer
   static const arabic_name = 'arabic_name';
   static const english_name = 'english_name';
+  static const manufacturer = 'manufacturer';
 }

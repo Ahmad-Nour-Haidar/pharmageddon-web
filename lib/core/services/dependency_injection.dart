@@ -55,17 +55,18 @@ class AppInjection {
     getIt.registerLazySingleton(() => HomeCubit());
     getIt.registerLazySingleton(() => SearchCubit());
     getIt.registerLazySingleton(() => MedicationDetailsCubit());
-    getIt.registerLazySingleton(() => MedicationCubit());
     getIt.registerLazySingleton(() => ManufacturerCubit());
+    getIt.registerLazySingleton(() => MedicationCubit());
+    // getIt.registerFactory(() => MedicationCubit());
     getIt.registerFactory(() => ReportsCubit());
 
     /// data
-    getIt.registerFactory(() => MedicationsRemoteData());
-    getIt.registerFactory(() => ManufacturerRemoteData());
-    getIt.registerFactory(() => EffectMedicinesRemoteData());
-    getIt.registerFactory(() => OrderRemoteData());
-    getIt.registerFactory(() => ReportsRemoteData());
-    getIt.registerFactory(() => SearchRemoteData());
+    getIt.registerLazySingleton(() => MedicationsRemoteData());
+    getIt.registerLazySingleton(() => ManufacturerRemoteData());
+    getIt.registerLazySingleton(() => EffectMedicinesRemoteData());
+    getIt.registerLazySingleton(() => OrderRemoteData());
+    getIt.registerLazySingleton(() => ReportsRemoteData());
+    getIt.registerLazySingleton(() => SearchRemoteData());
 
     // widget
     getIt.registerFactory(() => AppWidget());

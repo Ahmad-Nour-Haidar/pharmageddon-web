@@ -15,3 +15,11 @@ class ManufacturerFailureState extends ManufacturerState {
 }
 
 class ManufacturerChangeState extends ManufacturerState {}
+
+class ManufacturerEditLoadingState extends ManufacturerState {}
+
+class ManufacturerEditSuccessState extends ManufacturerState {
+  final ParentState state;
+
+  ManufacturerEditSuccessState(this.state);
+}
