@@ -31,8 +31,10 @@ class MedicationsRemoteData {
     );
   }
 
-  Future<Either<ParentState, Map<String, dynamic>>> updateMedication(
-      {required Map<String, dynamic> data, required File? file}) async {
+  Future<Either<ParentState, Map<String, dynamic>>> updateMedication({
+    required Map<String, dynamic> data,
+    required File? file,
+  }) async {
     final token = AppLocalData.user?.authorization;
     return await _crud.requestWithFileUsingHttp(
       linkUrl: AppLink.medicineUpdate,

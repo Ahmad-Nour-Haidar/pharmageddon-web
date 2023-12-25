@@ -150,8 +150,10 @@ class MyTranslation extends Translations {
           AppText.theExpirationDateFieldMustBeADateAfterToday:
               'The expiration date field must be a date after today',
           AppText.manufacturerNotFound: 'Manufacturer not found',
+          AppText.effectCategoryNotFound: 'Effect category not found',
         },
         'ar': {
+          AppText.effectCategoryNotFound: 'لم يتم العثور على فئة التأثير',
           AppText.manufacturerNotFound: 'لم يتم العثور على الشركة المصنعة',
           AppText.theExpirationDateFieldMustBeADateAfterToday:
               'يجب أن يكون حقل تاريخ انتهاء الصلاحية تاريخًا بعد اليوم',

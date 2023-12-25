@@ -40,6 +40,7 @@ class MedicationDetailsCubit extends Cubit<MedicationDetailsState> {
 
   Future<void> updateMedication(Map<String, Object?> data) async {
     _update(MedicationDetailsLoadingState());
+    // todo
     data[AppRKeys.id] = model.id;
     File? file;
     if (data[AppRKeys.image] != null) {

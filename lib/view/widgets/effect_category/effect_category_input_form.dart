@@ -110,7 +110,7 @@ class _EffectCategoryInputFormState extends State<EffectCategoryInputForm> {
         child: ListView(
           children: [
             image(),
-            const Gap(15),
+            const Gap(10),
             TextInputField(
               validator: (value) {
                 return ValidateInput.isAlphanumeric(value);
@@ -131,25 +131,22 @@ class _EffectCategoryInputFormState extends State<EffectCategoryInputForm> {
                 textDirection: TextDirection.rtl,
               ),
             ),
-            SizedBox(
-              height: 40,
-              child: Row(
-                children: [
-                  const Expanded(child: SizedBox()),
-                  Expanded(
-                    flex: 2,
-                    child: widget.isLoading
-                        ? const SpinKitThreeBounce(color: AppColor.primaryColor)
-                        : CustomButton(
-                            height: 60,
-                            onTap: onTapButton,
-                            text: _textButton,
-                            textStyle: AppTextStyle.f20w600white,
-                          ),
-                  ),
-                  const Expanded(child: SizedBox()),
-                ],
-              ),
+            Row(
+              children: [
+                const Expanded(child: SizedBox()),
+                Expanded(
+                  flex: 2,
+                  child: widget.isLoading
+                      ? const SpinKitThreeBounce(color: AppColor.primaryColor)
+                      : CustomButton(
+                          height: 40,
+                          onTap: onTapButton,
+                          text: _textButton,
+                          textStyle: AppTextStyle.f20w600white,
+                        ),
+                ),
+                const Expanded(child: SizedBox()),
+              ],
             ),
             const Gap(10),
           ],
@@ -162,25 +159,24 @@ class _EffectCategoryInputFormState extends State<EffectCategoryInputForm> {
     return Row(
       children: [
         const Expanded(child: SizedBox()),
-        Expanded(
-          flex: 2,
-          child: InkWell(
-            onTap: pickImage,
-            child: Container(
-              child: _webImage != null
-                  ? Image.memory(
-                      _webImage!,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: 200,
-                    )
-                  : CustomCachedNetworkImage(
-                      width: double.infinity,
-                      height: 200,
-                      imageUrl: getEffectCategoryImage(_model),
-                      errorWidget: ErrorWidgetShow.picture,
-                    ),
-            ),
+        InkWell(
+          onTap: pickImage,
+          child: SizedBox(
+            width: 100,
+            height: 100,
+            child: _webImage != null
+                ? Image.memory(
+                    _webImage!,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 100,
+                  )
+                : CustomCachedNetworkImage(
+                    width: double.infinity,
+                    height: 100,
+                    imageUrl: getEffectCategoryImage(_model),
+                    errorWidget: ErrorWidgetShow.picture,
+                  ),
           ),
         ),
         const Expanded(child: SizedBox()),

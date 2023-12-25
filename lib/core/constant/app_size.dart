@@ -10,7 +10,7 @@ class AppSize {
   }
 
   static const widthManufacturer = 150.0;
-  static const widthEffect = 190.0;
+  static const widthEffect = 150.0;
   static const widthMedicine = 190.0;
 
   // size

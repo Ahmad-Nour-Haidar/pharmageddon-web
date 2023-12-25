@@ -160,4 +160,5 @@ class AppText {
   static const theExpirationDateFieldMustBeADateAfterToday =
       'theExpirationDateFieldMustBeADateAfterToday';
   static const manufacturerNotFound = 'manufacturerNotFound';
+  static const effectCategoryNotFound = 'effectCategoryNotFound';
 }

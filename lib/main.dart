@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:pharmageddon_web/controllers/effect_category_cubit/effect_category_cubit.dart';
 import 'package:pharmageddon_web/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_web/controllers/search_cubit/search_cubit.dart';
 import 'package:pharmageddon_web/model/user_model.dart';
@@ -54,6 +55,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ManufacturerCubit>(
           create: (context) => AppInjection.getIt<ManufacturerCubit>(),
+        ),
+        BlocProvider<EffectCategoryCubit>(
+          create: (context) => AppInjection.getIt<EffectCategoryCubit>(),
         ),
       ],
       child: GetMaterialApp(
