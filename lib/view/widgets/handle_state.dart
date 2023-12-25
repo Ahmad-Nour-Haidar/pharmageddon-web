@@ -66,7 +66,7 @@ void showAwesomeHandleState({
 }) {
   AwesomeDialog(
     context: context,
-    width: AppSize.width * .5,
+    width: AppSize.width * .4,
     title: title,
     dialogType: dialogType,
     btnOkOnPress: onOk,

@@ -23,7 +23,7 @@ class ManufacturerCubit extends Cubit<ManufacturerState> {
     emit(state);
   }
 
-  Future<void> initial() async {
+  void initial() {
     getData();
   }
 

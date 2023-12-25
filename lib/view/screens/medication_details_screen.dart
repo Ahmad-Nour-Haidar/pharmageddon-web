@@ -11,7 +11,6 @@ import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/services/dependency_injection.dart';
 import 'package:pharmageddon_web/model/medication_model.dart';
-import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/custom_cached_network_image.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
 import 'package:pharmageddon_web/view/widgets/medication_input_form.dart';

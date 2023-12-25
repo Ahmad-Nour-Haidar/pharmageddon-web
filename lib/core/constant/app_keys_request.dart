@@ -56,4 +56,8 @@ class AppRKeys {
   static const price = 'price';
   static const english_description = 'english_description';
   static const arabic_description = 'arabic_description';
+
+  // manufacturer
+  static const arabic_name = 'arabic_name';
+  static const english_name = 'english_name';
 }

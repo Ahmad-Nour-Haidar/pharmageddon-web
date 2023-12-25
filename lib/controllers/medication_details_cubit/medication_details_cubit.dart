@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/class/parent_state.dart';
 import 'package:pharmageddon_web/core/constant/app_keys_request.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
-import 'package:pharmageddon_web/print.dart';
 import '../../core/functions/check_errors.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../data/remote/medications_data.dart';
