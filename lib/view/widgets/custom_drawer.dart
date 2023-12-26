@@ -76,7 +76,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           CustomDrawerItem(
             isOpen: isOpen,
             title: AppText.manufacturer.tr,
-            iconPath: AppSvg.text,
+            iconPath: AppSvg.apartment,
             onTap: () => changeScreen(ScreenView.manufacturer),
             isSelected: widget.currentScreen == ScreenView.manufacturer,
           ),

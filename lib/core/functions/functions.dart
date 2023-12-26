@@ -34,6 +34,14 @@ String formatTimeJiffy(DateTime date) {
   return Jiffy.parseFromDateTime(date).format(pattern: 'h:mm a');
 }
 
+String formatYYYYMd(Object? object) {
+  final s = object?.toString();
+  final date = DateTime.tryParse(s ?? '');
+  if (date == null) return ' --- ';
+  final pattern = isEnglish() ? 'yyyy - M - d' : 'd - M - yyyy';
+  return Jiffy.parseFromDateTime(date).format(pattern: pattern);
+}
+
 TextDirection getTextDirection(String value) {
   if (value.contains(RegExp(r"[\u0600-\u06FF]"))) {
     return TextDirection.rtl;
@@ -177,13 +185,6 @@ String getMedicationModelDescription(MedicationModel? model) {
     s = model.arabicDescription.toString();
   }
   return s;
-}
-
-String formatYYYYMd(String? s) {
-  final date = DateTime.tryParse(s ?? '');
-  if (date == null) return ' --- ';
-  final pattern = isEnglish() ? 'yyyy - M - d' : 'd - M - yyyy';
-  return Jiffy.parseFromDateTime(date).format(pattern: pattern);
 }
 
 String getPaymentStatus(OrderModel model) {

@@ -53,7 +53,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   final _descEnCon = TextEditingController();
   final _priceCon = TextEditingController();
   DateTime? _expirationDate;
-  var _expirationDateText = '';
   File? _pickedImage;
   Uint8List? _webImage;
   MedicationModel? _model;
@@ -67,8 +66,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   @override
   void didUpdateWidget(covariant MedicationInputForm oldWidget) {
     initial(widget.medicationModel);
-    _expirationDateText = formatYYYYMd(_expirationDate.toString());
-    setState(() {});
     super.didUpdateWidget(oldWidget);
   }
 
@@ -85,7 +82,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
     _priceCon.text = _model!.price.toString();
     _availableQuantityCon.text = _model!.availableQuantity.toString();
     _expirationDate = DateTime.tryParse(_model!.expirationDate.toString());
-    _expirationDateText = formatYYYYMd(_expirationDate.toString());
     setState(() {});
   }
 
@@ -109,7 +105,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   set expirationDate(DateTime value) {
     setState(() {
       _expirationDate = value;
-      _expirationDateText = formatYYYYMd(_expirationDate.toString());
     });
   }
 
@@ -254,7 +249,8 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                       ? Alignment.centerLeft
                       : Alignment.centerRight,
                   child: Text(
-                    '${AppText.expirationDate.tr} : $_expirationDateText'.trn,
+                    '${AppText.expirationDate.tr} : ${formatYYYYMd(_expirationDate)}'
+                        .trn,
                     style: AppTextStyle.f16w500black,
                   ),
                 ),
@@ -288,7 +284,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
     final dateNow = DateTime.now();
     final firstDate = dateNow.add(const Duration(days: 1));
     final lastDate =
-        DateTime(dateNow.year + 5).subtract(const Duration(days: 1));
+        DateTime(dateNow.year + 6).subtract(const Duration(days: 1));
     final date = await showDatePicker(
       context: context,
       initialEntryMode: DatePickerEntryMode.calendar,

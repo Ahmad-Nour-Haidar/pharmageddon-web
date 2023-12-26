@@ -3,6 +3,7 @@ class AppSvg {
 
   static const root = 'assets/svgs';
   static const all = '$root/all.svg';
+  static const apartment = '$root/apartment.svg';
   static const add = '$root/apps-add.svg';
   static const arrowFillRight = '$root/arrow-fill-right.svg';
   static const arrowFillLeft = '$root/arrow-fill-left.svg';
@@ -13,6 +14,7 @@ class AppSvg {
   static const boxOpen = '$root/box_open.svg';
   static const checkCircle = '$root/check_circle.svg';
   static const chemistry = '$root/chemistry.svg';
+  static const city = '$root/city.svg';
   static const close = '$root/close.svg';
   static const percentage = '$root/percentage.svg';
   static const edit = '$root/edit.svg';
@@ -45,6 +47,7 @@ class AppSvg {
   static const quantity = '$root/quantity.svg';
   static const timeDelete = '$root/time-delete.svg';
   static const report = '$root/report.svg';
+  static const rotateLeft = '$root/rotate-left.svg';
   static const sort = '$root/sort.svg';
   static const ballot = '$root/ballot.svg';
 }
