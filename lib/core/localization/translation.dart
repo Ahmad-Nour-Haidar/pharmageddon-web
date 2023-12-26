@@ -156,8 +156,22 @@ class MyTranslation extends Translations {
           AppText.addEffectCategory: 'Add effect category',
           AppText.selectEffectCategoryManufacturer:
               'Select effect category & manufacturer',
+          AppText.effectCategoryOrManufacturerNotFound:
+              'Effect category or manufacturer not found',
+          AppText.medicationAddedSuccessfully: 'Medication added successfully',
+          AppText.manufacturerAddedSuccessfully:
+              'Manufacturer added successfully',
+          AppText.effectCategoryAddedSuccessfully:
+              'Effect category added successfully',
         },
         'ar': {
+          AppText.medicationAddedSuccessfully: 'تمت إضافة الدواء بنجاح',
+          AppText.manufacturerAddedSuccessfully:
+              'تمت إضافة الشركة المصنعة بنجاح',
+          AppText.effectCategoryAddedSuccessfully:
+              'تمت إضافة فئة التأثير بنجاح',
+          AppText.effectCategoryOrManufacturerNotFound:
+              'لم يتم العثور على فئة التأثير أو الشركة المصنعة',
           AppText.selectEffectCategoryManufacturer:
               'حدد فئة التأثير والشركة المصنعة',
           AppText.addMedication: 'أضف دواء',

@@ -30,6 +30,7 @@ class MedicationsRemoteData {
       token: token,
       data: data,
       file: file,
+      nameKey: AppRKeys.image,
     );
   }
 

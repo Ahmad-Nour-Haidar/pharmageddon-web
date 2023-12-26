@@ -96,7 +96,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   void onTapButton() {
     if (!_formKey.currentState!.validate()) return;
     final data = {
-      AppRKeys.id: _model == null ? '' : _model!.id.toString(),
       AppRKeys.english_scientific_name: _scientificNameEnCon.text,
       AppRKeys.arabic_scientific_name: _scientificNameArCon.text,
       AppRKeys.english_commercial_name: _commercialNameEnCon.text,
@@ -109,6 +108,9 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
       AppRKeys.effect_category_id: _effectCategoryId,
       AppRKeys.manufacturer_id: _manufacturerId,
     };
+    if (_model != null) {
+      data.addAll({AppRKeys.id: _model == null ? '' : _model!.id.toString()});
+    }
     widget.onTapButton(data, _pickedImage);
   }
 
@@ -143,7 +145,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
 
   @override
   Widget build(BuildContext context) {
-    printme.magenta(AppInjection.getIt<AddCubit>().effectCategoriesData.length);
     return Form(
       key: _formKey,
       child: Directionality(
@@ -199,8 +200,11 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
             BuildRow(
               widget1: TextInputField(
                 validator: (value) {
-                  return ValidateInput.isAlphanumericAndAllCharacters(value,
-                      max: 500);
+                  return ValidateInput.isAlphanumericAndAllCharacters(
+                    value,
+                    min: 8,
+                    max: 500,
+                  );
                 },
                 controller: _descEnCon,
                 label: AppText.description.tr,
@@ -210,8 +214,10 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
               widget2: TextInputField(
                 validator: (value) {
                   return ValidateInput.isArabicAlphanumericAndAllCharacters(
-                      value,
-                      max: 500);
+                    value,
+                    min: 8,
+                    max: 500,
+                  );
                 },
                 controller: _descArCon,
                 label: AppText.description.tr,
@@ -228,17 +234,17 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                 },
                 controller: _priceCon,
                 label: AppText.price.tr,
-                maxLength: 16,
+                maxLength: 6,
                 maxLines: 1,
               ),
               widget2: TextInputField(
                 validator: (value) {
-                  return ValidateInput.isNumericWithoutDecimal(value, max: 5);
+                  return ValidateInput.isNumericWithoutDecimal(value, max: 6);
                 },
                 controller: _availableQuantityCon,
                 label: AppText.availableQuantity.tr,
                 textDirection: TextDirection.ltr,
-                maxLength: 5,
+                maxLength: 6,
                 maxLines: 1,
               ),
             ),

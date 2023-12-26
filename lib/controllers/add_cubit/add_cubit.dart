@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:pharmageddon_web/controllers/add_cubit/add_state.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/services/dependency_injection.dart';
@@ -8,10 +11,12 @@ import 'package:pharmageddon_web/data/remote/manufacturer_data.dart';
 import 'package:pharmageddon_web/data/remote/medications_data.dart';
 import 'package:pharmageddon_web/model/effect_category_model.dart';
 import 'package:pharmageddon_web/model/manufacturer_model.dart';
-import 'package:pharmageddon_web/print.dart';
 
+import '../../core/class/parent_state.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_link.dart';
+import '../../core/constant/app_text.dart';
+import '../../core/functions/check_errors.dart';
 import '../../view/widgets/custom_menu.dart';
 
 class AddCubit extends Cubit<AddState> {
@@ -31,6 +36,32 @@ class AddCubit extends Cubit<AddState> {
   void initial() {
     getDataEffectCategory();
     getDataManufacturer();
+  }
+
+  Future<void> createMedication(Map<String, Object?> data, File? file) async {
+    _update(AddAddMedicationLoadingState());
+    final response = await _medicationsRemoteData.createMedication(
+      data: data,
+      file: file,
+    );
+    response.fold((l) {
+      _update(AddFailureState(l));
+    }, (r) {
+      // printme.printFullText(r);
+      final status = r[AppRKeys.status];
+      if (status == 400) {
+        final s =
+            checkErrorMessages(r[AppRKeys.message][AppRKeys.validation_errors]);
+        _update(AddFailureState(WarningState(message: s)));
+      } else if (status == 405) {
+        _update(AddFailureState(FailureState()));
+      } else if (status == 403) {
+        _update(AddFailureState(FailureState(
+            message: AppText.effectCategoryOrManufacturerNotFound.tr)));
+      } else if (status == 200) {
+        _update(AddSuccessState(AppText.medicationAddedSuccessfully.tr));
+      }
+    });
   }
 
   /// this used to add medicine
@@ -58,7 +89,7 @@ class AddCubit extends Cubit<AddState> {
       response.fold((l) {
         _update(AddFailureState(l));
       }, (r) {
-        printme.printFullText(r);
+        // printme.printFullText(r);
         final status = r[AppRKeys.status];
         if (status == 200) {
           final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
@@ -66,7 +97,6 @@ class AddCubit extends Cubit<AddState> {
           effectCategories
               .addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
         }
-        printme.red(effectCategories.length);
         _update(AddGetEffectCategorySuccessState());
       });
     }).catchError((e) {});

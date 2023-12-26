@@ -10,6 +10,18 @@ class AddFailureState extends AddState {
   AddFailureState(this.state);
 }
 
+class AddSuccessState extends AddState {
+  final ParentState state;
+
+  AddSuccessState(String s) : state = SuccessState(message: s);
+}
+
+/// Medication
+// add
+class AddAddMedicationLoadingState extends AddState {}
+
+class AddAddMedicationSuccessState extends AddState {}
+
 /// Manufacturer
 // get
 class AddGetManufacturerLoadingState extends AddState {}

@@ -166,4 +166,10 @@ class AppText {
   static const addEffectCategory = 'addEffectCategory';
   static const selectEffectCategoryManufacturer =
       'selectEffectCategoryManufacturer';
+  static const effectCategoryOrManufacturerNotFound =
+      'effectCategoryOrManufacturerNotFound';
+  static const effectCategoryAddedSuccessfully =
+      'effectCategoryAddedSuccessfully';
+  static const manufacturerAddedSuccessfully = 'manufacturerAddedSuccessfully';
+  static const medicationAddedSuccessfully = 'medicationAddedSuccessfully';
 }

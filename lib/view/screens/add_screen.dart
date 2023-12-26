@@ -8,6 +8,7 @@ import 'package:pharmageddon_web/core/constant/app_padding.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_web/view/widgets/effect_category/effect_category_input_form.dart';
+import 'package:pharmageddon_web/view/widgets/handle_state.dart';
 import 'package:pharmageddon_web/view/widgets/manufacturer/manufacturer_input_form.dart';
 import 'package:pharmageddon_web/view/widgets/medication/medication_input_form.dart';
 
@@ -19,7 +20,14 @@ class AddScreen extends StatelessWidget {
     final cubit = AddCubit.get(context);
     cubit.initial();
     return BlocConsumer<AddCubit, AddState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is AddFailureState) {
+          handleState(state: state.state, context: context);
+        }
+        if (state is AddSuccessState) {
+          handleState(state: state.state, context: context);
+        }
+      },
       builder: (context, state) {
         return ListView(
           padding: AppPadding.zero,
@@ -30,8 +38,8 @@ class AddScreen extends StatelessWidget {
             ),
             MedicationInputForm(
               physics: const NeverScrollableScrollPhysics(),
-              onTapButton: (data, file) {},
-              isLoading: false,
+              onTapButton: cubit.createMedication,
+              isLoading: state is AddAddMedicationLoadingState,
               chooseEffectCategory: true,
               chooseManufacturer: true,
             ),
