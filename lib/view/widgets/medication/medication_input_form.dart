@@ -97,6 +97,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
     if (!_formKey.currentState!.validate()) return;
     if (_expirationDate == null) return;
     final data = {
+      AppRKeys.id: _model == null ? '' : _model!.id.toString(),
       AppRKeys.english_scientific_name: _scientificNameEnCon.text,
       AppRKeys.arabic_scientific_name: _scientificNameArCon.text,
       AppRKeys.english_commercial_name: _commercialNameEnCon.text,
@@ -109,9 +110,6 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
       AppRKeys.effect_category_id: _effectCategoryId,
       AppRKeys.manufacturer_id: _manufacturerId,
     };
-    if (_model != null) {
-      data.addAll({AppRKeys.id: _model == null ? '' : _model!.id.toString()});
-    }
     widget.onTapButton(data, _pickedImage);
   }
 

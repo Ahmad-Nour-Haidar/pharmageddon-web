@@ -86,28 +86,28 @@ class AddCubit extends Cubit<AddState> {
 
   Future<void> createMedication(Map<String, Object?> data, File? file) async {
     _update(AddAddMedicationLoadingState());
-    final response = await _medicationsRemoteData.createMedication(
-      data: data,
-      file: file,
-    );
-    response.fold((l) {
-      _update(AddFailureState(l));
-    }, (r) {
-      // printme.printFullText(r);
-      final status = r[AppRKeys.status];
-      if (status == 400) {
-        final s =
-            checkErrorMessages(r[AppRKeys.message][AppRKeys.validation_errors]);
-        _update(AddFailureState(WarningState(message: s)));
-      } else if (status == 405) {
-        _update(AddFailureState(FailureState()));
-      } else if (status == 403) {
-        _update(AddFailureState(FailureState(
-            message: AppText.effectCategoryOrManufacturerNotFound.tr)));
-      } else if (status == 200) {
-        _update(AddSuccessState(AppText.medicationAddedSuccessfully.tr));
-      }
-    });
+    _medicationsRemoteData
+        .createMedication(data: data, file: file)
+        .then((response) {
+      response.fold((l) {
+        _update(AddFailureState(l));
+      }, (r) {
+        // printme.printFullText(r);
+        final status = r[AppRKeys.status];
+        if (status == 400) {
+          final s = checkErrorMessages(
+              r[AppRKeys.message][AppRKeys.validation_errors]);
+          _update(AddFailureState(WarningState(message: s)));
+        } else if (status == 405) {
+          _update(AddFailureState(FailureState()));
+        } else if (status == 403) {
+          _update(AddFailureState(FailureState(
+              message: AppText.effectCategoryOrManufacturerNotFound.tr)));
+        } else if (status == 200) {
+          _update(AddSuccessState(AppText.medicationAddedSuccessfully.tr));
+        }
+      });
+    }).catchError((e) {});
   }
 
   /// this used to add medicine
