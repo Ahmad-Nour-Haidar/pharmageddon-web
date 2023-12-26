@@ -6,6 +6,7 @@ import 'package:pharmageddon_web/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_web/controllers/search_cubit/search_cubit.dart';
 import 'package:pharmageddon_web/model/user_model.dart';
 import 'package:pharmageddon_web/routes.dart';
+import 'controllers/add_cubit/add_cubit.dart';
 import 'controllers/local_controller.dart';
 import 'controllers/manufacturer_cubit/manufacturer_cubit.dart';
 import 'controllers/medication_cubit/medication_cubit.dart';
@@ -58,6 +59,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<EffectCategoryCubit>(
           create: (context) => AppInjection.getIt<EffectCategoryCubit>(),
+        ),
+        BlocProvider<AddCubit>(
+          create: (context) => AppInjection.getIt<AddCubit>(),
         ),
       ],
       child: GetMaterialApp(

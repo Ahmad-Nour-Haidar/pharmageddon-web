@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_web/controllers/add_cubit/add_cubit.dart';
 import 'package:pharmageddon_web/core/constant/app_keys_request.dart';
+import 'package:pharmageddon_web/core/constant/app_svg.dart';
 import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/custom_button.dart';
+import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 import 'package:pharmageddon_web/view/widgets/text_input.dart';
 
 import '../../../core/class/image_helper.dart';
@@ -21,6 +24,7 @@ import '../../../core/resources/app_text_theme.dart';
 import '../../../core/services/dependency_injection.dart';
 import '../../../model/medication_model.dart';
 import '../build_row_two_widgets.dart';
+import '../custom_menu.dart';
 import '../get_image_from_url_and_memory.dart';
 
 class MedicationInputForm extends StatefulWidget {
@@ -30,12 +34,14 @@ class MedicationInputForm extends StatefulWidget {
     required this.isLoading,
     this.medicationModel,
     this.physics,
+    this.chooseEffectCategory = false,
+    this.chooseManufacturer = false,
   });
 
   final MedicationModel? medicationModel;
   final ScrollPhysics? physics;
   final void Function(Map<String, Object?> data, File? file) onTapButton;
-  final bool isLoading;
+  final bool isLoading, chooseManufacturer, chooseEffectCategory;
 
   @override
   State<MedicationInputForm> createState() => _MedicationInputFormState();
@@ -56,6 +62,9 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   File? _pickedImage;
   Uint8List? _webImage;
   MedicationModel? _model;
+
+  // this to when add medicine
+  String? manufacturerId, effectCategoryId;
 
   @override
   void initState() {
@@ -133,12 +142,13 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
 
   @override
   Widget build(BuildContext context) {
+    printme.magenta(AppInjection.getIt<AddCubit>().effectCategoriesData.length);
     return Form(
       key: _formKey,
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: ListView(
-          physics: widget.physics ?? const AlwaysScrollableScrollPhysics(),
+          physics: widget.physics,
           shrinkWrap: true,
           children: [
             GetImageFromUrlAndMemory(
@@ -256,7 +266,37 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                 ),
               ),
             ),
-            const Gap(15),
+            const Gap(10),
+            Row(
+              children: [
+                if (widget.chooseEffectCategory)
+                  Expanded(
+                    child: CustomMenu(
+                      title: AppText.effectCategories.tr,
+                      data: AppInjection.getIt<AddCubit>().effectCategoriesData,
+                      onChange: (newValue) {
+                        effectCategoryId = newValue;
+                      },
+                      onTapReload: () => AppInjection.getIt<AddCubit>()
+                          .getDataEffectCategory(forceGet: true),
+                    ),
+                  ),
+                const Gap(10),
+                if (widget.chooseManufacturer)
+                  Expanded(
+                    child: CustomMenu(
+                      title: AppText.manufacturer.tr,
+                      data: AppInjection.getIt<AddCubit>().manufacturersData,
+                      onChange: (newValue) {
+                        manufacturerId = newValue;
+                      },
+                      onTapReload: () => AppInjection.getIt<AddCubit>()
+                          .getDataManufacturer(forceGet: true),
+                    ),
+                  ),
+              ],
+            ),
+            const Gap(10),
             Row(
               children: [
                 const Expanded(child: SizedBox()),

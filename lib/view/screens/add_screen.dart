@@ -17,65 +17,65 @@ class AddScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppInjection.getIt<AddCubit>(),
-      child: BlocConsumer<AddCubit, AddState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          final cubit = AddCubit.get(context);
-          return ListView(
-            padding: AppPadding.zero,
-            children: [
-              Text(AppText.addMedication.tr, style: AppTextStyle.f18w500green3),
-              MedicationInputForm(
-                physics: const NeverScrollableScrollPhysics(),
-                onTapButton: (data, file) {},
-                isLoading: false,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppText.addEffectCategory.tr,
-                          style: AppTextStyle.f18w500green3,
-                        ),
-                        const Gap(5),
-                        EffectCategoryInputForm(
-                          onTapButton: (data, file) {},
+    final cubit = AddCubit.get(context);
+    cubit.initial();
+    return BlocConsumer<AddCubit, AddState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return ListView(
+          padding: AppPadding.zero,
+          children: [
+            Text(AppText.addMedication.tr, style: AppTextStyle.f18w500green3),
+            MedicationInputForm(
+              physics: const NeverScrollableScrollPhysics(),
+              onTapButton: (data, file) {},
+              isLoading: false,
+              chooseEffectCategory: true,
+              chooseManufacturer: true,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppText.addEffectCategory.tr,
+                        style: AppTextStyle.f18w500green3,
+                      ),
+                      const Gap(5),
+                      EffectCategoryInputForm(
+                        onTapButton: (data, file) {},
+                        isLoading: false,
+                      ),
+                    ],
+                  ),
+                ),
+                const Gap(10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppText.addManufacturer.tr,
+                        style: AppTextStyle.f18w500green3,
+                      ),
+                      const Gap(5),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 100),
+                        child: ManufacturerInputForm(
+                          onTapButton: (data) {},
                           isLoading: false,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  const Gap(10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppText.addManufacturer.tr,
-                          style: AppTextStyle.f18w500green3,
-                        ),
-                        const Gap(5),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 100),
-                          child: ManufacturerInputForm(
-                            onTapButton: (data) {},
-                            isLoading: false,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          );
-        },
-      ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -1,15 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_web/controllers/add_cubit/add_state.dart';
+import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/services/dependency_injection.dart';
 import 'package:pharmageddon_web/data/remote/effect_categories_data.dart';
 import 'package:pharmageddon_web/data/remote/manufacturer_data.dart';
 import 'package:pharmageddon_web/data/remote/medications_data.dart';
 import 'package:pharmageddon_web/model/effect_category_model.dart';
 import 'package:pharmageddon_web/model/manufacturer_model.dart';
+import 'package:pharmageddon_web/print.dart';
 
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_link.dart';
+import '../../view/widgets/custom_menu.dart';
+import '../../view/widgets/medication/medication_input_form.dart';
 
 class AddCubit extends Cubit<AddState> {
   AddCubit() : super(AddInitialState());
@@ -28,12 +32,33 @@ class AddCubit extends Cubit<AddState> {
     emit(state);
   }
 
+  List<PopupMenuItemModel> get manufacturersData {
+    return List.generate(
+      manufacturers.length,
+      (index) => PopupMenuItemModel(
+        getManufacturerName(manufacturers[index], split: false),
+        manufacturers[index].id.toString(),
+      ),
+    );
+  }
+
+  List<PopupMenuItemModel> get effectCategoriesData {
+    return List.generate(
+      effectCategories.length,
+      (index) => PopupMenuItemModel(
+        getEffectCategoryModelName(effectCategories[index], split: false),
+        effectCategories[index].id.toString(),
+      ),
+    );
+  }
+
   void initial() {
     getDataEffectCategory();
     getDataManufacturer();
   }
 
-  Future<void> getDataEffectCategory() async {
+  Future<void> getDataEffectCategory({bool forceGet = false}) async {
+    if (effectCategories.isNotEmpty && !forceGet) return;
     _update(AddEffectCategoryLoadingState());
     _effectCategoryRemoteData
         .getEffectsCategories(
@@ -43,7 +68,7 @@ class AddCubit extends Cubit<AddState> {
       response.fold((l) {
         _update(AddFailureState(l));
       }, (r) {
-        // printme.printFullText(r);
+        printme.printFullText(r);
         final status = r[AppRKeys.status];
         if (status == 200) {
           final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
@@ -51,12 +76,14 @@ class AddCubit extends Cubit<AddState> {
           effectCategories
               .addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
         }
+        printme.red(effectCategories.length);
         _update(AddGetEffectCategorySuccessState());
       });
     }).catchError((e) {});
   }
 
-  Future<void> getDataManufacturer() async {
+  Future<void> getDataManufacturer({bool forceGet = false}) async {
+    if (manufacturers.isNotEmpty && !forceGet) return;
     _update(AddGetManufacturerLoadingState());
     _manufacturerRemoteData
         .getManufacturers(
