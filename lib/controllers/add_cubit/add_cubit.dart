@@ -38,6 +38,33 @@ class AddCubit extends Cubit<AddState> {
     getDataManufacturer();
   }
 
+  Future<void> createEffectCategory(
+    Map<String, Object?> data,
+    File? file,
+  ) async {
+    _update(AddEffectCategoryLoadingState());
+    _effectCategoryRemoteData
+        .createEffectCategory(
+      data: data,
+      file: file,
+    )
+        .then((response) {
+      response.fold((l) {
+        _update(AddFailureState(l));
+      }, (r) {
+        // printme.printFullText(r);
+        final status = r[AppRKeys.status];
+        if (status == 400) {
+          final errors = r[AppRKeys.message][AppRKeys.validation_errors];
+          final s = checkErrorMessages(errors);
+          _update(AddFailureState(WarningState(message: s)));
+        } else if (status == 200) {
+          _update(AddSuccessState(AppText.effectCategoryAddedSuccessfully.tr));
+        }
+      });
+    }).catchError((e) {});
+  }
+
   Future<void> createManufacturer(Map<String, String> data) async {
     _update(AddManufacturerLoadingState());
     _manufacturerRemoteData.createManufacturer(data: data).then((response) {

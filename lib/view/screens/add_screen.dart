@@ -58,8 +58,8 @@ class AddScreen extends StatelessWidget {
                       ),
                       const Gap(5),
                       EffectCategoryInputForm(
-                        onTapButton: (data, file) {},
-                        isLoading: false,
+                        onTapButton: cubit.createEffectCategory,
+                        isLoading: state is AddEffectCategoryLoadingState,
                       ),
                     ],
                   ),
@@ -92,7 +92,7 @@ class AddScreen extends StatelessWidget {
                       ),
                       ManufacturerInputForm(
                         onTapButton: cubit.createManufacturer,
-                        isLoading: state is AddManufacturerLoadingState  ,
+                        isLoading: state is AddManufacturerLoadingState,
                       ),
                     ],
                   ),
