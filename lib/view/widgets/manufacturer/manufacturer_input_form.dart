@@ -60,10 +60,12 @@ class _ManufacturerInputFormState extends State<ManufacturerInputForm> {
   void onTapButton() {
     if (!_formKey.currentState!.validate()) return;
     final data = {
-      AppRKeys.id: _model == null ? '' : _model!.id.toString(),
       AppRKeys.arabic_name: _nameArCon.text,
       AppRKeys.english_name: _nameEnCon.text,
     };
+    if (_model != null) {
+      data.addAll({AppRKeys.id: _model == null ? '' : _model!.id.toString()});
+    }
     widget.onTapButton(data);
   }
 

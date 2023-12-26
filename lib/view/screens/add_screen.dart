@@ -84,15 +84,15 @@ class AddScreen extends StatelessWidget {
                           ),
                           alignment: Alignment.center,
                           child: const SvgImage(
-                            path: AppSvg.city,
+                            path: AppSvg.apartment,
                             color: AppColor.white,
                             size: 50,
                           ),
                         ),
                       ),
                       ManufacturerInputForm(
-                        onTapButton: (data) {},
-                        isLoading: false,
+                        onTapButton: cubit.createManufacturer,
+                        isLoading: state is AddManufacturerLoadingState  ,
                       ),
                     ],
                   ),

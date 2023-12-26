@@ -27,7 +27,7 @@ String checkErrorMessages(List<dynamic> errors) {
     } else if (error.contains(AppRKeys.arabic_name)) {
       result += AppRKeys.arabic_name.tr;
     } else if (error.contains(AppRKeys.english_name)) {
-      result += AppRKeys.arabic_name.tr;
+      result += AppRKeys.english_name.tr;
     }
   }
   return '${AppText.field.tr} $result ${AppText.alreadyBeenTaken.tr}';

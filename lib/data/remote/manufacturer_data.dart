@@ -9,7 +9,7 @@ import '../crud_dio.dart';
 class ManufacturerRemoteData {
   final _crud = AppInjection.getIt<CrudDio>();
 
-  Future<Either<ParentState, Map<String, dynamic>>> createManufacturers({
+  Future<Either<ParentState, Map<String, dynamic>>> createManufacturer({
     required Map<String, dynamic> data,
   }) async {
     final token = AppLocalData.user?.authorization;
