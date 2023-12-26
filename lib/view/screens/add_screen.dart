@@ -4,13 +4,16 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/controllers/add_cubit/add_cubit.dart';
 import 'package:pharmageddon_web/controllers/add_cubit/add_state.dart';
+import 'package:pharmageddon_web/core/constant/app_color.dart';
 import 'package:pharmageddon_web/core/constant/app_padding.dart';
+import 'package:pharmageddon_web/core/constant/app_svg.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_web/view/widgets/effect_category/effect_category_input_form.dart';
 import 'package:pharmageddon_web/view/widgets/handle_state.dart';
 import 'package:pharmageddon_web/view/widgets/manufacturer/manufacturer_input_form.dart';
 import 'package:pharmageddon_web/view/widgets/medication/medication_input_form.dart';
+import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 
 class AddScreen extends StatelessWidget {
   const AddScreen({super.key});
@@ -71,12 +74,25 @@ class AddScreen extends StatelessWidget {
                         style: AppTextStyle.f18w600blue,
                       ),
                       const Gap(5),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 100),
-                        child: ManufacturerInputForm(
-                          onTapButton: (data) {},
-                          isLoading: false,
+                      Center(
+                        child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: AppColor.gray4,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          alignment: Alignment.center,
+                          child: const SvgImage(
+                            path: AppSvg.city,
+                            color: AppColor.white,
+                            size: 50,
+                          ),
                         ),
+                      ),
+                      ManufacturerInputForm(
+                        onTapButton: (data) {},
+                        isLoading: false,
                       ),
                     ],
                   ),

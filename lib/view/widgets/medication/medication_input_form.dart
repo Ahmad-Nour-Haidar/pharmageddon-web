@@ -95,6 +95,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
 
   void onTapButton() {
     if (!_formKey.currentState!.validate()) return;
+    if (_expirationDate == null) return;
     final data = {
       AppRKeys.english_scientific_name: _scientificNameEnCon.text,
       AppRKeys.arabic_scientific_name: _scientificNameArCon.text,
@@ -249,19 +250,22 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
               ),
             ),
             const Gap(10),
-            InkWell(
-              onTap: () => _pickDate(context),
-              child: Container(
-                width: double.infinity,
-                padding: AppPadding.padding10,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: AppColor.contentColorBlue,
-                    width: 2,
+            Directionality(
+              textDirection: getTextDirectionOnLang(),
+              child: InkWell(
+                onTap: () => _pickDate(context),
+                child: Container(
+                  width: double.infinity,
+                  padding: AppPadding.padding10,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: _expirationDate == null
+                          ? AppColor.red
+                          : AppColor.contentColorBlue,
+                      width: 2,
+                    ),
                   ),
-                ),
-                child: Align(
                   alignment: AppConstant.isEnglish
                       ? Alignment.centerLeft
                       : Alignment.centerRight,
@@ -274,34 +278,38 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
               ),
             ),
             const Gap(10),
-            Row(
-              children: [
-                if (widget.chooseEffectCategory)
-                  Expanded(
-                    child: CustomMenu(
-                      title: AppText.effectCategories.tr,
-                      data: AppInjection.getIt<AddCubit>().effectCategoriesData,
-                      onChange: (newValue) {
-                        _effectCategoryId = newValue;
-                      },
-                      onTapReload: () => AppInjection.getIt<AddCubit>()
-                          .getDataEffectCategory(forceGet: true),
+            Directionality(
+              textDirection: getTextDirectionOnLang(),
+              child: Row(
+                children: [
+                  if (widget.chooseEffectCategory)
+                    Expanded(
+                      child: CustomMenu(
+                        title: AppText.effectCategories.tr,
+                        data:
+                            AppInjection.getIt<AddCubit>().effectCategoriesData,
+                        onChange: (newValue) {
+                          _effectCategoryId = newValue;
+                        },
+                        onTapReload: () => AppInjection.getIt<AddCubit>()
+                            .getDataEffectCategory(forceGet: true),
+                      ),
                     ),
-                  ),
-                const Gap(10),
-                if (widget.chooseManufacturer)
-                  Expanded(
-                    child: CustomMenu(
-                      title: AppText.manufacturer.tr,
-                      data: AppInjection.getIt<AddCubit>().manufacturersData,
-                      onChange: (newValue) {
-                        _manufacturerId = newValue;
-                      },
-                      onTapReload: () => AppInjection.getIt<AddCubit>()
-                          .getDataManufacturer(forceGet: true),
+                  const Gap(10),
+                  if (widget.chooseManufacturer)
+                    Expanded(
+                      child: CustomMenu(
+                        title: AppText.manufacturer.tr,
+                        data: AppInjection.getIt<AddCubit>().manufacturersData,
+                        onChange: (newValue) {
+                          _manufacturerId = newValue;
+                        },
+                        onTapReload: () => AppInjection.getIt<AddCubit>()
+                            .getDataManufacturer(forceGet: true),
+                      ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
             const Gap(10),
             Row(
@@ -312,6 +320,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                   child: widget.isLoading
                       ? const SpinKitThreeBounce(color: AppColor.primaryColor)
                       : CustomButton(
+                          height: 40,
                           onTap: onTapButton,
                           text: _textButton,
                           textStyle: AppTextStyle.f20w600white,

@@ -19,18 +19,18 @@ class TextInputField extends StatelessWidget {
 
   static final _border = OutlineInputBorder(
     gapPadding: 5,
-    borderRadius: BorderRadius.circular(15),
+    borderRadius: BorderRadius.circular(10),
     borderSide: const BorderSide(color: AppColor.contentColorBlue, width: 2),
   );
 
   static final _borderDisabled = OutlineInputBorder(
     gapPadding: 5,
-    borderRadius: BorderRadius.circular(15),
+    borderRadius: BorderRadius.circular(10),
     borderSide: const BorderSide(color: AppColor.gray1, width: 2),
   );
   static final _borderErrorBorder = OutlineInputBorder(
     gapPadding: 5,
-    borderRadius: BorderRadius.circular(15),
+    borderRadius: BorderRadius.circular(10),
     borderSide: const BorderSide(color: AppColor.red, width: 2),
   );
 

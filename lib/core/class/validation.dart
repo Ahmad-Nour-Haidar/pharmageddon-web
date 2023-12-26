@@ -235,7 +235,7 @@ class ValidateInput {
     if (value[0] == '0') {
       return AppText.invalidNumber.tr;
     }
-    final x = double.tryParse(value);
+    final x = int.tryParse(value);
     if (x == null) {
       return AppText.invalidNumber.tr;
     }
