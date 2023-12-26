@@ -76,4 +76,25 @@ class OrdersCubit extends Cubit<OrdersState> {
     }
     return AppLink.orderGetAllUnpaid;
   }
+
+  // this to show details of list of orders
+  final List<OrderModel?> showingOrders = [null, null];
+
+  void showOrder(OrderModel model) {
+    if (showingOrders[0]?.id == model.id) return;
+    if (showingOrders[1]?.id == model.id) return;
+    if (showingOrders[0] == null) {
+      showingOrders[0] = model;
+      _update(OrdersChangeState());
+      return;
+    } else if (showingOrders[1] == null) {
+      showingOrders[1] = model;
+      _update(OrdersChangeState());
+    }
+  }
+
+  void closeModel(int index) {
+    showingOrders[index] = null;
+    _update(OrdersChangeState());
+  }
 }

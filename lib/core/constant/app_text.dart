@@ -172,4 +172,16 @@ class AppText {
       'effectCategoryAddedSuccessfully';
   static const manufacturerAddedSuccessfully = 'manufacturerAddedSuccessfully';
   static const medicationAddedSuccessfully = 'medicationAddedSuccessfully';
+
+  // orders
+  static const orderNotFound = 'orderNotFound';
+  static const thisOrderHasCanceledBefore = 'thisOrderHasCanceledBefore';
+  static const orderHasBeenSentSoYouCannotCancelIt =
+      'orderHasBeenSentSoYouCannotCancelIt';
+  static const orderHasReceivedSoYouCannotCancelIt =
+      'orderHasReceivedSoYouCannotCancelIt';
+  static const thisOrderHasAlreadyBeenCanceled =
+      'thisOrderHasAlreadyBeenCanceled';
+  static const thisOrderHasAlreadyBeenReceived =
+      'thisOrderHasAlreadyBeenReceived';
 }

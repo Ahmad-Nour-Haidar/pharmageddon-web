@@ -163,8 +163,28 @@ class MyTranslation extends Translations {
               'Manufacturer added successfully',
           AppText.effectCategoryAddedSuccessfully:
               'Effect category added successfully',
+          AppText.orderNotFound: 'Order not found',
+          AppText.thisOrderHasCanceledBefore: 'This order has canceled before',
+          AppText.orderHasBeenSentSoYouCannotCancelIt:
+              'Order has been sent so you cannot cancel it',
+          AppText.orderHasReceivedSoYouCannotCancelIt:
+              'Order has received so you cannot cancel it',
+          AppText.thisOrderHasAlreadyBeenCanceled:
+              'This order has already been canceled',
+          AppText.thisOrderHasAlreadyBeenReceived:
+              'This order has already been received',
         },
         'ar': {
+          AppText.thisOrderHasAlreadyBeenReceived:
+              'لقد تم استلام هذا الطلب من قبل',
+          AppText.thisOrderHasAlreadyBeenCanceled:
+              'لقد تم إلغاء هذا الطلب من قبل',
+          AppText.orderHasBeenSentSoYouCannotCancelIt:
+              'تم إرسال الطلب لذلك لا يمكنك إلغاءه',
+          AppText.orderHasReceivedSoYouCannotCancelIt:
+              'تم استلام الطلب لذلك لا يمكنك إلغاءه',
+          AppText.thisOrderHasCanceledBefore: 'تم إلغاء هذا الطلب من قبل',
+          AppText.orderNotFound: 'لم يتم العثور على الطلب',
           AppText.medicationAddedSuccessfully: 'تمت إضافة الدواء بنجاح',
           AppText.manufacturerAddedSuccessfully:
               'تمت إضافة الشركة المصنعة بنجاح',

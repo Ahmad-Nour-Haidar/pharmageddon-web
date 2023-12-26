@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/effect_category_model.dart';
 import '../../model/manufacturer_model.dart';
 import '../../model/medication_model.dart';
+import '../../model/order_details_model.dart';
 import '../../model/order_model.dart';
 import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
@@ -208,4 +209,43 @@ String buildUrl({
 String getEffectCategoryImage(EffectCategoryModel? model) {
   final s = '${AppLink.effectCategoriesImage}/${model?.imageName}';
   return s;
+}
+
+String getOrderDetailsModelName(
+  OrderDetailsModel? model, {
+  bool split = true,
+  int max = 2,
+}) {
+  var s = '';
+  if (model == null) return s;
+  if (split) {
+    if (AppConstant.isEnglish) {
+      s = model.medicineEnglishCommercialName
+          .toString()
+          .split(' ')
+          .take(max)
+          .join(' ');
+    } else {
+      s = model.medicineArabicCommercialName
+          .toString()
+          .split(' ')
+          .take(max)
+          .join(' ');
+    }
+    return s;
+  }
+  if (AppConstant.isEnglish) {
+    s = model.medicineEnglishCommercialName.toString();
+  } else {
+    s = model.medicineArabicCommercialName.toString();
+  }
+  return s;
+}
+
+String formatYYYYMdEEEE(String? s) {
+  final date = DateTime.tryParse(s ?? '');
+  if (date == null) return ' --- ';
+  final pattern =
+      AppConstant.isEnglish ? 'EEEE , yyyy - M - d' : 'EEEE , d - M - yyyy';
+  return Jiffy.parseFromDateTime(date).format(pattern: pattern);
 }

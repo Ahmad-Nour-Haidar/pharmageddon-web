@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_web/controllers/orders_cubit/orders_cubit.dart';
 import 'package:pharmageddon_web/controllers/orders_cubit/orders_state.dart';
 import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
+import 'package:pharmageddon_web/view/screens/order_details_screen.dart';
 import '../../core/constant/app_text.dart';
 import '../../core/enums/drawer_enum.dart';
 import '../../core/resources/app_text_theme.dart';
@@ -38,7 +39,7 @@ class OrdersScreen extends StatelessWidget {
         if (state is OrdersSuccessState || cubit.data.isNotEmpty) {
           body = OrderListWidget(
             data: cubit.data,
-            onTap: (model) {},
+            onTap: cubit.showOrder,
           );
         }
         if (state is OrdersLoadingState) {
@@ -47,37 +48,63 @@ class OrdersScreen extends StatelessWidget {
         return Row(
           children: [
             Expanded(
+              flex: 3,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(child: body),
-                  const Gap(5),
-                  Row(
+                  Wrap(
+                    direction: Axis.horizontal,
                     children: [
-                      Expanded(
-                        child: RichTextSpan(
-                          s1: '${AppText.totalOrders.tr} : ',
-                          ts1: AppTextStyle.f15w600black,
-                          s2: cubit.data.length.toString().trn,
+                      SizedBox(
+                        width: 200,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: RichTextSpan(
+                            s1: '${AppText.totalOrders.tr} : ',
+                            s2: cubit.data.length.toString().trn,
+                          ),
                         ),
                       ),
-                      Expanded(
-                        child: RichTextSpan(
-                          s1: '${AppText.totalQuantity.tr} : ',
-                          ts1: AppTextStyle.f15w600black,
-                          s2: cubit.totalQuantity.toString().trn,
+                      SizedBox(
+                        width: 200,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: RichTextSpan(
+                            s1: '${AppText.totalQuantity.tr} : ',
+                            s2: cubit.totalQuantity.toString().trn,
+                          ),
                         ),
                       ),
-                      Expanded(
-                        child: RichTextSpan(
-                          s1: '${AppText.totalPrice.tr} : ',
-                          ts1: AppTextStyle.f15w600black,
-                          s2: '${cubit.totalPrice} ${AppText.sp.tr}'.trn,
+                      SizedBox(
+                        width: 200,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: RichTextSpan(
+                            s1: '${AppText.totalPrice.tr} : ',
+                            s2: '${cubit.totalPrice} ${AppText.sp.tr}'.trn,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ],
               ),
+            ),
+            ...List.generate(
+              cubit.showingOrders.length,
+              (index) => cubit.showingOrders[index] == null
+                  ? const SizedBox()
+                  : Expanded(
+                      flex: 2,
+                      child: OrderDetailsScreen(
+                        orderModel: cubit.showingOrders[index]!,
+                        onTapClose: () {
+                          cubit.closeModel(index);
+                        },
+                      ),
+                    ),
             ),
           ],
         );

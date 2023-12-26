@@ -56,4 +56,16 @@ class OrderRemoteData {
     );
     return response;
   }
+
+  Future<Either<ParentState, Map<String, dynamic>>> getOrderDetails({
+    required Map<String, dynamic> queryParameters,
+  }) async {
+    final token = AppLocalData.user!.authorization!;
+    final response = await _crud.getData(
+      linkUrl: AppLink.orderGetOrderDetails,
+      token: token,
+      queryParameters: queryParameters,
+    );
+    return response;
+  }
 }
