@@ -17,6 +17,7 @@ class RowTextSpan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SelectableText.rich(
+      scrollPhysics: const NeverScrollableScrollPhysics(),
       TextSpan(
         children: [
           TextSpan(text: s1, style: ts1.copyWith(height: 1.5)),

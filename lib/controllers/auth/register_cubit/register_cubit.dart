@@ -5,7 +5,6 @@ import 'package:pharmageddon_web/controllers/auth/register_cubit/register_state.
 import '../../../core/class/parent_state.dart';
 import '../../../core/constant/app_constant.dart';
 import '../../../core/constant/app_keys_request.dart';
-import '../../../core/constant/app_local_data.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../core/functions/check_errors.dart';
 import '../../../core/functions/functions.dart';
@@ -42,9 +41,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   void register() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
+    if (!formKey.currentState!.validate()) return;
     emit(RegisterLoadingState());
     final data = {
       AppRKeys.email: emailController.text,
@@ -76,15 +73,5 @@ class RegisterCubit extends Cubit<RegisterState> {
         emit(RegisterSuccessState());
       }
     });
-  }
-
-  void logout() async {
-    emit(RegisterLoadingState());
-    final token = AppLocalData.user!.authorization ?? '';
-    final response = await authRemoteData.logout();
-    if (isClosed) return;
-    response.fold((l) {
-      emit(RegisterFailureState(l));
-    }, (response) async {});
   }
 }

@@ -6,7 +6,7 @@ import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/home_cubit/home_state.dart';
 import '../../core/constant/app_constant.dart';
 import '../widgets/custom_app_bar.dart';
-import '../widgets/custom_drawer.dart';
+import '../widgets/drawer/custom_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

@@ -12,13 +12,15 @@ import '../../core/services/dependency_injection.dart';
 import '../../model/order_model.dart';
 import 'app_widget.dart';
 
-class ReportWidget extends StatelessWidget {
-  const ReportWidget({
+class OrderWidget extends StatelessWidget {
+  const OrderWidget({
     super.key,
     required this.model,
+    this.onTap,
   });
 
   final OrderModel model;
+  final void Function(OrderModel model)? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -26,77 +28,84 @@ class ReportWidget extends StatelessWidget {
       color: AppColor.white,
       borderRadius: BorderRadius.circular(10),
       elevation: 4,
-      child: Container(
-        padding: AppPadding.padding10,
-        width: 250,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                RowTextSpan(
-                  s1: '${AppText.id.tr} : ',
-                  s2: model.id.toString().trn,
-                ),
-                const Spacer(),
-                AppInjection.getIt<AppWidget>().getOrderIcon(model),
-                const Gap(10),
-              ],
-            ),
-            const Gap(5),
-            FittedBox(
-              child: RowTextSpan(
-                s1: '${AppText.pharmacist.tr} : ',
-                s2: model.pharmacistUsername.toString(),
+      child: InkWell(
+        onTap: () => onTap == null ? null : onTap!(model),
+        child: Container(
+          padding: AppPadding.padding10,
+          width: 250,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  RowTextSpan(
+                    s1: '${AppText.id.tr} : ',
+                    s2: model.id.toString().trn,
+                  ),
+                  const Spacer(),
+                  AppInjection.getIt<AppWidget>().getOrderIcon(model),
+                  const Gap(10),
+                ],
               ),
-            ),
-            RowTextSpan(
-              s1: '${AppText.totalQuantity.tr} : ',
-              s2: model.totalQuantity.toString().trn,
-            ),
-            RowTextSpan(
-              s1: '${AppText.totalPrice.tr} : ',
-              s2: '${model.totalPrice.toString().trn} ${AppText.sp.tr}',
-            ),
-            RowTextSpan(
-              s1: '${AppText.paymentState.tr} : ',
-              s2: getPaymentStatus(model),
-            ),
-            RowTextSpan(
-              s1: '${AppText.date.tr} : ',
-              s2: formatYYYYMd(model.createdAt),
-            ),
-          ],
+              FittedBox(
+                child: RowTextSpan(
+                  s1: '${AppText.pharmacist.tr} : ',
+                  s2: model.pharmacistUsername.toString(),
+                ),
+              ),
+              RowTextSpan(
+                s1: '${AppText.totalQuantity.tr} : ',
+                s2: model.totalQuantity.toString().trn,
+              ),
+              RowTextSpan(
+                s1: '${AppText.totalPrice.tr} : ',
+                s2: '${model.totalPrice.toString().trn} ${AppText.sp.tr}',
+              ),
+              RowTextSpan(
+                s1: '${AppText.paymentState.tr} : ',
+                s2: getPaymentStatus(model),
+              ),
+              RowTextSpan(
+                s1: '${AppText.date.tr} : ',
+                s2: formatYYYYMd(model.createdAt),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class ReportListWidget extends StatelessWidget {
-  const ReportListWidget({
+class OrderListWidget extends StatelessWidget {
+  const OrderListWidget({
     super.key,
     required this.data,
+    this.onTap,
   });
 
   final List<OrderModel> data;
+  final void Function(OrderModel model)? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: data.isEmpty
-          ? [const Gap(100), AppInjection.getIt<AppWidget>().noData]
-          : [
+    return data.isEmpty
+        ? AppInjection.getIt<AppWidget>().noData
+        : ListView(
+            children: [
               Wrap(
                 spacing: 30,
                 runSpacing: 20,
                 children: List.generate(
                   data.length,
-                  (index) => ReportWidget(model: data[index]),
+                  (index) => OrderWidget(
+                    model: data[index],
+                    onTap: onTap,
+                  ),
                 ),
               ),
-              const Gap(30),
+              const Gap(20),
             ],
-    );
+          );
   }
 }

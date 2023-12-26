@@ -5,10 +5,10 @@ import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/core/enums/drawer_enum.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_constant.dart';
-import '../../core/constant/app_svg.dart';
-import 'drawer/Custom_drawer_item.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_constant.dart';
+import '../../../core/constant/app_svg.dart';
+import 'Custom_drawer_item.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({

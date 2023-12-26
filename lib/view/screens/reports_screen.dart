@@ -32,7 +32,7 @@ class ReportsScreen extends StatelessWidget {
           final cubit = ReportsCubit.get(context);
           Widget body = AppInjection.getIt<AppWidget>().reports;
           if (state is ReportsSuccessState || cubit.data.isNotEmpty) {
-            body = ReportListWidget(data: cubit.data);
+            body = OrderListWidget(data: cubit.data);
           }
           if (state is ReportsLoadingState) {
             body = const OrdersLoading();
