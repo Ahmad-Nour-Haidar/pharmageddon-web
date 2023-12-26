@@ -19,7 +19,7 @@ class LocaleController extends GetxController {
     await sh.setString(AppKeysStorage.langKey, codeLang);
     await Jiffy.setLocale(codeLang);
     this.locale = locale;
-    AppConstant.isEnglish = this.locale.languageCode == 'en';
+    AppConstant.isEnglish = this.locale.languageCode == AppConstant.en;
     Get.updateLocale(locale);
   }
 
@@ -33,7 +33,7 @@ class LocaleController extends GetxController {
     } else {
       locale = Locale(Get.deviceLocale!.languageCode);
     }
-    AppConstant.isEnglish = locale.languageCode == 'en';
+    AppConstant.isEnglish = locale.languageCode == AppConstant.en;
     await Jiffy.setLocale(locale.languageCode);
     super.onInit();
   }

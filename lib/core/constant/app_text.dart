@@ -164,4 +164,6 @@ class AppText {
   static const addMedication = 'addMedication';
   static const addManufacturer = 'addManufacturer';
   static const addEffectCategory = 'addEffectCategory';
+  static const selectEffectCategoryManufacturer =
+      'selectEffectCategoryManufacturer';
 }

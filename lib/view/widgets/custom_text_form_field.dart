@@ -56,10 +56,7 @@ class CustomTextFormField extends StatelessWidget {
     if (textDirection != null) {
       return textDirection!;
     }
-    if (isEnglish()) {
-      return TextDirection.ltr;
-    }
-    return TextDirection.rtl;
+    return getTextDirectionOnLang();
   }
 
   @override
@@ -83,8 +80,7 @@ class CustomTextFormField extends StatelessWidget {
           helperText: " ",
           errorMaxLines: 2,
           // contentPadding: contentPadding,
-          hintTextDirection:
-              isEnglish() ? TextDirection.ltr : TextDirection.rtl,
+          hintTextDirection: getTextDirectionOnLang(),
           // prefixIcon: IconButton(
           //   icon: SvgPicture.asset(prefixIcon, width: sizePrefix),
           //   onPressed: null,

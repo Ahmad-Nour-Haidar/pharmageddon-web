@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:pharmageddon_web/core/constant/app_color.dart';
-import 'package:pharmageddon_web/core/functions/functions.dart';
 import '../../controllers/home_cubit/home_cubit.dart';
 import '../../controllers/home_cubit/home_state.dart';
+import '../../core/constant/app_constant.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_drawer.dart';
 
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   BorderRadius get _borderRadius {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       return const BorderRadius.only(
         topLeft: Radius.circular(25),
         bottomLeft: Radius.circular(25),

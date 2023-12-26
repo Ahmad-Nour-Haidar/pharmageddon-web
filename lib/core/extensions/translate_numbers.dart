@@ -1,8 +1,8 @@
-import 'package:pharmageddon_web/core/functions/functions.dart';
+import '../constant/app_constant.dart';
 
 extension TranslateNumbers on String {
   String get trn {
-    if (isEnglish()) return this;
+    if (AppConstant.isEnglish) return this;
     const keys = {
       '0': '٠',
       '1': '١',

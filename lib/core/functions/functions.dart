@@ -18,7 +18,7 @@ import '../constant/app_local_data.dart';
 import '../constant/app_text.dart';
 import '../services/dependency_injection.dart';
 
-bool isEnglish() => AppConstant.isEnglish;
+// bool AppConstant.isEnglish => AppConstant.isEnglish;
 
 String getCodeLang() =>
     AppInjection.getIt<LocaleController>().locale.languageCode;
@@ -38,7 +38,7 @@ String formatYYYYMd(Object? object) {
   final s = object?.toString();
   final date = DateTime.tryParse(s ?? '');
   if (date == null) return ' --- ';
-  final pattern = isEnglish() ? 'yyyy - M - d' : 'd - M - yyyy';
+  final pattern = AppConstant.isEnglish ? 'yyyy - M - d' : 'd - M - yyyy';
   return Jiffy.parseFromDateTime(date).format(pattern: pattern);
 }
 
@@ -51,7 +51,7 @@ TextDirection getTextDirection(String value) {
 }
 
 TextDirection getTextDirectionOnLang() {
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     return TextDirection.ltr;
   } else {
     return TextDirection.rtl;
@@ -93,14 +93,14 @@ String getManufacturerName(
   var s = '';
   if (model == null) return s;
   if (split) {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       s = model.englishName.toString().split(' ').take(max).join(' ');
     } else {
       s = model.arabicName.toString().split(' ').take(max).join(' ');
     }
     return s;
   }
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishName.toString();
   } else {
     s = model.arabicName.toString();
@@ -116,14 +116,14 @@ String getEffectCategoryModelName(
   var s = '';
   if (model == null) return s;
   if (split) {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       s = model.englishName.toString().split(' ').take(max).join(' ');
     } else {
       s = model.arabicName.toString().split(' ').take(max).join(' ');
     }
     return s;
   }
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishName.toString();
   } else {
     s = model.arabicName.toString();
@@ -142,14 +142,14 @@ String getMedicationScientificName(MedicationModel? model,
   var s = '';
   if (model == null) return s;
   if (split) {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       s = model.englishScientificName.toString().split(' ').take(2).join(' ');
     } else {
       s = model.arabicScientificName.toString().split(' ').take(2).join(' ');
     }
     return s;
   }
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishScientificName.toString();
   } else {
     s = model.arabicScientificName.toString();
@@ -161,14 +161,14 @@ String getMCommercialName(MedicationModel? model, {bool split = true}) {
   var s = '';
   if (model == null) return s;
   if (split) {
-    if (isEnglish()) {
+    if (AppConstant.isEnglish) {
       s = model.englishCommercialName.toString().split(' ').take(2).join(' ');
     } else {
       s = model.arabicCommercialName.toString().split(' ').take(2).join(' ');
     }
     return s;
   }
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishCommercialName.toString();
   } else {
     s = model.arabicCommercialName.toString();
@@ -179,7 +179,7 @@ String getMCommercialName(MedicationModel? model, {bool split = true}) {
 String getMedicationModelDescription(MedicationModel? model) {
   var s = '';
   if (model == null) return s;
-  if (isEnglish()) {
+  if (AppConstant.isEnglish) {
     s = model.englishDescription.toString();
   } else {
     s = model.arabicDescription.toString();

@@ -11,6 +11,7 @@ import 'controllers/local_controller.dart';
 import 'controllers/manufacturer_cubit/manufacturer_cubit.dart';
 import 'controllers/medication_cubit/medication_cubit.dart';
 import 'controllers/medication_details_cubit/medication_details_cubit.dart';
+import 'core/constant/app_constant.dart';
 import 'core/constant/app_local_data.dart';
 import 'core/constant/app_size.dart';
 import 'core/functions/functions.dart';
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: isEnglish() ? 'Pharmageddon' : 'فارماجيدون',
+        title: AppConstant.isEnglish ? 'Pharmageddon' : 'فارماجيدون',
         locale: controller.locale,
         translations: MyTranslation(),
         theme: themeData(),

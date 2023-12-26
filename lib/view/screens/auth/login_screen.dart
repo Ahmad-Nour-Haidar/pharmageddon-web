@@ -4,13 +4,13 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/routes.dart';
 
 import '../../../controllers/auth/login_cubit/login_cubit.dart';
 import '../../../controllers/auth/login_cubit/login_state.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_constant.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../core/constant/app_svg.dart';
@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                                 child: ListView(
                                   children: [
                                     const Gap(25),
-                                    SelectableText(
+                                    Text(
                                       AppText.welcomeBack.tr,
                                       style: AppTextStyle.f26w600black,
                                     ),
@@ -123,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                                       obscureText: cubit.obscureText,
                                     ),
                                     Align(
-                                      alignment: isEnglish()
+                                      alignment: AppConstant.isEnglish
                                           ? Alignment.centerRight
                                           : Alignment.centerLeft,
                                       child: TextButton(
@@ -131,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                                           pushNamed(
                                               AppRoute.checkEmail, context);
                                         },
-                                        child: SelectableText(
+                                        child: Text(
                                           AppText.forgetPassword.tr,
                                           style: AppTextStyle.f18w400TextColor,
                                         ),
@@ -150,7 +150,7 @@ class LoginScreen extends StatelessWidget {
                                     const Gap(15),
                                     Row(
                                       children: [
-                                        SelectableText(
+                                        Text(
                                           AppText.doNotHaveAnAccount.tr,
                                           style: AppTextStyle.f18w400gray,
                                         ),
@@ -159,7 +159,7 @@ class LoginScreen extends StatelessWidget {
                                             pushNamedAndRemoveUntil(
                                                 AppRoute.register, context);
                                           },
-                                          child: SelectableText(
+                                          child: Text(
                                             AppText.createAccount.tr,
                                             style:
                                                 AppTextStyle.f18w400TextColor,
@@ -186,7 +186,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 const Gap(20),
                                 const Center(
-                                  child: SelectableText(
+                                  child: Text(
                                     'Pharmageddon',
                                     style: AppTextStyle.f24w600SecondColor,
                                   ),

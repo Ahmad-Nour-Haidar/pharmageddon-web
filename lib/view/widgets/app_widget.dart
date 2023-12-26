@@ -4,11 +4,11 @@ import 'package:lottie/lottie.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 
 import '../../core/constant/app_color.dart';
+import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_lottie.dart';
 import '../../core/constant/app_size.dart';
 import '../../core/constant/app_svg.dart';
 import '../../core/enums/order_status.dart';
-import '../../core/functions/functions.dart';
 import '../../model/order_model.dart';
 
 class AppWidget {
@@ -47,7 +47,9 @@ class AppWidget {
       return Tooltip(
         message: model.orderStatus!.name.tr,
         child: SvgImage(
-          path: isEnglish() ? AppSvg.shippingFast : AppSvg.shippingFastLeft,
+          path: AppConstant.isEnglish
+              ? AppSvg.shippingFast
+              : AppSvg.shippingFastLeft,
           color: AppColor.blue,
           size: s,
         ),

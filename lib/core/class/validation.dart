@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
+import '../constant/app_constant.dart';
 import '../constant/app_text.dart';
-import '../functions/functions.dart';
 
 class ValidateInput {
   ValidateInput._();
@@ -121,7 +121,7 @@ class ValidateInput {
       return _getMessageNotValid(AppText.email.tr);
     }
     if (!value.endsWith('@gmail.com')) {
-      return isEnglish()
+      return AppConstant.isEnglish
           ? '${AppText.emailMustBeEndWith.tr}: @gmail.com'
           : '@gmail.com :${AppText.emailMustBeEndWith.tr}';
     }

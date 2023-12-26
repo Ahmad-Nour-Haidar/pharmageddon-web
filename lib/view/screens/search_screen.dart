@@ -47,11 +47,7 @@ class SearchScreen extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              s,
-              style: AppTextStyle.f18w500black,
-              maxLines: 1,
-            ),
+            Text(s, style: AppTextStyle.f18w500black, maxLines: 1),
             Expanded(
               child: Row(
                 children: [

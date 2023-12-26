@@ -13,7 +13,6 @@ import 'package:pharmageddon_web/print.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_link.dart';
 import '../../view/widgets/custom_menu.dart';
-import '../../view/widgets/medication/medication_input_form.dart';
 
 class AddCubit extends Cubit<AddState> {
   AddCubit() : super(AddInitialState());
@@ -24,23 +23,19 @@ class AddCubit extends Cubit<AddState> {
   final _effectCategoryRemoteData =
       AppInjection.getIt<EffectCategoryRemoteData>();
 
-  final List<ManufacturerModel> manufacturers = [];
-  final List<EffectCategoryModel> effectCategories = [];
-
   void _update(AddState state) {
     if (isClosed) return;
     emit(state);
   }
 
-  List<PopupMenuItemModel> get manufacturersData {
-    return List.generate(
-      manufacturers.length,
-      (index) => PopupMenuItemModel(
-        getManufacturerName(manufacturers[index], split: false),
-        manufacturers[index].id.toString(),
-      ),
-    );
+  void initial() {
+    getDataEffectCategory();
+    getDataManufacturer();
   }
+
+  /// this used to add medicine
+  // all available effect categories
+  final List<EffectCategoryModel> effectCategories = [];
 
   List<PopupMenuItemModel> get effectCategoriesData {
     return List.generate(
@@ -50,11 +45,6 @@ class AddCubit extends Cubit<AddState> {
         effectCategories[index].id.toString(),
       ),
     );
-  }
-
-  void initial() {
-    getDataEffectCategory();
-    getDataManufacturer();
   }
 
   Future<void> getDataEffectCategory({bool forceGet = false}) async {
@@ -80,6 +70,19 @@ class AddCubit extends Cubit<AddState> {
         _update(AddGetEffectCategorySuccessState());
       });
     }).catchError((e) {});
+  }
+
+  // all available manufacturers
+  final List<ManufacturerModel> manufacturers = [];
+
+  List<PopupMenuItemModel> get manufacturersData {
+    return List.generate(
+      manufacturers.length,
+      (index) => PopupMenuItemModel(
+        getManufacturerName(manufacturers[index], split: false),
+        manufacturers[index].id.toString(),
+      ),
+    );
   }
 
   Future<void> getDataManufacturer({bool forceGet = false}) async {

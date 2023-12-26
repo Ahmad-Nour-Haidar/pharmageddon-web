@@ -3,10 +3,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/core/enums/drawer_enum.dart';
-import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
+import '../../core/constant/app_constant.dart';
 import '../../core/constant/app_svg.dart';
 import 'drawer/Custom_drawer_item.dart';
 
@@ -52,11 +52,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: ListView(
         children: [
           Align(
-            alignment: isEnglish() ? Alignment.topRight : Alignment.topLeft,
+            alignment:
+                AppConstant.isEnglish ? Alignment.topRight : Alignment.topLeft,
             child: IconButton(
               onPressed: openCloseDrawer,
               icon: Transform.flip(
-                flipX: isEnglish() ? isOpen : !isOpen,
+                flipX: AppConstant.isEnglish ? isOpen : !isOpen,
                 child: const SvgImage(
                   path: AppSvg.arrowRight,
                   color: AppColor.white,
@@ -140,7 +141,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   isOrderSelected ? AppColor.white.withOpacity(0.2) : null,
               initiallyExpanded: isOrderSelected,
               childrenPadding: EdgeInsets.only(
-                left: isEnglish() ? 60 : 40,
+                left: AppConstant.isEnglish ? 60 : 40,
               ),
               tilePadding: const EdgeInsets.symmetric(horizontal: 15),
               shape: RoundedRectangleBorder(

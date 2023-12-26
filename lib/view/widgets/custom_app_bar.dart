@@ -35,7 +35,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   void initState() {
-    _dropValue = isEnglish() ? AppConstant.en : AppConstant.ar;
+    _dropValue = AppInjection.getIt<LocaleController>().locale.languageCode;
     super.initState();
   }
 

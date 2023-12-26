@@ -7,7 +7,6 @@ import 'package:pharmageddon_web/controllers/add_cubit/add_state.dart';
 import 'package:pharmageddon_web/core/constant/app_padding.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
-import 'package:pharmageddon_web/core/services/dependency_injection.dart';
 import 'package:pharmageddon_web/view/widgets/effect_category/effect_category_input_form.dart';
 import 'package:pharmageddon_web/view/widgets/manufacturer/manufacturer_input_form.dart';
 import 'package:pharmageddon_web/view/widgets/medication/medication_input_form.dart';
@@ -25,7 +24,10 @@ class AddScreen extends StatelessWidget {
         return ListView(
           padding: AppPadding.zero,
           children: [
-            Text(AppText.addMedication.tr, style: AppTextStyle.f18w500green3),
+            Text(
+              AppText.addMedication.tr,
+              style: AppTextStyle.f18w600blue,
+            ),
             MedicationInputForm(
               physics: const NeverScrollableScrollPhysics(),
               onTapButton: (data, file) {},
@@ -41,7 +43,7 @@ class AddScreen extends StatelessWidget {
                     children: [
                       Text(
                         AppText.addEffectCategory.tr,
-                        style: AppTextStyle.f18w500green3,
+                        style: AppTextStyle.f18w600blue,
                       ),
                       const Gap(5),
                       EffectCategoryInputForm(
@@ -58,7 +60,7 @@ class AddScreen extends StatelessWidget {
                     children: [
                       Text(
                         AppText.addManufacturer.tr,
-                        style: AppTextStyle.f18w500green3,
+                        style: AppTextStyle.f18w600blue,
                       ),
                       const Gap(5),
                       Padding(

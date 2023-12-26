@@ -1,6 +1,5 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 
 import '../../core/constant/app_color.dart';
@@ -48,8 +47,10 @@ class _CustomMenuState extends State<CustomMenu> {
 
   void initial() {
     if (widget.data.isEmpty) return;
-    _value = widget.data[0].value;
-    widget.onChange(_value);
+    setState(() {
+      _value = widget.data[0].value;
+      widget.onChange(_value);
+    });
   }
 
   void onSelected(String value) {
@@ -68,27 +69,50 @@ class _CustomMenuState extends State<CustomMenu> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        if (widget.data.isNotEmpty)
-          Expanded(
-            child: ListTile(
-              contentPadding: AppPadding.zero,
-              title: Text('${widget.title} : $title'),
-              trailing: PopupMenuButton(
-                constraints:
-                const BoxConstraints(maxHeight: 220, maxWidth: 180),
-                itemBuilder: (context) {
-                  return List.generate(
-                    widget.data.length,
-                        (index) => PopupMenuItem(
-                      value: widget.data[index].value,
-                      child: Text(widget.data[index].title),
-                    ),
-                  );
-                },
-                onSelected: onSelected,
-              ),
+        Expanded(
+          child: ListTile(
+            contentPadding: AppPadding.zero,
+            title: Text(
+              '${widget.title} : $title',
+              style: AppTextStyle.f14w600black,
             ),
+            trailing: widget.data.isEmpty
+                ? null
+                : Theme(
+                    data: Theme.of(context).copyWith(
+                      dividerTheme: const DividerThemeData(
+                        color: AppColor.gray1,
+                        endIndent: 8,
+                        indent: 8,
+                      ),
+                    ),
+                    child: PopupMenuButton<String>(
+                      tooltip: '',
+                      constraints: const BoxConstraints(
+                        maxHeight: 220,
+                        maxWidth: 180,
+                      ),
+                      itemBuilder: (context) {
+                        return List.generate(
+                          (widget.data.length * 2 - 1),
+                          (index) {
+                            if (index % 2 == 0) {
+                              final i = index ~/ 2;
+                              return PopupMenuItem(
+                                value: widget.data[i].value,
+                                child: Text(widget.data[i].title),
+                              );
+                            } else {
+                              return const PopupMenuDivider();
+                            }
+                          },
+                        );
+                      },
+                      onSelected: onSelected,
+                    ),
+                  ),
           ),
+        ),
         IconButton(
           onPressed: widget.onTapReload,
           icon: const Align(

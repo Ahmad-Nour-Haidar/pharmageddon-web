@@ -7,16 +7,15 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/controllers/add_cubit/add_cubit.dart';
 import 'package:pharmageddon_web/core/constant/app_keys_request.dart';
-import 'package:pharmageddon_web/core/constant/app_svg.dart';
 import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/custom_button.dart';
-import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 import 'package:pharmageddon_web/view/widgets/text_input.dart';
 
 import '../../../core/class/image_helper.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_constant.dart';
 import '../../../core/constant/app_padding.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../core/functions/functions.dart';
@@ -64,7 +63,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
   MedicationModel? _model;
 
   // this to when add medicine
-  String? manufacturerId, effectCategoryId;
+  String? _manufacturerId, _effectCategoryId;
 
   @override
   void initState() {
@@ -107,6 +106,8 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
       AppRKeys.price: _priceCon.text,
       AppRKeys.english_description: _descEnCon.text,
       AppRKeys.arabic_description: _descArCon.text,
+      AppRKeys.effect_category_id: _effectCategoryId,
+      AppRKeys.manufacturer_id: _manufacturerId,
     };
     widget.onTapButton(data, _pickedImage);
   }
@@ -255,7 +256,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                   ),
                 ),
                 child: Align(
-                  alignment: isEnglish()
+                  alignment: AppConstant.isEnglish
                       ? Alignment.centerLeft
                       : Alignment.centerRight,
                   child: Text(
@@ -275,7 +276,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                       title: AppText.effectCategories.tr,
                       data: AppInjection.getIt<AddCubit>().effectCategoriesData,
                       onChange: (newValue) {
-                        effectCategoryId = newValue;
+                        _effectCategoryId = newValue;
                       },
                       onTapReload: () => AppInjection.getIt<AddCubit>()
                           .getDataEffectCategory(forceGet: true),
@@ -288,7 +289,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                       title: AppText.manufacturer.tr,
                       data: AppInjection.getIt<AddCubit>().manufacturersData,
                       onChange: (newValue) {
-                        manufacturerId = newValue;
+                        _manufacturerId = newValue;
                       },
                       onTapReload: () => AppInjection.getIt<AddCubit>()
                           .getDataManufacturer(forceGet: true),

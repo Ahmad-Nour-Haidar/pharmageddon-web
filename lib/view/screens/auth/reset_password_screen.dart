@@ -10,10 +10,10 @@ import '../../../controllers/auth/reset_password_cubit/reset_password_cubit.dart
 import '../../../controllers/auth/reset_password_cubit/reset_password_state.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_constant.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../core/constant/app_svg.dart';
-import '../../../core/functions/functions.dart';
 import '../../../core/functions/navigator.dart';
 import '../../../core/resources/app_text_theme.dart';
 import '../../../core/services/dependency_injection.dart';
@@ -83,7 +83,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 key: cubit.formKey,
                                 child: ListView(
                                   children: [
-                                    SelectableText(
+                                    Text(
                                       AppText.resetPassword.tr,
                                       style: AppTextStyle.f26w600black,
                                     ),
@@ -92,7 +92,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                       const SpinKitFoldingCube(
                                           color: AppColor.primaryColor),
                                     if (cubit.email != null)
-                                      SelectableText(
+                                      Text(
                                         cubit.message,
                                         style: AppTextStyle.f18w500black,
                                       ),
@@ -162,12 +162,12 @@ class ResetPasswordScreen extends StatelessWidget {
                                       ),
                                     const Gap(15),
                                     Align(
-                                      alignment: isEnglish()
+                                      alignment: AppConstant.isEnglish
                                           ? Alignment.centerRight
                                           : Alignment.centerLeft,
                                       child: TextButton(
                                         onPressed: cubit.getVerifyCode,
-                                        child: SelectableText(
+                                        child: Text(
                                           AppText.resendVerifyCode.tr,
                                           style: AppTextStyle.f18w400TextColor,
                                         ),
@@ -190,7 +190,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                 ),
                                 const Gap(20),
                                 const Center(
-                                  child: SelectableText(
+                                  child: Text(
                                     'Pharmageddon',
                                     style: AppTextStyle.f24w600SecondColor,
                                   ),
