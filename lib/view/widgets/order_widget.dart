@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
-import 'package:pharmageddon_web/view/widgets/row_text_span.dart';
+import 'package:pharmageddon_web/view/widgets/rich_text_span.dart';
 
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_padding.dart';
@@ -29,6 +29,7 @@ class OrderWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       elevation: 4,
       child: InkWell(
+        borderRadius: BorderRadius.circular(10),
         onTap: () => onTap == null ? null : onTap!(model),
         child: Container(
           padding: AppPadding.padding10,
@@ -38,7 +39,7 @@ class OrderWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  RowTextSpan(
+                  RichTextSpan(
                     s1: '${AppText.id.tr} : ',
                     s2: model.id.toString().trn,
                   ),
@@ -48,24 +49,24 @@ class OrderWidget extends StatelessWidget {
                 ],
               ),
               FittedBox(
-                child: RowTextSpan(
+                child: RichTextSpan(
                   s1: '${AppText.pharmacist.tr} : ',
                   s2: model.pharmacistUsername.toString(),
                 ),
               ),
-              RowTextSpan(
+              RichTextSpan(
                 s1: '${AppText.totalQuantity.tr} : ',
                 s2: model.totalQuantity.toString().trn,
               ),
-              RowTextSpan(
+              RichTextSpan(
                 s1: '${AppText.totalPrice.tr} : ',
                 s2: '${model.totalPrice.toString().trn} ${AppText.sp.tr}',
               ),
-              RowTextSpan(
+              RichTextSpan(
                 s1: '${AppText.paymentState.tr} : ',
                 s2: getPaymentStatus(model),
               ),
-              RowTextSpan(
+              RichTextSpan(
                 s1: '${AppText.date.tr} : ',
                 s2: formatYYYYMd(model.createdAt),
               ),

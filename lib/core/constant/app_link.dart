@@ -84,6 +84,8 @@ class AppLink {
   static const orderDelete = '$_serverApi/order/delete';
   static const orderDeleteMedicine = '$_serverApi/order/delete_medicine';
   static const orderUpdatePaymentStatus = '$_serverApi/order/has_been_paid';
+  static const orderGetAllUnpaid = '$_serverApi/order/get_all_unpaid';
+  static const orderGetAllPaid = '$_serverApi/order/get_all_paid';
 
   // report
   static const report = '$_serverApi/report';

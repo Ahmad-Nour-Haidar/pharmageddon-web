@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:pharmageddon_web/controllers/effect_category_cubit/effect_category_cubit.dart';
 import 'package:pharmageddon_web/controllers/home_cubit/home_cubit.dart';
+import 'package:pharmageddon_web/controllers/orders_cubit/orders_cubit.dart';
 import 'package:pharmageddon_web/controllers/search_cubit/search_cubit.dart';
 import 'package:pharmageddon_web/model/user_model.dart';
 import 'package:pharmageddon_web/routes.dart';
@@ -63,6 +64,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<AddCubit>(
           create: (context) => AppInjection.getIt<AddCubit>(),
+        ),
+        BlocProvider<OrdersCubit>(
+          create: (context) => AppInjection.getIt<OrdersCubit>(),
         ),
       ],
       child: GetMaterialApp(

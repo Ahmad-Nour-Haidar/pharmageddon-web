@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../core/resources/app_text_theme.dart';
 
-class RowTextSpan extends StatelessWidget {
-  const RowTextSpan({
+class SelectableTextRich extends StatelessWidget {
+  const SelectableTextRich({
     super.key,
     required this.s1,
     required this.s2,

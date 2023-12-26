@@ -76,6 +76,7 @@ class CustomPickDateWidget extends StatelessWidget {
             onTap: () => show(context),
             child: Tooltip(
               message: AppText.selectStartDateAndEndDateOfReport.tr,
+              preferBelow: false,
               child: Row(
                 children: [
                   Expanded(

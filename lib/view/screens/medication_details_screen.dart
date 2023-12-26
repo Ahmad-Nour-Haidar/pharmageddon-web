@@ -16,7 +16,7 @@ import 'package:pharmageddon_web/view/widgets/medication/medication_input_form.d
 
 import '../../controllers/medication_details_cubit/medication_details_state.dart';
 import '../widgets/build_row_edit_close.dart';
-import '../widgets/row_text_span.dart';
+import '../widgets/selectable_text_rich.dart';
 
 class MedicationDetailsScreen extends StatelessWidget {
   const MedicationDetailsScreen({
@@ -81,23 +81,23 @@ class MedicationDetailsScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              RowTextSpan(
+                              SelectableTextRich(
                                 s1: '${AppText.id.tr} : # ',
                                 s2: cubit.model.id.toString().trn,
                               ),
                               const Gap(5),
-                              RowTextSpan(
+                              SelectableTextRich(
                                 s1: '${AppText.scientificName.tr} : ',
                                 s2: getMedicationScientificName(cubit.model)
                                     .trn,
                               ),
                               const Gap(5),
-                              RowTextSpan(
+                              SelectableTextRich(
                                 s1: '${AppText.commercialName.tr} : ',
                                 s2: getMCommercialName(cubit.model).trn,
                               ),
                               const Gap(5),
-                              RowTextSpan(
+                              SelectableTextRich(
                                 s1: '${AppText.manufacturer.tr} : ',
                                 s2: getManufacturerName(
                                   cubit.model.manufacturer,
@@ -105,45 +105,45 @@ class MedicationDetailsScreen extends StatelessWidget {
                                 ).trn,
                               ),
                               const Gap(5),
-                              RowTextSpan(
+                              SelectableTextRich(
                                 s1: '${AppText.effect.tr} : ',
                                 s2: getEffectCategoryModelName(
                                         cubit.model.effectCategory)
                                     .trn,
                               ),
                               const Gap(5),
-                              RowTextSpan(
+                              SelectableTextRich(
                                 s1: '${AppText.description.tr} : ',
                                 s2: getMedicationModelDescription(cubit.model)
                                     .trn,
                               ),
                               const Gap(5),
-                              RowTextSpan(
+                              SelectableTextRich(
                                 s1: '${AppText.availableQuantity.tr} : ',
                                 s2: cubit.model.availableQuantity
                                     .toString()
                                     .trn,
                               ),
                               const Gap(5),
-                              RowTextSpan(
+                              SelectableTextRich(
                                 s1: '${AppText.price.tr} : ',
                                 s2: '${cubit.model.price} ${AppText.sp.tr}'.trn,
                               ),
                               if (cubit.model.discount! > 0) const Gap(5),
                               if (cubit.model.discount! > 0)
-                                RowTextSpan(
+                                SelectableTextRich(
                                   s1: '${AppText.discount.tr} : ',
                                   s2: '${cubit.model.discount} %'.trn,
                                 ),
                               if (cubit.model.discount! > 0) const Gap(5),
                               if (cubit.model.discount! > 0)
-                                RowTextSpan(
+                                SelectableTextRich(
                                   s1: '${AppText.priceAfterDiscount.tr} : ',
                                   s2: '${cubit.model.priceAfterDiscount} ${AppText.sp.tr}'
                                       .trn,
                                 ),
                               const Gap(5),
-                              RowTextSpan(
+                              SelectableTextRich(
                                 s1: '${AppText.expirationDate.tr} : ',
                                 s2: formatYYYYMd(cubit.model.expirationDate),
                               ),

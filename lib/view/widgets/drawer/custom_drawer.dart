@@ -110,28 +110,24 @@ class _CustomDrawerState extends State<CustomDrawer> {
             isSelected: widget.currentScreen == ScreenView.add,
           ),
           if (!isOpen)
-            Tooltip(
-              message: AppText.orders.tr,
-              preferBelow: false,
-              child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                tileColor:
-                    isOrderSelected ? AppColor.white.withOpacity(0.2) : null,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                leading: const SvgImage(
-                  path: AppSvg.ballot,
-                  color: AppColor.white,
-                  size: 25,
-                ),
-                onTap: () {
-                  setState(() {
-                    isOpen = true;
-                  });
-                  changeScreen(ScreenView.preparing);
-                },
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+              tileColor:
+                  isOrderSelected ? AppColor.white.withOpacity(0.2) : null,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
               ),
+              leading: const SvgImage(
+                path: AppSvg.ballot,
+                color: AppColor.white,
+                size: 25,
+              ),
+              onTap: () {
+                setState(() {
+                  isOpen = true;
+                });
+                changeScreen(ScreenView.preparing);
+              },
             ),
           if (isOpen)
             ExpansionTile(

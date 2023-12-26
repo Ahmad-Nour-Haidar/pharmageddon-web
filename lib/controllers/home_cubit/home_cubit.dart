@@ -7,6 +7,7 @@ import '../../core/enums/drawer_enum.dart';
 import '../../view/screens/add_screen.dart';
 import '../../view/screens/effect_category_screen.dart';
 import '../../view/screens/manufacturer_screen.dart';
+import '../../view/screens/orders_screen.dart';
 import '../../view/screens/reports_screen.dart';
 import 'home_state.dart';
 
@@ -20,10 +21,10 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state);
   }
 
-  var currentScreen = ScreenView.add;
+  var currentScreen = ScreenView.preparing;
 
   void changeScreen(ScreenView value) {
-    if (currentScreen == value) return;
+    // if (currentScreen == value) return;
     currentScreen = value;
     _update(HomeChangeState());
   }
@@ -39,36 +40,40 @@ class HomeCubit extends Cubit<HomeState> {
 
   Widget get screen {
     switch (currentScreen) {
-      case ScreenView.all:
-        return const MedicationScreen(url: AppLink.medicineGetAll);
       case ScreenView.manufacturer:
         return const ManufacturerScreen();
       case ScreenView.effectCategories:
         return const EffectCategoryScreen();
-      case ScreenView.discounts:
-        return const MedicationScreen(url: AppLink.medicineGetAllDiscount);
       case ScreenView.add:
         return const AddScreen();
       case ScreenView.reports:
         return const ReportsScreen();
-      case ScreenView.preparing:
-        return const SizedBox();
-      case ScreenView.hasBeenSent:
-        return const SizedBox();
-      case ScreenView.received:
-        return const SizedBox();
-      case ScreenView.paid:
-        return const SizedBox();
-      case ScreenView.unPaid:
-        return const SizedBox();
+      // Medication Screen
+      case ScreenView.all:
+        return const MedicationScreen(url: AppLink.medicineGetAll);
       case ScreenView.quantityExpired:
         return const MedicationScreen(
           url: AppLink.medicineGetAllQuantityExpired,
         );
+      case ScreenView.discounts:
+        return const MedicationScreen(url: AppLink.medicineGetAllDiscount);
       case ScreenView.dateExpired:
-        return const MedicationScreen(url: AppLink.medicineGetAllDateExpired);
+        return const MedicationScreen(
+          url: AppLink.medicineGetAllDateExpired,
+        );
       case ScreenView.search:
         return SearchScreen(value: _valueForSearch);
+      // OrdersScreen
+      case ScreenView.preparing:
+        return OrdersScreen(currentScreen: currentScreen);
+      case ScreenView.hasBeenSent:
+        return OrdersScreen(currentScreen: currentScreen);
+      case ScreenView.received:
+        return OrdersScreen(currentScreen: currentScreen);
+      case ScreenView.paid:
+        return OrdersScreen(currentScreen: currentScreen);
+      case ScreenView.unPaid:
+        return OrdersScreen(currentScreen: currentScreen);
     }
   }
 }

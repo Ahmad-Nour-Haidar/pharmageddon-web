@@ -23,25 +23,21 @@ class CustomDrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Tooltip(
-      message: title,
-      preferBelow: false,
-      child: ListTile(
-        onTap: onTap,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-        tileColor: isSelected ? AppColor.white.withOpacity(0.2) : null,
-        title: isOpen
-            ? FittedBox(
-                alignment: AppConstant.isEnglish
-                    ? Alignment.centerLeft
-                    : Alignment.centerRight,
-                fit: BoxFit.scaleDown,
-                child: Text(title, style: AppTextStyle.f16w500white),
-              )
-            : null,
-        leading: SvgImage(path: iconPath, color: AppColor.white, size: 20),
-      ),
+    return ListTile(
+      onTap: onTap,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+      tileColor: isSelected ? AppColor.white.withOpacity(0.2) : null,
+      title: isOpen
+          ? FittedBox(
+              alignment: AppConstant.isEnglish
+                  ? Alignment.centerLeft
+                  : Alignment.centerRight,
+              fit: BoxFit.scaleDown,
+              child: Text(title, style: AppTextStyle.f16w500white),
+            )
+          : null,
+      leading: SvgImage(path: iconPath, color: AppColor.white, size: 20),
     );
   }
 }
