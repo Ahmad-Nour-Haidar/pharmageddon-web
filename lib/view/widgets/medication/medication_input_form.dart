@@ -23,7 +23,7 @@ import '../../../core/resources/app_text_theme.dart';
 import '../../../core/services/dependency_injection.dart';
 import '../../../model/medication_model.dart';
 import '../build_row_two_widgets.dart';
-import '../custom_menu.dart';
+import 'custom_menu.dart';
 import '../get_image_from_url_and_memory.dart';
 
 class MedicationInputForm extends StatefulWidget {

@@ -10,11 +10,11 @@ import '../../controllers/order_details_cubit/order_details_state.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_svg.dart';
 import '../../model/order_model.dart';
-import '../widgets/buttons_order_details.dart';
+import '../widgets/order/buttons_order_details.dart';
 import '../widgets/handle_state.dart';
-import '../widgets/order_details_widget.dart';
+import '../widgets/order/order_details_widget.dart';
 import '../widgets/svg_image.dart';
-import '../widgets/top_widget_order_details_screen.dart';
+import '../widgets/order/top_widget_order_details_screen.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   const OrderDetailsScreen({

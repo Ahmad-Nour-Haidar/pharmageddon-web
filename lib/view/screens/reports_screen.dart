@@ -13,7 +13,7 @@ import '../widgets/app_widget.dart';
 import '../widgets/custom_pick_date_widget.dart';
 import '../widgets/handle_state.dart';
 import '../widgets/loading/order_loading.dart';
-import '../widgets/order_widget.dart';
+import '../widgets/order/order_widget.dart';
 
 class ReportsScreen extends StatelessWidget {
   const ReportsScreen({super.key});

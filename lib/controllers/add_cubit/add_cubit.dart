@@ -17,7 +17,7 @@ import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_link.dart';
 import '../../core/constant/app_text.dart';
 import '../../core/functions/check_errors.dart';
-import '../../view/widgets/custom_menu.dart';
+import '../../view/widgets/medication/custom_menu.dart';
 
 class AddCubit extends Cubit<AddState> {
   AddCubit() : super(AddInitialState());

@@ -11,7 +11,7 @@ import '../../core/services/dependency_injection.dart';
 import '../widgets/app_widget.dart';
 import '../widgets/handle_state.dart';
 import '../widgets/loading/order_loading.dart';
-import '../widgets/order_widget.dart';
+import '../widgets/order/order_widget.dart';
 import '../widgets/rich_text_span.dart';
 
 class OrdersScreen extends StatelessWidget {

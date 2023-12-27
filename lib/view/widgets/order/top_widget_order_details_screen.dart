@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/view/widgets/rich_text_span.dart';
-import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_text.dart';
-import '../../core/functions/functions.dart';
-import '../../core/services/dependency_injection.dart';
-import '../../model/order_model.dart';
-import 'app_widget.dart';
+import '../../../core/constant/app_padding.dart';
+import '../../../core/constant/app_text.dart';
+import '../../../core/functions/functions.dart';
+import '../../../core/services/dependency_injection.dart';
+import '../../../model/order_model.dart';
+import '../app_widget.dart';
 
 class TopWidgetOrderDetailsScreen extends StatelessWidget {
   const TopWidgetOrderDetailsScreen({

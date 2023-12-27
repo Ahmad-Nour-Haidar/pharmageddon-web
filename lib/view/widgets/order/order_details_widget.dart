@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/view/widgets/rich_text_span.dart';
 
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_text.dart';
-import '../../core/functions/functions.dart';
-import '../../core/resources/app_text_theme.dart';
-import '../../model/order_details_model.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_padding.dart';
+import '../../../core/constant/app_text.dart';
+import '../../../core/functions/functions.dart';
+import '../../../core/resources/app_text_theme.dart';
+import '../../../model/order_details_model.dart';
 
 class OrderDetailsWidget extends StatelessWidget {
   const OrderDetailsWidget({

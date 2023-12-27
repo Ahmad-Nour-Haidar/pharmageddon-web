@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_text.dart';
-import '../../core/enums/order_status.dart';
-import '../../model/order_model.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_text.dart';
+import '../../../core/enums/order_status.dart';
+import '../../../model/order_model.dart';
 
 class ButtonsOrderDetails extends StatelessWidget {
   const ButtonsOrderDetails({

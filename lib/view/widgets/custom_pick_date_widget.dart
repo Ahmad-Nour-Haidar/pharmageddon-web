@@ -48,7 +48,7 @@ class CustomPickDateWidget extends StatelessWidget {
         cancelButtonTextStyle: AppTextStyle.f14w600red,
         okButtonTextStyle: AppTextStyle.f14w600green,
       ),
-      dialogSize: const Size(400, 400),
+      dialogSize: const Size(350, 400),
       borderRadius: BorderRadius.circular(10),
     );
     if (results != null) {

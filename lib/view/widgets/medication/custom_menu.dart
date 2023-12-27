@@ -3,9 +3,9 @@ import 'package:pharmageddon_web/core/constant/app_constant.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 
-import '../../core/constant/app_color.dart';
-import '../../core/constant/app_padding.dart';
-import '../../core/constant/app_svg.dart';
+import '../../../core/constant/app_color.dart';
+import '../../../core/constant/app_padding.dart';
+import '../../../core/constant/app_svg.dart';
 
 class PopupMenuItemModel {
   final String title, value;
