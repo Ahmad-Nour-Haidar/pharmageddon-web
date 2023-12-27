@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/constant/app_color.dart';
 import 'package:pharmageddon_web/core/constant/app_size.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
-import 'package:pharmageddon_web/core/functions/functions.dart';
 import 'package:pharmageddon_web/core/functions/navigator.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_web/core/services/dependency_injection.dart';

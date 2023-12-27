@@ -60,6 +60,23 @@ class CustomTextFormField extends StatelessWidget {
     return getTextDirectionOnLang();
   }
 
+  static final _border = OutlineInputBorder(
+    gapPadding: 5,
+    borderRadius: BorderRadius.circular(10),
+    borderSide: const BorderSide(color: AppColor.gray2, width: 1),
+  );
+
+  static final _borderDisabled = OutlineInputBorder(
+    gapPadding: 5,
+    borderRadius: BorderRadius.circular(10),
+    borderSide: const BorderSide(color: AppColor.gray1, width: 2),
+  );
+  static final _borderErrorBorder = OutlineInputBorder(
+    gapPadding: 5,
+    borderRadius: BorderRadius.circular(10),
+    borderSide: const BorderSide(color: AppColor.red, width: 2),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -71,6 +88,7 @@ class CustomTextFormField extends StatelessWidget {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         textDirection: getTextDirection(controller.text),
         validator: validator,
+        style: enabled ? null : AppTextStyle.f16w500black,
         onFieldSubmitted: onFieldSubmitted,
         obscureText: obscureText ?? false,
         controller: controller,
@@ -101,26 +119,12 @@ class CustomTextFormField extends StatelessWidget {
                   ),
                 )
               : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: const BorderSide(color: AppColor.gray2, width: 1),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: const BorderSide(color: AppColor.gray2, width: 1),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: const BorderSide(color: AppColor.gray2, width: 1),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: const BorderSide(color: AppColor.red, width: 1),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: const BorderSide(color: AppColor.red, width: 1),
-          ),
+          border: _border,
+          enabledBorder: _border,
+          focusedBorder: _border,
+          focusedErrorBorder: _borderErrorBorder,
+          errorBorder: _borderErrorBorder,
+          disabledBorder: _borderDisabled,
         ),
       ),
     );

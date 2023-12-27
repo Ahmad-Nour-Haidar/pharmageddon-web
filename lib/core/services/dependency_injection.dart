@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../controllers/add_cubit/add_cubit.dart';
 import '../../controllers/auth/check_email_cubit/check_email_cubit.dart';
 import '../../controllers/auth/login_cubit/login_cubit.dart';
+import '../../controllers/auth/profile_cubit/profile_cubit.dart';
 import '../../controllers/auth/register_cubit/register_cubit.dart';
 import '../../controllers/auth/reset_password_cubit/reset_password_cubit.dart';
 import '../../controllers/auth/verify_code_cubit/verify_code_cubit.dart';
@@ -48,6 +49,12 @@ class AppInjection {
     getIt.registerLazySingleton(() => CrudDio());
     getIt.registerLazySingleton(() => CrudHttp());
     getIt.registerLazySingleton(() => AuthRemoteData());
+    getIt.registerLazySingleton(() => MedicationsRemoteData());
+    getIt.registerLazySingleton(() => ManufacturerRemoteData());
+    getIt.registerLazySingleton(() => EffectCategoryRemoteData());
+    getIt.registerLazySingleton(() => OrderRemoteData());
+    getIt.registerLazySingleton(() => ReportsRemoteData());
+    getIt.registerLazySingleton(() => SearchRemoteData());
 
     /// controllers
     // auth
@@ -56,6 +63,7 @@ class AppInjection {
     getIt.registerFactory(() => CheckEmailCubit());
     getIt.registerFactory(() => ResetPasswordCubit());
     getIt.registerFactory(() => VerifyCodeCubit());
+    getIt.registerFactory(() => ProfileCubit());
 
     // home
     getIt.registerLazySingleton(() => HomeCubit());
@@ -68,14 +76,6 @@ class AppInjection {
     getIt.registerLazySingleton(() => OrdersCubit());
     getIt.registerFactory(() => ReportsCubit());
     getIt.registerFactory(() => OrderDetailsCubit());
-
-    /// data
-    getIt.registerLazySingleton(() => MedicationsRemoteData());
-    getIt.registerLazySingleton(() => ManufacturerRemoteData());
-    getIt.registerLazySingleton(() => EffectCategoryRemoteData());
-    getIt.registerLazySingleton(() => OrderRemoteData());
-    getIt.registerLazySingleton(() => ReportsRemoteData());
-    getIt.registerLazySingleton(() => SearchRemoteData());
 
     // widget
     getIt.registerLazySingleton(() => AppWidget());

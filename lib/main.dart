@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -5,7 +6,6 @@ import 'package:pharmageddon_web/controllers/effect_category_cubit/effect_catego
 import 'package:pharmageddon_web/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_web/controllers/orders_cubit/orders_cubit.dart';
 import 'package:pharmageddon_web/controllers/search_cubit/search_cubit.dart';
-import 'package:pharmageddon_web/model/user_model.dart';
 import 'package:pharmageddon_web/routes.dart';
 import 'controllers/add_cubit/add_cubit.dart';
 import 'controllers/local_controller.dart';
@@ -20,14 +20,17 @@ import 'core/localization/translation.dart';
 import 'core/resources/theme_manager.dart';
 import 'core/services/dependency_injection.dart';
 import 'my_bloc_observer.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await AppInjection.initial();
   initialUser();
-  await storeUser(user2);
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
+  if (kIsWeb) {
+    setPathUrlStrategy();
+  }
   runApp(const MyApp());
 }
 
@@ -38,9 +41,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AppSize.initial(context);
     final controller = AppInjection.getIt<LocaleController>();
-    var initialRoute = AppRoute.home;
+    var initialRoute = AppRoute.login;
     if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
-      // initialRoute = AppRoute.home;
+      initialRoute = AppRoute.home;
     }
     return MultiBlocProvider(
       providers: [

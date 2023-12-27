@@ -15,9 +15,10 @@ class GetImageFromUrlAndMemory extends StatelessWidget {
     required this.callUrl,
     this.onTap,
     this.webImage,
+    this.defaultImage = AppSvg.picture,
   });
 
-  final String url;
+  final String url, defaultImage;
   final double size;
   final void Function()? onTap;
   final Uint8List? webImage;
@@ -35,7 +36,7 @@ class GetImageFromUrlAndMemory extends StatelessWidget {
       ),
       child: Align(
         child: SvgImage(
-          path: AppSvg.picture,
+          path: defaultImage,
           color: AppColor.white,
           size: size / 2,
         ),
