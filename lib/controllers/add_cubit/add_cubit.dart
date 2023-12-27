@@ -43,71 +43,69 @@ class AddCubit extends Cubit<AddState> {
     File? file,
   ) async {
     _update(AddEffectCategoryLoadingState());
-    _effectCategoryRemoteData
-        .createEffectCategory(
+    final response = await _effectCategoryRemoteData.createEffectCategory(
       data: data,
       file: file,
-    )
-        .then((response) {
-      response.fold((l) {
-        _update(AddFailureState(l));
-      }, (r) {
-        // printme.printFullText(r);
-        final status = r[AppRKeys.status];
-        if (status == 400) {
-          final errors = r[AppRKeys.message][AppRKeys.validation_errors];
-          final s = checkErrorMessages(errors);
-          _update(AddFailureState(WarningState(message: s)));
-        } else if (status == 200) {
-          _update(AddSuccessState(AppText.effectCategoryAddedSuccessfully.tr));
-        }
-      });
-    }).catchError((e) {});
+    );
+    response.fold((l) {
+      _update(AddFailureState(l));
+    }, (r) {
+      // printme.printFullText(r);
+      final status = r[AppRKeys.status];
+      if (status == 400) {
+        final errors = r[AppRKeys.message][AppRKeys.validation_errors];
+        final s = checkErrorMessages(errors);
+        _update(AddFailureState(WarningState(message: s)));
+      } else if (status == 200) {
+        _update(AddSuccessState(AppText.effectCategoryAddedSuccessfully.tr));
+      }
+    });
   }
 
   Future<void> createManufacturer(Map<String, String> data) async {
     _update(AddManufacturerLoadingState());
-    _manufacturerRemoteData.createManufacturer(data: data).then((response) {
-      response.fold((l) {
-        _update(AddFailureState(l));
-      }, (r) {
-        // printme.printFullText(r);
-        final status = r[AppRKeys.status];
-        if (status == 400) {
-          final errors = r[AppRKeys.message][AppRKeys.validation_errors];
-          final s = checkErrorMessages(errors);
-          _update(AddFailureState(WarningState(message: s)));
-        } else if (status == 200) {
-          _update(AddSuccessState(AppText.manufacturerAddedSuccessfully.tr));
-        }
-      });
-    }).catchError((e) {});
+    final response = await _manufacturerRemoteData.createManufacturer(
+      data: data,
+    );
+    response.fold((l) {
+      _update(AddFailureState(l));
+    }, (r) {
+      // printme.printFullText(r);
+      final status = r[AppRKeys.status];
+      if (status == 400) {
+        final errors = r[AppRKeys.message][AppRKeys.validation_errors];
+        final s = checkErrorMessages(errors);
+        _update(AddFailureState(WarningState(message: s)));
+      } else if (status == 200) {
+        _update(AddSuccessState(AppText.manufacturerAddedSuccessfully.tr));
+      }
+    });
   }
 
   Future<void> createMedication(Map<String, Object?> data, File? file) async {
     _update(AddAddMedicationLoadingState());
-    _medicationsRemoteData
-        .createMedication(data: data, file: file)
-        .then((response) {
-      response.fold((l) {
-        _update(AddFailureState(l));
-      }, (r) {
-        // printme.printFullText(r);
-        final status = r[AppRKeys.status];
-        if (status == 400) {
-          final s = checkErrorMessages(
-              r[AppRKeys.message][AppRKeys.validation_errors]);
-          _update(AddFailureState(WarningState(message: s)));
-        } else if (status == 405) {
-          _update(AddFailureState(FailureState()));
-        } else if (status == 403) {
-          _update(AddFailureState(FailureState(
-              message: AppText.effectCategoryOrManufacturerNotFound.tr)));
-        } else if (status == 200) {
-          _update(AddSuccessState(AppText.medicationAddedSuccessfully.tr));
-        }
-      });
-    }).catchError((e) {});
+    final response = await _medicationsRemoteData.createMedication(
+      data: data,
+      file: file,
+    );
+    response.fold((l) {
+      _update(AddFailureState(l));
+    }, (r) {
+      // printme.printFullText(r);
+      final status = r[AppRKeys.status];
+      if (status == 400) {
+        final s =
+            checkErrorMessages(r[AppRKeys.message][AppRKeys.validation_errors]);
+        _update(AddFailureState(WarningState(message: s)));
+      } else if (status == 405) {
+        _update(AddFailureState(FailureState()));
+      } else if (status == 403) {
+        _update(AddFailureState(FailureState(
+            message: AppText.effectCategoryOrManufacturerNotFound.tr)));
+      } else if (status == 200) {
+        _update(AddSuccessState(AppText.medicationAddedSuccessfully.tr));
+      }
+    });
   }
 
   /// this used to add medicine
@@ -127,25 +125,22 @@ class AddCubit extends Cubit<AddState> {
   Future<void> getDataEffectCategory({bool forceGet = false}) async {
     if (effectCategories.isNotEmpty && !forceGet) return;
     _update(AddEffectCategoryLoadingState());
-    _effectCategoryRemoteData
-        .getEffectsCategories(
+    final response = await _effectCategoryRemoteData.getEffectsCategories(
       url: AppLink.effectCategoriesGetAllM,
-    )
-        .then((response) {
-      response.fold((l) {
-        _update(AddFailureState(l));
-      }, (r) {
-        // printme.printFullText(r);
-        final status = r[AppRKeys.status];
-        if (status == 200) {
-          final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
-          effectCategories.clear();
-          effectCategories
-              .addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
-        }
-        _update(AddGetEffectCategorySuccessState());
-      });
-    }).catchError((e) {});
+    );
+    response.fold((l) {
+      _update(AddFailureState(l));
+    }, (r) {
+      // printme.printFullText(r);
+      final status = r[AppRKeys.status];
+      if (status == 200) {
+        final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
+        effectCategories.clear();
+        effectCategories
+            .addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
+      }
+      _update(AddGetEffectCategorySuccessState());
+    });
   }
 
   // all available manufacturers
@@ -164,23 +159,20 @@ class AddCubit extends Cubit<AddState> {
   Future<void> getDataManufacturer({bool forceGet = false}) async {
     if (manufacturers.isNotEmpty && !forceGet) return;
     _update(AddGetManufacturerLoadingState());
-    _manufacturerRemoteData
-        .getManufacturers(
+    final response = await _manufacturerRemoteData.getManufacturers(
       url: AppLink.manufacturerGetAll,
-    )
-        .then((response) {
-      response.fold((l) {
-        _update(AddFailureState(l));
-      }, (r) {
-        // printme.printFullText(r);
-        final status = r[AppRKeys.status];
-        if (status == 200) {
-          final List temp = r[AppRKeys.data][AppRKeys.manufacturers];
-          manufacturers.clear();
-          manufacturers.addAll(temp.map((e) => ManufacturerModel.fromJson(e)));
-        }
-        _update(AddGetManufacturerSuccessState());
-      });
-    }).catchError((e) {});
+    );
+    response.fold((l) {
+      _update(AddFailureState(l));
+    }, (r) {
+      // printme.printFullText(r);
+      final status = r[AppRKeys.status];
+      if (status == 200) {
+        final List temp = r[AppRKeys.data][AppRKeys.manufacturers];
+        manufacturers.clear();
+        manufacturers.addAll(temp.map((e) => ManufacturerModel.fromJson(e)));
+      }
+      _update(AddGetManufacturerSuccessState());
+    });
   }
 }

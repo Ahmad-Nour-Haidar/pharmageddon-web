@@ -35,24 +35,21 @@ class EffectCategoryCubit extends Cubit<EffectCategoryState> {
 
   Future<void> getData() async {
     _update(EffectCategoryLoadingState());
-    _effectCategoryRemoteData
-        .getEffectsCategories(
+    final response = await _effectCategoryRemoteData.getEffectsCategories(
       url: AppLink.effectCategoriesGetAll,
-    )
-        .then((response) {
-      response.fold((l) {
-        _update(EffectCategoryFailureState(l));
-      }, (r) {
-        // printme.printFullText(r);
-        final status = r[AppRKeys.status];
-        if (status == 200) {
-          final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
-          data.clear();
-          data.addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
-        }
-        _update(EffectCategorySuccessState());
-      });
-    }).catchError((e) {});
+    );
+    response.fold((l) {
+      _update(EffectCategoryFailureState(l));
+    }, (r) {
+      // printme.printFullText(r);
+      final status = r[AppRKeys.status];
+      if (status == 200) {
+        final List temp = r[AppRKeys.data][AppRKeys.effect_categories];
+        data.clear();
+        data.addAll(temp.map((e) => EffectCategoryModel.fromJson(e)));
+      }
+      _update(EffectCategorySuccessState());
+    });
   }
 
   Future<void> updateEffectCategory(
@@ -60,34 +57,31 @@ class EffectCategoryCubit extends Cubit<EffectCategoryState> {
     File? file,
   ) async {
     _update(EffectCategoryEditLoadingState());
-    _effectCategoryRemoteData
-        .updateEffectCategory(
+    final response = await _effectCategoryRemoteData.updateEffectCategory(
       data: data,
       file: file,
-    )
-        .then((response) {
-      response.fold((l) {
-        _update(EffectCategoryFailureState(l));
-      }, (r) {
-        // printme.printFullText(r);
-        final status = r[AppRKeys.status];
-        if (status == 403) {
-          _update(EffectCategoryFailureState(
-              FailureState(message: AppText.effectCategoryNotFound.tr)));
-        } else if (status == 400) {
-          final errors = r[AppRKeys.message][AppRKeys.validation_errors];
-          final s = checkErrorMessages(errors);
-          _update(EffectCategoryFailureState(WarningState(message: s)));
-        } else if (status == 200) {
-          showDetailsEffectCategoryModel = false;
-          final json = r[AppRKeys.data][AppRKeys.effect_category];
-          effectCategoryModel = EffectCategoryModel.fromJson(json);
-          _update(EffectCategoryEditSuccessState(
-              SuccessState(message: AppText.updatedSuccessfully.tr)));
-          getData();
-        }
-      });
-    }).catchError((e) {});
+    );
+    response.fold((l) {
+      _update(EffectCategoryFailureState(l));
+    }, (r) {
+      // printme.printFullText(r);
+      final status = r[AppRKeys.status];
+      if (status == 403) {
+        _update(EffectCategoryFailureState(
+            FailureState(message: AppText.effectCategoryNotFound.tr)));
+      } else if (status == 400) {
+        final errors = r[AppRKeys.message][AppRKeys.validation_errors];
+        final s = checkErrorMessages(errors);
+        _update(EffectCategoryFailureState(WarningState(message: s)));
+      } else if (status == 200) {
+        showDetailsEffectCategoryModel = false;
+        final json = r[AppRKeys.data][AppRKeys.effect_category];
+        effectCategoryModel = EffectCategoryModel.fromJson(json);
+        _update(EffectCategoryEditSuccessState(
+            SuccessState(message: AppText.updatedSuccessfully.tr)));
+        getData();
+      }
+    });
   }
 
   // this to show medicines model

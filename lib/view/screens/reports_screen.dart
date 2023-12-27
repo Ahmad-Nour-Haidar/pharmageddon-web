@@ -56,21 +56,22 @@ class ReportsScreen extends StatelessWidget {
                     child: SelectableTextRich(
                       s1: '${AppText.totalOrders.tr} : ',
                       ts1: AppTextStyle.f15w600black,
-                      s2: cubit.data.length.toString().trn,
+                      s2: AppText.format(cubit.data.length).toString().trn,
                     ),
                   ),
                   Expanded(
                     child: SelectableTextRich(
                       s1: '${AppText.totalQuantity.tr} : ',
                       ts1: AppTextStyle.f15w600black,
-                      s2: cubit.totalQuantity.toString().trn,
+                      s2: AppText.format(cubit.totalQuantity).toString().trn,
                     ),
                   ),
                   Expanded(
                     child: SelectableTextRich(
                       s1: '${AppText.totalPrice.tr} : ',
                       ts1: AppTextStyle.f15w600black,
-                      s2: '${cubit.totalPrice} ${AppText.sp.tr}'.trn,
+                      s2: '${AppText.format(cubit.totalPrice)} ${AppText.sp.tr}'
+                          .trn,
                     ),
                   ),
                 ],

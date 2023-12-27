@@ -47,4 +47,31 @@ class OrderModel {
     data['created_at'] = createdAt;
     return data;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is OrderModel &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          pharmacistUsername == other.pharmacistUsername &&
+          orderStatus == other.orderStatus &&
+          paymentStatus == other.paymentStatus &&
+          totalQuantity == other.totalQuantity &&
+          totalPrice == other.totalPrice &&
+          receivedAt == other.receivedAt &&
+          hasCanceled == other.hasCanceled &&
+          createdAt == other.createdAt;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      pharmacistUsername.hashCode ^
+      orderStatus.hashCode ^
+      paymentStatus.hashCode ^
+      totalQuantity.hashCode ^
+      totalPrice.hashCode ^
+      receivedAt.hashCode ^
+      hasCanceled.hashCode ^
+      createdAt.hashCode;
 }

@@ -56,23 +56,23 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
       queryParameters: queryParameters,
     );
     response.fold((l) {
-      _update(OrderDetailsFailureState(l));
+      _update(OrderUpdateFailureState(l));
     }, (r) {
       final status = r[AppRKeys.status];
       if (status == 403) {
-        _update(OrderDetailsFailureState(FailureState(
+        _update(OrderUpdateFailureState(FailureState(
           message: AppText.orderNotFound.tr,
         )));
       } else if (status == 405) {
-        _update(OrderDetailsFailureState(FailureState(
+        _update(OrderUpdateFailureState(FailureState(
           message: AppText.thisOrderHasCanceledBefore.tr,
         )));
       } else if (status == 406) {
-        _update(OrderDetailsFailureState(FailureState(
+        _update(OrderUpdateFailureState(FailureState(
           message: AppText.orderHasBeenSentSoYouCannotCancelIt.tr,
         )));
       } else if (status == 408) {
-        _update(OrderDetailsFailureState(FailureState(
+        _update(OrderUpdateFailureState(FailureState(
           message: AppText.orderHasReceivedSoYouCannotCancelIt.tr,
         )));
       } else if (status == 200) {
@@ -82,7 +82,7 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     });
   }
 
-  /// has_been_sent, preparing, received
+  /// status: has_been_sent, preparing, received
   Future<void> updateOrderStatus(String status) async {
     _update(OrderUpdateStatusLoadingState());
     final data = {
@@ -91,19 +91,19 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     };
     final response = await _orderRemoteData.updateOrderStatus(data: data);
     response.fold((l) {
-      _update(OrderDetailsFailureState(l));
+      _update(OrderUpdateFailureState(l));
     }, (r) async {
       final status = r[AppRKeys.status];
       if (status == 403) {
-        _update(OrderDetailsFailureState(FailureState(
+        _update(OrderUpdateFailureState(FailureState(
           message: AppText.orderNotFound.tr,
         )));
       } else if (status == 405) {
-        _update(OrderDetailsFailureState(FailureState(
+        _update(OrderUpdateFailureState(FailureState(
           message: AppText.thisOrderHasAlreadyBeenCanceled.tr,
         )));
       } else if (status == 408) {
-        _update(OrderDetailsFailureState(FailureState(
+        _update(OrderUpdateFailureState(FailureState(
           message: AppText.thisOrderHasAlreadyBeenReceived.tr,
         )));
       } else if (status == 200) {
@@ -119,19 +119,19 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     final data = {AppRKeys.id: model.id};
     final response = await _orderRemoteData.updatePaymentStatus(data: data);
     response.fold((l) {
-      _update(OrderDetailsFailureState(l));
+      _update(OrderUpdateFailureState(l));
     }, (r) async {
       final status = r[AppRKeys.status];
       if (status == 403) {
-        _update(OrderDetailsFailureState(FailureState(
+        _update(OrderUpdateFailureState(FailureState(
           message: AppText.orderNotFound.tr,
         )));
       } else if (status == 404) {
-        _update(OrderDetailsFailureState(FailureState(
+        _update(OrderUpdateFailureState(FailureState(
           message: AppText.orderHasBeenPaidBeforeSoYouCannotEditIt.tr,
         )));
       } else if (status == 405) {
-        _update(OrderDetailsFailureState(FailureState(
+        _update(OrderUpdateFailureState(FailureState(
           message: AppText.thisOrderHasAlreadyBeenCanceled.tr,
         )));
       } else if (status == 200) {

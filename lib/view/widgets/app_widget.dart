@@ -56,6 +56,7 @@ class AppWidget {
     if (model.orderStatus == OrderStatus.hasBeenSent) {
       return Tooltip(
         message: model.orderStatus!.name.tr,
+        preferBelow: false,
         child: SvgImage(
           path: AppConstant.isEnglish
               ? AppSvg.shippingFast
@@ -67,6 +68,7 @@ class AppWidget {
     }
     return Tooltip(
       message: model.orderStatus!.name.tr,
+      preferBelow: false,
       child: const SvgImage(
         path: AppSvg.checkCircle,
         color: AppColor.green,

@@ -120,14 +120,15 @@ class MedicationDetailsScreen extends StatelessWidget {
                               const Gap(5),
                               SelectableTextRich(
                                 s1: '${AppText.availableQuantity.tr} : ',
-                                s2: cubit.model.availableQuantity
-                                    .toString()
+                                s2: AppText.format(
+                                        cubit.model.availableQuantity)
                                     .trn,
                               ),
                               const Gap(5),
                               SelectableTextRich(
                                 s1: '${AppText.price.tr} : ',
-                                s2: '${cubit.model.price} ${AppText.sp.tr}'.trn,
+                                s2: '${AppText.format(cubit.model.price)} ${AppText.sp.tr}'
+                                    .trn,
                               ),
                               if (cubit.model.discount! > 0) const Gap(5),
                               if (cubit.model.discount! > 0)
@@ -139,7 +140,7 @@ class MedicationDetailsScreen extends StatelessWidget {
                               if (cubit.model.discount! > 0)
                                 SelectableTextRich(
                                   s1: '${AppText.priceAfterDiscount.tr} : ',
-                                  s2: '${cubit.model.priceAfterDiscount} ${AppText.sp.tr}'
+                                  s2: '${AppText.format(cubit.model.priceAfterDiscount)} ${AppText.sp.tr}'
                                       .trn,
                                 ),
                               const Gap(5),

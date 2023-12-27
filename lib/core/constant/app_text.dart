@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class AppText {
   AppText._();
 
@@ -186,4 +188,14 @@ class AppText {
       'thisOrderHasAlreadyBeenReceived';
   static const orderHasBeenPaidBeforeSoYouCannotEditIt =
       'orderHasBeenPaidBeforeSoYouCannotEditIt';
+
+  static final _numberFormat = NumberFormat.decimalPattern();
+
+  static String format(number) {
+    number = number.toString();
+    final x = double.tryParse(number);
+    if (x == null) return number;
+    final s = _numberFormat.format(x);
+    return s;
+  }
 }

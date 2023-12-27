@@ -43,11 +43,11 @@ class OrderDetailsWidget extends StatelessWidget {
               RichTextSpan(s1: '${AppText.name.tr} : ', s2: name),
               RichTextSpan(
                 s1: '${AppText.totalQuantity.tr} : ',
-                s2: model.totalQuantity.toString().trn,
+                s2: AppText.format(model.totalQuantity).trn,
               ),
               RichTextSpan(
                 s1: '${AppText.totalPrice.tr} : ',
-                s2: '${model.totalPrice} ${AppText.sp.tr}'.trn,
+                s2: '${AppText.format(model.totalPrice)} ${AppText.sp.tr}'.trn,
               ),
             ],
           ),
@@ -57,7 +57,7 @@ class OrderDetailsWidget extends StatelessWidget {
           child: Align(
             alignment: Alignment.topCenter,
             child: Container(
-              color: AppColor.background,
+              color: AppColor.cardColor,
               child: Text(
                 ' ( ${index + 1} ) '.trn,
                 style: AppTextStyle.f20w600green2,

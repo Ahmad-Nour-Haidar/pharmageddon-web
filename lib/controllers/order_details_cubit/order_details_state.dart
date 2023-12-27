@@ -10,6 +10,12 @@ class OrderDetailsFailureState extends OrderDetailsState {
   OrderDetailsFailureState(this.state);
 }
 
+class OrderUpdateFailureState extends OrderDetailsState {
+  final ParentState state;
+
+  OrderUpdateFailureState(this.state);
+}
+
 // change
 class OrderDetailsChangeState extends OrderDetailsState {}
 

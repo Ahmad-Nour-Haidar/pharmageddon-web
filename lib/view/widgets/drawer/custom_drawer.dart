@@ -122,12 +122,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 color: AppColor.white,
                 size: 25,
               ),
-              onTap: () {
-                setState(() {
-                  isOpen = true;
-                });
-                changeScreen(ScreenView.preparing);
-              },
+              onTap: openCloseDrawer,
             ),
           if (isOpen)
             ExpansionTile(

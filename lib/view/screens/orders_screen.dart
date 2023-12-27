@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/controllers/orders_cubit/orders_cubit.dart';
 import 'package:pharmageddon_web/controllers/orders_cubit/orders_state.dart';
@@ -8,11 +7,9 @@ import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/view/screens/order_details_screen.dart';
 import '../../core/constant/app_text.dart';
 import '../../core/enums/drawer_enum.dart';
-import '../../core/resources/app_text_theme.dart';
 import '../../core/services/dependency_injection.dart';
 import '../widgets/app_widget.dart';
 import '../widgets/handle_state.dart';
-import '../widgets/info_widget.dart';
 import '../widgets/loading/order_loading.dart';
 import '../widgets/order_widget.dart';
 import '../widgets/rich_text_span.dart';
@@ -57,15 +54,16 @@ class OrdersScreen extends StatelessWidget {
                   Expanded(child: body),
                   RichTextSpan(
                     s1: '${AppText.totalOrders.tr} : ',
-                    s2: cubit.data.length.toString().trn,
+                    s2: AppText.format(cubit.data.length).trn,
                   ),
                   RichTextSpan(
                     s1: '${AppText.totalQuantity.tr} : ',
-                    s2: cubit.totalQuantity.toString().trn,
+                    s2: AppText.format(cubit.totalQuantity).trn,
                   ),
                   RichTextSpan(
                     s1: '${AppText.totalPrice.tr} : ',
-                    s2: '${cubit.totalPrice} ${AppText.sp.tr}'.trn,
+                    s2: '${AppText.format(cubit.totalPrice)} ${AppText.sp.tr}'
+                        .trn,
                   ),
                 ],
               ),

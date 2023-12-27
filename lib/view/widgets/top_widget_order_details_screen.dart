@@ -40,11 +40,11 @@ class TopWidgetOrderDetailsScreen extends StatelessWidget {
           ),
           RichTextSpan(
             s1: '${AppText.totalQuantity.tr} : ',
-            s2: model.totalQuantity.toString().trn,
+            s2: AppText.format(model.totalQuantity).trn,
           ),
           RichTextSpan(
             s1: '${AppText.totalPrice.tr} : ',
-            s2: '${model.totalPrice} ${AppText.sp.tr}'.trn,
+            s2: '${AppText.format(model.totalPrice)} ${AppText.sp.tr}'.trn,
           ),
           RichTextSpan(
             s1: '${AppText.paymentState.tr} : ',

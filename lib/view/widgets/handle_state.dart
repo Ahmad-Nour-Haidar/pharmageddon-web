@@ -16,6 +16,7 @@ void handleState({
           context: context,
           title: state.message,
           dialogType: DialogType.error,
+          onOk: onOk,
         );
         return;
       }
@@ -25,6 +26,7 @@ void handleState({
           context: context,
           title: state.message,
           dialogType: DialogType.error,
+          onOk: onOk,
         );
         return;
       }
@@ -34,6 +36,7 @@ void handleState({
           context: context,
           title: state.message,
           dialogType: DialogType.error,
+          onOk: onOk,
         );
         return;
       }
@@ -53,6 +56,7 @@ void handleState({
           context: context,
           title: state.message,
           dialogType: DialogType.warning,
+          onOk: onOk,
         );
         return;
       }
