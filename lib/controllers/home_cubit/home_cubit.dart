@@ -5,6 +5,7 @@ import 'package:pharmageddon_web/view/screens/medication_screen.dart';
 import 'package:pharmageddon_web/view/screens/search_screen.dart';
 import '../../core/enums/drawer_enum.dart';
 import '../../view/screens/add_screen.dart';
+import '../../view/screens/auth/profile_screen.dart';
 import '../../view/screens/effect_category_screen.dart';
 import '../../view/screens/manufacturer_screen.dart';
 import '../../view/screens/orders_screen.dart';
@@ -21,7 +22,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state);
   }
 
-  var currentScreen = ScreenView.reports;
+  var currentScreen = ScreenView.profile;
 
   void changeScreen(ScreenView value) {
     // if (currentScreen == value) return;
@@ -74,6 +75,8 @@ class HomeCubit extends Cubit<HomeState> {
         return OrdersScreen(currentScreen: currentScreen);
       case ScreenView.unPaid:
         return OrdersScreen(currentScreen: currentScreen);
+      case ScreenView.profile:
+        return const ProfileScreen();
     }
   }
 }

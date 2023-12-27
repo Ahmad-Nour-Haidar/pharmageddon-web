@@ -95,7 +95,7 @@ class CheckEmailScreen extends StatelessWidget {
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.email,
-                                      hintText: AppText.emailOrPhone.tr,
+                                      labelText: AppText.emailOrPhone.tr,
                                     ),
                                     const Gap(15),
                                     if (state is CheckEmailLoadingState)

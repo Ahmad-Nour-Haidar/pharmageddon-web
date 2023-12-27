@@ -28,7 +28,6 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    initialUser();
     return BlocProvider(
       create: (context) => AppInjection.getIt<RegisterCubit>(),
       child: BlocConsumer<RegisterCubit, RegisterState>(
@@ -97,7 +96,7 @@ class RegisterScreen extends StatelessWidget {
                                             fillColor: AppColor.transparent,
                                             colorPrefixIcon: AppColor.gray,
                                             prefixIcon: AppSvg.email,
-                                            hintText: AppText.email.tr,
+                                            labelText: AppText.email.tr,
                                           ),
                                         ),
                                         const Gap(10),
@@ -112,7 +111,7 @@ class RegisterScreen extends StatelessWidget {
                                             fillColor: AppColor.transparent,
                                             colorPrefixIcon: AppColor.gray,
                                             prefixIcon: AppSvg.phone,
-                                            hintText: AppText.phoneNumber.tr,
+                                            labelText: AppText.phoneNumber.tr,
                                           ),
                                         ),
                                       ],
@@ -132,7 +131,7 @@ class RegisterScreen extends StatelessWidget {
                                             fillColor: AppColor.transparent,
                                             colorPrefixIcon: AppColor.gray,
                                             prefixIcon: AppSvg.user,
-                                            hintText: AppText.userName.tr,
+                                            labelText: AppText.userName.tr,
                                           ),
                                         ),
                                         const Gap(10),
@@ -147,7 +146,7 @@ class RegisterScreen extends StatelessWidget {
                                             fillColor: AppColor.transparent,
                                             colorPrefixIcon: AppColor.gray,
                                             prefixIcon: AppSvg.marker,
-                                            hintText: AppText.address.tr,
+                                            labelText: AppText.address.tr,
                                           ),
                                         ),
                                       ],
@@ -163,7 +162,7 @@ class RegisterScreen extends StatelessWidget {
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.eye,
-                                      hintText: AppText.password.tr,
+                                      labelText: AppText.password.tr,
                                       suffixIcon: cubit.obscureText
                                           ? AppSvg.eye
                                           : AppSvg.eyeClose,

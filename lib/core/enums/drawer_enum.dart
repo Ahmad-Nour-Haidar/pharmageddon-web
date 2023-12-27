@@ -13,4 +13,5 @@ enum ScreenView {
   quantityExpired,
   dateExpired,
   search,
+  profile,
 }

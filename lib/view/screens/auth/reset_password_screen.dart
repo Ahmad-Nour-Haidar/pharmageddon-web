@@ -125,7 +125,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.eye,
-                                      hintText: AppText.password.tr,
+                                      labelText: AppText.password.tr,
                                       suffixIcon: cubit.obscureText
                                           ? AppSvg.eye
                                           : AppSvg.eyeClose,
@@ -143,7 +143,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.eye,
-                                      hintText: AppText.password.tr,
+                                      labelText: AppText.password.tr,
                                       suffixIcon: cubit.obscureText
                                           ? AppSvg.eye
                                           : AppSvg.eyeClose,

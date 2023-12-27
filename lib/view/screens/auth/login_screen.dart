@@ -102,7 +102,7 @@ class LoginScreen extends StatelessWidget {
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.email,
-                                      hintText: AppText.emailOrPhone.tr,
+                                      labelText: AppText.emailOrPhone.tr,
                                     ),
                                     const Gap(10),
                                     // password
@@ -115,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                                       fillColor: AppColor.transparent,
                                       colorPrefixIcon: AppColor.gray,
                                       prefixIcon: AppSvg.eye,
-                                      hintText: AppText.password.tr,
+                                      labelText: AppText.password.tr,
                                       suffixIcon: cubit.obscureText
                                           ? AppSvg.eye
                                           : AppSvg.eyeClose,

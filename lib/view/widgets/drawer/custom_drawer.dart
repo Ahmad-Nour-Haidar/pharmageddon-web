@@ -196,6 +196,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
             onTap: () => changeScreen(ScreenView.dateExpired),
             isSelected: widget.currentScreen == ScreenView.dateExpired,
           ),
+          CustomDrawerItem(
+            isOpen: isOpen,
+            title: AppText.profile.tr,
+            iconPath: AppSvg.user,
+            onTap: () => changeScreen(ScreenView.profile),
+            isSelected: widget.currentScreen == ScreenView.profile,
+          ),
         ],
       ),
     );

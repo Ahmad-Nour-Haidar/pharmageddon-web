@@ -3,6 +3,7 @@ import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_size.dart';
 import '../../core/functions/functions.dart';
+import '../../core/resources/app_text_theme.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -14,7 +15,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.fillColor,
     required this.colorPrefixIcon,
     required this.prefixIcon,
-    required this.hintText,
+    required this.labelText,
     this.onFieldSubmitted,
     this.textDirection,
     this.onTapSuffix,
@@ -41,7 +42,7 @@ class CustomTextFormField extends StatelessWidget {
   final Color colorPrefixIcon;
   final String? prefixIcon;
   final String? suffixIcon;
-  final String hintText;
+  final String labelText;
   final bool? obscureText;
   final double sizePrefix;
   final double? height;
@@ -76,7 +77,8 @@ class CustomTextFormField extends StatelessWidget {
         textInputAction: textInputAction,
         keyboardType: keyboardType,
         decoration: InputDecoration(
-          labelText: hintText,
+          labelText: labelText,
+          labelStyle: AppTextStyle.f14w500black,
           helperText: " ",
           errorMaxLines: 2,
           // contentPadding: contentPadding,
