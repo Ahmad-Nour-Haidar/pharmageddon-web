@@ -31,11 +31,21 @@ class AppWidget {
     ),
   );
 
+  final order = Center(
+    child: Lottie.asset(
+      AppLottie.order,
+      width: AppSize.width * .4,
+      height: AppSize.width * .4,
+      fit: BoxFit.fill,
+    ),
+  );
+
   Widget getOrderIcon(OrderModel model) {
     const s = 20.0;
     if (model.orderStatus == OrderStatus.preparing) {
       return Tooltip(
         message: model.orderStatus!.name.tr,
+        preferBelow: false,
         child: const SvgImage(
           path: AppSvg.timePast,
           color: AppColor.red,

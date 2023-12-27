@@ -184,4 +184,6 @@ class AppText {
       'thisOrderHasAlreadyBeenCanceled';
   static const thisOrderHasAlreadyBeenReceived =
       'thisOrderHasAlreadyBeenReceived';
+  static const orderHasBeenPaidBeforeSoYouCannotEditIt =
+      'orderHasBeenPaidBeforeSoYouCannotEditIt';
 }

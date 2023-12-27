@@ -9,7 +9,7 @@ enum OrderStatus {
     if (s == AppConstant.received) {
       return OrderStatus.received;
     }
-    if (s == AppConstant.hasBeenSent) {
+    if (s == AppConstant.has_been_sent) {
       return OrderStatus.hasBeenSent;
     }
     return OrderStatus.preparing;

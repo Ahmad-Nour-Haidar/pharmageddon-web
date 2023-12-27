@@ -68,4 +68,17 @@ class OrderRemoteData {
     );
     return response;
   }
+
+  /// 1, 0
+  Future<Either<ParentState, Map<String, dynamic>>> updatePaymentStatus({
+    required Map<String, dynamic> data,
+  }) async {
+    final token = AppLocalData.user!.authorization!;
+    final response = await _crud.postData(
+      linkUrl: AppLink.orderUpdatePaymentStatus,
+      token: token,
+      data: data,
+    );
+    return response;
+  }
 }

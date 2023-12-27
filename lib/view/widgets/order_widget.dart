@@ -38,14 +38,13 @@ class OrderWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RichTextSpan(
                     s1: '${AppText.id.tr} : ',
                     s2: model.id.toString().trn,
                   ),
-                  const Spacer(),
                   AppInjection.getIt<AppWidget>().getOrderIcon(model),
-                  const Gap(10),
                 ],
               ),
               FittedBox(

@@ -4,46 +4,32 @@ abstract class OrderDetailsState {}
 
 class OrderDetailsInitialState extends OrderDetailsState {}
 
-class OrderDetailsLoadingState extends OrderDetailsState {}
-
-class OrderDetailsSuccessState extends OrderDetailsState {}
-
-class OrderDetailsChangeState extends OrderDetailsState {}
-
 class OrderDetailsFailureState extends OrderDetailsState {
   final ParentState state;
 
   OrderDetailsFailureState(this.state);
 }
 
-// cancel
-class OrderDetailsLoadingCancelState extends OrderDetailsState {}
-
-class OrderDetailsSuccessCancelState extends OrderDetailsState {}
+// change
+class OrderDetailsChangeState extends OrderDetailsState {}
 
 // get details
-class OrderDetailsGetLoadingState extends OrderDetailsState {}
+class OrderGetDetailsLoadingState extends OrderDetailsState {}
 
-// delete medicine
-class OrderDetailsDeleteMedicineLoadingState extends OrderDetailsState {}
+class OrderGetDetailsSuccessState extends OrderDetailsState {}
 
-class OrderDetailsDeleteMedicineSuccessState extends OrderDetailsState {
-  final ParentState state;
+// cancel
+class OrderDetailsCancelLoadingState extends OrderDetailsState {}
 
-  OrderDetailsDeleteMedicineSuccessState(this.state);
-}
+class OrderDetailsCancelSuccessState extends OrderDetailsState {}
 
-class OrderDetailsAllCanceledState extends OrderDetailsState {}
+// update order status
+class OrderUpdateStatusLoadingState extends OrderDetailsState {}
 
-// update order
-class OrderDetailsUpdateOrderLoadingState extends OrderDetailsState {}
+class OrderUpdateStatusSuccessState extends OrderDetailsState {}
 
-class OrderDetailsUpdateOrderSuccessState extends OrderDetailsState {
-  final ParentState state;
+// update order payment status
 
-  OrderDetailsUpdateOrderSuccessState(this.state);
-}
+class OrderUpdatePaymentStatusLadingState extends OrderDetailsState {}
 
-// change status
-
-class OrderDetailsUpdateStatusOrderSuccessState extends OrderDetailsState {}
+class OrderUpdatePaymentStatusSuccessState extends OrderDetailsState {}

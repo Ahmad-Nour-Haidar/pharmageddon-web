@@ -52,7 +52,7 @@ class TopWidgetOrderDetailsScreen extends StatelessWidget {
           ),
           RichTextSpan(
             s1: '${AppText.date.tr} : ',
-            s2: formatYYYYMdEEEE(model.createdAt),
+            s2: formatYYYYMd(model.createdAt),
           ),
         ],
       ),

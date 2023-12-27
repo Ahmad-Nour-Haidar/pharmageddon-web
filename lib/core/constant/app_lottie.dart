@@ -11,4 +11,5 @@ class AppLottie {
   static const listEmpty = '$_root/list_empty.json';
   static const addFav = '$_root/add_fav.json';
   static const reports = '$_root/reports.json';
+  static const order = '$_root/order.json';
 }

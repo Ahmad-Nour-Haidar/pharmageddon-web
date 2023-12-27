@@ -38,6 +38,7 @@ class OrderDetailsWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RichTextSpan(s1: '${AppText.name.tr} : ', s2: name),
               RichTextSpan(

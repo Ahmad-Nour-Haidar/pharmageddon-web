@@ -9,7 +9,7 @@ class AppConstant {
   // static const pharmacist = 'pharmacist';
   static const warehouseowner = 'warehouseowner';
   static const received = 'received';
-  static const hasBeenSent = 'has_been_sent';
+  static const has_been_sent = 'has_been_sent';
   static const preparing = 'preparing';
 
   static const localEn = Locale(en);

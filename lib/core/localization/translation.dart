@@ -173,8 +173,12 @@ class MyTranslation extends Translations {
               'This order has already been canceled',
           AppText.thisOrderHasAlreadyBeenReceived:
               'This order has already been received',
+          AppText.orderHasBeenPaidBeforeSoYouCannotEditIt:
+              'Order has been paid before, so you cannot edit it'
         },
         'ar': {
+          AppText.orderHasBeenPaidBeforeSoYouCannotEditIt:
+              'لقد تم دفع الطلب من قبل، لذا لا يمكنك تعديله',
           AppText.thisOrderHasAlreadyBeenReceived:
               'لقد تم استلام هذا الطلب من قبل',
           AppText.thisOrderHasAlreadyBeenCanceled:
