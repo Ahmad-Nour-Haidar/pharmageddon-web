@@ -22,7 +22,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state);
   }
 
-  var currentScreen = ScreenView.profile;
+  var currentScreen = ScreenView.all;
 
   void changeScreen(ScreenView value) {
     // if (currentScreen == value) return;

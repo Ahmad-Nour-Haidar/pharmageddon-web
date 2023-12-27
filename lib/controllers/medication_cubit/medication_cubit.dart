@@ -26,19 +26,18 @@ class MedicationCubit extends Cubit<MedicationState> {
   Future<void> getData(String url) async {
     showMedicationModelDetails = false;
     _update(MedicationLoadingState());
-    _medicationsRemoteData.getMedications(url: url).then((response) {
-      response.fold((l) {
-        _update(MedicationFailureState(l));
-      }, (r) {
-        final status = r[AppRKeys.status];
-        if (status == 200) {
-          medications.clear();
-          final List temp = r[AppRKeys.data][AppRKeys.medicines];
-          medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
-          _update(MedicationSuccessState());
-        }
-      });
-    }).catchError((e) {});
+    final response = await _medicationsRemoteData.getMedications(url: url);
+    response.fold((l) {
+      _update(MedicationFailureState(l));
+    }, (r) {
+      final status = r[AppRKeys.status];
+      if (status == 200) {
+        medications.clear();
+        final List temp = r[AppRKeys.data][AppRKeys.medicines];
+        medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
+        _update(MedicationSuccessState());
+      }
+    });
   }
 
   bool showMedicationModelDetails = false;
