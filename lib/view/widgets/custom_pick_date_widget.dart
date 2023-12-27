@@ -1,3 +1,4 @@
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
@@ -38,31 +39,23 @@ class CustomPickDateWidget extends StatelessWidget {
   }
 
   void show(BuildContext context) async {
-    final timeRange = await showDateRangePicker(
+    final results = await showCalendarDatePicker2Dialog(
       context: context,
-      initialEntryMode: DatePickerEntryMode.calendar,
-      initialDateRange: DateTimeRange(
-        start: DateTime.now().subtract(const Duration(days: 7)),
-        end: DateTime.now(),
+      config: CalendarDatePicker2WithActionButtonsConfig(
+        calendarType: CalendarDatePicker2Type.range,
+        firstDate: DateTime(2020),
+        lastDate: DateTime.now(),
+        cancelButtonTextStyle: AppTextStyle.f14w600red,
+        okButtonTextStyle: AppTextStyle.f14w600green,
       ),
-      firstDate: DateTime(2020),
-      lastDate: DateTime.now(),
-      builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme.light(
-              primary: AppColor.secondColor,
-              onPrimary: AppColor.white,
-              onSurface: AppColor.secondColor,
-              background: AppColor.secondColor,
-              onSecondary: AppColor.black,
-            ),
-          ),
-          child: child!,
-        );
-      },
+      dialogSize: const Size(400, 400),
+      borderRadius: BorderRadius.circular(10),
     );
-    if (timeRange != null) {
+    if (results != null) {
+      final now = DateTime.now();
+      final s = results.isNotEmpty && results[0] != null ? results[0]! : now;
+      final e = results.length > 1 && results[1] != null ? results[1]! : now;
+      final timeRange = DateTimeRange(start: s, end: e);
       onChange(timeRange);
     }
   }

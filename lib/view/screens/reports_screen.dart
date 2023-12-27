@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
-import 'package:pharmageddon_web/print.dart';
+import 'package:pharmageddon_web/view/widgets/rich_text_span.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/reports_cubit/reports_state.dart';
 import '../../core/constant/app_text.dart';
@@ -14,7 +14,6 @@ import '../widgets/custom_pick_date_widget.dart';
 import '../widgets/handle_state.dart';
 import '../widgets/loading/order_loading.dart';
 import '../widgets/order_widget.dart';
-import '../widgets/selectable_text_rich.dart';
 
 class ReportsScreen extends StatelessWidget {
   const ReportsScreen({super.key});
@@ -25,7 +24,6 @@ class ReportsScreen extends StatelessWidget {
       create: (context) => AppInjection.getIt<ReportsCubit>(),
       child: BlocConsumer<ReportsCubit, ReportsState>(
         listener: (context, state) {
-          printme.blue(context.mounted);
           if (state is ReportsFailureState) {
             handleState(state: state.state, context: context);
           }
@@ -46,37 +44,44 @@ class ReportsScreen extends StatelessWidget {
                 dateTimeRange: cubit.dateTimeRange,
                 onTapSend: () => cubit.getData(),
               ),
-              const Gap(10),
               Expanded(child: body),
               const Gap(5),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Expanded(
-                    child: SelectableTextRich(
-                      s1: '${AppText.totalOrders.tr} : ',
-                      ts1: AppTextStyle.f15w600black,
-                      s2: AppText.format(cubit.data.length).toString().trn,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: RichTextSpan(
+                        s1: '${AppText.totalOrders.tr} : ',
+                        ts1: AppTextStyle.f15w600black,
+                        s2: AppText.format(cubit.data.length).toString().trn,
+                      ),
                     ),
                   ),
                   Expanded(
-                    child: SelectableTextRich(
-                      s1: '${AppText.totalQuantity.tr} : ',
-                      ts1: AppTextStyle.f15w600black,
-                      s2: AppText.format(cubit.totalQuantity).toString().trn,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: RichTextSpan(
+                        s1: '${AppText.totalQuantity.tr} : ',
+                        ts1: AppTextStyle.f15w600black,
+                        s2: AppText.format(cubit.totalQuantity).toString().trn,
+                      ),
                     ),
                   ),
                   Expanded(
-                    child: SelectableTextRich(
-                      s1: '${AppText.totalPrice.tr} : ',
-                      ts1: AppTextStyle.f15w600black,
-                      s2: '${AppText.format(cubit.totalPrice)} ${AppText.sp.tr}'
-                          .trn,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: RichTextSpan(
+                        s1: '${AppText.totalPrice.tr} : ',
+                        ts1: AppTextStyle.f15w600black,
+                        s2: '${AppText.format(cubit.totalPrice)} ${AppText.sp.tr}'
+                            .trn,
+                      ),
                     ),
                   ),
                 ],
               ),
-              const Gap(5),
             ],
           );
         },

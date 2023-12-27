@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/controllers/reports_cubit/reports_state.dart';
+import 'package:pharmageddon_web/core/functions/functions.dart';
+import 'package:pharmageddon_web/print.dart';
 
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_keys_request.dart';
@@ -49,9 +51,23 @@ class ReportsCubit extends Cubit<ReportsState> {
         final List temp = r[AppRKeys.data][AppRKeys.orders];
         data.clear();
         data.addAll(temp.map((e) => OrderModel.fromJson(e)));
+        printData();
       }
       _update(ReportsSuccessState());
     });
+  }
+
+  void printData() {
+    final Map<String, double> re = {};
+    for (final e in data) {
+      final date = formatYYYYMd(e.createdAt);
+      final x = e.totalPrice ?? 0.0;
+      final old = re[date] ?? 0.0;
+      re[date] = old + x;
+    }
+    for (final e in re.entries) {
+      printme.blue('${e.key} : ${e.value}');
+    }
   }
 
   void setDateTimeRange(DateTimeRange dateTimeRange) {
