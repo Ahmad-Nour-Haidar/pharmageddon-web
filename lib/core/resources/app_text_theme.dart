@@ -15,6 +15,12 @@ abstract class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
+  static const f18w600TextColor = TextStyle(
+    fontSize: 18,
+    color: AppColor.textColor,
+    fontWeight: FontWeight.w600,
+  );
+
   static const f16w500white = TextStyle(
     fontSize: 16,
     color: AppColor.white,

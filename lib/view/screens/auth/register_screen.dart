@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -18,6 +21,7 @@ import '../../../controllers/auth/register_cubit/register_cubit.dart';
 import '../../../controllers/auth/register_cubit/register_state.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_svg.dart';
+import '../../../core/functions/functions.dart';
 import '../../widgets/custom_layout_builder.dart';
 import '../../widgets/custom_other_auth.dart';
 import '../../widgets/handle_state.dart';
@@ -185,15 +189,22 @@ class RegisterScreen extends StatelessWidget {
                                           AppText.haveAnAccount.tr,
                                           style: AppTextStyle.f18w400gray,
                                         ),
-                                        TextButton(
-                                          onPressed: () {
-                                            pushNamedAndRemoveUntil(
-                                                AppRoute.login, context);
-                                          },
-                                          child: Text(
-                                            AppText.loginNow.tr,
-                                            style:
-                                                AppTextStyle.f18w400TextColor,
+                                        const Gap(10),
+                                        Expanded(
+                                          child: Align(
+                                            alignment: alignment(),
+                                            child: TextButton(
+                                              onPressed: () {
+                                                pushNamedAndRemoveUntil(
+                                                    AppRoute.login, context);
+                                              },
+                                              child: AutoSizeText(
+                                                AppText.loginNow.tr,
+                                                style: AppTextStyle
+                                                    .f18w600TextColor,
+                                                maxLines: 1,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -205,20 +216,21 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ),
                           Expanded(
-                            child: ListView(
+                            child: Column(
                               children: [
                                 Center(
                                   child: SvgPicture.asset(
                                     AppSvg.logo,
-                                    width: 150,
-                                    height: 150,
+                                    width: min(150, maxWidth * 0.11),
+                                    height: min(150, maxWidth * 0.11),
                                   ),
                                 ),
                                 const Gap(30),
                                 const Center(
-                                  child: Text(
+                                  child: AutoSizeText(
                                     'Pharmageddon',
                                     style: AppTextStyle.f24w600SecondColor,
+                                    maxLines: 1,
                                   ),
                                 ),
                               ],

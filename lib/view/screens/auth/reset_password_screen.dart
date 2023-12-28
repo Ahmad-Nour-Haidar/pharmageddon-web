@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -5,12 +8,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_web/core/functions/functions.dart';
 
 import '../../../controllers/auth/reset_password_cubit/reset_password_cubit.dart';
 import '../../../controllers/auth/reset_password_cubit/reset_password_state.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
-import '../../../core/constant/app_constant.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../core/constant/app_svg.dart';
@@ -162,9 +165,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                       ),
                                     const Gap(15),
                                     Align(
-                                      alignment: AppConstant.isEnglish
-                                          ? Alignment.centerRight
-                                          : Alignment.centerLeft,
+                                      alignment: alignment(),
                                       child: TextButton(
                                         onPressed: cubit.getVerifyCode,
                                         child: Text(
@@ -179,20 +180,21 @@ class ResetPasswordScreen extends StatelessWidget {
                             ),
                           ),
                           Expanded(
-                            child: ListView(
+                            child: Column(
                               children: [
                                 Center(
                                   child: SvgPicture.asset(
                                     AppSvg.logo,
-                                    width: 150,
-                                    height: 150,
+                                    width: min(150, maxWidth * 0.11),
+                                    height: min(150, maxWidth * 0.11),
                                   ),
                                 ),
-                                const Gap(20),
+                                const Gap(30),
                                 const Center(
-                                  child: Text(
+                                  child: AutoSizeText(
                                     'Pharmageddon',
                                     style: AppTextStyle.f24w600SecondColor,
+                                    maxLines: 1 ,
                                   ),
                                 ),
                               ],

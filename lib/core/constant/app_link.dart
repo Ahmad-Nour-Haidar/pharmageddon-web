@@ -1,6 +1,12 @@
 class AppLink {
   AppLink._();
 
+  static const _serverApi = 'https://$_host/api';
+
+  static const _serverUpload = 'https://$_host';
+
+  static const _serverImage = '$_serverUpload/images';
+
   // http://127.0.0.1/api/auth/register
 
   // static const _host = '10.0.2.2:8000';
@@ -15,12 +21,6 @@ class AppLink {
   // static const _host = '192.168.229.48:8000';
 
   // static const _host = '192.168.108.48:8000';
-
-  static const _serverApi = 'http://$_host/api';
-
-  static const _serverUpload = 'http://$_host';
-
-  static const _serverImage = '$_serverUpload/images';
 
   // http://10.0.2.2:8000/images/items/image.png
   // http://127.0.0.1/images/users/image.png

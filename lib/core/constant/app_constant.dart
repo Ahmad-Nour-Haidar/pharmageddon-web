@@ -14,5 +14,5 @@ class AppConstant {
 
   static const localEn = Locale(en);
   static const localAr = Locale(ar);
-  static var isEnglish = false;
+  static bool isEnglish = false;
 }

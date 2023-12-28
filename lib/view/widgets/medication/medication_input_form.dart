@@ -15,7 +15,6 @@ import 'package:pharmageddon_web/view/widgets/text_input.dart';
 import '../../../core/class/image_helper.dart';
 import '../../../core/class/validation.dart';
 import '../../../core/constant/app_color.dart';
-import '../../../core/constant/app_constant.dart';
 import '../../../core/constant/app_padding.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../core/functions/functions.dart';
@@ -264,9 +263,7 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
                       width: 2,
                     ),
                   ),
-                  alignment: AppConstant.isEnglish
-                      ? Alignment.centerLeft
-                      : Alignment.centerRight,
+                  alignment: alignment(),
                   child: Text(
                     '${AppText.expirationDate.tr} : ${formatYYYYMd(_expirationDate)}'
                         .trn,

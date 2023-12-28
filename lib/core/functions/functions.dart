@@ -249,3 +249,6 @@ String formatYYYYMdEEEE(String? s) {
       AppConstant.isEnglish ? 'EEEE , yyyy - M - d' : 'EEEE , d - M - yyyy';
   return Jiffy.parseFromDateTime(date).format(pattern: pattern);
 }
+
+Alignment alignment() =>
+    AppConstant.isEnglish ? Alignment.centerLeft : Alignment.centerRight;

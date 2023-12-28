@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -129,20 +132,21 @@ class VerifyCodeScreen extends StatelessWidget {
                             ),
                           ),
                           Expanded(
-                            child: ListView(
+                            child: Column(
                               children: [
                                 Center(
                                   child: SvgPicture.asset(
                                     AppSvg.logo,
-                                    width: 150,
-                                    height: 150,
+                                    width: min(150, maxWidth * 0.11),
+                                    height: min(150, maxWidth * 0.11),
                                   ),
                                 ),
-                                const Gap(20),
+                                const Gap(30),
                                 const Center(
-                                  child: Text(
+                                  child: AutoSizeText(
                                     'Pharmageddon',
                                     style: AppTextStyle.f24w600SecondColor,
+                                    maxLines: 1 ,
                                   ),
                                 ),
                               ],
