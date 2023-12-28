@@ -13,6 +13,8 @@ class CrudHttp {
     "Charset": "utf-8",
     "Connection": "Keep-Alive",
     'Accept': 'application/json',
+    'Origin': 'https://pharma-web.000webhostapp.com',
+    'accepted-lang': 'en',
     // 'Content-Type': 'application/json',
     // 'Keep-Alive': 'timeout=5, max=50',
   };

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pharmageddon_web/controllers/local_controller.dart';
+import 'package:pharmageddon_web/print.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../model/effect_category_model.dart';
 import '../../model/manufacturer_model.dart';
@@ -208,6 +209,7 @@ String buildUrl({
 
 String getEffectCategoryImage(EffectCategoryModel? model) {
   final s = '${AppLink.effectCategoriesImage}/${model?.imageName}';
+  // printme.cyan(s);
   return s;
 }
 

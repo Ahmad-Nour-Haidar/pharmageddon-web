@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +8,7 @@ import 'package:pharmageddon_web/controllers/effect_category_cubit/effect_catego
 import 'package:pharmageddon_web/controllers/home_cubit/home_cubit.dart';
 import 'package:pharmageddon_web/controllers/orders_cubit/orders_cubit.dart';
 import 'package:pharmageddon_web/controllers/search_cubit/search_cubit.dart';
+import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/routes.dart';
 import 'controllers/add_cubit/add_cubit.dart';
 import 'controllers/local_controller.dart';
@@ -19,8 +22,49 @@ import 'core/functions/functions.dart';
 import 'core/localization/translation.dart';
 import 'core/resources/theme_manager.dart';
 import 'core/services/dependency_injection.dart';
+import 'firebase_options.dart';
 import 'my_bloc_observer.dart';
 import 'package:url_strategy/url_strategy.dart';
+
+Future<void> requestPermissionNotification() async {
+  await FirebaseMessaging.instance.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+}
+
+Future<void> init() async {
+  await requestPermissionNotification();
+  final topic = AppLocalData.user?.id.toString() ?? '-';
+  printme.green(topic);
+  // await FirebaseMessaging.instance.deleteToken();
+  // FirebaseMessaging.instance.getToken().then((token) {
+  //   print(token);
+  // }).catchError((e) {
+  //
+  // });
+
+  FirebaseMessaging.instance
+      .getToken(
+          vapidKey:
+              "BMHYcYTuaea-zgs0n7obPyPdwn6W0j7hR9cAxVnNeSO1sNpyex7lMO-Pe4EuJge8Ugo9ICO83kPbddeQcjNDOZc")
+      .then((fcmToken) {
+    printme.yellow(fcmToken);
+  }).catchError((e) {
+    printme.red(e);
+  });
+
+  // await FirebaseMessaging.instance.subscribeToTopic(topic);
+  // await FirebaseMessaging.instance.subscribeToTopic("all-users");
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    printme.blue(message.data);
+  });
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +75,10 @@ void main() async {
   if (kIsWeb) {
     setPathUrlStrategy();
   }
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await init();
+
   runApp(const MyApp());
 }
 

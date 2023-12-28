@@ -15,7 +15,8 @@ class AuthRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> login({
     required Map<String, dynamic> data,
   }) async {
-    final response = await _crudDio.postData(
+    final response = await _crudHttp.requestWithFile(
+      file: null,
       data: data,
       linkUrl: AppLink.login,
     );
