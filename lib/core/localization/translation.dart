@@ -176,8 +176,16 @@ class MyTranslation extends Translations {
           AppText.orderHasBeenPaidBeforeSoYouCannotEditIt:
               'Order has been paid before, so you cannot edit it',
           AppText.validationImage: AppText.validationImage,
+          AppText.priceInPercent: AppText.priceInPercent,
+          AppText.days: AppText.days,
+          AppText.collapse: AppText.collapse,
+          AppText.expand: AppText.expand,
         },
         'ar': {
+          AppText.collapse: 'ضغط',
+          AppText.expand: "توسيع",
+          AppText.days: 'أيام',
+          AppText.priceInPercent: '% السعر في المئة',
           AppText.validationImage:
               'يجب أن يكون الملف عبارة عن صورة (jpeg، png، jpg، gif) بحجم 2 ميجابايت كحد أقصى',
           AppText.orderHasBeenPaidBeforeSoYouCannotEditIt:

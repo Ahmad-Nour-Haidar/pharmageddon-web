@@ -60,6 +60,7 @@ dependencies:
   firebase_core: ^2.24.2
   firebase_messaging: ^14.7.9
   hive_flutter: ^1.1.0
+  fl_chart: ^0.66.0
 
 dev_dependencies:
   flutter_test:

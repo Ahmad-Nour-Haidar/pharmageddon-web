@@ -1,5 +1,6 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
@@ -16,10 +17,12 @@ class CustomPickDateWidget extends StatelessWidget {
     required this.onChange,
     required this.dateTimeRange,
     required this.onTapSend,
+    required this.onTapChart,
   });
 
   final void Function(DateTimeRange dateTimeRange) onChange;
   final void Function() onTapSend;
+  final void Function() onTapChart;
   final DateTimeRange dateTimeRange;
 
   String get textStart {
@@ -42,12 +45,17 @@ class CustomPickDateWidget extends StatelessWidget {
     final results = await showCalendarDatePicker2Dialog(
       context: context,
       config: CalendarDatePicker2WithActionButtonsConfig(
-        calendarType: CalendarDatePicker2Type.range,
-        firstDate: DateTime(2020),
-        lastDate: DateTime.now(),
-        cancelButtonTextStyle: AppTextStyle.f14w600red,
-        okButtonTextStyle: AppTextStyle.f14w600green,
-      ),
+          calendarType: CalendarDatePicker2Type.range,
+          firstDate: DateTime(2020),
+          lastDate: DateTime.now(),
+          cancelButton: Text(
+            AppText.cancel.tr,
+            style: AppTextStyle.f14w600red,
+          ),
+          okButton: Text(
+            AppText.ok.tr,
+            style: AppTextStyle.f14w600primaryColor,
+          )),
       dialogSize: const Size(350, 400),
       borderRadius: BorderRadius.circular(10),
     );
@@ -62,69 +70,80 @@ class CustomPickDateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: InkWell(
-            onTap: () => show(context),
-            child: Tooltip(
-              message: AppText.selectStartDateAndEndDateOfReport.tr,
-              preferBelow: false,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: AppPadding.padding10,
-                      decoration: BoxDecoration(
-                        color: AppColor.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        textStart,
-                        style: AppTextStyle.f18w500black,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: SvgImage(
-                      path: AppConstant.isEnglish
-                          ? AppSvg.arrowFillRight
-                          : AppSvg.arrowFillLeft,
-                      color: AppColor.green2,
-                      size: 32,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: AppPadding.padding10,
-                      decoration: BoxDecoration(
-                        color: AppColor.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        textEnd,
-                        style: AppTextStyle.f18w500black,
+    return SizedBox(
+      height: 45,
+      child: Row(
+        children: [
+          IconButton(
+            onPressed: onTapChart,
+            icon: const SvgImage(
+              path: AppSvg.chart,
+              size: 22,
+              color: AppColor.primaryColor,
+            ),
+          ),
+          Expanded(
+            child: InkWell(
+              onTap: () => show(context),
+              child: Tooltip(
+                message: AppText.selectStartDateAndEndDateOfReport.tr,
+                preferBelow: false,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: AppPadding.padding10,
+                        decoration: BoxDecoration(
+                          color: AppColor.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          textStart,
+                          style: AppTextStyle.f18w500black,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      child: SvgImage(
+                        path: AppConstant.isEnglish
+                            ? AppSvg.arrowFillRight
+                            : AppSvg.arrowFillLeft,
+                        color: AppColor.green2,
+                        size: 32,
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: AppPadding.padding10,
+                        decoration: BoxDecoration(
+                          color: AppColor.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          textEnd,
+                          style: AppTextStyle.f18w500black,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        TextButton(
-          onPressed: onTapSend,
-          child: FittedBox(
-            child: Text(
-              AppText.send.tr,
-              style: AppTextStyle.f16w600primaryColor,
+          TextButton(
+            onPressed: onTapSend,
+            child: FittedBox(
+              child: Text(
+                AppText.send.tr,
+                style: AppTextStyle.f16w600primaryColor,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

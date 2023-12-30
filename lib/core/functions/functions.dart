@@ -41,6 +41,13 @@ String formatYYYYMd(Object? object) {
   return Jiffy.parseFromDateTime(date).format(pattern: pattern);
 }
 
+String formatDM(Object? object) {
+  final s = object?.toString();
+  final date = DateTime.tryParse(s ?? '');
+  if (date == null) return ' --- ';
+  return '${date.day} - ${date.month}';
+}
+
 TextDirection getTextDirection(String value) {
   if (value.contains(RegExp(r"[\u0600-\u06FF]"))) {
     return TextDirection.rtl;
@@ -82,7 +89,7 @@ void initialUser() {
 }
 
 String getImageUserUrl() =>
-    '${AppLink.userImage}/${AppLocalData.user!.imageName}';
+    '${AppLink.userImage}/${AppLocalData.user?.imageName}';
 
 String getUrlImageMedication(MedicationModel? model) {
   final s = '${AppLink.medicineImage}/${model?.imageName}';

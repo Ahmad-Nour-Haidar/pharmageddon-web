@@ -76,9 +76,9 @@ class MyApp extends StatelessWidget {
     AppSize.initial(context);
     final controller = AppInjection.getIt<LocaleController>();
     var initialRoute = AppRoute.login;
-    if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
+    // if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
       initialRoute = AppRoute.home;
-    }
+    // }
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeCubit>(

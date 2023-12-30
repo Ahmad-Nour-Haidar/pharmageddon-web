@@ -9,6 +9,11 @@ abstract class AppTextStyle {
     fontWeight: FontWeight.w500,
   );
 
+  static const f12cardColor = TextStyle(
+    fontSize: 12,
+    color: AppColor.cardColor,
+  );
+
   static const f18w400TextColor = TextStyle(
     fontSize: 18,
     color: AppColor.textColor,
@@ -139,9 +144,9 @@ abstract class AppTextStyle {
     color: AppColor.red,
     fontWeight: FontWeight.w600,
   );
-  static const f14w600green = TextStyle(
+  static const f14w600primaryColor = TextStyle(
     fontSize: 14,
-    color: AppColor.green,
+    color: AppColor.primaryColor,
     fontWeight: FontWeight.w600,
   );
 

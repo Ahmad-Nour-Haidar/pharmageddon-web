@@ -34,6 +34,7 @@ class ReportsCubit extends Cubit<ReportsState> {
           WarningState(message: AppText.pleaseSelectStartAndEndOfDate.tr)));
       return;
     }
+    isChart = false;
     _update(ReportsLoadingState());
     final queryParameters = {
       AppRKeys.start_date: dateTimeRange.start,
@@ -44,30 +45,17 @@ class ReportsCubit extends Cubit<ReportsState> {
     response.fold((l) {
       _update(ReportsFailureState(l));
     }, (r) {
+      printme.printFullText(r);
       final status = r[AppRKeys.status];
       if (status == 403) {
         data.clear();
-      } else {
+      } else if (status == 200) {
         final List temp = r[AppRKeys.data][AppRKeys.orders];
         data.clear();
         data.addAll(temp.map((e) => OrderModel.fromJson(e)));
-        printData();
       }
       _update(ReportsSuccessState());
     });
-  }
-
-  void printData() {
-    final Map<String, double> re = {};
-    for (final e in data) {
-      final date = formatYYYYMd(e.createdAt);
-      final x = e.totalPrice ?? 0.0;
-      final old = re[date] ?? 0.0;
-      re[date] = old + x;
-    }
-    for (final e in re.entries) {
-      printme.blue('${e.key} : ${e.value}');
-    }
   }
 
   void setDateTimeRange(DateTimeRange dateTimeRange) {
@@ -89,5 +77,13 @@ class ReportsCubit extends Cubit<ReportsState> {
       p += element.totalPrice!;
     }
     return p;
+  }
+
+  // chart
+  bool isChart = false;
+
+  void changeChart() {
+    isChart = !isChart;
+    _update(ReportsChangeState());
   }
 }

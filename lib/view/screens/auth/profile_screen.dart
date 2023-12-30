@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/constant/app_color.dart';
 import 'package:pharmageddon_web/core/constant/app_constant.dart';
 import 'package:pharmageddon_web/core/constant/app_local_data.dart';
+import 'package:pharmageddon_web/core/constant/app_padding.dart';
 import 'package:pharmageddon_web/core/constant/app_size.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
@@ -45,120 +46,124 @@ class ProfileScreen extends StatelessWidget {
           final cubit = ProfileCubit.get(context);
           return CustomLayoutBuilder(
             widget: (maxWidth, maxHeight) {
-              return ListView(
+              return Row(
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Expanded(child: SizedBox()),
-                      Expanded(
-                        flex: 2,
-                        child: Form(
-                          key: cubit.formKey,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Align(
-                                child: ClipOval(
-                                  child: SizedBox(
-                                    width: 200,
-                                    height: 200,
-                                    child: GetImageFromUrlAndMemory(
-                                      url: getImageUserUrl(),
-                                      defaultImage: AppSvg.user,
-                                      size: 200,
-                                      onTap: cubit.enableEdit
-                                          ? cubit.pickImage
-                                          : null,
-                                      webImage: cubit.bytes,
-                                      callUrl:
-                                          AppLocalData.user?.imageName != null,
-                                    ),
+                  const Expanded(child: SizedBox()),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      padding: AppPadding.padding20,
+                      decoration: BoxDecoration(
+                        color: AppColor.cardColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Form(
+                        key: cubit.formKey,
+                        child: ListView(
+                          children: [
+                            Center(
+                              child: ClipOval(
+                                child: SizedBox(
+                                  width: 200,
+                                  height: 200,
+                                  child: GetImageFromUrlAndMemory(
+                                    url: getImageUserUrl(),
+                                    defaultImage: AppSvg.user,
+                                    size: 200,
+                                    onTap: cubit.enableEdit
+                                        ? cubit.pickImage
+                                        : null,
+                                    webImage: cubit.bytes,
+                                    callUrl:
+                                        AppLocalData.user?.imageName != null,
                                   ),
                                 ),
                               ),
-                              const Gap(15),
-                              // email
-                              SelectableText(
+                            ),
+                            const Gap(15),
+                            // email
+                            Center(
+                              child: SelectableText(
                                 AppLocalData.user?.email ?? AppText.email.tr,
                                 style: AppTextStyle.f18w600black,
                               ),
-                              const Gap(15),
-                              // phone
-                              CustomTextFormField(
-                                enabled: cubit.enableEdit,
-                                controller: cubit.phoneController,
-                                keyboardType: TextInputType.phone,
-                                validator: ValidateInput.isPhone,
-                                textInputAction: TextInputAction.next,
-                                fillColor: AppColor.transparent,
-                                colorPrefixIcon: AppColor.gray,
-                                prefixIcon: AppSvg.phone,
-                                labelText: AppText.phoneNumber.tr,
-                              ),
-                              const Gap(10),
-                              // user name
-                              CustomTextFormField(
-                                enabled: cubit.enableEdit,
-                                controller: cubit.nameController,
-                                keyboardType: TextInputType.name,
-                                validator: ValidateInput.isUsername,
-                                textInputAction: TextInputAction.next,
-                                fillColor: AppColor.transparent,
-                                colorPrefixIcon: AppColor.gray,
-                                prefixIcon: AppSvg.user,
-                                labelText: AppText.userName.tr,
-                              ),
-                              const Gap(10),
-                              // address
-                              CustomTextFormField(
-                                enabled: cubit.enableEdit,
-                                controller: cubit.addressController,
-                                keyboardType: TextInputType.text,
-                                validator: ValidateInput.isAddress,
-                                textInputAction: TextInputAction.next,
-                                fillColor: AppColor.transparent,
-                                colorPrefixIcon: AppColor.gray,
-                                prefixIcon: AppSvg.marker,
-                                labelText: AppText.address.tr,
-                              ),
-                              const Gap(15),
-                              if (state is ProfileLoadingState)
-                                const SpinKitThreeBounce(
-                                  color: AppColor.primaryColor,
-                                ),
-                              if (state is! ProfileLoadingState)
-                                CustomButton(
-                                  onTap: () {
-                                    cubit.enableEdit
-                                        ? cubit.updateUser()
-                                        : cubit.onTapEdit();
-                                  },
-                                  text: AppText.edit.tr,
-                                  color: cubit.enableEdit
-                                      ? AppColor.primaryColor
-                                      : AppColor.gray3,
-                                ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Expanded(child: SizedBox()),
-                      IconButton(
-                        onPressed: () => showAwesomeLogout(context),
-                        icon: Transform.flip(
-                          flipX: !AppConstant.isEnglish,
-                          child: const Align(
-                            child: SvgImage(
-                              path: AppSvg.exit,
-                              color: AppColor.black,
-                              size: 20,
                             ),
-                          ),
+                            const Gap(15),
+                            // phone
+                            CustomTextFormField(
+                              enabled: cubit.enableEdit,
+                              controller: cubit.phoneController,
+                              keyboardType: TextInputType.phone,
+                              validator: ValidateInput.isPhone,
+                              textInputAction: TextInputAction.next,
+                              fillColor: AppColor.transparent,
+                              colorPrefixIcon: AppColor.gray,
+                              prefixIcon: AppSvg.phone,
+                              labelText: AppText.phoneNumber.tr,
+                            ),
+                            const Gap(10),
+                            // user name
+                            CustomTextFormField(
+                              enabled: cubit.enableEdit,
+                              controller: cubit.nameController,
+                              keyboardType: TextInputType.name,
+                              validator: ValidateInput.isUsername,
+                              textInputAction: TextInputAction.next,
+                              fillColor: AppColor.transparent,
+                              colorPrefixIcon: AppColor.gray,
+                              prefixIcon: AppSvg.user,
+                              labelText: AppText.userName.tr,
+                            ),
+                            const Gap(10),
+                            // address
+                            CustomTextFormField(
+                              enabled: cubit.enableEdit,
+                              controller: cubit.addressController,
+                              keyboardType: TextInputType.text,
+                              validator: ValidateInput.isAddress,
+                              textInputAction: TextInputAction.next,
+                              fillColor: AppColor.transparent,
+                              colorPrefixIcon: AppColor.gray,
+                              prefixIcon: AppSvg.marker,
+                              labelText: AppText.address.tr,
+                            ),
+                            const Gap(15),
+                            if (state is ProfileLoadingState)
+                              const SpinKitThreeBounce(
+                                color: AppColor.primaryColor,
+                              ),
+                            if (state is! ProfileLoadingState)
+                              CustomButton(
+                                onTap: () {
+                                  cubit.enableEdit
+                                      ? cubit.updateUser()
+                                      : cubit.onTapEdit();
+                                },
+                                text: AppText.edit.tr,
+                                color: cubit.enableEdit
+                                    ? AppColor.primaryColor
+                                    : AppColor.gray3,
+                              ),
+                          ],
                         ),
                       ),
-                    ],
-                  )
+                    ),
+                  ),
+                  const Expanded(child: SizedBox()),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+                      onPressed: () => showAwesomeLogout(context),
+                      icon: Transform.flip(
+                        flipX: !AppConstant.isEnglish,
+                        child: const SvgImage(
+                          path: AppSvg.exit,
+                          color: AppColor.black,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               );
             },

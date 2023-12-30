@@ -70,7 +70,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               width: min(140, AppSize.width * .22),
               child: FittedBox(
                 child: Text(
-                  AppLocalData.user?.username ?? '',
+                  AppLocalData.user?.username ?? ' ',
                   style: AppTextStyle.f14w600black,
                 ),
               ),

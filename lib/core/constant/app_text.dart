@@ -191,6 +191,10 @@ class AppText {
 
   static const validationImage =
       'The file must be an image (jpeg, png, jpg, gif) max 2MB';
+  static const priceInPercent = 'Price in percent %';
+  static const days = 'Days';
+  static const collapse = 'Collapse';
+  static const expand = 'Expand';
 
   static final _numberFormat = NumberFormat.decimalPattern();
 

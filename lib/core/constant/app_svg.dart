@@ -14,6 +14,7 @@ class AppSvg {
   static const boxOpen = '$root/box_open.svg';
   static const checkCircle = '$root/check_circle.svg';
   static const chemistry = '$root/chemistry.svg';
+  static const chart = '$root/chart.svg';
   static const city = '$root/city.svg';
   static const close = '$root/close.svg';
   static const percentage = '$root/percentage.svg';
@@ -50,4 +51,5 @@ class AppSvg {
   static const rotateLeft = '$root/rotate-left.svg';
   static const sort = '$root/sort.svg';
   static const ballot = '$root/ballot.svg';
+  static const pie = '$root/pie.svg';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/constant/app_size.dart';
+import 'package:pharmageddon_web/print.dart';
 
 import '../../core/constant/app_text.dart';
 
@@ -16,6 +17,8 @@ class CustomLayoutBuilder extends StatelessWidget {
         AppSize.initial(context);
         final maxWidth = constraints.maxWidth;
         final maxHeight = constraints.maxHeight;
+        // printme.cyan(maxWidth);
+        // printme.cyan(maxHeight);
         // return widget(maxWidth, maxHeight);
         if (maxHeight < 300) {
           return Scaffold(
