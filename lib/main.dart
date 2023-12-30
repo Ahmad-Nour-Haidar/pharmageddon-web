@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,11 +16,9 @@ import 'controllers/medication_details_cubit/medication_details_cubit.dart';
 import 'core/constant/app_constant.dart';
 import 'core/constant/app_local_data.dart';
 import 'core/constant/app_size.dart';
-import 'core/functions/functions.dart';
 import 'core/localization/translation.dart';
 import 'core/resources/theme_manager.dart';
 import 'core/services/dependency_injection.dart';
-import 'firebase_options.dart';
 import 'my_bloc_observer.dart';
 
 Future<void> requestPermissionNotification() async {
@@ -63,11 +60,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await AppInjection.initial();
-  initialUser();
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await init();
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await init();
 
   runApp(const MyApp());
 }

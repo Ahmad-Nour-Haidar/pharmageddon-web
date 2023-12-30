@@ -1,40 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../core/constant/app_constant.dart';
-import '../core/constant/app_keys_storage.dart';
+import '../core/constant/app_storage_keys.dart';
 import '../core/services/dependency_injection.dart';
+import '../data/local/app_hive.dart';
 
-class LocaleController extends GetxController {
-  late Locale locale;
-  final sh = AppInjection.getIt<SharedPreferences>();
+class LocaleController {
+  LocaleController._();
 
-  LocaleController() {
-    onInit();
+  static Future<LocaleController> getInstance() async {
+    final LocaleController localeController = LocaleController._();
+    await localeController.initial();
+    return localeController;
   }
+
+  late Locale _locale;
+  final _appHive = AppInjection.getIt<AppHive>();
+
+  Locale get locale => _locale;
 
   Future<void> changeLang(String codeLang) async {
-    final locale = Locale(codeLang);
-    await sh.setString(AppKeysStorage.langKey, codeLang);
+    if (_locale.languageCode == codeLang) return;
+    _locale = Locale(codeLang);
+    await _appHive.store(AppSKeys.langKey, codeLang);
     await Jiffy.setLocale(codeLang);
-    this.locale = locale;
-    AppConstant.isEnglish = this.locale.languageCode == AppConstant.en;
-    Get.updateLocale(locale);
+    AppConstant.isEnglish = locale.languageCode == AppConstant.en;
+    Get.updateLocale(_locale);
   }
 
-  @override
-  void onInit() async {
-    String? s = sh.getString(AppKeysStorage.langKey);
+  Future<void> initial() async {
+    String s = _appHive.get(AppSKeys.langKey) ?? '';
     if (s == AppConstant.ar) {
-      locale = const Locale(AppConstant.ar);
+      _locale = const Locale(AppConstant.ar);
     } else if (s == AppConstant.en) {
-      locale = const Locale(AppConstant.en);
+      _locale = const Locale(AppConstant.en);
     } else {
-      locale = Locale(Get.deviceLocale!.languageCode);
+      _locale = Locale(Get.deviceLocale!.languageCode);
     }
     AppConstant.isEnglish = locale.languageCode == AppConstant.en;
     await Jiffy.setLocale(locale.languageCode);
-    super.onInit();
   }
 }

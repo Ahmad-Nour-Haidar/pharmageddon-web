@@ -67,7 +67,7 @@ class LoginCubit extends Cubit<LoginState> {
         final state = FailureState(message: AppText.goToTheOtherPlatform.tr);
         emit(LoginFailureState(state));
       } else {
-        await storeUser(response);
+        await storeUser(response[AppRKeys.data][AppRKeys.user]);
         if (AppLocalData.user!.emailVerifiedAt == null) {
           emit(LoginNotVerifyState());
         } else {

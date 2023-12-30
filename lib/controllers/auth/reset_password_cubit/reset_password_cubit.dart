@@ -109,7 +109,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
         final message = AppText.goToTheOtherPlatform.tr;
         emit(ResetPasswordFailureState(FailureState(message: message)));
       } else {
-        await storeUser(response);
+        await storeUser(response[AppRKeys.data][AppRKeys.user]);
         emit(ResetPasswordSuccessState());
       }
     });

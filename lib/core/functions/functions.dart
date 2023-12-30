@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:pharmageddon_web/controllers/local_controller.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../data/local/app_hive.dart';
 import '../../model/effect_category_model.dart';
 import '../../model/manufacturer_model.dart';
 import '../../model/medication_model.dart';
@@ -12,10 +11,9 @@ import '../../model/order_details_model.dart';
 import '../../model/order_model.dart';
 import '../../model/user_model.dart';
 import '../constant/app_constant.dart';
-import '../constant/app_keys_request.dart';
-import '../constant/app_keys_storage.dart';
 import '../constant/app_link.dart';
 import '../constant/app_local_data.dart';
+import '../constant/app_storage_keys.dart';
 import '../constant/app_text.dart';
 import '../services/dependency_injection.dart';
 
@@ -59,23 +57,28 @@ TextDirection getTextDirectionOnLang() {
   }
 }
 
-Future<void> storeUser(Map<String, dynamic> response) async {
-  final user = User.fromJson(response[AppRKeys.data][AppRKeys.user]);
-  final sh = AppInjection.getIt<SharedPreferences>();
-  final jsonString = jsonEncode(user.toJson());
-  await sh.setString(AppKeysStorage.user, jsonString);
+Future<void> storeUser(Map<String, dynamic> json) async {
+  final user = User.fromJson(json);
+  final appHive = AppInjection.getIt<AppHive>();
+  await appHive.store(AppSKeys.userKey, user.toJson());
   AppLocalData.user = user;
-
-  // printme.yellowAccent(AppLocalData.user?.authorization);
+  // printme.yellowAccent(AppLocalData.user);
 }
 
-void initialUser() async {
-  final sh = AppInjection.getIt<SharedPreferences>();
-  var jsonString = sh.getString(AppKeysStorage.user);
-  if (jsonString == null) return;
-  final Map<String, dynamic> m = jsonDecode(jsonString);
-  final user = User.fromJson(m);
+void initialUser() {
+  final appHive = AppInjection.getIt<AppHive>();
+  final Map? jsonString = appHive.get(AppSKeys.userKey);
+  if (jsonString == null) {
+    return;
+  }
+  final Map<String, dynamic> jsonUser = {};
+  jsonString.forEach((key, value) {
+    jsonUser[key.toString()] = value;
+  });
+  var user = User.fromJson(jsonUser);
   AppLocalData.user = user;
+  // printme.green(user.authorization);
+  return;
 }
 
 String getImageUserUrl() =>

@@ -4,7 +4,6 @@ import 'package:pharmageddon_web/data/remote/order_data.dart';
 import 'package:pharmageddon_web/data/remote/reports_data.dart';
 import 'package:pharmageddon_web/data/remote/search_data.dart';
 import 'package:pharmageddon_web/view/widgets/app_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../controllers/add_cubit/add_cubit.dart';
 import '../../controllers/auth/check_email_cubit/check_email_cubit.dart';
 import '../../controllers/auth/login_cubit/login_cubit.dart';
@@ -23,11 +22,13 @@ import '../../controllers/orders_cubit/orders_cubit.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
+import '../../data/local/app_hive.dart';
 import '../../data/remote/auth_data.dart';
 import '../../data/remote/manufacturer_data.dart';
 import '../../data/remote/medications_data.dart';
 import '../../my_bloc_observer.dart';
 import '../class/image_helper.dart';
+import '../functions/functions.dart';
 
 class AppInjection {
   AppInjection._();
@@ -36,12 +37,14 @@ class AppInjection {
 
   static Future<void> initial() async {
     /// storage
-    final sharedPreferences = await SharedPreferences.getInstance();
-    getIt.registerLazySingleton(() => sharedPreferences);
+    final appHive = await AppHive.getInstance();
+    getIt.registerLazySingleton(() => appHive);
     getIt.registerLazySingleton(() => ImageHelper());
+    initialUser();
 
     /// start
-    getIt.registerLazySingleton(() => LocaleController());
+    final localeController = await LocaleController.getInstance();
+    getIt.registerLazySingleton(() => localeController);
     getIt.registerLazySingleton(() => MyBlocObserver());
 
     /// data

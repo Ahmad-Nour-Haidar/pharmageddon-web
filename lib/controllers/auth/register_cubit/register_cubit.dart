@@ -69,7 +69,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           emit(RegisterFailureState(FailureState(message: s)));
         }
       } else {
-        await storeUser(response);
+        await storeUser(response[AppRKeys.data][AppRKeys.user]);
         emit(RegisterSuccessState());
       }
     });

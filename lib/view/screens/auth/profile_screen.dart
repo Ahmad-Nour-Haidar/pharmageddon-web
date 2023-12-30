@@ -16,12 +16,13 @@ import 'package:pharmageddon_web/view/widgets/custom_button.dart';
 import 'package:pharmageddon_web/view/widgets/custom_text_form_field.dart';
 import 'package:pharmageddon_web/view/widgets/get_image_from_url_and_memory.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../controllers/auth/profile_cubit/profile_cubit.dart';
 import '../../../controllers/auth/profile_cubit/profile_state.dart';
 import '../../../core/class/validation.dart';
+import '../../../core/constant/app_storage_keys.dart';
 import '../../../core/constant/app_svg.dart';
 import '../../../core/functions/navigator.dart';
+import '../../../data/local/app_hive.dart';
 import '../../../data/remote/auth_data.dart';
 import '../../../routes.dart';
 import '../../widgets/custom_layout_builder.dart';
@@ -179,7 +180,9 @@ class ProfileScreen extends StatelessWidget {
       btnCancelOnPress: () {},
       btnOkOnPress: () {
         AppInjection.getIt<AuthRemoteData>().logout();
-        AppInjection.getIt<SharedPreferences>().clear();
+        final appHive = AppInjection.getIt<AppHive>();
+        appHive.delete(AppSKeys.userKey);
+        appHive.delete(AppSKeys.langKey);
         pushNamedAndRemoveUntil(AppRoute.login, context);
       },
     ).show();
