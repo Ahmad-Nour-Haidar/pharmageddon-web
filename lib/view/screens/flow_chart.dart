@@ -39,7 +39,6 @@ class _FlowChartState extends State<FlowChart> {
 
   @override
   void initState() {
-    data = widget.data;
     _draw();
     super.initState();
   }
@@ -58,10 +57,8 @@ class _FlowChartState extends State<FlowChart> {
 
   void _drawDataExpand() {
     _maxTotalPrice = 0;
-    data = [];
+    data.clear();
     data.addAll(widget.data);
-    data.addAll(widget.data);
-
     double i = 0;
     // calc max total price
     for (final e in data) {
@@ -71,6 +68,8 @@ class _FlowChartState extends State<FlowChart> {
     spots.clear();
     for (final e in data) {
       final x = e.totalPrice ?? 0.0;
+      printme.green('${e.id} - ${_getPercentY(x)}');
+      printme.green('_maxTotalPrice - $_maxTotalPrice');
       spots.add(FlSpot(i, _getPercentY(x)));
       i += _interval;
     }

@@ -33,8 +33,6 @@ class ReportsScreen extends StatelessWidget {
         builder: (context, state) {
           final cubit = ReportsCubit.get(context);
           Widget body = AppInjection.getIt<AppWidget>().reports;
-          printme.green(cubit.isChart);
-          printme.green(state);
           if (state is ReportsLoadingState) {
             body = const OrdersLoading();
           } else if (cubit.isChart) {

@@ -8,10 +8,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:pharmageddon_web/core/functions/functions.dart';
 import '../../../controllers/auth/verify_code_cubit/verify_code_cubit.dart';
 import '../../../controllers/auth/verify_code_cubit/verify_code_state.dart';
 import '../../../core/constant/app_color.dart';
-import '../../../core/constant/app_constant.dart';
 import '../../../core/constant/app_size.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../core/constant/app_svg.dart';
@@ -116,9 +116,7 @@ class VerifyCodeScreen extends StatelessWidget {
                                     ),
                                   const Gap(15),
                                   Align(
-                                    alignment: AppConstant.isEnglish
-                                        ? Alignment.centerRight
-                                        : Alignment.centerLeft,
+                                    alignment: alignment(),
                                     child: TextButton(
                                       onPressed: cubit.getVerifyCode,
                                       child: Text(

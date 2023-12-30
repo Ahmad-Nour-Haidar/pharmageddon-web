@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmageddon_web/data/remote/medications_data.dart';
+import 'package:pharmageddon_web/print.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/services/dependency_injection.dart';
 import '../../model/medication_model.dart';
@@ -30,13 +31,14 @@ class MedicationCubit extends Cubit<MedicationState> {
     response.fold((l) {
       _update(MedicationFailureState(l));
     }, (r) {
+      printme.printFullText(r);
       final status = r[AppRKeys.status];
+      medications.clear();
       if (status == 200) {
-        medications.clear();
         final List temp = r[AppRKeys.data][AppRKeys.medicines];
         medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
-        _update(MedicationSuccessState());
       }
+      _update(MedicationSuccessState());
     });
   }
 
