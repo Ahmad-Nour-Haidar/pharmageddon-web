@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -24,7 +23,6 @@ import 'core/resources/theme_manager.dart';
 import 'core/services/dependency_injection.dart';
 import 'firebase_options.dart';
 import 'my_bloc_observer.dart';
-import 'package:url_strategy/url_strategy.dart';
 
 Future<void> requestPermissionNotification() async {
   await FirebaseMessaging.instance.requestPermission(
@@ -40,31 +38,26 @@ Future<void> requestPermissionNotification() async {
 
 Future<void> init() async {
   await requestPermissionNotification();
-  final topic = AppLocalData.user?.id.toString() ?? '-';
+  final topic = AppLocalData.user?.id.toString() ?? '0';
   printme.green(topic);
-  // await FirebaseMessaging.instance.deleteToken();
-  // FirebaseMessaging.instance.getToken().then((token) {
-  //   print(token);
-  // }).catchError((e) {
-  //
-  // });
-
-  FirebaseMessaging.instance
-      .getToken(
-          vapidKey:
-              "BMHYcYTuaea-zgs0n7obPyPdwn6W0j7hR9cAxVnNeSO1sNpyex7lMO-Pe4EuJge8Ugo9ICO83kPbddeQcjNDOZc")
-      .then((fcmToken) {
-    printme.yellow(fcmToken);
-  }).catchError((e) {
-    printme.red(e);
-  });
+  await FirebaseMessaging.instance.deleteToken();
+  FirebaseMessaging.instance.getToken().then((token) {
+    printme.yellow('------------------');
+    printme.yellow(token);
+    printme.yellow('------------------');
+  }).catchError((e) {});
 
   // await FirebaseMessaging.instance.subscribeToTopic(topic);
   // await FirebaseMessaging.instance.subscribeToTopic("all-users");
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     printme.blue(message.data);
+    printme.blue(message.notification?.title.toString());
+    printme.blue(message.notification?.body.toString());
+    printme.blue(message);
   });
 }
+
+// eRMObZyYJ2aVeJrs9_WwAD:APA91bG6MieGij1ie4sIBLtG7vC9qU0c6hrsP6y6QXWdUVV4Fx5zZ61y0JaNmHu3uXKF1zB-Y8WSC7hywF0imEa_a_6O-KEThh7m6go7zNPgvI5SLBKM9dC5Vqpdohac2OvHyt1jwQ8O
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -72,9 +65,6 @@ void main() async {
   await AppInjection.initial();
   initialUser();
   Bloc.observer = AppInjection.getIt<MyBlocObserver>();
-  if (kIsWeb) {
-    setPathUrlStrategy();
-  }
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await init();

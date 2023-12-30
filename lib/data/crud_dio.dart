@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pharmageddon_web/core/class/parent_state.dart';
 import 'package:pharmageddon_web/print.dart';
 import '../core/functions/random_loading.dart';
@@ -8,13 +9,8 @@ import '../core/functions/random_loading.dart';
 class CrudDio {
   final _headers = {
     "Content-Type": "application/json",
-    "Charset": "utf-8",
-    "Connection": "Keep-Alive",
     'Accept': 'application/json',
-    'Origin': 'https://pharma-web.000webhostapp.com',
     'accepted-lang': 'en',
-    // 'Content-Type': 'application/json',
-    // 'Keep-Alive': 'timeout=5, max=50',
   };
 
   static late final Dio _dio;
@@ -127,23 +123,37 @@ class CrudDio {
     // if (!await checkInternet()) {
     //   return Left(OfflineState(tr));
     // }
+    /// add headers
     if (token != null) {
       _dio.options.headers.addAll({
         'Authorization': 'Bearer $token',
       });
     }
+
+    /// add data
     final formData = FormData.fromMap(data);
+
+    /// add file
     if (file != null) {
-      final fileName = file.path.split('/').last;
-      formData.files.addAll({
-        nameKey: await MultipartFile.fromFile(file.path, filename: fileName),
-      }.entries);
+      final xFile = XFile(file.path);
+      final imageBytes = await xFile.readAsBytes();
+      final imageFile = PickedFile(xFile.path);
+      final stream = imageFile.openRead();
+      final length = imageBytes.length;
+      final fileName = xFile.path.split('/').last;
+      final image = MultipartFile.fromStream(
+        () => stream,
+        length,
+        filename: fileName,
+      );
+      formData.files.addAll({nameKey: image}.entries);
     }
     await randomLoading();
+
+    /// send request
     try {
       final response = await _dio.post(linkUrl, data: formData);
       printme.cyan(response.statusCode);
-      // printme.printFullText(response.data);
       if (!(response.statusCode == 200 || response.statusCode == 201)) {
         return Left(ServerFailureState());
       }

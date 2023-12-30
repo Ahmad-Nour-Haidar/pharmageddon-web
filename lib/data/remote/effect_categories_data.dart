@@ -7,11 +7,9 @@ import '../../core/constant/app_link.dart';
 import '../../core/constant/app_local_data.dart';
 import '../../core/services/dependency_injection.dart';
 import '../crud_dio.dart';
-import '../crud_http.dart';
 
 class EffectCategoryRemoteData {
   final _crudDio = AppInjection.getIt<CrudDio>();
-  final _crudHttp = AppInjection.getIt<CrudHttp>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getEffectsCategories({
     required String url,
@@ -25,7 +23,7 @@ class EffectCategoryRemoteData {
     required File? file,
   }) async {
     final token = AppLocalData.user?.authorization;
-    return await _crudHttp.requestWithFile(
+    return await _crudDio.requestWithFile(
       linkUrl: AppLink.effectCategoriesCreate,
       token: token,
       data: data,
@@ -39,7 +37,7 @@ class EffectCategoryRemoteData {
     required File? file,
   }) async {
     final token = AppLocalData.user?.authorization;
-    return await _crudHttp.requestWithFile(
+    return await _crudDio.requestWithFile(
       linkUrl: AppLink.effectCategoriesUpdate,
       token: token,
       data: data,

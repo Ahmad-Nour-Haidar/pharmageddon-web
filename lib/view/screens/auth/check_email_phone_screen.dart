@@ -130,7 +130,7 @@ class CheckEmailScreen extends StatelessWidget {
                                   child: AutoSizeText(
                                     'Pharmageddon',
                                     style: AppTextStyle.f24w600SecondColor,
-                                    maxLines: 1 ,
+                                    maxLines: 1,
                                   ),
                                 ),
                               ],

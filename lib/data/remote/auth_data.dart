@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:pharmageddon_web/data/crud_http.dart';
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_link.dart';
@@ -10,12 +9,11 @@ import '../crud_dio.dart';
 
 class AuthRemoteData {
   final _crudDio = AppInjection.getIt<CrudDio>();
-  final _crudHttp = AppInjection.getIt<CrudHttp>();
 
   Future<Either<ParentState, Map<String, dynamic>>> login({
     required Map<String, dynamic> data,
   }) async {
-    final response = await _crudHttp.requestWithFile(
+    final response = await _crudDio.requestWithFile(
       file: null,
       data: data,
       linkUrl: AppLink.login,
@@ -78,7 +76,7 @@ class AuthRemoteData {
     File? file,
   }) async {
     final token = AppLocalData.user!.authorization!;
-    return await _crudHttp.requestWithFile(
+    return await _crudDio.requestWithFile(
       data: data,
       token: token,
       linkUrl: AppLink.updateUser,

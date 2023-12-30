@@ -23,7 +23,6 @@ import '../../controllers/orders_cubit/orders_cubit.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/search_cubit/search_cubit.dart';
 import '../../data/crud_dio.dart';
-import '../../data/crud_http.dart';
 import '../../data/remote/auth_data.dart';
 import '../../data/remote/manufacturer_data.dart';
 import '../../data/remote/medications_data.dart';
@@ -47,7 +46,6 @@ class AppInjection {
 
     /// data
     getIt.registerLazySingleton(() => CrudDio());
-    getIt.registerLazySingleton(() => CrudHttp());
     getIt.registerLazySingleton(() => AuthRemoteData());
     getIt.registerLazySingleton(() => MedicationsRemoteData());
     getIt.registerLazySingleton(() => ManufacturerRemoteData());

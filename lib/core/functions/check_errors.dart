@@ -4,12 +4,15 @@ import '../constant/app_text.dart';
 
 String checkErrorMessages(List<dynamic> errors) {
   const s = 'The expiration date field must be a date after today';
+  const image = 'image';
   String result = '';
-  for (String error in errors) {
+  for (var error in errors) {
     error = error.toString().toLowerCase();
     result.isNotEmpty ? result += ', ' : 1;
     if (error.contains(s.toLowerCase())) {
       return AppText.theExpirationDateFieldMustBeADateAfterToday.tr;
+    } else if (error.contains(image.toLowerCase())) {
+      return AppText.validationImage.tr;
     } else if (error.contains(AppRKeys.email)) {
       result += AppRKeys.email.tr;
     } else if (error.contains(AppRKeys.phone)) {

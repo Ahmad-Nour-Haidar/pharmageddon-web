@@ -26,24 +26,15 @@ class GetImageFromUrlAndMemory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget image = Container(
-      width: size,
-      height: size,
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: AppColor.gray4,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Align(
-        child: SvgImage(
-          path: defaultImage,
-          color: AppColor.white,
-          size: size / 2,
-        ),
+    Widget image = Align(
+      child: SvgImage(
+        path: defaultImage,
+        color: AppColor.white,
+        size: size / 2,
       ),
     );
 
-    if (callUrl) {
+    if (callUrl && webImage == null) {
       image = CustomCachedNetworkImage(
         width: double.infinity,
         height: size,
@@ -61,9 +52,14 @@ class GetImageFromUrlAndMemory extends StatelessWidget {
     }
 
     return Align(
-      child: SizedBox(
+      child: Container(
         width: size,
         height: size,
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          color: AppColor.gray4,
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: InkWell(
           onTap: onTap,
           child: image,

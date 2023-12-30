@@ -7,11 +7,10 @@ import '../../core/constant/app_link.dart';
 import '../../core/constant/app_local_data.dart';
 import '../../core/services/dependency_injection.dart';
 import '../crud_dio.dart';
-import '../crud_http.dart';
 
 class MedicationsRemoteData {
   final _crudDio = AppInjection.getIt<CrudDio>();
-  final _crudHttp = AppInjection.getIt<CrudHttp>();
+  // final _crudHttp = AppInjection.getIt<CrudHttp>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getMedications({
     required String url,
@@ -25,7 +24,7 @@ class MedicationsRemoteData {
     required File? file,
   }) async {
     final token = AppLocalData.user?.authorization;
-    return await _crudHttp.requestWithFile(
+    return await _crudDio.requestWithFile(
       linkUrl: AppLink.medicineCreate,
       token: token,
       data: data,
@@ -39,7 +38,7 @@ class MedicationsRemoteData {
     required File? file,
   }) async {
     final token = AppLocalData.user?.authorization;
-    return await _crudHttp.requestWithFile(
+    return await _crudDio.requestWithFile(
       linkUrl: AppLink.medicineUpdate,
       token: token,
       data: data,

@@ -174,9 +174,12 @@ class MyTranslation extends Translations {
           AppText.thisOrderHasAlreadyBeenReceived:
               'This order has already been received',
           AppText.orderHasBeenPaidBeforeSoYouCannotEditIt:
-              'Order has been paid before, so you cannot edit it'
+              'Order has been paid before, so you cannot edit it',
+          AppText.validationImage: AppText.validationImage,
         },
         'ar': {
+          AppText.validationImage:
+              'يجب أن يكون الملف عبارة عن صورة (jpeg، png، jpg، gif) بحجم 2 ميجابايت كحد أقصى',
           AppText.orderHasBeenPaidBeforeSoYouCannotEditIt:
               'لقد تم دفع الطلب من قبل، لذا لا يمكنك تعديله',
           AppText.thisOrderHasAlreadyBeenReceived:
