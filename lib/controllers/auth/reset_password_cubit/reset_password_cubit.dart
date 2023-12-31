@@ -48,7 +48,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     code = verificationCode;
   }
 
-  void getVerifyCode() async {
+  Future<void> getVerifyCode() async {
     email = null;
     emit(ResetPasswordLoadingGetState());
     final data = {
@@ -60,23 +60,24 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     response.fold((l) {
       emit(ResetPasswordFailureGetState(l));
     }, (response) async {
-      if (response[AppRKeys.status] == 402) {
+      final status = response[AppRKeys.status];
+      if (status == 402) {
         final message = AppText.verifyCodeNotSentTryAgain.tr;
         emit(ResetPasswordFailureGetState(FailureState(message: message)));
-      } else if (response[AppRKeys.status] == 405) {
+      } else if (status == 405) {
         final message = AppText.verifyCodeNotSentTryAgain.tr;
         emit(ResetPasswordFailureGetState(FailureState(message: message)));
-      } else {
+      } else if (status == 200) {
         email = AppLocalData.user!.email;
         emit(ResetPasswordSuccessGetState());
+      } else {
+        emit(ResetPasswordFailureGetState(FailureState()));
       }
     });
   }
 
-  void reset() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
+  Future<void> reset() async {
+    if (!formKey.currentState!.validate()) return;
     if (code.length < 6) {
       emit(ResetPasswordFailureState(
           FailureState(message: AppText.enterTheCompleteVerificationCode.tr)));

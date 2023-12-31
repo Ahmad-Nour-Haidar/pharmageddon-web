@@ -142,11 +142,11 @@ class LoginScreen extends StatelessWidget {
                                       ),
                                     ),
                                     const Gap(15),
-                                    if (state is LoginLoadingState)
+                                    if (cubit.isLoading)
                                       const SpinKitThreeBounce(
                                         color: AppColor.primaryColor,
                                       ),
-                                    if (state is! LoginLoadingState)
+                                    if (!cubit.isLoading)
                                       CustomButton(
                                         onTap: cubit.login,
                                         text: AppText.login.tr,

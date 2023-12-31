@@ -31,7 +31,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
   String get message =>
       '${AppText.enterTheVerificationCodeYouReceivedOnGmail.tr}\n$email';
 
-  void getVerifyCode() async {
+  Future<void> getVerifyCode() async {
     email = null;
     emit(VerifyCodeLoadingGetState());
     final data = {
@@ -56,7 +56,7 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
     });
   }
 
-  void verifyCode() async {
+  Future<void> verifyCode() async {
     if (code.length < 6) {
       emit(VerifyCodeFailureState(
           FailureState(message: AppText.enterTheCompleteVerificationCode.tr)));
@@ -73,13 +73,15 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
     response.fold((l) {
       emit(VerifyCodeFailureState(l));
     }, (response) async {
-      if (response[AppRKeys.status] == 403 ||
-          response[AppRKeys.status] == 402) {
+      final status = response[AppRKeys.status];
+      if (status == 403 || status == 402) {
         final message = AppText.verifyCodeNotCorrect.tr;
         emit(VerifyCodeFailureState(FailureState(message: message)));
-      } else {
+      } else if (status == 200) {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);
         emit(VerifyCodeSuccessState());
+      } else {
+        emit(VerifyCodeFailureState(FailureState()));
       }
     });
   }

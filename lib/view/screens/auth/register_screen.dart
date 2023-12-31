@@ -173,11 +173,11 @@ class RegisterScreen extends StatelessWidget {
                                       obscureText: cubit.obscureText,
                                     ),
                                     const Gap(15),
-                                    if (state is RegisterLoadingState)
+                                    if (cubit.isLoading)
                                       const SpinKitThreeBounce(
                                         color: AppColor.primaryColor,
                                       ),
-                                    if (state is! RegisterLoadingState)
+                                    if (!cubit.isLoading)
                                       CustomButton(
                                         onTap: cubit.register,
                                         text: AppText.createAccount.tr,

@@ -85,51 +85,47 @@ class CustomPickDateWidget extends StatelessWidget {
           Expanded(
             child: InkWell(
               onTap: () => show(context),
-              child: Tooltip(
-                message: AppText.selectStartDateAndEndDateOfReport.tr,
-                preferBelow: false,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: AppPadding.padding10,
-                        decoration: BoxDecoration(
-                          color: AppColor.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          textStart,
-                          style: AppTextStyle.f18w500black,
-                        ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: AppPadding.padding10,
+                      decoration: BoxDecoration(
+                        color: AppColor.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        textStart,
+                        style: AppTextStyle.f18w500black,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: SvgImage(
-                        path: AppConstant.isEnglish
-                            ? AppSvg.arrowFillRight
-                            : AppSvg.arrowFillLeft,
-                        color: AppColor.green2,
-                        size: 32,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: SvgImage(
+                      path: AppConstant.isEnglish
+                          ? AppSvg.arrowFillRight
+                          : AppSvg.arrowFillLeft,
+                      color: AppColor.green2,
+                      size: 32,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: AppPadding.padding10,
+                      decoration: BoxDecoration(
+                        color: AppColor.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        textEnd,
+                        style: AppTextStyle.f18w500black,
                       ),
                     ),
-                    Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: AppPadding.padding10,
-                        decoration: BoxDecoration(
-                          color: AppColor.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          textEnd,
-                          style: AppTextStyle.f18w500black,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

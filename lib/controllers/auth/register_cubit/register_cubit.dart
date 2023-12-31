@@ -6,6 +6,7 @@ import '../../../core/class/parent_state.dart';
 import '../../../core/constant/app_constant.dart';
 import '../../../core/constant/app_keys_request.dart';
 import '../../../core/constant/app_text.dart';
+import '../../../core/enums/status_request.dart';
 import '../../../core/functions/check_errors.dart';
 import '../../../core/functions/functions.dart';
 import '../../../core/services/dependency_injection.dart';
@@ -24,6 +25,9 @@ class RegisterCubit extends Cubit<RegisterState> {
   final formKey = GlobalKey<FormState>();
   final authRemoteData = AppInjection.getIt<AuthRemoteData>();
   bool obscureText = true;
+  var statusRequest = StatusRequest.none;
+
+  bool get isLoading => statusRequest == StatusRequest.loading;
 
   @override
   Future<void> close() {
@@ -40,8 +44,9 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(RegisterChangeShowPasswordState());
   }
 
-  void register() async {
+  Future<void> register() async {
     if (!formKey.currentState!.validate()) return;
+    statusRequest = StatusRequest.loading;
     emit(RegisterLoadingState());
     final data = {
       AppRKeys.email: emailController.text,
@@ -52,11 +57,13 @@ class RegisterCubit extends Cubit<RegisterState> {
       AppRKeys.role: AppConstant.warehouseowner,
     };
     final response = await authRemoteData.register(data: data);
+    statusRequest = StatusRequest.none;
     if (isClosed) return;
     response.fold((l) {
       emit(RegisterFailureState(l));
     }, (response) async {
-      if (response[AppRKeys.status] == 400) {
+      final status = response[AppRKeys.status];
+      if (status == 400) {
         final List list =
             response[AppRKeys.message][AppRKeys.validation_errors];
         const s = 'There is already an account for the warehouse owner.';
@@ -68,9 +75,11 @@ class RegisterCubit extends Cubit<RegisterState> {
               response[AppRKeys.message][AppRKeys.validation_errors]);
           emit(RegisterFailureState(FailureState(message: s)));
         }
-      } else {
+      } else if (status == 200) {
         await storeUser(response[AppRKeys.data][AppRKeys.user]);
         emit(RegisterSuccessState());
+      } else {
+        emit(RegisterFailureState(FailureState()));
       }
     });
   }

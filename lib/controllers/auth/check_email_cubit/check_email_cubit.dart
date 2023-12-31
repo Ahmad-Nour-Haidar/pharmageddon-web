@@ -40,15 +40,18 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
     response.fold((l) {
       emit(CheckEmailFailureState(l));
     }, (response) async {
-      if (response[AppRKeys.status] == 405) {
+      final status = response[AppRKeys.status];
+      if (status == 200) {
+        await storeUser(response[AppRKeys.data][AppRKeys.user]);
+        emit(CheckEmailSuccessState());
+      } else if (status == 405) {
         final message = AppText.goToTheOtherPlatform.tr;
         emit(CheckEmailFailureState(FailureState(message: message)));
-      } else if (response[AppRKeys.status] == 403) {
+      } else if (status == 403) {
         final message = AppText.userNotFound.tr;
         emit(CheckEmailFailureState(FailureState(message: message)));
       } else {
-        await storeUser(response[AppRKeys.data][AppRKeys.user]);
-        emit(CheckEmailSuccessState());
+        emit(CheckEmailFailureState(FailureState()));
       }
     });
   }
