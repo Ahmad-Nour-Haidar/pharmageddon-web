@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
-import 'package:pharmageddon_web/print.dart';
 import 'package:pharmageddon_web/view/widgets/rich_text_span.dart';
 import '../../controllers/reports_cubit/reports_cubit.dart';
 import '../../controllers/reports_cubit/reports_state.dart';

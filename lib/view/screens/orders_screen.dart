@@ -25,7 +25,7 @@ class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = OrdersCubit.get(context);
-    cubit.getData(currentScreen);
+    cubit.getData(screenView: currentScreen);
     return BlocConsumer<OrdersCubit, OrdersState>(
       listener: (context, state) {
         if (state is OrdersFailureState) {
@@ -78,7 +78,7 @@ class OrdersScreen extends StatelessWidget {
                         orderModel: cubit.showingOrders[index]!,
                         onTapClose: () => cubit.closeModel(index),
                         onSuccess: () => cubit.getData(
-                          currentScreen,
+                          screenView: currentScreen,
                           forceGat: true,
                         ),
                       ),

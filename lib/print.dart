@@ -33,7 +33,6 @@ class printme {
     required Color color,
   }) {
     final colorCode = color.toString().split('(0x')[1].split(')')[0];
-    // debugPrint(colorCode);
     final formattedText =
         '\x1B[38;2;${Color(int.parse(colorCode, radix: 16)).red};'
         '${Color(int.parse(colorCode, radix: 16)).green};'

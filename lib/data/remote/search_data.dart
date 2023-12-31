@@ -11,7 +11,7 @@ class SearchRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> search({
     required Map<String, dynamic> queryParameters,
   }) async {
-    final token = AppLocalData.user!.authorization!;
+    final token = AppLocalData.user?.authorization;
     final response = await _crud.getData(
       linkUrl: AppLink.search,
       token: token,

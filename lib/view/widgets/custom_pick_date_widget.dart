@@ -1,6 +1,5 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/view/widgets/svg_image.dart';
 import '../../core/constant/app_color.dart';
@@ -45,17 +44,18 @@ class CustomPickDateWidget extends StatelessWidget {
     final results = await showCalendarDatePicker2Dialog(
       context: context,
       config: CalendarDatePicker2WithActionButtonsConfig(
-          calendarType: CalendarDatePicker2Type.range,
-          firstDate: DateTime(2020),
-          lastDate: DateTime.now(),
-          cancelButton: Text(
-            AppText.cancel.tr,
-            style: AppTextStyle.f14w600red,
-          ),
-          okButton: Text(
-            AppText.ok.tr,
-            style: AppTextStyle.f14w600primaryColor,
-          ),),
+        calendarType: CalendarDatePicker2Type.range,
+        firstDate: DateTime(2020),
+        lastDate: DateTime.now(),
+        cancelButton: Text(
+          AppText.cancel.tr,
+          style: AppTextStyle.f14w600red,
+        ),
+        okButton: Text(
+          AppText.ok.tr,
+          style: AppTextStyle.f14w600primaryColor,
+        ),
+      ),
       dialogSize: const Size(350, 400),
       borderRadius: BorderRadius.circular(10),
     );

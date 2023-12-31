@@ -9,16 +9,17 @@ class User {
   String? emailVerifiedAt;
   String? authorization;
 
-  User(
-      {this.id,
-      this.username,
-      this.email,
-      this.phone,
-      this.role,
-      this.address,
-      this.imageName,
-      this.emailVerifiedAt,
-      this.authorization});
+  User({
+    this.id,
+    this.username,
+    this.email,
+    this.phone,
+    this.role,
+    this.address,
+    this.imageName,
+    this.emailVerifiedAt,
+    this.authorization,
+  });
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];

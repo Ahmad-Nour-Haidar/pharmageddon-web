@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:pharmageddon_web/print.dart';
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_keys_request.dart';
 import '../../core/constant/app_text.dart';
@@ -39,7 +38,6 @@ class OrderDetailsCubit extends Cubit<OrderDetailsState> {
     response.fold((l) {
       _update(OrderDetailsFailureState(l));
     }, (r) {
-      printme.printFullText(r);
       final status = r[AppRKeys.status];
       if (status == 200) {
         final List temp =

@@ -62,7 +62,6 @@ class ProfileCubit extends Cubit<ProfileState> {
     response.fold((l) {
       _update(ProfileFailureState(l));
     }, (r) async {
-      printme.printFullText(r);
       final status = r[AppRKeys.status];
       if (status == 200) {
         _image = null;

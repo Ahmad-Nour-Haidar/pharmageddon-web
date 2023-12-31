@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,53 +18,50 @@ import 'core/constant/app_constant.dart';
 import 'core/constant/app_local_data.dart';
 import 'core/constant/app_size.dart';
 import 'core/localization/translation.dart';
+import 'core/notifications/app_firebase.dart';
 import 'core/resources/theme_manager.dart';
 import 'core/services/dependency_injection.dart';
+import 'firebase_options.dart';
 import 'my_bloc_observer.dart';
 
-Future<void> requestPermissionNotification() async {
-  await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+  // await Firebase.initializeApp();
+  AppFirebase.firebaseMessagingBackgroundHandler(message);
 }
 
-Future<void> init() async {
-  await requestPermissionNotification();
-  final topic = AppLocalData.user?.id.toString() ?? '0';
-  printme.green(topic);
-  await FirebaseMessaging.instance.deleteToken();
-  FirebaseMessaging.instance.getToken().then((token) {
-    printme.yellow('------------------');
-    printme.yellow(token);
-    printme.yellow('------------------');
-  }).catchError((e) {});
-
-  // await FirebaseMessaging.instance.subscribeToTopic(topic);
-  // await FirebaseMessaging.instance.subscribeToTopic("all-users");
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    printme.blue(message.data);
-    printme.blue(message.notification?.title.toString());
-    printme.blue(message.notification?.body.toString());
-    printme.blue(message);
-  });
+Future<void> _firebaseMessaging(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+  AppFirebase.firebaseMessaging(message);
 }
-
-// eRMObZyYJ2aVeJrs9_WwAD:APA91bG6MieGij1ie4sIBLtG7vC9qU0c6hrsP6y6QXWdUVV4Fx5zZ61y0JaNmHu3uXKF1zB-Y8WSC7hywF0imEa_a_6O-KEThh7m6go7zNPgvI5SLBKM9dC5Vqpdohac2OvHyt1jwQ8O
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await AppInjection.initial();
-  Bloc.observer = AppInjection.getIt<MyBlocObserver>();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    FirebaseMessaging.instance.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+  } catch (e) {
+    printme.red(e);
+  }
+  AppFirebase.setToken();
 
-  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // await init();
+  FirebaseMessaging.onMessage.listen(_firebaseMessaging);
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  Bloc.observer = AppInjection.getIt<MyBlocObserver>();
 
   runApp(const MyApp());
 }
@@ -76,9 +74,9 @@ class MyApp extends StatelessWidget {
     AppSize.initial(context);
     final controller = AppInjection.getIt<LocaleController>();
     var initialRoute = AppRoute.login;
-    // if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
+    if (AppLocalData.user != null && AppLocalData.user!.authorization != null) {
       initialRoute = AppRoute.home;
-    // }
+    }
     return MultiBlocProvider(
       providers: [
         BlocProvider<HomeCubit>(

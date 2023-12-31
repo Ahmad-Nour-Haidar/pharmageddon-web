@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/controllers/reports_cubit/reports_state.dart';
-import 'package:pharmageddon_web/core/functions/functions.dart';
-import 'package:pharmageddon_web/print.dart';
 
 import '../../core/class/parent_state.dart';
 import '../../core/constant/app_keys_request.dart';
@@ -45,7 +43,6 @@ class ReportsCubit extends Cubit<ReportsState> {
     response.fold((l) {
       _update(ReportsFailureState(l));
     }, (r) {
-      printme.printFullText(r);
       final status = r[AppRKeys.status];
       if (status == 403) {
         data.clear();

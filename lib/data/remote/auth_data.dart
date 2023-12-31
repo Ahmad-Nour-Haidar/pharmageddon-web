@@ -75,7 +75,7 @@ class AuthRemoteData {
     required Map<String, dynamic> data,
     File? file,
   }) async {
-    final token = AppLocalData.user!.authorization!;
+    final token = AppLocalData.user?.authorization;
     return await _crudDio.requestWithFile(
       data: data,
       token: token,
@@ -86,12 +86,22 @@ class AuthRemoteData {
   }
 
   Future<Either<ParentState, Map<String, dynamic>>> logout() async {
-    final token = AppLocalData.user!.authorization!;
+    final token = AppLocalData.user?.authorization!;
     var response = await _crudDio.deleteData(
       data: {},
       token: token,
       linkUrl: AppLink.logout,
     );
     return response;
+  }
+
+  Future<Either<ParentState, Map<String, dynamic>>> saveToken(
+      String fcmToken) async {
+    final token = AppLocalData.user?.authorization!;
+    return await _crudDio.postData(
+      data: {AppRKeys.browser_token: fcmToken},
+      token: token,
+      linkUrl: AppLink.saveToken,
+    );
   }
 }

@@ -190,15 +190,13 @@ class ReportsRemoteData {
         }
       ]
     },
-    "message": {
-      "custom_message": "Report orders retrieved successfully."
-    }
+    "message": {"custom_message": "Report orders retrieved successfully."}
   };
 
   Future<Either<ParentState, Map<String, dynamic>>> getReports({
     required Map<String, dynamic> queryParameters,
   }) async {
-    final token = AppLocalData.user?.authorization!;
+    final token = AppLocalData.user?.authorization;
     // return Right(r);
     final response = await _crud.getData(
       linkUrl: AppLink.report,

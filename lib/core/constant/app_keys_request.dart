@@ -17,6 +17,8 @@ class AppRKeys {
   static const verification_code = 'verification_code';
   static const failure = 'failure';
   static const data = 'data';
+  static const action = 'action';
+  static const browser_token = 'browser_token';
   static const item_id = 'item_id';
   static const category_id = 'category_id';
   static const size = 'size';

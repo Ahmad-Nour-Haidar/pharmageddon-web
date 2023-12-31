@@ -50,6 +50,7 @@ class OrderDetailsScreen extends StatelessWidget {
           if (state is OrderUpdateStatusSuccessState) onSuccess();
           if (state is OrderDetailsCancelSuccessState) onSuccess();
           if (state is OrderUpdatePaymentStatusSuccessState) onSuccess();
+          if (state is OrderDetailsCancelSuccessState) onTapClose();
         },
         builder: (context, state) {
           final cubit = OrderDetailsCubit.get(context);

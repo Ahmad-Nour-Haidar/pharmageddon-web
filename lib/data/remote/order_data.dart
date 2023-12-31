@@ -37,7 +37,7 @@ class OrderRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getOrders({
     required String url,
   }) async {
-    final token = AppLocalData.user!.authorization!;
+    final token = AppLocalData.user?.authorization!;
     final response = await _crud.getData(
       linkUrl: url,
       token: token,
@@ -48,7 +48,7 @@ class OrderRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> cancelOrder({
     required Map<String, dynamic> queryParameters,
   }) async {
-    final token = AppLocalData.user!.authorization!;
+    final token = AppLocalData.user?.authorization!;
     final response = await _crud.getData(
       linkUrl: AppLink.orderDelete,
       token: token,
@@ -60,7 +60,7 @@ class OrderRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> getOrderDetails({
     required Map<String, dynamic> queryParameters,
   }) async {
-    final token = AppLocalData.user!.authorization!;
+    final token = AppLocalData.user?.authorization!;
     final response = await _crud.getData(
       linkUrl: AppLink.orderGetOrderDetails,
       token: token,
@@ -73,7 +73,7 @@ class OrderRemoteData {
   Future<Either<ParentState, Map<String, dynamic>>> updatePaymentStatus({
     required Map<String, dynamic> data,
   }) async {
-    final token = AppLocalData.user!.authorization!;
+    final token = AppLocalData.user?.authorization!;
     final response = await _crud.postData(
       linkUrl: AppLink.orderUpdatePaymentStatus,
       token: token,

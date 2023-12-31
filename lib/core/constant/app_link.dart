@@ -37,6 +37,7 @@ class AppLink {
   static const profile = '$_serverApi/auth/get_user_profile';
   static const logout = '$_serverApi/auth/logout';
   static const updateUser = '$_serverApi/user/update_user_profile';
+  static const saveToken = '$_serverApi/save_token';
   static const userImage = '$_serverImage/users';
 
   // medicine

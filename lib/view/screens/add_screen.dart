@@ -26,8 +26,7 @@ class AddScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is AddFailureState) {
           handleState(state: state.state, context: context);
-        }
-        if (state is AddSuccessState) {
+        } else if (state is AddSuccessState) {
           handleState(state: state.state, context: context);
         }
       },

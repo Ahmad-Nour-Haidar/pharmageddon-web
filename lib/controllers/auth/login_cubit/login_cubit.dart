@@ -7,6 +7,7 @@ import '../../../core/constant/app_keys_request.dart';
 import '../../../core/constant/app_local_data.dart';
 import '../../../core/constant/app_text.dart';
 import '../../../core/functions/functions.dart';
+import '../../../core/notifications/app_firebase.dart';
 import '../../../core/services/dependency_injection.dart';
 import '../../../data/remote/auth_data.dart';
 import 'login_state.dart';
@@ -71,6 +72,7 @@ class LoginCubit extends Cubit<LoginState> {
         if (AppLocalData.user!.emailVerifiedAt == null) {
           emit(LoginNotVerifyState());
         } else {
+          AppFirebase.setToken();
           emit(LoginSuccessState());
         }
       }

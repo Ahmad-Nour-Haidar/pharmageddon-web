@@ -45,6 +45,8 @@
 
 
 
+
+
     </script>
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
@@ -53,28 +55,18 @@
 import { initialApp } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js";
 import { getMessaging } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js";
+
     </script>
 </head>
 <body>
+<!--<script>-->
+<!--       if ('serviceWorker' in navigator) {-->
+<!--          window.addEventListener('flutter-first-frame', function () {-->
+<!--            navigator.serviceWorker.register('/flutter_service_worker.js');-->
+<!--          });-->
+<!--      }-->
+<!--</script>-->
 
-<script src="main.dart.js" type="application/javascript"></script>
-<script>
-       if ('serviceWorker' in navigator) {
-          // Service workers are supported. Use them.
-          window.addEventListener('flutter-first-frame', function () {
-            // ADD THIS LINE
-            navigator.serviceWorker.register('/firebase-messaging-sw.js');
-
-            // Wait for registration to finish before dropping the <script> tag.
-            // Otherwise, the browser will load the script multiple times,
-            // potentially different versions.
-            var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
-
-            //  ...
-          });
-      }
-
-</script>
 <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
@@ -90,9 +82,32 @@ import { getMessaging } from "https://www.gstatic.com/firebasejs/8.10.0/firebase
       });
     });
 
-
-
+</script>
+<script>
+       if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/firebase-messaging-sw.js');
+          });
+      }
 
 </script>
+<script src="main.dart.js" type="application/javascript"></script>
+<script>
+       if ('serviceWorker' in navigator) {
+          // Service workers are supported. Use them.
+          window.addEventListener('load', function () {
+            // ADD THIS LINE
+            navigator.serviceWorker.register('/firebase-messaging-sw.js');
+
+            // Wait for registration to finish before dropping the <script> tag.
+            // Otherwise, the browser will load the script multiple times,
+            // potentially different versions.
+            var serviceWorkerUrl = 'flutter_service_worker.js?v=' + serviceWorkerVersion;
+
+            //  ...
+          });
+      }
+  </script>
+
 </body>
 </html>

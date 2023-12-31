@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
@@ -6,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/class/pair.dart';
 import 'package:pharmageddon_web/core/constant/app_padding.dart';
-import 'package:pharmageddon_web/core/extensions/translate_numbers.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
-import 'package:pharmageddon_web/print.dart';
 
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_text.dart';
@@ -68,8 +65,6 @@ class _FlowChartState extends State<FlowChart> {
     spots.clear();
     for (final e in data) {
       final x = e.totalPrice ?? 0.0;
-      printme.green('${e.id} - ${_getPercentY(x)}');
-      printme.green('_maxTotalPrice - $_maxTotalPrice');
       spots.add(FlSpot(i, _getPercentY(x)));
       i += _interval;
     }
@@ -100,7 +95,6 @@ class _FlowChartState extends State<FlowChart> {
     }
     double i = 0;
     for (final e in _dataCollapsed.entries) {
-      printme.green('${e.key} ${e.value.key}');
       list.add(Pair(_getPercentY(e.value.key), e.value.value));
       spots.add(FlSpot(i, _getPercentY(e.value.key)));
       i += _interval;

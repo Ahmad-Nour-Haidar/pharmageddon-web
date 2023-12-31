@@ -69,7 +69,7 @@ Future<void> storeUser(Map<String, dynamic> json) async {
   final appHive = AppInjection.getIt<AppHive>();
   await appHive.store(AppSKeys.userKey, user.toJson());
   AppLocalData.user = user;
-  // printme.yellowAccent(AppLocalData.user);
+  // printme.yellowAccent(AppLocalData.user?.toJson());
 }
 
 void initialUser() {
@@ -84,7 +84,7 @@ void initialUser() {
   });
   var user = User.fromJson(jsonUser);
   AppLocalData.user = user;
-  // printme.green(user.authorization);
+  // printme.yellowAccent(AppLocalData.user?.toJson());
   return;
 }
 

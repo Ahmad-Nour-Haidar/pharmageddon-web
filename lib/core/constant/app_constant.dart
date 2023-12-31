@@ -5,6 +5,8 @@ class AppConstant {
 
   static const ar = 'ar';
   static const en = 'en';
+  static const keyPair =
+      'BMHYcYTuaea-zgs0n7obPyPdwn6W0j7hR9cAxVnNeSO1sNpyex7lMO-Pe4EuJge8Ugo9ICO83kPbddeQcjNDOZc';
 
   // static const pharmacist = 'pharmacist';
   static const warehouseowner = 'warehouseowner';

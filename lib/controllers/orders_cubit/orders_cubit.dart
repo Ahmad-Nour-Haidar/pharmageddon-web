@@ -22,12 +22,11 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   var lastScreen = ScreenView.all;
 
-  Future<void> getData(ScreenView screenView, {bool forceGat = false}) async {
-    // if (lastScreen == screenView && !forceGat) return;
-    lastScreen = screenView;
+  Future<void> getData({ScreenView? screenView, bool forceGat = false}) async {
+    lastScreen = screenView ?? lastScreen;
     _update(OrdersLoadingState());
-    final response = await _orderRemoteData.getOrders(url: _getUrl(screenView));
-    if (screenView != lastScreen) return;
+    final response = await _orderRemoteData.getOrders(url: _getUrl(lastScreen));
+    if (screenView != lastScreen && !forceGat) return;
     response.fold((l) {
       _update(OrdersFailureState(l));
     }, (r) {
@@ -73,6 +72,23 @@ class OrdersCubit extends Cubit<OrdersState> {
       return AppLink.orderGetAllPaid;
     }
     return AppLink.orderGetAllUnpaid;
+  }
+
+  // notifications
+  Future<void> updateFromNotifications({
+    required String action,
+    required String orderId,
+  }) async {
+    if (action == '2' || action == '3' || action == '4' || action == '6') {
+      final id = int.tryParse(orderId) ?? 0;
+      if (showingOrders[0] != null && showingOrders[0]!.id == id) {
+        showingOrders[0] = null;
+      }
+      if (showingOrders[1] != null && showingOrders[1]!.id == id) {
+        showingOrders[1] = null;
+      }
+    }
+    getData(forceGat: true);
   }
 
   // this to show details of list of orders
