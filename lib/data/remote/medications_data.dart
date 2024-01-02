@@ -10,7 +10,6 @@ import '../crud_dio.dart';
 
 class MedicationsRemoteData {
   final _crudDio = AppInjection.getIt<CrudDio>();
-  // final _crudHttp = AppInjection.getIt<CrudHttp>();
 
   Future<Either<ParentState, Map<String, dynamic>>> getMedications({
     required String url,

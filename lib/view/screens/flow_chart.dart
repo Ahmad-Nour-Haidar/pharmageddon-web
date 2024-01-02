@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:pharmageddon_web/core/class/pair.dart';
 import 'package:pharmageddon_web/core/constant/app_padding.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
-import 'package:pharmageddon_web/print.dart';
 
 import '../../core/constant/app_color.dart';
 import '../../core/constant/app_text.dart';
@@ -89,12 +88,10 @@ class _FlowChartState extends State<FlowChart> {
       final k = '${date.day} - ${date.month}';
       final x = e.totalPrice ?? 0.0;
       final old = _dataCollapsed[k]?.key ?? 0.0;
-      printme.green('${e.createdAt} $k : $old');
       _dataCollapsed[k] = Pair(old + x, k);
       _maxTotalPrice = max(_maxTotalPrice, old + x);
       maxY = max(maxY, _maxTotalPrice);
     }
-    printme.red(_dataCollapsed.length);
     double i = 0;
     for (final e in _dataCollapsed.entries) {
       list.add(Pair(e.value.key, e.value.value));

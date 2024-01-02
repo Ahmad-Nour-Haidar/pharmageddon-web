@@ -30,7 +30,7 @@ class OrderWidget extends StatelessWidget {
       elevation: 4,
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
-        onTap: () => onTap == null ? null : onTap!(model),
+        onTap: onTap == null ? null : () => onTap!(model),
         child: Container(
           padding: AppPadding.padding10,
           width: 250,

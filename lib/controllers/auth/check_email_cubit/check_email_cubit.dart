@@ -51,7 +51,7 @@ class CheckEmailCubit extends Cubit<CheckEmailState> {
         final message = AppText.userNotFound.tr;
         emit(CheckEmailFailureState(FailureState(message: message)));
       } else {
-        emit(CheckEmailFailureState(FailureState()));
+        emit(CheckEmailChangeState());
       }
     });
   }

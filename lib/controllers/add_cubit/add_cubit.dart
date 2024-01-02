@@ -124,7 +124,7 @@ class AddCubit extends Cubit<AddState> {
 
   Future<void> getDataEffectCategory({bool forceGet = false}) async {
     if (effectCategories.isNotEmpty && !forceGet) return;
-    _update(AddEffectCategoryLoadingState());
+    _update(AddGetEffectCategoryLoadingState());
     final response = await _effectCategoryRemoteData.getEffectsCategories(
       url: AppLink.effectCategoriesGetAllM,
     );

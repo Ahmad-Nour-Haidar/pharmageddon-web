@@ -12,11 +12,11 @@ import '../services/dependency_injection.dart';
 abstract class AppFirebase {
   static Future<void> firebaseMessagingBackgroundHandler(
       RemoteMessage message) async {
-    // printme.cyan('================== onBackgroundMessage ================');
-    // printme.cyan('title = ${message.notification?.title}');
-    // printme.cyan('body = ${message.notification?.body}');
-    // printme.cyan('data = ${message.data}');
-    // printme.cyan('================== onBackgroundMessage ================');
+    printme.cyan('================== onBackgroundMessage ================');
+    printme.cyan('title = ${message.notification?.title}');
+    printme.cyan('body = ${message.notification?.body}');
+    printme.cyan('data = ${message.data}');
+    printme.cyan('================== onBackgroundMessage ================');
     Map<String, dynamic> data = {};
     try {
       data = json.decode(message.data[AppRKeys.data]);
@@ -32,11 +32,11 @@ abstract class AppFirebase {
   }
 
   static Future<void> firebaseMessaging(RemoteMessage message) async {
-    // printme.cyan('================== onMessage ================');
-    // printme.cyan('title = ${message.notification?.title}');
-    // printme.cyan('body = ${message.notification?.body}');
-    // printme.cyan('body = ${message.data}');
-    // printme.cyan('================== onMessage ================');
+    printme.cyan('================== onMessage ================');
+    printme.cyan('title = ${message.notification?.title}');
+    printme.cyan('body = ${message.notification?.body}');
+    printme.cyan('body = ${message.data}');
+    printme.cyan('================== onMessage ================');
 
     Map<String, dynamic> data = {};
     try {
@@ -98,7 +98,6 @@ abstract class AppFirebase {
         action == '3' ||
         action == '4' ||
         action == '6') {
-      printme.cyan(data);
       AppInjection.getIt<OrdersCubit>().updateFromNotifications(
         action: action,
         orderId: data == null ? '0' : data[AppRKeys.order_id].toString(),
@@ -110,9 +109,9 @@ abstract class AppFirebase {
     FirebaseMessaging.instance
         .getToken(vapidKey: AppConstant.keyPair)
         .then((token) {
-      // printme.yellow('------------------');
-      // printme.yellow(token);
-      // printme.yellow('------------------');
+      printme.yellow('------------------');
+      printme.yellow(token);
+      printme.yellow('------------------');
       if (token != null) {
         AppInjection.getIt<AuthRemoteData>().saveToken(token).then((value) {
           value.fold((l) {

@@ -27,8 +27,8 @@ class AddAddMedicationSuccessState extends AddState {}
 class AddGetManufacturerLoadingState extends AddState {}
 
 class AddGetManufacturerSuccessState extends AddState {}
-// add
 
+// add
 class AddManufacturerLoadingState extends AddState {}
 
 class AddManufacturerSuccessState extends AddState {}
