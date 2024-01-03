@@ -11,6 +11,7 @@ import 'package:pharmageddon_web/core/constant/app_padding.dart';
 import 'package:pharmageddon_web/core/constant/app_size.dart';
 import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/core/functions/functions.dart';
+import 'package:pharmageddon_web/core/notifications/app_firebase.dart';
 import 'package:pharmageddon_web/core/resources/app_text_theme.dart';
 import 'package:pharmageddon_web/core/services/dependency_injection.dart';
 import 'package:pharmageddon_web/view/widgets/custom_button.dart';
@@ -188,6 +189,7 @@ class ProfileScreen extends StatelessWidget {
         final appHive = AppInjection.getIt<AppHive>();
         appHive.delete(AppSKeys.userKey);
         appHive.delete(AppSKeys.langKey);
+        AppFirebase.deleteToken();
         pushNamedAndRemoveUntil(AppRoute.login, context);
       },
     ).show();

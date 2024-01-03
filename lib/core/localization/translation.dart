@@ -180,8 +180,33 @@ class MyTranslation extends Translations {
           AppText.days: AppText.days,
           AppText.collapse: AppText.collapse,
           AppText.expand: AppText.expand,
+          AppText.newOrder: AppText.newOrder,
+          AppText.aPharmacistCreatesAnOrder: AppText.aPharmacistCreatesAnOrder,
+          AppText.anOrderHasBeenUpdated: AppText.anOrderHasBeenUpdated,
+          AppText.aPharmacistUpdatedHisOrder:
+              AppText.aPharmacistUpdatedHisOrder,
+          AppText.aMedicineHasBeenCanceled: AppText.aMedicineHasBeenCanceled,
+          AppText.aPharmacistCanceledAMedicineInHisOrder:
+              AppText.aPharmacistCanceledAMedicineInHisOrder,
+          AppText.anOrderHasBeenCanceled: AppText.anOrderHasBeenCanceled,
+          AppText.aPharmacistCanceledHisOrder:
+              AppText.aPharmacistCanceledHisOrder,
+          AppText.anOrderHasBeenReceived: AppText.anOrderHasBeenReceived,
+          AppText.oneOfTheOrdersHasBeenReceived:
+              AppText.oneOfTheOrdersHasBeenReceived,
         },
         'ar': {
+          AppText.newOrder: 'طلب جديد',
+          AppText.aPharmacistCreatesAnOrder: 'صيدلي أنشأ طلبًا',
+          AppText.anOrderHasBeenUpdated: "تم تحديث طلب",
+          AppText.aPharmacistUpdatedHisOrder: 'قام صيدلي بتحديث طلب',
+          AppText.aMedicineHasBeenCanceled: 'تم إلغاء دواء',
+          AppText.aPharmacistCanceledAMedicineInHisOrder:
+              "صيدلي ألغى دواءً في طلبه",
+          AppText.anOrderHasBeenCanceled: 'تم إلغاء طلب',
+          AppText.aPharmacistCanceledHisOrder: 'ألغى صيدلي طلبه',
+          AppText.anOrderHasBeenReceived: 'تم استلام طلب',
+          AppText.oneOfTheOrdersHasBeenReceived: 'تم استلام أحد الطلبات',
           AppText.collapse: 'ضغط',
           AppText.expand: "توسيع",
           AppText.days: 'أيام',

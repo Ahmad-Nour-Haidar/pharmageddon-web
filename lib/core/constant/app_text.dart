@@ -196,6 +196,28 @@ class AppText {
   static const collapse = 'Collapse';
   static const expand = 'Expand';
 
+  // 1
+  static const newOrder = 'New order';
+  static const aPharmacistCreatesAnOrder = 'A pharmacist creates an order.';
+
+  //2
+  static const anOrderHasBeenUpdated = 'An order has been updated';
+  static const aPharmacistUpdatedHisOrder = 'A pharmacist updated his order.';
+
+  // 3
+  static const aMedicineHasBeenCanceled = 'A medicine has been canceled';
+  static const aPharmacistCanceledAMedicineInHisOrder =
+      'A pharmacist canceled a medicine in his order.';
+
+  // 4
+  static const anOrderHasBeenCanceled = 'An order has been canceled';
+  static const aPharmacistCanceledHisOrder = 'A pharmacist canceled his order.';
+
+  // 6
+  static const anOrderHasBeenReceived = 'An order has been received';
+  static const oneOfTheOrdersHasBeenReceived =
+      'One of the orders has been received.';
+
   static final _numberFormat = NumberFormat.decimalPattern();
 
   static String format(number) {

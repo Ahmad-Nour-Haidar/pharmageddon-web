@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:pharmageddon_web/core/constant/app_text.dart';
 import 'package:pharmageddon_web/data/remote/auth_data.dart';
 import 'package:pharmageddon_web/print.dart';
 import '../../controllers/orders_cubit/orders_cubit.dart';
@@ -58,7 +60,7 @@ abstract class AppFirebase {
     String? action,
     Map<String, dynamic>? data,
   }) async {
-    final title = titleNotification ?? 'Pharmageddon';
+    var title = titleNotification ?? 'Pharmageddon';
     var body = bodyNotification ?? 'New notification';
     if ((action == '1' ||
             action == '2' ||
@@ -69,6 +71,28 @@ abstract class AppFirebase {
       final orderId = data[AppRKeys.order_id];
       body = 'ID: $orderId , $body';
     }
+
+    if (action == '1') {
+      title = AppText.newOrder.tr;
+      body = AppText.aPharmacistCreatesAnOrder.tr;
+    }
+    if (action == '2') {
+      title = AppText.anOrderHasBeenUpdated.tr;
+      body = AppText.aPharmacistUpdatedHisOrder.tr;
+    }
+    if (action == '3') {
+      title = AppText.aMedicineHasBeenCanceled.tr;
+      body = AppText.aPharmacistCanceledAMedicineInHisOrder.tr;
+    }
+    if (action == '4') {
+      title = AppText.anOrderHasBeenCanceled.tr;
+      body = AppText.aPharmacistCanceledHisOrder.tr;
+    }
+    if (action == '6') {
+      title = AppText.anOrderHasBeenReceived.tr;
+      body = AppText.oneOfTheOrdersHasBeenReceived.tr;
+    }
+
     Fluttertoast.showToast(
       msg: '$title\n$body',
       toastLength: Toast.LENGTH_LONG,
@@ -83,14 +107,6 @@ abstract class AppFirebase {
     );
   }
 
-  // 1 Create an order
-  // 2 Modify an order
-  // 3 Cancellation of a medication included in an order
-  // 4 Cancel an order
-  // 5 Send an order
-  // 6 Receiving an order
-  // 7 Pay an order
-  // 8 Create a medicine
   static Future<void> _handleActions(
       String action, Map<String, dynamic>? data) async {
     if (action == '1' ||
@@ -139,7 +155,7 @@ abstract class AppFirebase {
   }
 
   // when logout
-  static Future<void> deleteTopics() async {
+  static Future<void> deleteToken() async {
     try {
       await FirebaseMessaging.instance.deleteToken();
     } catch (e) {
@@ -147,3 +163,19 @@ abstract class AppFirebase {
     }
   }
 }
+
+// 1 Create an order
+// 2 Modify an order
+// 3 Cancellation of a medication included in an order
+// 4 Cancel an order
+// 5 Send an order
+// 6 Receiving an order
+// 7 Pay an order
+// 8 Create a medicine
+
+///
+// 1 New order,  A pharmacist creates an order.
+// 2  An order has been updated, A pharmacist updated his order.
+// 3 A medicine has been canceled, A pharmacist canceled a medicine in his order.
+// 4 An order has been canceled, A pharmacist canceled his order.
+// 6 An order has been received., One of the orders has been received.
