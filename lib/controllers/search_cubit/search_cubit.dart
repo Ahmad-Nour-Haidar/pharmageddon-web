@@ -34,12 +34,12 @@ class SearchCubit extends Cubit<SearchState> {
       _update(SearchFailureState(l));
     }, (r) {
       valueSearch = value;
+      medications.clear();
       if (r[AppRKeys.status] == 403) {
         _update(SearchNoDataState());
         return;
       }
       final List temp = r[AppRKeys.data][AppRKeys.medicines];
-      medications.clear();
       medications.addAll(temp.map((e) => MedicationModel.fromJson(e)));
       if (medications.isEmpty) {
         _update(SearchNoDataState());

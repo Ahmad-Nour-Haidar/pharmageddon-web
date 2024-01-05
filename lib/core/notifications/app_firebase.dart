@@ -14,11 +14,11 @@ import '../services/dependency_injection.dart';
 abstract class AppFirebase {
   static Future<void> firebaseMessagingBackgroundHandler(
       RemoteMessage message) async {
-    printme.cyan('================== onBackgroundMessage ================');
-    printme.cyan('title = ${message.notification?.title}');
-    printme.cyan('body = ${message.notification?.body}');
-    printme.cyan('data = ${message.data}');
-    printme.cyan('================== onBackgroundMessage ================');
+    // printme.cyan('================== onBackgroundMessage ================');
+    // printme.cyan('title = ${message.notification?.title}');
+    // printme.cyan('body = ${message.notification?.body}');
+    // printme.cyan('data = ${message.data}');
+    // printme.cyan('================== onBackgroundMessage ================');
     Map<String, dynamic> data = {};
     try {
       data = json.decode(message.data[AppRKeys.data]);
@@ -34,11 +34,11 @@ abstract class AppFirebase {
   }
 
   static Future<void> firebaseMessaging(RemoteMessage message) async {
-    printme.cyan('================== onMessage ================');
-    printme.cyan('title = ${message.notification?.title}');
-    printme.cyan('body = ${message.notification?.body}');
-    printme.cyan('body = ${message.data}');
-    printme.cyan('================== onMessage ================');
+    // printme.cyan('================== onMessage ================');
+    // printme.cyan('title = ${message.notification?.title}');
+    // printme.cyan('body = ${message.notification?.body}');
+    // printme.cyan('body = ${message.data}');
+    // printme.cyan('================== onMessage ================');
 
     Map<String, dynamic> data = {};
     try {
@@ -62,6 +62,22 @@ abstract class AppFirebase {
   }) async {
     var title = titleNotification ?? 'Pharmageddon';
     var body = bodyNotification ?? 'New notification';
+    if (action == '1') {
+      title = AppText.newOrder.tr;
+      body = AppText.aPharmacistCreatesAnOrder.tr;
+    } else if (action == '2') {
+      title = AppText.anOrderHasBeenUpdated.tr;
+      body = AppText.aPharmacistUpdatedHisOrder.tr;
+    } else if (action == '3') {
+      title = AppText.aMedicineHasBeenCanceled.tr;
+      body = AppText.aPharmacistCanceledAMedicineInHisOrder.tr;
+    } else if (action == '4') {
+      title = AppText.anOrderHasBeenCanceled.tr;
+      body = AppText.aPharmacistCanceledHisOrder.tr;
+    } else if (action == '6') {
+      title = AppText.anOrderHasBeenReceived.tr;
+      body = AppText.oneOfTheOrdersHasBeenReceived.tr;
+    }
     if ((action == '1' ||
             action == '2' ||
             action == '3' ||
@@ -69,30 +85,8 @@ abstract class AppFirebase {
             action == '6') &&
         data != null) {
       final orderId = data[AppRKeys.order_id];
-      body = 'ID: $orderId , $body';
+      body = '${AppText.id.tr}: $orderId , $body';
     }
-
-    if (action == '1') {
-      title = AppText.newOrder.tr;
-      body = AppText.aPharmacistCreatesAnOrder.tr;
-    }
-    if (action == '2') {
-      title = AppText.anOrderHasBeenUpdated.tr;
-      body = AppText.aPharmacistUpdatedHisOrder.tr;
-    }
-    if (action == '3') {
-      title = AppText.aMedicineHasBeenCanceled.tr;
-      body = AppText.aPharmacistCanceledAMedicineInHisOrder.tr;
-    }
-    if (action == '4') {
-      title = AppText.anOrderHasBeenCanceled.tr;
-      body = AppText.aPharmacistCanceledHisOrder.tr;
-    }
-    if (action == '6') {
-      title = AppText.anOrderHasBeenReceived.tr;
-      body = AppText.oneOfTheOrdersHasBeenReceived.tr;
-    }
-
     Fluttertoast.showToast(
       msg: '$title\n$body',
       toastLength: Toast.LENGTH_LONG,
@@ -125,9 +119,9 @@ abstract class AppFirebase {
     FirebaseMessaging.instance
         .getToken(vapidKey: AppConstant.keyPair)
         .then((token) {
-      printme.yellow('------------------');
-      printme.yellow(token);
-      printme.yellow('------------------');
+      // printme.yellow('------------------');
+      // printme.yellow(token);
+      // printme.yellow('------------------');
       if (token != null) {
         AppInjection.getIt<AuthRemoteData>().saveToken(token).then((value) {
           value.fold((l) {
@@ -172,10 +166,3 @@ abstract class AppFirebase {
 // 6 Receiving an order
 // 7 Pay an order
 // 8 Create a medicine
-
-///
-// 1 New order,  A pharmacist creates an order.
-// 2  An order has been updated, A pharmacist updated his order.
-// 3 A medicine has been canceled, A pharmacist canceled a medicine in his order.
-// 4 An order has been canceled, A pharmacist canceled his order.
-// 6 An order has been received., One of the orders has been received.
