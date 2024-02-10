@@ -42,19 +42,17 @@
     // The value below is injected by flutter build, do not touch.
     const serviceWorkerVersion = null;
 
-
-
-
-
-
     </script>
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
 
     <script>
-import { initialApp } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js";
-import { getMessaging } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js";
+<!--import { getAnalytics } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js";-->
+<!--import { initialApp } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";-->
+<!--import { getMessaging } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js";-->
+import { initialApp } from "firebase-app.js";
+import { getMessaging } from "firebase-messaging.js";
+
 
     </script>
 </head>
@@ -82,6 +80,7 @@ import { getMessaging } from "https://www.gstatic.com/firebasejs/8.10.0/firebase
       });
     });
 
+
 </script>
 <script>
        if ('serviceWorker' in navigator) {
@@ -89,6 +88,7 @@ import { getMessaging } from "https://www.gstatic.com/firebasejs/8.10.0/firebase
             navigator.serviceWorker.register('/firebase-messaging-sw.js');
           });
       }
+
 
 </script>
 <script src="main.dart.js" type="application/javascript"></script>
@@ -107,7 +107,8 @@ import { getMessaging } from "https://www.gstatic.com/firebasejs/8.10.0/firebase
             //  ...
           });
       }
-  </script>
+
+</script>
 
 </body>
 </html>

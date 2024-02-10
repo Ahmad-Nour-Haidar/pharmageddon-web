@@ -119,9 +119,9 @@ abstract class AppFirebase {
     FirebaseMessaging.instance
         .getToken(vapidKey: AppConstant.keyPair)
         .then((token) {
-      // printme.yellow('------------------');
-      // printme.yellow(token);
-      // printme.yellow('------------------');
+      printme.yellow('------------------');
+      printme.yellow(token);
+      printme.yellow('------------------');
       if (token != null) {
         AppInjection.getIt<AuthRemoteData>().saveToken(token).then((value) {
           value.fold((l) {
