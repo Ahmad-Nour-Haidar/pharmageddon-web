@@ -28,19 +28,19 @@ tracking, multi-language support, and Firebase notifications to enhance user exp
 
 <div style="display: flex; flex-wrap: wrap; gap: 50px;">
 
-<img src="app-preview/phr-web1.png" alt="Splash Screen" width="30%">
+<img src="app-preview/phr-web1.png" alt="Splash Screen" width="50%">
 
-<img src="app-preview/phr-web2.png" alt="Onboarding" width="30%">
+<img src="app-preview/phr-web2.png" alt="Onboarding" width="50%">
 
-<img src="app-preview/phr-web3.png" alt="Explore" width="30%">
+<img src="app-preview/phr-web3.png" alt="Explore" width="50%">
 
-<img src="app-preview/phr-web4.png" alt="Beverages" width="30%">
+<img src="app-preview/phr-web4.png" alt="Beverages" width="50%">
 
-<img src="app-preview/phr-web5.png" alt="Add Item" width="30%">
+<img src="app-preview/phr-web5.png" alt="Add Item" width="50%">
 
-<img src="app-preview/phr-web6.png" alt="My Cart" width="30%">
+<img src="app-preview/phr-web6.png" alt="My Cart" width="50%">
 
-<img src="app-preview/phr-web7.png" alt="Checkout" width="30%">
+<img src="app-preview/phr-web7.png" alt="Checkout" width="50%">
 
 </div>
 
