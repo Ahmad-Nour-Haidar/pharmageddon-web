@@ -28,56 +28,21 @@ tracking, multi-language support, and Firebase notifications to enhance user exp
 
 <div style="display: flex; flex-wrap: wrap; gap: 50px;">
 
-<img src="app-preview/phr-web1.png" alt="Splash Screen" height="400" width="30%">
+<img src="app-preview/phr-web1.png" alt="Splash Screen" width="30%">
 
-<img src="app-preview/phr-web2.png" alt="Onboarding" height="400" width="30%">
+<img src="app-preview/phr-web2.png" alt="Onboarding" width="30%">
 
-<img src="app-preview/phr-web3.png" alt="Explore" height="400" width="30%">
+<img src="app-preview/phr-web3.png" alt="Explore" width="30%">
 
-<img src="app-preview/phr-web4.png" alt="Beverages" height="400" width="30%">
+<img src="app-preview/phr-web4.png" alt="Beverages" width="30%">
 
-<img src="app-preview/phr-web5.png" alt="Add Item" height="400" width="30%">
+<img src="app-preview/phr-web5.png" alt="Add Item" width="30%">
 
-<img src="app-preview/phr-web6.png" alt="My Cart" height="400" width="30%">
+<img src="app-preview/phr-web6.png" alt="My Cart" width="30%">
 
-<img src="app-preview/phr-web7.png" alt="Checkout" height="400" width="30%">
+<img src="app-preview/phr-web7.png" alt="Checkout" width="30%">
 
 </div>
-
-### Login Page
-
-![Login Page](path/to/your/image1.png)
-Secure login and registration process for users.
-
-### View All Medications
-
-![View All Medications](path/to/your/image2.png)
-Browse through medications and view manufacturer details and effects.
-
-### View All Manufacturers & Show Medications
-
-![View All Manufacturers & Show Medications](path/to/your/image3.png)
-View and manage medications by manufacturer.
-
-### View All Effect Categories & Show Medications
-
-![View All Effect Categories & Show Medications](path/to/your/image4.png)
-Browse medications by their effect categories.
-
-### Add Medications & Manufacturer and Effect Category
-
-![Add Medications & Manufacturer and Effect Category](path/to/your/image5.png)
-Easily add and categorize medications.
-
-### View All Orders and Change Status
-
-![View All Orders and Change Status](path/to/your/image6.png)
-Track and manage the status of all orders.
-
-### Flow Chart for Analytical All Orders
-
-![Flow Chart for Analytical All Orders](path/to/your/image7.png)
-Analyze order trends and statistics.
 
 ## ⚙️ Installation
 
