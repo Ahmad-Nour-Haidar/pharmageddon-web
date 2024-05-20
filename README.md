@@ -18,7 +18,7 @@ tracking, multi-language support, and Firebase notifications to enhance user exp
 
 - **Secure Authentication**: Login and registration with secure authentication.
 - **Medicine Browsing**: Browse and search for medications with detailed descriptions and
-  manufacturer information.
+  manufacturer information and effect categories.
 - **Order Management**: Add medications to your cart, adjust quantities, and place orders.
 - **Order Tracking**: Track the status of your orders in real-time.
 - **Multi Language Support**: Choose your preferred application language.
@@ -28,19 +28,19 @@ tracking, multi-language support, and Firebase notifications to enhance user exp
 
 <div style="display: flex; flex-wrap: wrap; gap: 50px;">
 
-<img src="app-preview/phr-web1.png" alt="Splash Screen" width="50%">
+<img src="app-preview/phr-web1.png" alt="Login page" width="40%">
 
-<img src="app-preview/phr-web2.png" alt="Onboarding" width="50%">
+<img src="app-preview/phr-web5.png" alt="Medicine Browsing" width="40%">
 
-<img src="app-preview/phr-web3.png" alt="Explore" width="50%">
+<img src="app-preview/phr-web4.png" alt="Manufacturer Browsing" width="40%">
 
-<img src="app-preview/phr-web4.png" alt="Beverages" width="50%">
+<img src="app-preview/phr-web6.png" alt="Effect Categories Browsing" width="40%">
 
-<img src="app-preview/phr-web5.png" alt="Add Item" width="50%">
+<img src="app-preview/phr-web2.png" alt="App page" width="40%">
 
-<img src="app-preview/phr-web6.png" alt="My Cart" width="50%">
+<img src="app-preview/phr-web3.png" alt="Order Tracking" width="40%">
 
-<img src="app-preview/phr-web7.png" alt="Checkout" width="50%">
+<img src="app-preview/phr-web7.png" alt="Flow Chart of Orders" width="40%">
 
 </div>
 
